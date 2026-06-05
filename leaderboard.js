@@ -22,6 +22,10 @@ pages.forEach(page => {
 
   menuPanel.appendChild(link);
 });
+const sortSelect = document.getElementById("sortSelect");
+const filterSelect = document.getElementById("filterSelect");
+
+let allPlayers = [];
 
 document
   .getElementById("menuBtn")
@@ -95,7 +99,14 @@ function getBestMainTitle(player) {
   })[0];
 }
 
-function sortPlayers(players) {
+function sortPlayers(players, mode = "titles") {
+
+  if (mode === "rating") {
+    return [...players].sort(
+      (a, b) => (b.rating || 0) - (a.rating || 0)
+    );
+  }
+
   return [...players].sort((a, b) => {
 
     const aMain = getBestMainTitle(a);
@@ -107,7 +118,11 @@ function sortPlayers(players) {
     const bRank =
       titlePriority[bMain?.code] || 0;
 
-    return bRank - aRank;
+    if (bRank !== aRank) {
+      return bRank - aRank;
+    }
+
+    return (b.rating || 0) - (a.rating || 0);
   });
 }
 
@@ -196,5 +211,98 @@ async function loadPlayers() {
     leaderboard.appendChild(card);
   });
 }
+
+async function loadPlayers() {
+
+  const res = await fetch("players.json");
+
+  allPlayers = await res.json();
+
+  renderLeaderboard();
+}
+  players = sortPlayers(players, sortMode);
+
+  leaderboard.innerHTML = "";
+
+  players.forEach(player => {
+
+    const card = document.createElement("div");
+
+    card.className = "player-card";
+
+    const bestMain =
+      getBestMainTitle(player);
+
+    const specials =
+      getSpecialTitles(player);
+
+    card.innerHTML = `
+      <div class="player-top">
+        <div class="username">
+          ${player.username}
+        </div>
+      </div>
+
+      <div class="description">
+        ${player.description || ""}
+      </div>
+    `;
+
+    const titleRow =
+      document.createElement("div");
+
+    titleRow.className = "title-row";
+
+    if (bestMain) {
+      titleRow.appendChild(
+        createBadge(bestMain.code)
+      );
+    }
+
+    specials.forEach(t => {
+      titleRow.appendChild(
+        createBadge(t.code, true)
+      );
+    });
+
+    card.appendChild(titleRow);
+
+    if (player.rating) {
+      const ratingDiv =
+        document.createElement("div");
+
+      ratingDiv.className = "player-rating";
+
+      ratingDiv.textContent =
+        `Rating: ${player.rating}`;
+
+      card.appendChild(ratingDiv);
+    }
+
+    const dates =
+      document.createElement("div");
+
+    dates.className = "date-list";
+
+    dates.innerHTML = player.titles.map(t => `
+      <div>
+        ${t.code}: ${t.date}
+      </div>
+    `).join("");
+
+    card.appendChild(dates);
+
+    leaderboard.appendChild(card);
+  });
+}
+sortSelect.addEventListener(
+  "change",
+  renderLeaderboard
+);
+
+filterSelect.addEventListener(
+  "change",
+  renderLeaderboard
+);
 
 loadPlayers();
