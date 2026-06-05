@@ -55,3 +55,26 @@
   font-size: 0.9rem;
   color: var(--muted);
 }
+.filter-bar {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 25px 0;
+}
+
+.filter-bar select {
+  background: var(--card-dark);
+  color: var(--text);
+  border: 1px solid var(--silver);
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.player-rating {
+  margin-top: 8px;
+  color: var(--gold);
+  font-weight: 700;
+}
