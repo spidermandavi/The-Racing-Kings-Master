@@ -26,6 +26,27 @@
   <main>
     <h1>Titled Player Leaderboard</h1>
     <div id="leaderboard"></div>
+    <div class="leaderboard-controls">
+  <select id="sortSelect">
+    <option value="titles">Order by Titles</option>
+    <option value="rating">Order by Rating</option>
+  </select>
+
+  <select id="filterSelect">
+    <option value="all">All Titles</option>
+    <option value="RKWC">RKWC Only</option>
+    <option value="RKSGM">RKSGM Only</option>
+    <option value="RKGM">RKGM Only</option>
+    <option value="RKIM">RKIM Only</option>
+    <option value="RKM">RKM Only</option>
+    <option value="RKCM">RKCM Only</option>
+    <option value="RKV">RKV Only</option>
+    <option value="RKHM">RKHM Only</option>
+  </select>
+</div>
+
+<div id="leaderboard"></div>
+    
   </main>
 
   <script src="leaderboard.js"></script>
