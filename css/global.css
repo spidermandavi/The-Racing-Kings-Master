@@ -12,6 +12,32 @@
 
   --text: #e2e8f0;
   --muted: #94a3b8;
+
+  --topbar-bg: rgba(5, 11, 24, 0.75);
+  --input-bg: rgba(0, 0, 0, 0.25);
+  --input-border: rgba(255, 255, 255, 0.12);
+  --input-text: var(--text);
+}
+
+[data-theme="light"] {
+  --bg-dark: #dce8f5;
+  --bg-mid: #e8f0fa;
+  --bg-light: #f0f6ff;
+
+  --card-light: #ffffff;
+  --card-dark: #edf3fc;
+
+  --silver: #3d5a80;
+  --silver-bright: #1a2744;
+  --gold: #b8860b;
+
+  --text: #1a2744;
+  --muted: #5a7498;
+
+  --topbar-bg: rgba(232, 240, 250, 0.85);
+  --input-bg: rgba(255, 255, 255, 0.7);
+  --input-border: rgba(0, 0, 0, 0.15);
+  --input-text: #1a2744;
 }
 
 * {
@@ -74,7 +100,7 @@ body {
 
   backdrop-filter: blur(10px);
 
-  background: rgba(5, 11, 24, 0.75);
+  background: var(--topbar-bg);
 
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
@@ -337,4 +363,45 @@ h1 {
 
 .players-main .card {
   width: min(900px, 100%);
+}
+
+/* ---------- Search Bar ---------- */
+
+.search-bar {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  color: var(--input-text);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.search-bar input:focus {
+  border-color: var(--gold);
+}
+
+.search-bar input::placeholder {
+  color: var(--muted);
+}
+
+.no-results {
+  padding: 1rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ---------- Theme Toggle ---------- */
+
+#themeToggle {
+  font-size: 1rem;
+  min-width: 2.4rem;
 }

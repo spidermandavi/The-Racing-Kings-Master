@@ -26,12 +26,49 @@
 <section class="card">
     <h1>Players</h1>
     <p id="status">Loading top Racing Kings players from Lichess…</p>
+    <div class="search-bar">
+      <input type="search" id="playerSearch" placeholder="Search by username or title…" autocomplete="off" />
+    </div>
     <div id="playersList"></div>
     <p><a href="index.html">← Back to Home</a></p>
   </section>
   <script>
   const playersList = document.getElementById("playersList");
   const statusEl = document.getElementById("status");
+  const searchInput = document.getElementById("playerSearch");
+
+  let enrichedUsersCache = [];
+
+  searchInput.addEventListener("input", () => {
+    filterPlayers(searchInput.value.trim().toLowerCase());
+  });
+
+  function filterPlayers(query) {
+    const rows = playersList.querySelectorAll(".player-row");
+    let visible = 0;
+    rows.forEach(row => {
+      const username = (row.dataset.username || "").toLowerCase();
+      const siteTitle = (row.dataset.siteTitle || "").toLowerCase();
+      const lichessTitle = (row.dataset.lichessTitle || "").toLowerCase();
+      const matches = !query ||
+        username.includes(query) ||
+        siteTitle.includes(query) ||
+        lichessTitle.includes(query);
+      row.style.display = matches ? "" : "none";
+      if (matches) visible++;
+    });
+    let noResults = playersList.querySelector(".no-results");
+    if (visible === 0 && rows.length > 0) {
+      if (!noResults) {
+        noResults = document.createElement("p");
+        noResults.className = "no-results";
+        noResults.textContent = "No players match your search.";
+        playersList.appendChild(noResults);
+      }
+    } else if (noResults) {
+      noResults.remove();
+    }
+  }
 
   // ===== BUTTONS / FOOTER ACTIONS =====
   const backLink = document.querySelector('a[href="index.html"]');
@@ -136,6 +173,10 @@
     const username = user.username || user.id || "Unknown";
     const lichessTitle = user.title || "None";
     const siteTitle = getSiteTitle(user);
+
+    row.dataset.username = username;
+    row.dataset.lichessTitle = lichessTitle;
+    row.dataset.siteTitle = siteTitle;
 
     row.innerHTML = `
       <div class="row-top">
