@@ -3,7 +3,7 @@ const pages = [
   { slug: "players", label: "Players" },
   { slug: "leaderboard", label: "Leaderboard" },
   { slug: "profile", label: "Profile" },
-  { slug: "search", label: "Search" },
+  { slug: "search", label: "Title Checker" },
   { slug: "titles", label: "Titles" },
   { slug: "about", label: "About" }
 ];

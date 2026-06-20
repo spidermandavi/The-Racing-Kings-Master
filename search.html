@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RK Title Checker</title>
+  <title>Title Checker</title>
   <link rel="stylesheet" href="css/global.css">
   <style>
     .tool {
@@ -111,17 +111,130 @@
       border-radius: 16px;
       padding: 1.4rem 1.6rem;
       min-height: 80px;
-      white-space: pre-wrap;
       line-height: 1.6;
       font-size: 0.92rem;
       color: var(--text-soft);
       animation: fadeInUp 0.35s ease both;
     }
 
+    .result-pre {
+      white-space: pre-wrap;
+      font-family: inherit;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      margin: 0;
+    }
+
     .ok  { color: #4ade80; font-weight: 700; }
     .bad { color: #f87171; font-weight: 700; }
-
     .muted { color: var(--text-muted); }
+
+    .req-row {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin: 0.15rem 0;
+      font-size: 0.9rem;
+    }
+    .req-label { color: var(--text-muted); min-width: 180px; }
+    .req-val   { font-weight: 600; color: var(--text); }
+    .req-ok    { color: #4ade80; font-weight: 700; }
+    .req-no    { color: #f87171; font-weight: 700; }
+
+    .norm-section {
+      margin-top: 1rem;
+      border-top: 1px solid var(--border);
+      padding-top: 0.85rem;
+    }
+
+    .norm-heading {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-muted);
+      margin-bottom: 0.55rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .norm-count {
+      font-weight: 700;
+      font-size: 0.82rem;
+    }
+    .norm-count.ok-count  { color: #4ade80; }
+    .norm-count.bad-count { color: #f87171; }
+
+    .norm-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .norm-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.6rem 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .norm-num {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 700;
+      min-width: 1.4rem;
+    }
+
+    .norm-name {
+      flex: 1;
+      min-width: 0;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 0.88rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .norm-pill {
+      background: var(--card-raised);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.18rem 0.6rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-soft);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .norm-pill.win-pill {
+      background: rgba(74,222,128,0.12);
+      border-color: rgba(74,222,128,0.3);
+      color: #4ade80;
+    }
+
+    .norm-pill.shield-pill {
+      background: rgba(245,158,11,0.12);
+      border-color: rgba(245,158,11,0.3);
+      color: #f59e0b;
+    }
+
+    .norm-none {
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 0.85rem;
+      padding: 0.3rem 0;
+    }
+
+    @media (max-width: 600px) {
+      .norm-name { font-size: 0.82rem; }
+      .req-label { min-width: 140px; }
+    }
 
     .summary-grid {
       display: grid;
@@ -204,7 +317,7 @@
 <main>
   <div class="tool">
     <div class="tool-card">
-      <h1>RK Title Checker</h1>
+      <h1>Title Checker</h1>
       <p>
         Enter a Lichess username, choose a title, and the tool will scan recent tournaments,
         filter Racing Kings rated events, and check requirements automatically.
@@ -750,7 +863,7 @@
         let winsCount = 0;
         let perfCount = 0;
         let shieldWins = 0;
-        const qualifyingWins = [];
+        const qualifyingWins  = [];
         const qualifyingPerfs = [];
 
         for (const tournament of rkTournaments) {
@@ -761,48 +874,112 @@
           const meetsGames = analysis.playerGames >= 10;
           const meetsPerf  = analysis.performance >= rules.perfThreshold;
 
+          const normObj = {
+            name:    analysis.name || `Tournament ${tournament.id}`,
+            id:      tournament.id,
+            perf:    analysis.performance,
+            games:   analysis.playerGames,
+            won:     analysis.wonTournament,
+            shield:  meta.shield
+          };
+
           if (rules.winOnly) {
             if (analysis.wonTournament && meetsGames && meetsPerf) {
               winsCount++;
-              qualifyingWins.push(analysis.name);
+              qualifyingWins.push(normObj);
               if (winsCount >= rules.winsNeeded) break;
             }
           } else {
             if (analysis.wonTournament && meetsGames && meetsPerf) {
               winsCount++;
-              qualifyingWins.push(analysis.name);
+              qualifyingWins.push(normObj);
               if (meta.shield) shieldWins++;
             }
             if (meetsGames && meetsPerf) {
               perfCount++;
-              qualifyingPerfs.push(analysis.name);
+              qualifyingPerfs.push(normObj);
             }
           }
 
-          const winsOk  = winsCount >= rules.winsNeeded;
-          const perfsOk = perfCount >= rules.perfNeeded;
+          const winsOk   = winsCount >= rules.winsNeeded;
+          const perfsOk  = perfCount >= rules.perfNeeded;
           const shieldOk = shieldWins >= rules.shieldWinsNeeded;
           if (winsOk && (rules.winOnly || (perfsOk && shieldOk))) break;
         }
 
-        const winsOk  = winsCount >= rules.winsNeeded;
-        const perfsOk = rules.winOnly || perfCount >= rules.perfNeeded;
+        const winsOk   = winsCount >= rules.winsNeeded;
+        const perfsOk  = rules.winOnly || perfCount >= rules.perfNeeded;
         const shieldOk = shieldWins >= rules.shieldWinsNeeded;
         const eligible = hasGames && hasRating && winsOk && perfsOk && shieldOk;
 
-        let output = `<span class="${eligible ? "ok" : "bad"}">${eligible ? "✓ ELIGIBLE" : "✗ NOT ELIGIBLE"}</span> for ${titleCode}\n\n`;
-        output += `Rated RK games: ${games.toLocaleString()} / ${rules.minGames.toLocaleString()} ✓\n`;
-        output += `Best RK rating: ${bestRating} / ${rules.minBestRating} ✓\n`;
+        function normItemHtml(norm, index) {
+          const tLink = `https://lichess.org/tournament/${norm.id}`;
+          return `<div class="norm-item">
+            <span class="norm-num">#${index + 1}</span>
+            <a class="norm-name" href="${tLink}" target="_blank" rel="noopener noreferrer"
+               title="${escapeHtml(norm.name)}">${escapeHtml(norm.name)}</a>
+            <span class="norm-pill">perf ${norm.perf}</span>
+            <span class="norm-pill">${norm.games} games</span>
+            ${norm.won    ? `<span class="norm-pill win-pill">Won</span>` : ""}
+            ${norm.shield ? `<span class="norm-pill shield-pill">Shield</span>` : ""}
+          </div>`;
+        }
+
+        function normSection(heading, norms, needed, ok) {
+          const countCls = ok ? "ok-count" : "bad-count";
+          const tick     = ok ? "✓" : "✗";
+          let html = `<div class="norm-section">
+            <div class="norm-heading">
+              ${escapeHtml(heading)}
+              <span class="norm-count ${countCls}">${norms.length} / ${needed} ${tick}</span>
+            </div>
+            <div class="norm-list">`;
+          if (norms.length === 0) {
+            html += `<div class="norm-none">None found yet</div>`;
+          } else {
+            norms.forEach((n, i) => { html += normItemHtml(n, i); });
+          }
+          html += `</div></div>`;
+          return html;
+        }
+
+        let output = `
+          <div class="req-row">
+            <span class="req-label">Verdict</span>
+            <span class="${eligible ? "req-ok" : "req-no"}">${eligible ? "✓ ELIGIBLE" : "✗ NOT ELIGIBLE"} for ${titleCode}</span>
+          </div>
+          <div class="req-row">
+            <span class="req-label">Rated RK games</span>
+            <span class="req-val">${games.toLocaleString()} / ${rules.minGames.toLocaleString()}</span>
+            <span class="${hasGames ? "req-ok" : "req-no"}">${hasGames ? "✓" : "✗"}</span>
+          </div>
+          <div class="req-row">
+            <span class="req-label">Best RK rating</span>
+            <span class="req-val">${bestRating} / ${rules.minBestRating}</span>
+            <span class="${hasRating ? "req-ok" : "req-no"}">${hasRating ? "✓" : "✗"}</span>
+          </div>`;
 
         if (rules.winOnly) {
-          output += `Tournament wins (≥10 games, ≥${rules.perfThreshold} perf): ${winsCount} / ${rules.winsNeeded} ${winsOk ? "✓" : "✗"}`;
-          if (qualifyingWins.length) output += `\n  → ${qualifyingWins.slice(0, 5).join(", ")}`;
+          output += normSection(
+            `Tournament wins (≥10 games, ≥${rules.perfThreshold} perf)`,
+            qualifyingWins, rules.winsNeeded, winsOk
+          );
         } else {
-          output += `Tournament wins (≥10 games, ≥${rules.perfThreshold} perf): ${winsCount} / ${rules.winsNeeded} ${winsOk ? "✓" : "✗"}`;
-          if (qualifyingWins.length) output += `\n  → ${qualifyingWins.slice(0, 3).join(", ")}`;
-          output += `\nTournament performances (≥10 games, ≥${rules.perfThreshold}): ${perfCount} / ${rules.perfNeeded} ${perfsOk ? "✓" : "✗"}`;
+          output += normSection(
+            `Tournament wins (≥10 games, ≥${rules.perfThreshold} perf)`,
+            qualifyingWins, rules.winsNeeded, winsOk
+          );
+          output += normSection(
+            `Tournament performances (≥10 games, ≥${rules.perfThreshold} perf)`,
+            qualifyingPerfs, rules.perfNeeded, perfsOk
+          );
           if (rules.shieldWinsNeeded > 0) {
-            output += `\nRK Shield wins: ${shieldWins} / ${rules.shieldWinsNeeded} ${shieldOk ? "✓" : "✗"}`;
+            output += `<div class="norm-section">
+              <div class="norm-heading">
+                RK Shield wins
+                <span class="norm-count ${shieldOk ? "ok-count" : "bad-count"}">${shieldWins} / ${rules.shieldWinsNeeded} ${shieldOk ? "✓" : "✗"}</span>
+              </div>
+            </div>`;
           }
         }
 
