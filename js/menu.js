@@ -47,12 +47,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   document.addEventListener("click", (e) => {
-  if (
-    menuPanel &&
-    menuBtn &&
-    !menuPanel.contains(e.target) &&
-    !menuBtn.contains(e.target)
-  ) {
-    menuPanel.classList.remove("open");
-  }
+    if (
+      menuPanel &&
+      menuBtn &&
+      !menuPanel.contains(e.target) &&
+      !menuBtn.contains(e.target)
+    ) {
+      menuPanel.classList.remove("open");
+    }
+  });
 });
