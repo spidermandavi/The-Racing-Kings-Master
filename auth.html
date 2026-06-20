@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Racing Kings Titles - Login</title>
+  <link rel="stylesheet" href="css/global.css">
+  <style>
+    .auth-wrap {
+      display: grid;
+      place-items: center;
+      padding: 1rem;
+    }
+
+    .auth-card {
+      width: min(440px, 100%);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      animation: fadeInUp 0.4s ease both;
+    }
+
+    .auth-logo {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .auth-logo h1 {
+      font-size: 1.4rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .auth-logo p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .tab-bar {
+      display: flex;
+      border-radius: 10px;
+      background: var(--surface);
+      padding: 4px;
+      gap: 4px;
+      margin-bottom: 1.5rem;
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 0.55rem;
+      border: none;
+      border-radius: 8px;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .tab-btn.active {
+      background: var(--card-raised);
+      color: var(--text);
+    }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; animation: fadeIn 0.2s ease; }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .field label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      border: 1px solid var(--input-border);
+      background: var(--input-bg);
+      color: var(--input-text);
+      font-size: 0.95rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .field input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 10px;
+      border: none;
+      background: var(--accent);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      margin-top: 0.25rem;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .submit-btn:hover:not(:disabled) {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+
+    .submit-btn:active { transform: scale(0.98); }
+    .submit-btn:disabled { opacity: 0.55; cursor: progress; }
+
+    .error-msg {
+      margin-top: 0.75rem;
+      padding: 0.6rem 0.9rem;
+      border-radius: 8px;
+      background: rgba(248, 113, 113, 0.1);
+      border: 1px solid rgba(248, 113, 113, 0.25);
+      color: #f87171;
+      font-size: 0.88rem;
+      display: none;
+    }
+
+    .error-msg.show { display: block; animation: fadeIn 0.2s ease; }
+
+    .success-msg {
+      margin-top: 0.75rem;
+      padding: 0.6rem 0.9rem;
+      border-radius: 8px;
+      background: rgba(74, 222, 128, 0.1);
+      border: 1px solid rgba(74, 222, 128, 0.25);
+      color: #4ade80;
+      font-size: 0.88rem;
+      display: none;
+    }
+
+    .success-msg.show { display: block; animation: fadeIn 0.2s ease; }
+
+    .hint {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+      line-height: 1.5;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 1.25rem 0;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-top: 1rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<header class="top-bar">
+  <div class="nav-left">
+    <button class="icon-btn" id="backBtn" aria-label="Go back">&lt;</button>
+    <button class="icon-btn" id="forwardBtn" aria-label="Go forward">&gt;</button>
+  </div>
+  <div class="nav-right">
+    <button class="icon-btn" id="menuBtn" aria-label="Open menu">☰ Menu</button>
+  </div>
+</header>
+
+<nav id="menuPanel" class="menu-panel" aria-label="Quick Menu"></nav>
+
+<main class="auth-wrap">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <h1>Racing Kings Titles</h1>
+      <p>Sign in or create a site account</p>
+    </div>
+
+    <div class="tab-bar">
+      <button class="tab-btn active" id="loginTab" onclick="switchTab('login')">Login</button>
+      <button class="tab-btn" id="registerTab" onclick="switchTab('register')">Register</button>
+    </div>
+
+    <!-- LOGIN -->
+    <div class="tab-panel active" id="loginPanel">
+      <form id="loginForm" onsubmit="handleLogin(event)">
+        <div class="field">
+          <label for="loginUser">Lichess username</label>
+          <input id="loginUser" type="text" autocomplete="username" placeholder="e.g. Mysterious_Past" required />
+        </div>
+        <div class="field">
+          <label for="loginPass">Password</label>
+          <input id="loginPass" type="password" autocomplete="current-password" placeholder="Your site password" required />
+        </div>
+        <button class="submit-btn" id="loginBtn" type="submit">Login</button>
+      </form>
+      <div class="error-msg" id="loginError"></div>
+      <div class="success-msg" id="loginSuccess"></div>
+    </div>
+
+    <!-- REGISTER -->
+    <div class="tab-panel" id="registerPanel">
+      <form id="registerForm" onsubmit="handleRegister(event)">
+        <div class="field">
+          <label for="regUser">Lichess username</label>
+          <input id="regUser" type="text" autocomplete="username" placeholder="e.g. Mysterious_Past" required />
+          <span class="hint">Must match your Lichess username exactly.</span>
+        </div>
+        <div class="field">
+          <label for="regPass">Password</label>
+          <input id="regPass" type="password" autocomplete="new-password" placeholder="At least 6 characters" required />
+        </div>
+        <div class="field">
+          <label for="regConfirm">Confirm password</label>
+          <input id="regConfirm" type="password" autocomplete="new-password" placeholder="Repeat password" required />
+        </div>
+        <button class="submit-btn" id="registerBtn" type="submit">Create account</button>
+      </form>
+      <div class="error-msg" id="registerError"></div>
+      <div class="success-msg" id="registerSuccess"></div>
+    </div>
+
+    <a class="back-link" href="index.html">← Back to Home</a>
+  </div>
+</main>
+
+<script>
+  function switchTab(tab) {
+    document.getElementById('loginPanel').classList.toggle('active', tab === 'login');
+    document.getElementById('registerPanel').classList.toggle('active', tab === 'register');
+    document.getElementById('loginTab').classList.toggle('active', tab === 'login');
+    document.getElementById('registerTab').classList.toggle('active', tab === 'register');
+  }
+
+  function showErr(id, msg) {
+    const el = document.getElementById(id);
+    el.textContent = msg;
+    el.className = 'error-msg show';
+  }
+
+  function showOk(id, msg) {
+    const el = document.getElementById(id);
+    el.textContent = msg;
+    el.className = 'success-msg show';
+  }
+
+  function hideMsg(id) {
+    document.getElementById(id).className = document.getElementById(id).className.replace(/ ?show/, '');
+  }
+
+  async function handleLogin(e) {
+    e.preventDefault();
+    hideMsg('loginError');
+    hideMsg('loginSuccess');
+    const btn = document.getElementById('loginBtn');
+    btn.disabled = true;
+    btn.textContent = 'Logging in…';
+
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: document.getElementById('loginUser').value.trim(),
+          password: document.getElementById('loginPass').value
+        })
+      });
+      const data = await res.json();
+      if (!res.ok) { showErr('loginError', data.error || 'Login failed'); return; }
+      showOk('loginSuccess', `Welcome back, ${data.username}! Redirecting…`);
+      setTimeout(() => { window.location.href = data.is_admin ? 'admin.html' : 'index.html'; }, 800);
+    } catch {
+      showErr('loginError', 'Network error. Please try again.');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Login';
+    }
+  }
+
+  async function handleRegister(e) {
+    e.preventDefault();
+    hideMsg('registerError');
+    hideMsg('registerSuccess');
+
+    const password = document.getElementById('regPass').value;
+    const confirm  = document.getElementById('regConfirm').value;
+    if (password !== confirm) { showErr('registerError', 'Passwords do not match'); return; }
+    if (password.length < 6)  { showErr('registerError', 'Password must be at least 6 characters'); return; }
+
+    const btn = document.getElementById('registerBtn');
+    btn.disabled = true;
+    btn.textContent = 'Creating account…';
+
+    try {
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: document.getElementById('regUser').value.trim(),
+          password
+        })
+      });
+      const data = await res.json();
+      if (!res.ok) { showErr('registerError', data.error || 'Registration failed'); return; }
+      showOk('registerSuccess', `Account created! Welcome, ${data.username}! Redirecting…`);
+      setTimeout(() => { window.location.href = data.is_admin ? 'admin.html' : 'index.html'; }, 900);
+    } catch {
+      showErr('registerError', 'Network error. Please try again.');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Create account';
+    }
+  }
+
+  // If already logged in, redirect away
+  fetch('/api/auth/me').then(r => r.json()).then(data => {
+    if (data.user) {
+      window.location.href = data.user.is_admin ? 'admin.html' : 'index.html';
+    }
+  }).catch(() => {});
+</script>
+
+<script src="js/menu.js"></script>
+</body>
+</html>

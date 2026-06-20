@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel - Racing Kings Titles</title>
+  <link rel="stylesheet" href="css/global.css">
+  <style>
+    .admin-tabs {
+      display: flex;
+      gap: 0.4rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 0.55rem 1rem;
+      border: none;
+      border-radius: 9px;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+
+    .tab-btn.active {
+      background: var(--card-raised);
+      color: var(--text);
+    }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; animation: fadeInUp 0.25s ease; }
+
+    /* ── Section header ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-header h2 { font-size: 1.1rem; margin: 0; }
+
+    /* ── Player cards ── */
+    .player-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .player-row {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+      animation: fadeInUp 0.3s ease both;
+    }
+
+    .player-row-top {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      flex-wrap: wrap;
+    }
+
+    .player-name {
+      font-weight: 700;
+      font-size: 1rem;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .player-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 0.1rem;
+    }
+
+    .title-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      padding: 0 1rem 0.85rem;
+    }
+
+    .t-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .t-chip button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: inherit;
+      opacity: 0.6;
+      font-size: 0.85rem;
+      line-height: 1;
+      padding: 0;
+      transition: opacity 0.15s;
+    }
+
+    .t-chip button:hover { opacity: 1; }
+
+    .chip-elite     { background: #7c3aed; color: #fff; }
+    .chip-grand     { background: #dc2626; color: #fff; }
+    .chip-master    { background: #2563eb; color: #fff; }
+    .chip-candidate { background: #0891b2; color: #fff; }
+    .chip-clight    { background: #0f766e; color: #fff; }
+    .chip-special   { background: #f59e0b; color: #000; }
+    .chip-veteran   { background: #6b7280; color: #fff; }
+
+    /* ── Forms ── */
+    .inline-form {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 0 1rem 0.85rem;
+      border-top: 1px solid var(--border);
+      padding-top: 0.75rem;
+    }
+
+    .inline-form input,
+    .inline-form select {
+      flex: 1;
+      min-width: 100px;
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      border: 1px solid var(--input-border);
+      background: var(--input-bg);
+      color: var(--input-text);
+      font-size: 0.85rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .inline-form input:focus,
+    .inline-form select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent-glow);
+    }
+
+    .inline-form select {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a1a1aa' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.7rem center;
+      padding-right: 2rem;
+    }
+
+    .sm-btn {
+      padding: 0.48rem 0.85rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--card-raised);
+      color: var(--text);
+      font-size: 0.82rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+
+    .sm-btn:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    .sm-btn:active { transform: scale(0.97); }
+
+    .sm-btn.danger {
+      border-color: rgba(248,113,113,0.4);
+      color: #f87171;
+      background: rgba(248,113,113,0.08);
+    }
+
+    .sm-btn.danger:hover {
+      border-color: #f87171;
+      box-shadow: 0 0 10px rgba(248,113,113,0.2);
+    }
+
+    .sm-btn.accent {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .sm-btn.accent:hover { opacity: 0.85; }
+
+    /* ── Add player form ── */
+    .add-form {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+      display: none;
+      animation: slideDown 0.2s ease;
+    }
+
+    .add-form.open { display: block; }
+
+    .add-form-row {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .add-form input {
+      flex: 1;
+      min-width: 140px;
+      padding: 0.6rem 0.8rem;
+      border-radius: 8px;
+      border: 1px solid var(--input-border);
+      background: var(--input-bg);
+      color: var(--input-text);
+      font-size: 0.88rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .add-form input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent-glow);
+    }
+
+    .add-form-label {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+    }
+
+    /* ── Users table ── */
+    .users-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 0.88rem;
+    }
+
+    .users-table th {
+      text-align: left;
+      padding: 0.6rem 0.85rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .users-table td {
+      padding: 0.7rem 0.85rem;
+      color: var(--text-soft);
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+
+    .users-table tr:last-child td { border-bottom: none; }
+
+    .users-table tr:hover td { background: var(--surface); }
+
+    .admin-badge {
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Toast ── */
+    .toast {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      padding: 0.7rem 1.1rem;
+      border-radius: 10px;
+      background: var(--card-raised);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.88rem;
+      font-weight: 500;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      z-index: 9999;
+      animation: fadeInUp 0.25s ease;
+      max-width: 300px;
+    }
+
+    .toast.ok  { border-color: rgba(74,222,128,0.4); color: #4ade80; }
+    .toast.err { border-color: rgba(248,113,113,0.4); color: #f87171; }
+
+    @media (max-width: 600px) {
+      .player-row-top { flex-wrap: wrap; }
+      .users-table { font-size: 0.82rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="top-bar">
+  <div class="nav-left">
+    <button class="icon-btn" id="backBtn" aria-label="Go back">&lt;</button>
+    <button class="icon-btn" id="forwardBtn" aria-label="Go forward">&gt;</button>
+  </div>
+  <div class="nav-right">
+    <button class="icon-btn" id="menuBtn" aria-label="Open menu">☰ Menu</button>
+  </div>
+</header>
+
+<nav id="menuPanel" class="menu-panel" aria-label="Quick Menu"></nav>
+
+<main>
+  <h1>Admin Panel</h1>
+  <p class="subtitle">Manage players, titles, and site accounts.</p>
+
+  <div class="admin-tabs">
+    <button class="tab-btn active" onclick="openTab('players')">Players</button>
+    <button class="tab-btn" onclick="openTab('users')">Site Accounts</button>
+  </div>
+
+  <!-- PLAYERS TAB -->
+  <div class="tab-panel active" id="tab-players">
+    <div class="section-header">
+      <h2>Players</h2>
+      <button class="sm-btn accent" onclick="toggleAddForm()">+ Add Player</button>
+    </div>
+
+    <div class="add-form" id="addForm">
+      <div class="add-form-row">
+        <div style="flex:1;min-width:150px">
+          <label class="add-form-label">Lichess Username</label>
+          <input id="newUsername" placeholder="e.g. Mysterious_Past" />
+        </div>
+        <div style="flex:2;min-width:200px">
+          <label class="add-form-label">Description (optional)</label>
+          <input id="newDesc" placeholder="Short description" />
+        </div>
+      </div>
+      <div style="display:flex;gap:0.5rem;margin-top:0.75rem;justify-content:flex-end">
+        <button class="sm-btn" onclick="toggleAddForm()">Cancel</button>
+        <button class="sm-btn accent" onclick="addPlayer()">Add Player</button>
+      </div>
+    </div>
+
+    <div class="player-list" id="playerList">
+      <p style="color:var(--text-muted)">Loading…</p>
+    </div>
+  </div>
+
+  <!-- USERS TAB -->
+  <div class="tab-panel" id="tab-users">
+    <div class="section-header">
+      <h2>Site Accounts</h2>
+      <button class="sm-btn" onclick="loadUsers()">Refresh</button>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden">
+      <table class="users-table" id="usersTable">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Registered</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="usersBody">
+          <tr><td colspan="4" style="color:var(--text-muted)">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<script>
+const TITLE_CODES = ["RKWC","RKSGM","RKGM","RKIM","RKM","RKCM","RKV","RKHM"];
+const CHIP_CLASS = {
+  RKWC:"chip-special",RKSGM:"chip-elite",RKGM:"chip-grand",
+  RKIM:"chip-master",RKM:"chip-candidate",RKCM:"chip-clight",
+  RKV:"chip-veteran",RKHM:"chip-special"
+};
+
+let currentTab = 'players';
+
+function openTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(`tab-${tab}`).classList.add('active');
+  event.currentTarget.classList.add('active');
+  if (tab === 'users') loadUsers();
+}
+
+function toast(msg, type = 'ok') {
+  const el = document.createElement('div');
+  el.className = `toast ${type}`;
+  el.textContent = msg;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 3000);
+}
+
+async function api(method, path, body) {
+  const opts = { method, headers: { 'Content-Type': 'application/json' } };
+  if (body !== undefined) opts.body = JSON.stringify(body);
+  const res = await fetch(path, opts);
+  const data = await res.json();
+  return { ok: res.ok, status: res.status, data };
+}
+
+// ── Add player ──────────────────────────────────────────────────────────────
+function toggleAddForm() {
+  const f = document.getElementById('addForm');
+  f.classList.toggle('open');
+  if (f.classList.contains('open')) document.getElementById('newUsername').focus();
+}
+
+async function addPlayer() {
+  const username = document.getElementById('newUsername').value.trim();
+  const description = document.getElementById('newDesc').value.trim();
+  if (!username) { toast('Enter a username', 'err'); return; }
+
+  const { ok, data } = await api('POST', '/api/admin/players', { username, description });
+  if (!ok) { toast(data.error || 'Failed to add player', 'err'); return; }
+
+  toast(`${username} added`);
+  document.getElementById('newUsername').value = '';
+  document.getElementById('newDesc').value = '';
+  document.getElementById('addForm').classList.remove('open');
+  loadPlayers();
+}
+
+// ── Edit player inline ──────────────────────────────────────────────────────
+function makeEditable(rowEl, player) {
+  const nameEl = rowEl.querySelector('.player-name');
+  const descEl = rowEl.querySelector('.player-desc');
+
+  const origName = player.username;
+  const origDesc = player.description || '';
+
+  nameEl.contentEditable = 'true';
+  descEl.contentEditable = 'true';
+  nameEl.style.outline = '1px solid var(--accent)';
+  nameEl.style.borderRadius = '4px';
+  nameEl.style.padding = '2px 4px';
+  descEl.style.outline = '1px solid var(--border)';
+  descEl.style.borderRadius = '4px';
+  descEl.style.padding = '2px 4px';
+  descEl.style.display = 'block';
+
+  const saveBtn = rowEl.querySelector('.edit-btn');
+  saveBtn.textContent = 'Save';
+  saveBtn.onclick = async () => {
+    const newName = nameEl.textContent.trim();
+    const newDesc = descEl.textContent.trim();
+    const { ok, data } = await api('PUT', `/api/admin/players/${encodeURIComponent(origName)}`, {
+      username: newName, description: newDesc
+    });
+    if (!ok) { toast(data.error || 'Save failed', 'err'); return; }
+    toast('Saved');
+    loadPlayers();
+  };
+}
+
+// ── Delete player ───────────────────────────────────────────────────────────
+async function deletePlayer(username) {
+  if (!confirm(`Remove ${username} from the site?`)) return;
+  const { ok, data } = await api('DELETE', `/api/admin/players/${encodeURIComponent(username)}`);
+  if (!ok) { toast(data.error || 'Failed', 'err'); return; }
+  toast(`${username} removed`);
+  loadPlayers();
+}
+
+// ── Award title ─────────────────────────────────────────────────────────────
+async function awardTitle(username, rowEl) {
+  const select = rowEl.querySelector('.title-select');
+  const dateInput = rowEl.querySelector('.title-date');
+  const code = select.value;
+  const dateVal = dateInput.value || new Date().toISOString().slice(0, 10);
+
+  const { ok, data } = await api('POST', `/api/admin/players/${encodeURIComponent(username)}/titles`, {
+    code, date: dateVal
+  });
+  if (!ok) { toast(data.error || 'Failed to award title', 'err'); return; }
+  toast(`${code} awarded to ${username}`);
+  loadPlayers();
+}
+
+// ── Revoke title ─────────────────────────────────────────────────────────────
+async function revokeTitle(username, code) {
+  if (!confirm(`Revoke ${code} from ${username}?`)) return;
+  const { ok, data } = await api('DELETE', `/api/admin/players/${encodeURIComponent(username)}/titles/${code}`);
+  if (!ok) { toast(data.error || 'Failed', 'err'); return; }
+  toast(`${code} revoked from ${username}`);
+  loadPlayers();
+}
+
+// ── Render players ───────────────────────────────────────────────────────────
+function buildPlayerRow(player) {
+  const div = document.createElement('div');
+  div.className = 'player-row';
+
+  const titleChips = (player.titles || []).map(t => {
+    const cls = CHIP_CLASS[t.code] || 'chip-veteran';
+    return `<span class="t-chip ${cls}">${t.code} <span style="opacity:0.6;font-size:0.72rem">${t.date || ''}</span>
+      <button onclick="revokeTitle('${player.username}','${t.code}')" title="Revoke">×</button>
+    </span>`;
+  }).join('');
+
+  const availableTitles = TITLE_CODES.filter(c => !player.titles.some(t => t.code === c));
+
+  div.innerHTML = `
+    <div class="player-row-top">
+      <div style="flex:1;min-width:0">
+        <div class="player-name">${player.username}</div>
+        <div class="player-desc">${player.description || ''}</div>
+      </div>
+      <button class="sm-btn edit-btn" onclick="makeEditable(this.closest('.player-row'), ${JSON.stringify(JSON.stringify(player)).slice(1,-1)})">Edit</button>
+      <button class="sm-btn danger" onclick="deletePlayer('${player.username}')">Remove</button>
+    </div>
+    <div class="title-chips">${titleChips || '<span style="color:var(--text-muted);font-size:0.82rem">No titles</span>'}</div>
+    ${availableTitles.length ? `<div class="inline-form">
+      <select class="title-select">
+        ${availableTitles.map(c => `<option value="${c}">${c}</option>`).join('')}
+      </select>
+      <input class="title-date" type="date" value="${new Date().toISOString().slice(0,10)}" style="flex:0;min-width:130px" />
+      <button class="sm-btn accent" onclick="awardTitle('${player.username}', this.closest('.player-row'))">Award Title</button>
+    </div>` : ''}`;
+
+  // Fix the edit button's JSON properly
+  const editBtn = div.querySelector('.edit-btn');
+  editBtn.onclick = () => makeEditable(div, player);
+
+  return div;
+}
+
+async function loadPlayers() {
+  const list = document.getElementById('playerList');
+  list.innerHTML = '<p style="color:var(--text-muted)">Loading…</p>';
+
+  const { ok, data } = await api('GET', '/api/admin/players');
+  if (!ok) {
+    list.innerHTML = `<p style="color:#f87171">${data.error || 'Failed to load players'}</p>`;
+    return;
+  }
+
+  list.innerHTML = '';
+  if (!data.length) {
+    list.innerHTML = '<p style="color:var(--text-muted)">No players yet. Add one above.</p>';
+    return;
+  }
+
+  data.forEach((p, i) => {
+    const row = buildPlayerRow(p);
+    row.style.animationDelay = `${i * 0.04}s`;
+    list.appendChild(row);
+  });
+}
+
+// ── Users ────────────────────────────────────────────────────────────────────
+async function loadUsers() {
+  const tbody = document.getElementById('usersBody');
+  tbody.innerHTML = '<tr><td colspan="4" style="color:var(--text-muted)">Loading…</td></tr>';
+
+  const { ok, data } = await api('GET', '/api/admin/users');
+  if (!ok) {
+    tbody.innerHTML = `<tr><td colspan="4" style="color:#f87171">${data.error || 'Failed to load users'}</td></tr>`;
+    return;
+  }
+
+  if (!data.length) {
+    tbody.innerHTML = '<tr><td colspan="4" style="color:var(--text-muted)">No accounts yet.</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = data.map(u => `
+    <tr>
+      <td style="font-weight:600;color:var(--text)">${u.username}</td>
+      <td>${u.is_admin ? '<span class="admin-badge">ADMIN</span>' : '<span style="color:var(--text-muted)">Member</span>'}</td>
+      <td>${u.created_at ? u.created_at.slice(0,10) : '—'}</td>
+      <td style="text-align:right">
+        ${u.username.toLowerCase() !== 'mysterious_past'
+          ? `<button class="sm-btn danger" onclick="deleteUser('${u.username}')">Delete</button>`
+          : ''}
+      </td>
+    </tr>`).join('');
+}
+
+async function deleteUser(username) {
+  if (!confirm(`Delete account "${username}"? This cannot be undone.`)) return;
+  const { ok, data } = await api('DELETE', `/api/admin/users/${encodeURIComponent(username)}`);
+  if (!ok) { toast(data.error || 'Failed', 'err'); return; }
+  toast(`Account "${username}" deleted`);
+  loadUsers();
+}
+
+// ── Init ─────────────────────────────────────────────────────────────────────
+async function init() {
+  const res = await fetch('/api/auth/me');
+  const { user } = await res.json();
+  if (!user || !user.is_admin) {
+    window.location.href = 'index.html';
+    return;
+  }
+  loadPlayers();
+}
+
+init();
+</script>
+
+<script src="js/menu.js"></script>
+</body>
+</html>

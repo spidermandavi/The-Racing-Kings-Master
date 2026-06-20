@@ -38,7 +38,7 @@
   </main>
 
   <script>
-    const pages = [
+    const homePages = [
       { slug: "players",    label: "Players",    desc: "View leaderboards, players and rankings." },
       { slug: "leaderboard",label: "Leaderboard",desc: "Browse titled Racing Kings players." },
       { slug: "profile",    label: "Profiles",   desc: "Look up any player's stats and eligibility." },
@@ -48,7 +48,7 @@
     ];
 
     const grid = document.getElementById("optionsGrid");
-    pages.forEach(page => {
+    homePages.forEach(page => {
       const card = document.createElement("a");
       card.href = `${page.slug}.html`;
       card.className = "option";
