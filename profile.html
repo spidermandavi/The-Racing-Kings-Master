@@ -5,147 +5,664 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Racing Kings Titles - Profile</title>
   <link rel="stylesheet" href="css/global.css">
-  
+  <style>
+    .profile-main {
+      display: grid;
+      place-items: center;
+      padding: 1.2rem;
+    }
+
+    .profile-wrap {
+      width: min(860px, 100%);
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    /* Search form */
+    .search-card {
+      background: linear-gradient(145deg, var(--card-light), var(--card-dark));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 1.4rem;
+      box-shadow: inset 1px 1px 0 rgba(255,255,255,0.05), 0 6px 20px rgba(0,0,0,0.35);
+    }
+
+    [data-theme="light"] .search-card {
+      border-color: rgba(0,0,0,0.1);
+    }
+
+    .search-card h1 {
+      margin: 0 0 0.3rem;
+    }
+
+    .search-card p {
+      color: var(--muted);
+      margin: 0 0 1.1rem;
+    }
+
+    .profile-form {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .profile-form input {
+      flex: 1;
+      min-width: 180px;
+      padding: 0.7rem 1rem;
+      border-radius: 10px;
+      border: 1px solid var(--input-border);
+      background: var(--input-bg);
+      color: var(--input-text);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .profile-form input:focus {
+      border-color: var(--gold);
+    }
+
+    .profile-form input::placeholder {
+      color: var(--muted);
+    }
+
+    .profile-form button {
+      padding: 0.7rem 1.4rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(145deg, #26364f, #162131);
+      color: var(--text);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .profile-form button:hover:not(:disabled) {
+      transform: translateY(-2px);
+      border-color: var(--gold);
+      box-shadow: 0 0 12px rgba(212,175,55,0.25);
+    }
+
+    .profile-form button:disabled {
+      opacity: 0.6;
+      cursor: progress;
+    }
+
+    .status-msg {
+      margin-top: 0.7rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      min-height: 1.2em;
+    }
+
+    .status-msg.error { color: #f87171; }
+
+    /* Section cards */
+    .section-card {
+      background: linear-gradient(145deg, var(--card-light), var(--card-dark));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 1.2rem 1.4rem;
+      box-shadow: inset 1px 1px 0 rgba(255,255,255,0.05), 0 6px 20px rgba(0,0,0,0.35);
+    }
+
+    [data-theme="light"] .section-card {
+      border-color: rgba(0,0,0,0.1);
+    }
+
+    .section-title {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      margin: 0 0 0.9rem;
+    }
+
+    /* Profile header */
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .profile-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #26364f, #7c3aed55);
+      border: 2px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--silver-bright);
+      flex-shrink: 0;
+    }
+
+    .profile-name-block {
+      flex: 1;
+    }
+
+    .profile-username {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--silver-bright);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .lichess-title-badge {
+      background: #7c3aed;
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    .profile-meta {
+      margin-top: 0.3rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .profile-lichess-link {
+      margin-left: auto;
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: opacity 0.2s ease;
+    }
+
+    .profile-lichess-link:hover {
+      opacity: 0.75;
+      text-decoration: underline;
+    }
+
+    /* Stats grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 0.7rem;
+    }
+
+    .stat-item {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px;
+      padding: 0.7rem 0.9rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    [data-theme="light"] .stat-item {
+      background: rgba(0,0,0,0.04);
+      border-color: rgba(0,0,0,0.08);
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .stat-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--silver-bright);
+    }
+
+    .stat-value.highlight {
+      color: var(--gold);
+    }
+
+    /* Site titles */
+    .site-titles-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .site-title-badge {
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .badge-elite   { background: #7c3aed; color: #fff; }
+    .badge-grand   { background: #dc2626; color: #fff; }
+    .badge-master  { background: #2563eb; color: #fff; }
+    .badge-candidate { background: #0891b2; color: #fff; }
+    .badge-clight  { background: #0f766e; color: #fff; }
+    .badge-special { background: #f59e0b; color: #000; }
+    .badge-veteran { background: #6b7280; color: #fff; }
+
+    .since-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-left: 0.3rem;
+    }
+
+    .no-titles {
+      color: var(--muted);
+      font-style: italic;
+      font-size: 0.9rem;
+    }
+
+    /* Eligibility */
+    .elig-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .elig-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .elig-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .elig-badge {
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .elig-title-name {
+      font-size: 0.9rem;
+      color: var(--silver);
+    }
+
+    .elig-check {
+      margin-left: auto;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .elig-check.met { color: #4ade80; }
+    .elig-check.unmet { color: var(--muted); }
+
+    .elig-reqs {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      padding-left: 0.5rem;
+    }
+
+    .elig-req-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .elig-req-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+    }
+
+    .elig-req-text { color: var(--muted); }
+
+    .elig-req-val { font-weight: 600; }
+    .elig-req-val.met { color: #4ade80; }
+    .elig-req-val.unmet { color: var(--muted); }
+
+    .progress-bar {
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      overflow: hidden;
+    }
+
+    [data-theme="light"] .progress-bar {
+      background: rgba(0,0,0,0.1);
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: var(--gold);
+      transition: width 0.5s ease;
+    }
+
+    .progress-fill.done { background: #4ade80; }
+
+    .elig-divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin: 0;
+    }
+
+    [data-theme="light"] .elig-divider {
+      border-top-color: rgba(0,0,0,0.07);
+    }
+
+    .elig-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+  </style>
 </head>
 <body>
-  <section class="card">
-    <h1>Profile</h1>
-    <p>Enter a Lichess username to load Racing Kings profile data.</p>
 
-    <form class="profile-form" id="profile-form">
-      <input id="username-input" name="username" type="text" autocomplete="off" placeholder="Lichess username" required />
-      <button type="submit">Load Profile</button>
-    </form>
+<header class="top-bar">
+  <div class="nav-left">
+    <button class="icon-btn" id="backBtn" aria-label="Go back">&lt;</button>
+    <button class="icon-btn" id="forwardBtn" aria-label="Go forward">&gt;</button>
+  </div>
+  <div class="nav-right">
+    <button class="icon-btn" id="menuBtn" aria-label="Open menu">☰ Menu</button>
+  </div>
+</header>
 
-    <p class="status" id="status"></p>
-    <div id="profile-output" class="profile-grid" hidden></div>
+<nav id="menuPanel" class="menu-panel" aria-label="Quick Menu"></nav>
 
-    <p><a href="index.html">← Back to Home</a></p>
-  </section>
+<main class="profile-main">
+  <div class="profile-wrap">
 
-  <script>
-    const STORAGE_KEY = "rk_profile_username";
-    const form = document.getElementById("profile-form");
-    const usernameInput = document.getElementById("username-input");
-    const statusEl = document.getElementById("status");
-    const outputEl = document.getElementById("profile-output");
+    <div class="search-card">
+      <h1>Profile Lookup</h1>
+      <p>Enter a Lichess username to view their Racing Kings stats, titles, and eligibility progress.</p>
+      <form class="profile-form" id="profileForm">
+        <input id="usernameInput" type="search" autocomplete="off"
+               placeholder="e.g. Mysterious_Past" required />
+        <button type="submit" id="loadBtn">Load Profile</button>
+      </form>
+      <div class="status-msg" id="statusMsg"></div>
+    </div>
 
-    const setStatus = (text, isError = false) => {
-      statusEl.textContent = text;
-      statusEl.classList.toggle("error", isError);
-    };
+    <div id="profileOutput" hidden>
 
-    const formatPercent = (wins, games) => {
-      if (!games) return "N/A";
-      return `${((wins / games) * 100).toFixed(1)}%`;
-    };
+      <!-- Header -->
+      <div class="section-card" id="profileHeader"></div>
 
-    const addRow = (label, value, isHtml = false) => {
-      const labelEl = document.createElement("div");
-      labelEl.className = "label";
-      labelEl.textContent = label;
+      <!-- Stats -->
+      <div class="section-card" style="margin-top:1.2rem">
+        <div class="section-title">Racing Kings Stats</div>
+        <div class="stats-grid" id="statsGrid"></div>
+      </div>
 
-      const valueEl = document.createElement("div");
-      valueEl.className = "value";
-      if (isHtml) {
-        valueEl.innerHTML = value;
-      } else {
-        valueEl.textContent = value;
-      }
+      <!-- Site Titles -->
+      <div class="section-card" style="margin-top:1.2rem">
+        <div class="section-title">Site Titles Held</div>
+        <div id="siteTitlesContent"></div>
+      </div>
 
-      outputEl.append(labelEl, valueEl);
-    };
+      <!-- Eligibility -->
+      <div class="section-card" style="margin-top:1.2rem">
+        <div class="section-title">Title Eligibility Progress</div>
+        <p class="elig-note" style="margin:0 0 1rem">
+          Based on games played and peak rating. Tournament requirements must be verified separately.
+        </p>
+        <div class="elig-list" id="eligList"></div>
+      </div>
 
-    const getRacingKingsRank = async (username) => {
-      const response = await fetch("https://lichess.org/api/player/top/200/racingKings", {
-        headers: { Accept: "application/json" }
-      });
+    </div>
+  </div>
+</main>
 
-      if (!response.ok) {
-        throw new Error("Could not fetch Racing Kings leaderboard.");
-      }
+<script>
+const STORAGE_KEY = "rk_profile_username";
 
-      const data = await response.json();
-      const users = data?.users || [];
-      const index = users.findIndex((user) => user.id?.toLowerCase() === username.toLowerCase());
-      return index >= 0 ? index + 1 : "Outside top 200";
-    };
+const TITLE_DEFS = [
+  { code: "RKSGM", name: "Super Grandmaster",     badgeClass: "badge-elite",     minGames: 5000, minRating: 2500 },
+  { code: "RKGM",  name: "Grandmaster",           badgeClass: "badge-grand",     minGames: 3000, minRating: 2400 },
+  { code: "RKIM",  name: "International Master",  badgeClass: "badge-master",    minGames: 2000, minRating: 2300 },
+  { code: "RKM",   name: "Master",                badgeClass: "badge-candidate", minGames: 1000, minRating: 2200 },
+  { code: "RKCM",  name: "Candidate Master",      badgeClass: "badge-clight",    minGames: 500,  minRating: 2100 },
+  { code: "RKV",   name: "Veteran",               badgeClass: "badge-veteran",   minGames: 10000, minRating: 0 }
+];
 
-    const loadProfile = async (rawUsername) => {
-      const username = rawUsername.trim();
-      if (!username) {
-        setStatus("Please enter a username.", true);
-        return;
-      }
+const BADGE_MAP = {
+  RKWC: "badge-special", RKSGM: "badge-elite",  RKGM: "badge-grand",
+  RKIM: "badge-master",  RKM: "badge-candidate", RKCM: "badge-clight",
+  RKV: "badge-veteran",  RKHM: "badge-special"
+};
 
-      localStorage.setItem(STORAGE_KEY, username);
-      outputEl.hidden = true;
-      outputEl.innerHTML = "";
-      setStatus("Loading profile data...");
+const form       = document.getElementById("profileForm");
+const input      = document.getElementById("usernameInput");
+const loadBtn    = document.getElementById("loadBtn");
+const statusMsg  = document.getElementById("statusMsg");
+const output     = document.getElementById("profileOutput");
+const headerEl   = document.getElementById("profileHeader");
+const statsGrid  = document.getElementById("statsGrid");
+const siteTitles = document.getElementById("siteTitlesContent");
+const eligList   = document.getElementById("eligList");
 
-      try {
-        const [userResponse, perfResponse, rank] = await Promise.all([
-          fetch(`https://lichess.org/api/user/${encodeURIComponent(username)}`, {
-            headers: { Accept: "application/json" }
-          }),
-          fetch(`https://lichess.org/api/user/${encodeURIComponent(username)}/perf/racingKings`, {
-            headers: { Accept: "application/json" }
-          }),
-          getRacingKingsRank(username)
-        ]);
+function setStatus(text, isError = false) {
+  statusMsg.textContent = text;
+  statusMsg.className = "status-msg" + (isError ? " error" : "");
+}
 
-        if (!userResponse.ok) {
-          throw new Error("User not found on Lichess.");
-        }
+function getFlagEmoji(code) {
+  if (!code || code.length !== 2) return "";
+  return code.toUpperCase().split("")
+    .map(c => String.fromCodePoint(0x1F1E6 + c.charCodeAt(0) - 65))
+    .join("");
+}
 
-        const userData = await userResponse.json();
-        const perfData = perfResponse.ok ? await perfResponse.json() : null;
+function pct(val, max) {
+  if (!max) return 100;
+  return Math.min(100, Math.round((val / max) * 100));
+}
 
-        const rkPerf = userData?.perfs?.racingKings || {};
-        const rkCount = perfData?.stat?.count || {};
-        const rkGames = rkCount.all ?? rkPerf.games ?? 0;
-        const rkWins = rkCount.win ?? 0;
-        const rkWinrate = formatPercent(rkWins, rkGames);
+function statItem(label, value, highlight = false) {
+  return `
+    <div class="stat-item">
+      <span class="stat-label">${label}</span>
+      <span class="stat-value${highlight ? " highlight" : ""}">${value}</span>
+    </div>`;
+}
 
-        const name = userData?.profile?.firstName
-          ? `${userData.profile.firstName}${userData.profile.lastName ? ` ${userData.profile.lastName}` : ""}`
-          : userData.username;
-        const title = userData?.title || "None";
-        const rkTitle = (userData?.title && userData.title.startsWith("RK")) ? userData.title : "None";
-        const highestRating = perfData?.stat?.highest?.int ?? rkPerf.rating ?? "N/A";
+function progressRow(label, current, required) {
+  const done = current >= required;
+  const fill = pct(current, required);
+  return `
+    <div class="elig-req-row">
+      <div class="elig-req-label">
+        <span class="elig-req-text">${label}</span>
+        <span class="elig-req-val ${done ? "met" : "unmet"}">
+          ${current.toLocaleString()} / ${required.toLocaleString()}
+        </span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill ${done ? "done" : ""}" style="width:${fill}%"></div>
+      </div>
+    </div>`;
+}
 
-        addRow("Name", name);
-        addRow("Racing Kings rating", String(rkPerf.rating ?? "N/A"));
-        addRow("Current RK leaderboard rank", String(rank));
-        addRow("Titles", title);
-        addRow("Racing Kings titles", rkTitle);
-        addRow("Racing Kings games", String(rkGames));
-        addRow("Racing Kings winrate", rkWinrate);
-        addRow("Highest RK rating", String(highestRating));
-        addRow(
-          "Lichess profile",
-          `<a href="https://lichess.org/@/${encodeURIComponent(userData.username)}" target="_blank" rel="noopener noreferrer">https://lichess.org/@/${userData.username}</a>`,
-          true
-        );
+async function loadPlayers() {
+  try {
+    const res = await fetch("players.json");
+    return await res.json();
+  } catch { return []; }
+}
 
-        outputEl.hidden = false;
-        setStatus(`Loaded data for ${userData.username}.`);
-      } catch (error) {
-        setStatus(error.message || "Unable to load profile data.", true);
-      }
-    };
+async function loadProfile(rawUsername) {
+  const username = rawUsername.trim();
+  if (!username) { setStatus("Please enter a username.", true); return; }
 
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      loadProfile(usernameInput.value);
-    });
+  localStorage.setItem(STORAGE_KEY, username);
+  output.hidden = true;
+  setStatus("Loading…");
+  loadBtn.disabled = true;
 
-    const savedUsername = localStorage.getItem(STORAGE_KEY);
-    if (savedUsername) {
-      usernameInput.value = savedUsername;
-      loadProfile(savedUsername);
+  try {
+    const [userRes, perfRes, players, topRes] = await Promise.all([
+      fetch(`https://lichess.org/api/user/${encodeURIComponent(username)}`),
+      fetch(`https://lichess.org/api/user/${encodeURIComponent(username)}/perf/racingKings`),
+      loadPlayers(),
+      fetch("https://lichess.org/api/player/top/200/racingKings", { headers: { Accept: "application/json" } })
+    ]);
+
+    if (!userRes.ok) throw new Error("User not found on Lichess.");
+
+    const user = await userRes.json();
+    const perf = perfRes.ok ? await perfRes.json() : null;
+    const topData = topRes.ok ? await topRes.json() : null;
+
+    const rk       = user.perfs?.racingKings || {};
+    const stat      = perf?.stat || {};
+    const count     = stat.count || {};
+    const games     = count.all ?? rk.games ?? 0;
+    const wins      = count.win ?? 0;
+    const losses    = count.loss ?? 0;
+    const draws     = count.draw ?? 0;
+    const peakRating = stat.highest?.int ?? rk.rating ?? 0;
+    const curRating = rk.rating ?? 0;
+    const winRate   = games ? ((wins / games) * 100).toFixed(1) + "%" : "N/A";
+    const memberYear = user.createdAt ? new Date(user.createdAt).getFullYear() : "N/A";
+    const country   = user.profile?.country || null;
+    const flag      = getFlagEmoji(country);
+    const lichessTitle = user.title || null;
+
+    const topUsers  = topData?.users || [];
+    const rankIdx   = topUsers.findIndex(u => u.id?.toLowerCase() === user.id?.toLowerCase());
+    const rank      = rankIdx >= 0 ? `#${rankIdx + 1} (top 200)` : "Outside top 200";
+
+    const bestStreak = stat.currentResultStreak?.wins?.v
+      ?? stat.maxResultStreak?.wins?.v ?? null;
+
+    // Find site player record
+    const siteRecord = players.find(
+      p => p.username?.toLowerCase() === user.id?.toLowerCase()
+        || p.username?.toLowerCase() === user.username?.toLowerCase()
+    );
+    const siteTitleList = siteRecord?.titles || [];
+
+    // --- Render header ---
+    headerEl.innerHTML = `
+      <div class="profile-header">
+        <div class="profile-avatar">${(user.username || "?")[0].toUpperCase()}</div>
+        <div class="profile-name-block">
+          <div class="profile-username">
+            ${flag ? `<span>${flag}</span>` : ""}
+            ${user.username}
+            ${lichessTitle ? `<span class="lichess-title-badge">${lichessTitle}</span>` : ""}
+          </div>
+          <div class="profile-meta">
+            Member since ${memberYear}
+            ${siteRecord?.description ? `· ${siteRecord.description}` : ""}
+          </div>
+        </div>
+        <a class="profile-lichess-link"
+           href="https://lichess.org/@/${encodeURIComponent(user.username)}"
+           target="_blank" rel="noopener noreferrer">
+          View on Lichess ↗
+        </a>
+      </div>`;
+
+    // --- Render stats ---
+    statsGrid.innerHTML =
+      statItem("Current Rating", curRating || "N/A", true) +
+      statItem("Peak Rating", peakRating || "N/A") +
+      statItem("Leaderboard Rank", rank) +
+      statItem("Total Games", games.toLocaleString()) +
+      statItem("Wins", wins.toLocaleString()) +
+      statItem("Losses", losses.toLocaleString()) +
+      statItem("Draws", draws.toLocaleString()) +
+      statItem("Win Rate", winRate) +
+      (bestStreak != null ? statItem("Best Win Streak", bestStreak) : "");
+
+    // --- Render site titles ---
+    if (siteTitleList.length > 0) {
+      siteTitles.innerHTML = `<div class="site-titles-list">` +
+        siteTitleList.map(t => {
+          const cls = BADGE_MAP[t.code] || "badge-veteran";
+          return `<span class="site-title-badge ${cls}">${t.code}
+            <span class="since-label">${t.date ? "· " + t.date : ""}</span>
+          </span>`;
+        }).join("") +
+        `</div>`;
+    } else {
+      siteTitles.innerHTML = `<p class="no-titles">No site titles held yet.</p>`;
     }
-  </script>
-  <script src="js/menu.js"></script>
+
+    // --- Render eligibility ---
+    eligList.innerHTML = TITLE_DEFS.map((def, i) => {
+      const gamesDone   = games >= def.minGames;
+      const ratingDone  = def.minRating === 0 || peakRating >= def.minRating;
+      const bothMet     = gamesDone && ratingDone;
+
+      const gamesRow = progressRow(
+        def.minRating === 0 ? "Games (10,000 OR 5 years)" : "Minimum games",
+        games,
+        def.minGames
+      );
+
+      const ratingRow = def.minRating > 0 ? progressRow(
+        "Peak rating required",
+        peakRating,
+        def.minRating
+      ) : `<div class="elig-req-row">
+        <div class="elig-req-label">
+          <span class="elig-req-text">Account age (5+ years also qualifies)</span>
+          <span class="elig-req-val ${ratingDone ? "met" : "unmet"}">manual check</span>
+        </div>
+      </div>`;
+
+      return `
+        ${i > 0 ? '<hr class="elig-divider">' : ""}
+        <div class="elig-item">
+          <div class="elig-header">
+            <span class="elig-badge ${def.badgeClass}">${def.code}</span>
+            <span class="elig-title-name">${def.name}</span>
+            <span class="elig-check ${bothMet ? "met" : "unmet"}">
+              ${bothMet ? "✓ Base reqs met" : "Not yet eligible"}
+            </span>
+          </div>
+          <div class="elig-reqs">
+            ${gamesRow}
+            ${ratingRow}
+          </div>
+        </div>`;
+    }).join("");
+
+    output.hidden = false;
+    setStatus(`Loaded profile for ${user.username}.`);
+  } catch (err) {
+    setStatus(err.message || "Failed to load profile.", true);
+  } finally {
+    loadBtn.disabled = false;
+  }
+}
+
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  loadProfile(input.value);
+});
+
+const saved = localStorage.getItem(STORAGE_KEY);
+if (saved) {
+  input.value = saved;
+  loadProfile(saved);
+}
+</script>
+
+<script src="js/menu.js"></script>
 </body>
 </html>
