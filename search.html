@@ -129,6 +129,72 @@
     .bad { color: #f87171; font-weight: 700; }
     .muted { color: var(--text-muted); }
 
+    /* ---- Dot-pulse inline spinner ---- */
+    .dot-spinner {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      vertical-align: middle;
+      margin-right: 0.45rem;
+    }
+    .dot-spinner span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: dotPulse 1.3s infinite ease-in-out both;
+    }
+    .dot-spinner span:nth-child(1) { animation-delay: -0.32s; }
+    .dot-spinner span:nth-child(2) { animation-delay: -0.16s; }
+    .dot-spinner span:nth-child(3) { animation-delay: 0s; }
+    @keyframes dotPulse {
+      0%, 80%, 100% { transform: scale(0.5); opacity: 0.3; }
+      40%           { transform: scale(1);   opacity: 1; }
+    }
+
+    /* ---- Base-req progress bars ---- */
+    .req-block { margin: 0.25rem 0; }
+    .req-progress {
+      height: 3px;
+      border-radius: 999px;
+      background: var(--border);
+      overflow: hidden;
+      margin-top: 3px;
+    }
+    .req-progress-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: var(--accent);
+      transition: width 0.5s ease;
+    }
+    .req-progress-fill.done { background: #4ade80; }
+
+    /* ---- Recalculate button ---- */
+    .recalc-section {
+      margin-top: 1.2rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .recalc-btn {
+      padding: 0.5rem 1.1rem;
+      border-radius: 8px;
+      border: 1px solid var(--border-hover);
+      background: transparent;
+      color: var(--accent);
+      font-size: 0.88rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .recalc-btn:hover {
+      background: var(--accent-glow);
+      transform: translateY(-1px);
+    }
+    .recalc-btn:active { transform: scale(0.97); }
+
     .req-row {
       display: flex;
       align-items: center;
@@ -816,7 +882,17 @@
           const user = await getUser(rawUsername);
           const games = getRatedRKGames(user);
           const hasEnough = games >= 1;
-          resultEl.innerHTML = `<span class="${hasEnough ? "ok" : "bad"}">${hasEnough ? "✓ ELIGIBLE" : "✗ NOT ELIGIBLE"}</span> for RK Member\n\nRated RK games: ${games} / 1 required`;
+          resultEl.innerHTML = `
+            <div class="req-row">
+              <span class="req-label">Verdict</span>
+              <span class="${hasEnough ? "req-ok" : "req-no"}">${hasEnough ? "✓ ELIGIBLE" : "✗ NOT ELIGIBLE"} for RK Member</span>
+            </div>
+            <div class="req-row">
+              <span class="req-label">Rated RK games</span>
+              <span class="req-val">${games} / 1</span>
+              <span class="${hasEnough ? "req-ok" : "req-no"}">${hasEnough ? "✓" : "✗"}</span>
+            </div>
+            <div class="recalc-section"><button class="recalc-btn" onclick="checkTitle()">Recalculate</button></div>`;
           return;
         }
 
@@ -840,7 +916,26 @@
           const hasGames = games >= rules.minGames;
           const hasAge = accountAgeYears !== null && accountAgeYears >= 5;
           const eligible = hasGames || hasAge;
-          resultEl.innerHTML = `<span class="${eligible ? "ok" : "bad"}">${eligible ? "✓ ELIGIBLE" : "✗ NOT ELIGIBLE"}</span> for RKV\n\nRated RK games: ${games.toLocaleString()} / 10,000 ${hasGames ? "✓" : "✗"}\nAccount age: ${formatYears(accountAgeYears)} ${hasAge ? "✓" : "✗"}`;
+          const gamesPct = Math.min(100, Math.round((games / 10000) * 100));
+          resultEl.innerHTML = `
+            <div class="req-row">
+              <span class="req-label">Verdict</span>
+              <span class="${eligible ? "req-ok" : "req-no"}">${eligible ? "✓ ELIGIBLE" : "✗ NOT ELIGIBLE"} for RKV</span>
+            </div>
+            <div class="req-block">
+              <div class="req-row">
+                <span class="req-label">Rated RK games</span>
+                <span class="req-val">${games.toLocaleString()} / 10,000</span>
+                <span class="${hasGames ? "req-ok" : "req-no"}">${hasGames ? "✓" : "✗"}</span>
+              </div>
+              <div class="req-progress"><div class="req-progress-fill ${hasGames ? "done" : ""}" style="width:${gamesPct}%"></div></div>
+            </div>
+            <div class="req-row">
+              <span class="req-label">Account age</span>
+              <span class="req-val">${formatYears(accountAgeYears)} / 5 years</span>
+              <span class="${hasAge ? "req-ok" : "req-no"}">${hasAge ? "✓" : "✗"}</span>
+            </div>
+            <div class="recalc-section"><button class="recalc-btn" onclick="checkTitle()">Recalculate</button></div>`;
           return;
         }
 
@@ -848,14 +943,34 @@
         const hasRating = bestRating >= rules.minBestRating;
 
         if (!hasGames || !hasRating) {
-          let msg = `<span class="bad">✗ NOT ELIGIBLE</span> for ${titleCode}\n\n`;
-          msg += `Rated RK games: ${games.toLocaleString()} / ${rules.minGames.toLocaleString()} ${hasGames ? "✓" : "✗"}\n`;
-          msg += `Best RK rating: ${bestRating} / ${rules.minBestRating} ${hasRating ? "✓" : "✗"}`;
-          resultEl.innerHTML = msg;
+          const gamesPct  = Math.min(100, Math.round((games / rules.minGames) * 100));
+          const ratingPct = rules.minBestRating > 0 ? Math.min(100, Math.round((bestRating / rules.minBestRating) * 100)) : 100;
+          resultEl.innerHTML = `
+            <div class="req-row">
+              <span class="req-label">Verdict</span>
+              <span class="req-no">✗ NOT ELIGIBLE for ${titleCode}</span>
+            </div>
+            <div class="req-block">
+              <div class="req-row">
+                <span class="req-label">Rated RK games</span>
+                <span class="req-val">${games.toLocaleString()} / ${rules.minGames.toLocaleString()}</span>
+                <span class="${hasGames ? "req-ok" : "req-no"}">${hasGames ? "✓" : "✗"}</span>
+              </div>
+              <div class="req-progress"><div class="req-progress-fill ${hasGames ? "done" : ""}" style="width:${gamesPct}%"></div></div>
+            </div>
+            <div class="req-block">
+              <div class="req-row">
+                <span class="req-label">Best RK rating</span>
+                <span class="req-val">${bestRating} / ${rules.minBestRating}</span>
+                <span class="${hasRating ? "req-ok" : "req-no"}">${hasRating ? "✓" : "✗"}</span>
+              </div>
+              <div class="req-progress"><div class="req-progress-fill ${hasRating ? "done" : ""}" style="width:${ratingPct}%"></div></div>
+            </div>
+            <div class="recalc-section"><button class="recalc-btn" onclick="checkTitle()">Recalculate</button></div>`;
           return;
         }
 
-        resultEl.innerHTML = `<span class="muted">Basic requirements met. Scanning tournaments…</span>`;
+        resultEl.innerHTML = `<span class="muted"><span class="dot-spinner"><span></span><span></span><span></span></span>Scanning tournaments…</span>`;
 
         const tournaments = await getRecentTournamentIds(rawUsername);
         const rkTournaments = tournaments.filter(t => t.isRacingKings !== false && t.rated !== false);
@@ -948,15 +1063,21 @@
             <span class="req-label">Verdict</span>
             <span class="${eligible ? "req-ok" : "req-no"}">${eligible ? "✓ ELIGIBLE" : "✗ NOT ELIGIBLE"} for ${titleCode}</span>
           </div>
-          <div class="req-row">
-            <span class="req-label">Rated RK games</span>
-            <span class="req-val">${games.toLocaleString()} / ${rules.minGames.toLocaleString()}</span>
-            <span class="${hasGames ? "req-ok" : "req-no"}">${hasGames ? "✓" : "✗"}</span>
+          <div class="req-block">
+            <div class="req-row">
+              <span class="req-label">Rated RK games</span>
+              <span class="req-val">${games.toLocaleString()} / ${rules.minGames.toLocaleString()}</span>
+              <span class="${hasGames ? "req-ok" : "req-no"}">${hasGames ? "✓" : "✗"}</span>
+            </div>
+            <div class="req-progress"><div class="req-progress-fill done" style="width:100%"></div></div>
           </div>
-          <div class="req-row">
-            <span class="req-label">Best RK rating</span>
-            <span class="req-val">${bestRating} / ${rules.minBestRating}</span>
-            <span class="${hasRating ? "req-ok" : "req-no"}">${hasRating ? "✓" : "✗"}</span>
+          <div class="req-block">
+            <div class="req-row">
+              <span class="req-label">Best RK rating</span>
+              <span class="req-val">${bestRating} / ${rules.minBestRating}</span>
+              <span class="${hasRating ? "req-ok" : "req-no"}">${hasRating ? "✓" : "✗"}</span>
+            </div>
+            <div class="req-progress"><div class="req-progress-fill done" style="width:100%"></div></div>
           </div>`;
 
         if (rules.winOnly) {
@@ -983,9 +1104,11 @@
           }
         }
 
+        output += `<div class="recalc-section"><button class="recalc-btn" onclick="checkTitle()">Recalculate</button></div>`;
         resultEl.innerHTML = output;
       } catch (err) {
-        resultEl.innerHTML = `<span class="bad">Error: ${escapeHtml(err.message || String(err))}</span>`;
+        resultEl.innerHTML = `<span class="bad">Error: ${escapeHtml(err.message || String(err))}</span>
+          <div class="recalc-section"><button class="recalc-btn" onclick="checkTitle()">Recalculate</button></div>`;
       } finally {
         calculateBtn.disabled = false;
       }
