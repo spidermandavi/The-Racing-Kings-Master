@@ -6,40 +6,22 @@
   <title>Racing Kings Titles - Profile</title>
   <link rel="stylesheet" href="css/global.css">
   <style>
-    .profile-main {
-      display: grid;
-      place-items: center;
-      padding: 1.2rem;
-    }
-
     .profile-wrap {
-      width: min(860px, 100%);
       display: flex;
       flex-direction: column;
-      gap: 1.2rem;
+      gap: 1rem;
     }
 
-    /* Search form */
+    /* Search card */
     .search-card {
-      background: linear-gradient(145deg, var(--card-light), var(--card-dark));
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 14px;
-      padding: 1.4rem;
-      box-shadow: inset 1px 1px 0 rgba(255,255,255,0.05), 0 6px 20px rgba(0,0,0,0.35);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem 1.75rem;
     }
 
-    [data-theme="light"] .search-card {
-      border-color: rgba(0,0,0,0.1);
-    }
-
-    .search-card h1 {
-      margin: 0 0 0.3rem;
-    }
-
-    .search-card p {
-      color: var(--muted);
-      margin: 0 0 1.1rem;
-    }
+    .search-card h1 { margin-bottom: 0.4rem; }
+    .search-card > p { margin-bottom: 1.1rem; }
 
     .profile-form {
       display: flex;
@@ -49,76 +31,68 @@
 
     .profile-form input {
       flex: 1;
-      min-width: 180px;
-      padding: 0.7rem 1rem;
+      min-width: 160px;
+      padding: 0.65rem 1rem;
       border-radius: 10px;
       border: 1px solid var(--input-border);
       background: var(--input-bg);
       color: var(--input-text);
-      font-size: 1rem;
+      font-size: 0.95rem;
+      font-family: inherit;
       outline: none;
-      transition: border-color 0.2s ease;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
 
     .profile-form input:focus {
-      border-color: var(--gold);
-    }
-
-    .profile-form input::placeholder {
-      color: var(--muted);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
     }
 
     .profile-form button {
-      padding: 0.7rem 1.4rem;
+      padding: 0.65rem 1.4rem;
       border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: linear-gradient(145deg, #26364f, #162131);
-      color: var(--text);
-      font-size: 1rem;
+      border: none;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.95rem;
       font-weight: 600;
+      font-family: inherit;
       cursor: pointer;
-      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      transition: opacity 0.2s, transform 0.15s;
     }
 
     .profile-form button:hover:not(:disabled) {
-      transform: translateY(-2px);
-      border-color: var(--gold);
-      box-shadow: 0 0 12px rgba(212,175,55,0.25);
+      opacity: 0.88;
+      transform: translateY(-1px);
     }
 
-    .profile-form button:disabled {
-      opacity: 0.6;
-      cursor: progress;
-    }
+    .profile-form button:active { transform: scale(0.97); }
+    .profile-form button:disabled { opacity: 0.55; cursor: progress; }
 
     .status-msg {
       margin-top: 0.7rem;
-      font-size: 0.9rem;
-      color: var(--muted);
+      font-size: 0.88rem;
+      color: var(--text-muted);
       min-height: 1.2em;
     }
 
     .status-msg.error { color: #f87171; }
 
-    /* Section cards */
+    /* Section card */
     .section-card {
-      background: linear-gradient(145deg, var(--card-light), var(--card-dark));
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 14px;
-      padding: 1.2rem 1.4rem;
-      box-shadow: inset 1px 1px 0 rgba(255,255,255,0.05), 0 6px 20px rgba(0,0,0,0.35);
-    }
-
-    [data-theme="light"] .section-card {
-      border-color: rgba(0,0,0,0.1);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.25rem 1.5rem;
+      animation: fadeInUp 0.35s ease both;
     }
 
     .section-title {
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       text-transform: uppercase;
-      letter-spacing: 0.07em;
-      color: var(--muted);
-      margin: 0 0 0.9rem;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
     }
 
     /* Profile header */
@@ -130,28 +104,26 @@
     }
 
     .profile-avatar {
-      width: 56px;
-      height: 56px;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #26364f, #7c3aed55);
-      border: 2px solid rgba(255,255,255,0.1);
+      background: linear-gradient(135deg, var(--card-raised), var(--accent));
+      border: 2px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       font-weight: 700;
-      color: var(--silver-bright);
+      color: #fff;
       flex-shrink: 0;
     }
 
-    .profile-name-block {
-      flex: 1;
-    }
+    .profile-name-block { flex: 1; min-width: 0; }
 
     .profile-username {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-weight: 700;
-      color: var(--silver-bright);
+      color: var(--text);
       display: flex;
       align-items: center;
       gap: 0.5rem;
@@ -161,209 +133,174 @@
     .lichess-title-badge {
       background: #7c3aed;
       color: #fff;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 700;
-      padding: 0.2rem 0.5rem;
+      padding: 0.18rem 0.45rem;
       border-radius: 4px;
       letter-spacing: 0.04em;
     }
 
     .profile-meta {
-      margin-top: 0.3rem;
-      color: var(--muted);
-      font-size: 0.9rem;
+      margin-top: 0.25rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.5rem;
       flex-wrap: wrap;
     }
 
     .profile-lichess-link {
       margin-left: auto;
-      color: var(--gold);
+      color: var(--accent);
       text-decoration: none;
       font-weight: 600;
-      font-size: 0.9rem;
-      transition: opacity 0.2s ease;
+      font-size: 0.88rem;
+      transition: opacity 0.2s;
+      white-space: nowrap;
     }
 
-    .profile-lichess-link:hover {
-      opacity: 0.75;
-      text-decoration: underline;
-    }
+    .profile-lichess-link:hover { opacity: 0.75; text-decoration: underline; }
 
     /* Stats grid */
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 0.7rem;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 0.6rem;
     }
 
     .stat-item {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.07);
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 0.7rem 0.9rem;
+      padding: 0.6rem 0.8rem;
       display: flex;
       flex-direction: column;
-      gap: 0.2rem;
-    }
-
-    [data-theme="light"] .stat-item {
-      background: rgba(0,0,0,0.04);
-      border-color: rgba(0,0,0,0.08);
+      gap: 0.15rem;
     }
 
     .stat-label {
-      font-size: 0.75rem;
-      color: var(--muted);
+      font-size: 0.71rem;
+      color: var(--text-muted);
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
     }
 
     .stat-value {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 700;
-      color: var(--silver-bright);
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
     }
 
-    .stat-value.highlight {
-      color: var(--gold);
-    }
+    .stat-value.highlight { color: var(--gold); }
 
-    /* Site titles */
-    .site-titles-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
+    /* Site title badges */
+    .site-titles-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 
     .site-title-badge {
-      padding: 0.35rem 0.8rem;
+      padding: 0.32rem 0.75rem;
       border-radius: 999px;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 700;
+      letter-spacing: 0.03em;
     }
 
-    .badge-elite   { background: #7c3aed; color: #fff; }
-    .badge-grand   { background: #dc2626; color: #fff; }
-    .badge-master  { background: #2563eb; color: #fff; }
+    .badge-elite     { background: #7c3aed; color: #fff; }
+    .badge-grand     { background: #dc2626; color: #fff; }
+    .badge-master    { background: #2563eb; color: #fff; }
     .badge-candidate { background: #0891b2; color: #fff; }
-    .badge-clight  { background: #0f766e; color: #fff; }
-    .badge-special { background: #f59e0b; color: #000; }
-    .badge-veteran { background: #6b7280; color: #fff; }
+    .badge-clight    { background: #0f766e; color: #fff; }
+    .badge-special   { background: #f59e0b; color: #000; }
+    .badge-veteran   { background: #6b7280; color: #fff; }
 
-    .since-label {
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-left: 0.3rem;
-    }
-
-    .no-titles {
-      color: var(--muted);
-      font-style: italic;
-      font-size: 0.9rem;
-    }
+    .since-label { font-size: 0.75rem; opacity: 0.7; margin-left: 0.2rem; }
+    .no-titles { color: var(--text-muted); font-style: italic; font-size: 0.88rem; }
 
     /* Eligibility */
-    .elig-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
+    .elig-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 1rem;
     }
 
-    .elig-item {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
+    .elig-list { display: flex; flex-direction: column; gap: 1rem; }
+
+    .elig-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
     }
+
+    .elig-item { display: flex; flex-direction: column; gap: 0.5rem; }
 
     .elig-header {
       display: flex;
       align-items: center;
       gap: 0.6rem;
+      flex-wrap: wrap;
     }
 
     .elig-badge {
-      padding: 0.25rem 0.65rem;
+      padding: 0.22rem 0.6rem;
       border-radius: 999px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 700;
     }
 
-    .elig-title-name {
-      font-size: 0.9rem;
-      color: var(--silver);
-    }
+    .elig-title-name { font-size: 0.88rem; color: var(--text-soft); }
 
     .elig-check {
       margin-left: auto;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 600;
     }
 
-    .elig-check.met { color: #4ade80; }
-    .elig-check.unmet { color: var(--muted); }
+    .elig-check.met   { color: #4ade80; }
+    .elig-check.unmet { color: var(--text-muted); }
 
     .elig-reqs {
       display: flex;
       flex-direction: column;
       gap: 0.35rem;
-      padding-left: 0.5rem;
+      padding-left: 0.4rem;
     }
 
-    .elig-req-row {
-      display: flex;
-      flex-direction: column;
-      gap: 0.2rem;
-    }
+    .elig-req-row { display: flex; flex-direction: column; gap: 0.18rem; }
 
     .elig-req-label {
       display: flex;
       justify-content: space-between;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
     }
 
-    .elig-req-text { color: var(--muted); }
-
-    .elig-req-val { font-weight: 600; }
-    .elig-req-val.met { color: #4ade80; }
-    .elig-req-val.unmet { color: var(--muted); }
+    .elig-req-text  { color: var(--text-muted); }
+    .elig-req-val   { font-weight: 600; }
+    .elig-req-val.met   { color: #4ade80; }
+    .elig-req-val.unmet { color: var(--text-muted); }
 
     .progress-bar {
-      height: 5px;
+      height: 4px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.08);
+      background: var(--border);
       overflow: hidden;
-    }
-
-    [data-theme="light"] .progress-bar {
-      background: rgba(0,0,0,0.1);
     }
 
     .progress-fill {
       height: 100%;
       border-radius: 999px;
-      background: var(--gold);
-      transition: width 0.5s ease;
+      background: var(--accent);
+      transition: width 0.6s ease;
     }
 
     .progress-fill.done { background: #4ade80; }
 
-    .elig-divider {
-      border: none;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      margin: 0;
-    }
-
-    [data-theme="light"] .elig-divider {
-      border-top-color: rgba(0,0,0,0.07);
-    }
-
-    .elig-note {
-      font-size: 0.78rem;
-      color: var(--muted);
-      font-style: italic;
+    @media (max-width: 600px) {
+      .search-card { padding: 1.1rem; }
+      .section-card { padding: 1rem; }
+      .stats-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
+      .profile-username { font-size: 1.1rem; }
     }
   </style>
 </head>
@@ -381,9 +318,8 @@
 
 <nav id="menuPanel" class="menu-panel" aria-label="Quick Menu"></nav>
 
-<main class="profile-main">
+<main>
   <div class="profile-wrap">
-
     <div class="search-card">
       <h1>Profile Lookup</h1>
       <p>Enter a Lichess username to view their Racing Kings stats, titles, and eligibility progress.</p>
@@ -396,31 +332,20 @@
     </div>
 
     <div id="profileOutput" hidden>
-
-      <!-- Header -->
       <div class="section-card" id="profileHeader"></div>
-
-      <!-- Stats -->
-      <div class="section-card" style="margin-top:1.2rem">
+      <div class="section-card" style="margin-top:0">
         <div class="section-title">Racing Kings Stats</div>
         <div class="stats-grid" id="statsGrid"></div>
       </div>
-
-      <!-- Site Titles -->
-      <div class="section-card" style="margin-top:1.2rem">
+      <div class="section-card" style="margin-top:0">
         <div class="section-title">Site Titles Held</div>
         <div id="siteTitlesContent"></div>
       </div>
-
-      <!-- Eligibility -->
-      <div class="section-card" style="margin-top:1.2rem">
+      <div class="section-card" style="margin-top:0">
         <div class="section-title">Title Eligibility Progress</div>
-        <p class="elig-note" style="margin:0 0 1rem">
-          Based on games played and peak rating. Tournament requirements must be verified separately.
-        </p>
+        <p class="elig-note">Based on games played and peak rating. Tournament requirements need manual verification.</p>
         <div class="elig-list" id="eligList"></div>
       </div>
-
     </div>
   </div>
 </main>
@@ -429,29 +354,29 @@
 const STORAGE_KEY = "rk_profile_username";
 
 const TITLE_DEFS = [
-  { code: "RKSGM", name: "Super Grandmaster",     badgeClass: "badge-elite",     minGames: 5000, minRating: 2500 },
-  { code: "RKGM",  name: "Grandmaster",           badgeClass: "badge-grand",     minGames: 3000, minRating: 2400 },
-  { code: "RKIM",  name: "International Master",  badgeClass: "badge-master",    minGames: 2000, minRating: 2300 },
-  { code: "RKM",   name: "Master",                badgeClass: "badge-candidate", minGames: 1000, minRating: 2200 },
-  { code: "RKCM",  name: "Candidate Master",      badgeClass: "badge-clight",    minGames: 500,  minRating: 2100 },
-  { code: "RKV",   name: "Veteran",               badgeClass: "badge-veteran",   minGames: 10000, minRating: 0 }
+  { code: "RKSGM", name: "Super Grandmaster",    badgeClass: "badge-elite",     minGames: 5000,  minRating: 2500 },
+  { code: "RKGM",  name: "Grandmaster",          badgeClass: "badge-grand",     minGames: 3000,  minRating: 2400 },
+  { code: "RKIM",  name: "International Master", badgeClass: "badge-master",    minGames: 2000,  minRating: 2300 },
+  { code: "RKM",   name: "Master",               badgeClass: "badge-candidate", minGames: 1000,  minRating: 2200 },
+  { code: "RKCM",  name: "Candidate Master",     badgeClass: "badge-clight",    minGames: 500,   minRating: 2100 },
+  { code: "RKV",   name: "Veteran",              badgeClass: "badge-veteran",   minGames: 10000, minRating: 0 }
 ];
 
 const BADGE_MAP = {
-  RKWC: "badge-special", RKSGM: "badge-elite",  RKGM: "badge-grand",
-  RKIM: "badge-master",  RKM: "badge-candidate", RKCM: "badge-clight",
-  RKV: "badge-veteran",  RKHM: "badge-special"
+  RKWC: "badge-special", RKSGM: "badge-elite", RKGM: "badge-grand",
+  RKIM: "badge-master", RKM: "badge-candidate", RKCM: "badge-clight",
+  RKV: "badge-veteran", RKHM: "badge-special"
 };
 
-const form       = document.getElementById("profileForm");
-const input      = document.getElementById("usernameInput");
-const loadBtn    = document.getElementById("loadBtn");
-const statusMsg  = document.getElementById("statusMsg");
-const output     = document.getElementById("profileOutput");
-const headerEl   = document.getElementById("profileHeader");
-const statsGrid  = document.getElementById("statsGrid");
-const siteTitles = document.getElementById("siteTitlesContent");
-const eligList   = document.getElementById("eligList");
+const form        = document.getElementById("profileForm");
+const input       = document.getElementById("usernameInput");
+const loadBtn     = document.getElementById("loadBtn");
+const statusMsg   = document.getElementById("statusMsg");
+const output      = document.getElementById("profileOutput");
+const headerEl    = document.getElementById("profileHeader");
+const statsGridEl = document.getElementById("statsGrid");
+const siteTitlesEl= document.getElementById("siteTitlesContent");
+const eligListEl  = document.getElementById("eligList");
 
 function setStatus(text, isError = false) {
   statusMsg.textContent = text;
@@ -471,28 +396,26 @@ function pct(val, max) {
 }
 
 function statItem(label, value, highlight = false) {
-  return `
-    <div class="stat-item">
-      <span class="stat-label">${label}</span>
-      <span class="stat-value${highlight ? " highlight" : ""}">${value}</span>
-    </div>`;
+  return `<div class="stat-item">
+    <span class="stat-label">${label}</span>
+    <span class="stat-value${highlight ? " highlight" : ""}">${value}</span>
+  </div>`;
 }
 
 function progressRow(label, current, required) {
   const done = current >= required;
   const fill = pct(current, required);
-  return `
-    <div class="elig-req-row">
-      <div class="elig-req-label">
-        <span class="elig-req-text">${label}</span>
-        <span class="elig-req-val ${done ? "met" : "unmet"}">
-          ${current.toLocaleString()} / ${required.toLocaleString()}
-        </span>
-      </div>
-      <div class="progress-bar">
-        <div class="progress-fill ${done ? "done" : ""}" style="width:${fill}%"></div>
-      </div>
-    </div>`;
+  return `<div class="elig-req-row">
+    <div class="elig-req-label">
+      <span class="elig-req-text">${label}</span>
+      <span class="elig-req-val ${done ? "met" : "unmet"}">
+        ${current.toLocaleString()} / ${required.toLocaleString()}
+      </span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill ${done ? "done" : ""}" style="width:${fill}%"></div>
+    </div>
+  </div>`;
 }
 
 async function loadPlayers() {
@@ -521,41 +444,38 @@ async function loadProfile(rawUsername) {
 
     if (!userRes.ok) throw new Error("User not found on Lichess.");
 
-    const user = await userRes.json();
-    const perf = perfRes.ok ? await perfRes.json() : null;
-    const topData = topRes.ok ? await topRes.json() : null;
+    const user    = await userRes.json();
+    const perf    = perfRes.ok ? await perfRes.json() : null;
+    const topData = topRes.ok  ? await topRes.json()  : null;
 
-    const rk       = user.perfs?.racingKings || {};
-    const stat      = perf?.stat || {};
-    const count     = stat.count || {};
-    const games     = count.all ?? rk.games ?? 0;
-    const wins      = count.win ?? 0;
-    const losses    = count.loss ?? 0;
-    const draws     = count.draw ?? 0;
-    const peakRating = stat.highest?.int ?? rk.rating ?? 0;
-    const curRating = rk.rating ?? 0;
-    const winRate   = games ? ((wins / games) * 100).toFixed(1) + "%" : "N/A";
-    const memberYear = user.createdAt ? new Date(user.createdAt).getFullYear() : "N/A";
-    const country   = user.profile?.country || null;
-    const flag      = getFlagEmoji(country);
+    const rk          = user.perfs?.racingKings || {};
+    const stat        = perf?.stat || {};
+    const count       = stat.count || {};
+    const games       = count.all ?? rk.games ?? 0;
+    const wins        = count.win ?? 0;
+    const losses      = count.loss ?? 0;
+    const draws       = count.draw ?? 0;
+    const peakRating  = stat.highest?.int ?? rk.rating ?? 0;
+    const curRating   = rk.rating ?? 0;
+    const winRate     = games ? ((wins / games) * 100).toFixed(1) + "%" : "N/A";
+    const memberYear  = user.createdAt ? new Date(user.createdAt).getFullYear() : "N/A";
+    const flag        = getFlagEmoji(user.profile?.country || "");
     const lichessTitle = user.title || null;
+    const bestStreak  = stat.currentResultStreak?.wins?.v ?? stat.maxResultStreak?.wins?.v ?? null;
 
-    const topUsers  = topData?.users || [];
-    const rankIdx   = topUsers.findIndex(u => u.id?.toLowerCase() === user.id?.toLowerCase());
-    const rank      = rankIdx >= 0 ? `#${rankIdx + 1} (top 200)` : "Outside top 200";
+    const topUsers = topData?.users || [];
+    const rankIdx  = topUsers.findIndex(u => u.id?.toLowerCase() === user.id?.toLowerCase());
+    const rank     = rankIdx >= 0 ? `#${rankIdx + 1} of top 200` : "Outside top 200";
 
-    const bestStreak = stat.currentResultStreak?.wins?.v
-      ?? stat.maxResultStreak?.wins?.v ?? null;
-
-    // Find site player record
     const siteRecord = players.find(
       p => p.username?.toLowerCase() === user.id?.toLowerCase()
         || p.username?.toLowerCase() === user.username?.toLowerCase()
     );
     const siteTitleList = siteRecord?.titles || [];
 
-    // --- Render header ---
+    // Header
     headerEl.innerHTML = `
+      <div class="section-title">Player</div>
       <div class="profile-header">
         <div class="profile-avatar">${(user.username || "?")[0].toUpperCase()}</div>
         <div class="profile-name-block">
@@ -571,62 +491,52 @@ async function loadProfile(rawUsername) {
         </div>
         <a class="profile-lichess-link"
            href="https://lichess.org/@/${encodeURIComponent(user.username)}"
-           target="_blank" rel="noopener noreferrer">
-          View on Lichess ↗
-        </a>
+           target="_blank" rel="noopener noreferrer">View on Lichess ↗</a>
       </div>`;
 
-    // --- Render stats ---
-    statsGrid.innerHTML =
+    // Stats
+    statsGridEl.innerHTML =
       statItem("Current Rating", curRating || "N/A", true) +
       statItem("Peak Rating", peakRating || "N/A") +
-      statItem("Leaderboard Rank", rank) +
+      statItem("Leaderboard", rank) +
       statItem("Total Games", games.toLocaleString()) +
       statItem("Wins", wins.toLocaleString()) +
       statItem("Losses", losses.toLocaleString()) +
       statItem("Draws", draws.toLocaleString()) +
       statItem("Win Rate", winRate) +
-      (bestStreak != null ? statItem("Best Win Streak", bestStreak) : "");
+      (bestStreak != null ? statItem("Best Streak", bestStreak) : "");
 
-    // --- Render site titles ---
+    // Site titles
     if (siteTitleList.length > 0) {
-      siteTitles.innerHTML = `<div class="site-titles-list">` +
+      siteTitlesEl.innerHTML = `<div class="site-titles-list">` +
         siteTitleList.map(t => {
           const cls = BADGE_MAP[t.code] || "badge-veteran";
-          return `<span class="site-title-badge ${cls}">${t.code}
-            <span class="since-label">${t.date ? "· " + t.date : ""}</span>
-          </span>`;
-        }).join("") +
-        `</div>`;
+          return `<span class="site-title-badge ${cls}">${t.code}<span class="since-label">${t.date ? "· " + t.date : ""}</span></span>`;
+        }).join("") + `</div>`;
     } else {
-      siteTitles.innerHTML = `<p class="no-titles">No site titles held yet.</p>`;
+      siteTitlesEl.innerHTML = `<p class="no-titles">No site titles held yet.</p>`;
     }
 
-    // --- Render eligibility ---
-    eligList.innerHTML = TITLE_DEFS.map((def, i) => {
-      const gamesDone   = games >= def.minGames;
-      const ratingDone  = def.minRating === 0 || peakRating >= def.minRating;
-      const bothMet     = gamesDone && ratingDone;
+    // Eligibility
+    eligListEl.innerHTML = TITLE_DEFS.map((def, i) => {
+      const gamesDone  = games >= def.minGames;
+      const ratingDone = def.minRating === 0 || peakRating >= def.minRating;
+      const bothMet    = gamesDone && ratingDone;
 
-      const gamesRow = progressRow(
-        def.minRating === 0 ? "Games (10,000 OR 5 years)" : "Minimum games",
-        games,
-        def.minGames
+      const gamesRow  = progressRow(
+        def.minRating === 0 ? "Games (10,000 OR 5-year account)" : "Minimum games",
+        games, def.minGames
       );
+      const ratingRow = def.minRating > 0
+        ? progressRow("Peak rating required", peakRating, def.minRating)
+        : `<div class="elig-req-row">
+            <div class="elig-req-label">
+              <span class="elig-req-text">5-year account age also qualifies</span>
+              <span class="elig-req-val unmet">manual check</span>
+            </div>
+          </div>`;
 
-      const ratingRow = def.minRating > 0 ? progressRow(
-        "Peak rating required",
-        peakRating,
-        def.minRating
-      ) : `<div class="elig-req-row">
-        <div class="elig-req-label">
-          <span class="elig-req-text">Account age (5+ years also qualifies)</span>
-          <span class="elig-req-val ${ratingDone ? "met" : "unmet"}">manual check</span>
-        </div>
-      </div>`;
-
-      return `
-        ${i > 0 ? '<hr class="elig-divider">' : ""}
+      return `${i > 0 ? '<hr class="elig-divider">' : ""}
         <div class="elig-item">
           <div class="elig-header">
             <span class="elig-badge ${def.badgeClass}">${def.code}</span>
@@ -635,10 +545,7 @@ async function loadProfile(rawUsername) {
               ${bothMet ? "✓ Base reqs met" : "Not yet eligible"}
             </span>
           </div>
-          <div class="elig-reqs">
-            ${gamesRow}
-            ${ratingRow}
-          </div>
+          <div class="elig-reqs">${gamesRow}${ratingRow}</div>
         </div>`;
     }).join("");
 
@@ -651,16 +558,10 @@ async function loadProfile(rawUsername) {
   }
 }
 
-form.addEventListener("submit", e => {
-  e.preventDefault();
-  loadProfile(input.value);
-});
+form.addEventListener("submit", e => { e.preventDefault(); loadProfile(input.value); });
 
 const saved = localStorage.getItem(STORAGE_KEY);
-if (saved) {
-  input.value = saved;
-  loadProfile(saved);
-}
+if (saved) { input.value = saved; loadProfile(saved); }
 </script>
 
 <script src="js/menu.js"></script>

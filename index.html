@@ -3,82 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Racing Kings Titles</title>
-
   <link rel="stylesheet" href="css/global.css">
-
   <style>
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-    }
-
-    .option {
-      min-height: 140px;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-
-      padding: 1rem;
-
-      text-decoration: none;
-      color: var(--text);
-
-      animation: fadeInUp 0.65s ease both;
-    }
-
-    .option:nth-child(2) { animation-delay: 0.1s; }
-    .option:nth-child(3) { animation-delay: 0.2s; }
-    .option:nth-child(4) { animation-delay: 0.3s; }
-    .option:nth-child(5) { animation-delay: 0.4s; }
-    .option:nth-child(6) { animation-delay: 0.5s; }
-
-    .option h2 {
-      margin: 0 0 0.35rem;
-      font-size: 1.2rem;
-    }
-
-    .option p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 0.9rem;
+      margin-top: 1.5rem;
     }
   </style>
 </head>
-
 <body>
 
   <header class="top-bar">
     <div class="nav-left">
-      <button class="icon-btn" id="backBtn" aria-label="Go back">
-        &lt;
-      </button>
-
-      <button class="icon-btn" id="forwardBtn" aria-label="Go forward">
-        &gt;
-      </button>
+      <button class="icon-btn" id="backBtn" aria-label="Go back">&lt;</button>
+      <button class="icon-btn" id="forwardBtn" aria-label="Go forward">&gt;</button>
     </div>
-
     <div class="nav-right">
-      <button class="icon-btn" id="menuBtn" aria-label="Open menu">
-        ☰ Menu
-      </button>
+      <button class="icon-btn" id="menuBtn" aria-label="Open menu">☰ Menu</button>
     </div>
   </header>
 
@@ -86,67 +30,33 @@
 
   <main>
     <h1>Racing Kings Titles</h1>
-
     <p class="subtitle">
-      Choose a section to explore players, profiles, search results,
-      titles, and background information about Racing Kings Titles.
+      Choose a section to explore players, profiles, titles,
+      and background information about Racing Kings Titles.
     </p>
-
     <section class="grid" id="optionsGrid"></section>
   </main>
 
   <script>
     const pages = [
-      {
-        slug: "players",
-        label: "Players",
-        desc: "View leaderboards, players and rankings."
-      },
-      {
-        slug: "leaderboard",
-        label: "Leaderboard",
-        desc: "Browse titled Racing Kings players."
-      },
-      {
-        slug: "profile",
-        label: "Profiles",
-        desc: "See profiles and stats."
-      },
-      {
-        slug: "search",
-        label: "Search",
-        desc: "Find races, titles, and players."
-      },
-      {
-        slug: "titles",
-        label: "Titles",
-        desc: "Titles and requirements."
-      },
-      {
-        slug: "about",
-        label: "About",
-        desc: "Learn what Racing Kings Titles is about."
-      }
+      { slug: "players",    label: "Players",    desc: "View leaderboards, players and rankings." },
+      { slug: "leaderboard",label: "Leaderboard",desc: "Browse titled Racing Kings players." },
+      { slug: "profile",    label: "Profiles",   desc: "Look up any player's stats and eligibility." },
+      { slug: "search",     label: "Search",     desc: "Check title eligibility for any player." },
+      { slug: "titles",     label: "Titles",     desc: "All titles, requirements, and current holders." },
+      { slug: "about",      label: "About",      desc: "Learn what Racing Kings Titles is about." }
     ];
 
-    const optionsGrid = document.getElementById("optionsGrid");
-
-    pages.forEach((page) => {
+    const grid = document.getElementById("optionsGrid");
+    pages.forEach(page => {
       const card = document.createElement("a");
-
       card.href = `${page.slug}.html`;
       card.className = "option";
-
-      card.innerHTML = `
-        <h2>${page.label}</h2>
-        <p>${page.desc}</p>
-      `;
-
-      optionsGrid.appendChild(card);
+      card.innerHTML = `<h2>${page.label}</h2><p>${page.desc}</p>`;
+      grid.appendChild(card);
     });
   </script>
 
   <script src="js/menu.js"></script>
-
 </body>
 </html>
