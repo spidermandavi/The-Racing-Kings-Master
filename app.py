@@ -6,6 +6,7 @@ from flask import Flask, send_from_directory, request, jsonify, session
 from db import (
     init_db, create_user, get_user_by_username,
     verify_password, is_admin, get_all_users, delete_user_by_username,
+    submit_application, get_all_applications, get_user_applications, update_application,
 )
 
 app = Flask(__name__)
@@ -242,6 +243,80 @@ def api_revoke_title(player_username, title_code):
         return jsonify({"error": "Title not found"}), 404
 
     save_players(players)
+    return jsonify({"ok": True})
+
+
+# ── Title Applications API ────────────────────────────────────────────────────
+
+@app.route("/api/applications", methods=["POST"])
+def api_submit_application():
+    u, err = require_auth()
+    if err:
+        return err
+
+    data = request.get_json(silent=True) or {}
+    title_code  = (data.get("title_code") or "").strip().upper()
+    message     = (data.get("message") or "").strip()
+    games       = int(data.get("games") or 0)
+    peak_rating = int(data.get("peak_rating") or 0)
+
+    if not title_code:
+        return jsonify({"error": "Title code required"}), 400
+
+    result = submit_application(u, title_code, message, games, peak_rating)
+    if not result["success"]:
+        return jsonify({"error": result["error"]}), 409
+
+    return jsonify({"ok": True}), 201
+
+
+@app.route("/api/applications", methods=["GET"])
+def api_get_applications():
+    _, err = require_admin_auth()
+    if err:
+        return err
+    return jsonify(get_all_applications())
+
+
+@app.route("/api/applications/mine", methods=["GET"])
+def api_get_my_applications():
+    u, err = require_auth()
+    if err:
+        return err
+    return jsonify(get_user_applications(u))
+
+
+@app.route("/api/applications/<int:app_id>", methods=["PATCH"])
+def api_review_application(app_id):
+    admin_user, err = require_admin_auth()
+    if err:
+        return err
+
+    data        = request.get_json(silent=True) or {}
+    status      = (data.get("status") or "").strip().lower()
+    review_note = (data.get("review_note") or "").strip()
+
+    if status not in ("approved", "denied"):
+        return jsonify({"error": "status must be 'approved' or 'denied'"}), 400
+
+    update_application(app_id, status, admin_user, review_note)
+
+    # If approving, also ensure player exists and title is awarded
+    if status == "approved":
+        apps = get_all_applications()
+        app_rec = next((a for a in apps if a["id"] == app_id), None)
+        if app_rec:
+            players = load_players()
+            idx = find_player_idx(players, app_rec["username"])
+            if idx is None:
+                new_id = max((p.get("id", 0) for p in players), default=0) + 1
+                players.append({"id": new_id, "username": app_rec["username"], "description": "", "titles": []})
+                idx = len(players) - 1
+            code = app_rec["title_code"]
+            if not any(t["code"] == code for t in players[idx]["titles"]):
+                players[idx]["titles"].append({"code": code, "date": date.today().isoformat()})
+            save_players(players)
+
     return jsonify({"ok": True})
 
 

@@ -23,6 +23,21 @@ def init_db():
             created_at  TEXT    DEFAULT (datetime('now'))
         )
     """)
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS title_applications (
+            id           INTEGER PRIMARY KEY AUTOINCREMENT,
+            username     TEXT    NOT NULL COLLATE NOCASE,
+            title_code   TEXT    NOT NULL,
+            message      TEXT    DEFAULT '',
+            status       TEXT    DEFAULT 'pending',
+            games        INTEGER DEFAULT 0,
+            peak_rating  INTEGER DEFAULT 0,
+            submitted_at TEXT    DEFAULT (datetime('now')),
+            reviewed_at  TEXT,
+            reviewed_by  TEXT,
+            review_note  TEXT
+        )
+    """)
     conn.commit()
     conn.close()
 
@@ -77,5 +92,57 @@ def get_all_users():
 def delete_user_by_username(username):
     conn = get_db()
     conn.execute("DELETE FROM users WHERE username = ? COLLATE NOCASE", (username,))
+    conn.commit()
+    conn.close()
+
+
+# ── Title applications ────────────────────────────────────────────────────────
+
+def submit_application(username, title_code, message, games, peak_rating):
+    conn = get_db()
+    try:
+        existing = conn.execute(
+            "SELECT id FROM title_applications WHERE username = ? COLLATE NOCASE AND title_code = ? AND status = 'pending'",
+            (username, title_code)
+        ).fetchone()
+        if existing:
+            return {"success": False, "error": "You already have a pending application for this title"}
+        conn.execute(
+            "INSERT INTO title_applications (username, title_code, message, games, peak_rating) VALUES (?, ?, ?, ?, ?)",
+            (username, title_code, message or "", games or 0, peak_rating or 0)
+        )
+        conn.commit()
+        return {"success": True}
+    finally:
+        conn.close()
+
+
+def get_all_applications():
+    conn = get_db()
+    rows = conn.execute(
+        "SELECT * FROM title_applications ORDER BY submitted_at DESC"
+    ).fetchall()
+    conn.close()
+    return [dict(r) for r in rows]
+
+
+def get_user_applications(username):
+    conn = get_db()
+    rows = conn.execute(
+        "SELECT * FROM title_applications WHERE username = ? COLLATE NOCASE ORDER BY submitted_at DESC",
+        (username,)
+    ).fetchall()
+    conn.close()
+    return [dict(r) for r in rows]
+
+
+def update_application(app_id, status, reviewed_by, review_note=None):
+    conn = get_db()
+    conn.execute(
+        """UPDATE title_applications
+           SET status = ?, reviewed_by = ?, reviewed_at = datetime('now'), review_note = ?
+           WHERE id = ?""",
+        (status, reviewed_by, review_note, app_id)
+    )
     conn.commit()
     conn.close()

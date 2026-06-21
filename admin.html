@@ -295,6 +295,109 @@
       letter-spacing: 0.04em;
     }
 
+    /* ── Applications tab ── */
+    .apps-table-wrap {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .apps-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 0.85rem;
+    }
+
+    .apps-table th {
+      text-align: left;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    .apps-table td {
+      padding: 0.7rem 0.9rem;
+      color: var(--text-soft);
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .apps-table tr:last-child td { border-bottom: none; }
+    .apps-table tr:hover td { background: var(--surface); }
+
+    .app-status {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 0.18rem 0.5rem;
+      border-radius: 5px;
+      white-space: nowrap;
+    }
+
+    .app-status.pending  { background: rgba(251,191,36,0.12); color: #fbbf24; border: 1px solid rgba(251,191,36,0.3); }
+    .app-status.approved { background: rgba(74,222,128,0.10); color: #4ade80; border: 1px solid rgba(74,222,128,0.3); }
+    .app-status.denied   { background: rgba(248,113,113,0.10); color: #f87171; border: 1px solid rgba(248,113,113,0.3); }
+
+    .req-ok  { color: #4ade80; font-weight: 700; }
+    .req-no  { color: #f87171; font-weight: 700; }
+
+    .app-msg {
+      font-size: 0.79rem;
+      color: var(--text-muted);
+      font-style: italic;
+      max-width: 220px;
+      word-break: break-word;
+    }
+
+    .app-note-input {
+      padding: 0.3rem 0.5rem;
+      border-radius: 6px;
+      border: 1px solid var(--input-border);
+      background: var(--input-bg);
+      color: var(--input-text);
+      font-size: 0.8rem;
+      font-family: inherit;
+      outline: none;
+      width: 120px;
+      margin-bottom: 0.35rem;
+    }
+
+    .app-note-input:focus { border-color: var(--accent); }
+
+    .filter-row {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .filter-pill {
+      padding: 0.28rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+
+    .filter-pill.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
     /* ── Toast ── */
     .toast {
       position: fixed;
@@ -342,6 +445,7 @@
 
   <div class="admin-tabs">
     <button class="tab-btn active" onclick="openTab('players')">Players</button>
+    <button class="tab-btn" onclick="openTab('applications')" id="tab-btn-applications">Applications</button>
     <button class="tab-btn" onclick="openTab('users')">Site Accounts</button>
   </div>
 
@@ -371,6 +475,38 @@
 
     <div class="player-list" id="playerList">
       <p style="color:var(--text-muted)">Loading…</p>
+    </div>
+  </div>
+
+  <!-- APPLICATIONS TAB -->
+  <div class="tab-panel" id="tab-applications">
+    <div class="section-header">
+      <h2>Title Applications</h2>
+      <button class="sm-btn" onclick="loadApplications()">Refresh</button>
+    </div>
+    <div class="filter-row">
+      <button class="filter-pill active" onclick="setAppFilter('all', this)">All</button>
+      <button class="filter-pill" onclick="setAppFilter('pending', this)">Pending</button>
+      <button class="filter-pill" onclick="setAppFilter('approved', this)">Approved</button>
+      <button class="filter-pill" onclick="setAppFilter('denied', this)">Denied</button>
+    </div>
+    <div class="apps-table-wrap">
+      <table class="apps-table">
+        <thead>
+          <tr>
+            <th>Player</th>
+            <th>Title</th>
+            <th>Stats at Submission</th>
+            <th>Message</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="appsBody">
+          <tr><td colspan="7" style="color:var(--text-muted)">Loading…</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
@@ -415,6 +551,7 @@ function openTab(tab) {
   document.getElementById(`tab-${tab}`).classList.add('active');
   event.currentTarget.classList.add('active');
   if (tab === 'users') loadUsers();
+  if (tab === 'applications') loadApplications();
 }
 
 function toast(msg, type = 'ok') {
@@ -617,6 +754,161 @@ async function deleteUser(username) {
   if (!ok) { toast(data.error || 'Failed', 'err'); return; }
   toast(`Account "${username}" deleted`);
   loadUsers();
+}
+
+// ── Applications ─────────────────────────────────────────────────────────────
+const TITLE_BASE_REQS = {
+  RKSGM: { minGames: 5000,  minRating: 2500 },
+  RKGM:  { minGames: 3000,  minRating: 2400 },
+  RKIM:  { minGames: 2000,  minRating: 2300 },
+  RKM:   { minGames: 1000,  minRating: 2200 },
+  RKCM:  { minGames: 500,   minRating: 2100 },
+  RKV:   { minGames: 10000, minRating: 0    },
+};
+
+const NORM_REQS_LABEL = {
+  RKSGM: "2 wins + 5 perfs + 1 shield",
+  RKGM:  "1 win + 3 performances",
+  RKIM:  "3 tournament wins",
+  RKM:   "3 tournament wins",
+  RKCM:  "3 tournament wins",
+  RKV:   "none",
+};
+
+let _allApps    = [];
+let _appFilter  = 'all';
+
+function setAppFilter(filter, btn) {
+  _appFilter = filter;
+  document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderApplications();
+}
+
+function reqCell(value, required, isRating) {
+  if (required === 0) return `<span class="req-ok">✓ No req</span>`;
+  const met = value >= required;
+  return `<span class="${met ? 'req-ok' : 'req-no'}" title="${isRating ? 'Peak rating' : 'Games'}">${value.toLocaleString()} / ${required.toLocaleString()} ${met ? '✓' : '✗'}</span>`;
+}
+
+function buildAppRow(app) {
+  const reqs   = TITLE_BASE_REQS[app.title_code] || {};
+  const gOk    = !reqs.minGames  || app.games      >= reqs.minGames;
+  const rOk    = !reqs.minRating || reqs.minRating === 0 || app.peak_rating >= reqs.minRating;
+  const baseOk = gOk && rOk;
+
+  const checkerLink = `search.html?username=${encodeURIComponent(app.username)}&title=${app.title_code}`;
+  const profileLink = `profile.html?u=${encodeURIComponent(app.username)}`;
+
+  const statusHtml = `<span class="app-status ${app.status}">${app.status.charAt(0).toUpperCase() + app.status.slice(1)}</span>`;
+  const dateStr    = (app.submitted_at || '').slice(0, 10) || '—';
+
+  let actionHtml;
+  if (app.status === 'pending') {
+    actionHtml = `
+      <div style="display:flex;flex-direction:column;gap:0.35rem">
+        <input class="app-note-input" id="note-${app.id}" placeholder="Admin note (optional)" />
+        <div style="display:flex;gap:0.35rem;flex-wrap:wrap">
+          <button class="sm-btn accent" onclick="reviewApp(${app.id},'approved')">✓ Approve & Award</button>
+          <button class="sm-btn danger"  onclick="reviewApp(${app.id},'denied')">✗ Deny</button>
+        </div>
+      </div>`;
+  } else {
+    const reviewedBy = app.reviewed_by ? `by ${app.reviewed_by}` : '';
+    const reviewDate = (app.reviewed_at || '').slice(0, 10);
+    actionHtml = `<span style="font-size:0.79rem;color:var(--text-muted)">${reviewDate} ${reviewedBy}</span>
+      ${app.review_note ? `<br><span style="font-size:0.78rem;font-style:italic">"${escapeHtml(app.review_note)}"</span>` : ''}`;
+  }
+
+  return `<tr>
+    <td style="font-weight:700;color:var(--text)">
+      <a href="${profileLink}" style="color:inherit;text-decoration:none" target="_blank">${escapeHtml(app.username)}</a>
+    </td>
+    <td>
+      <strong style="color:var(--accent)">${escapeHtml(app.title_code)}</strong><br>
+      <span style="font-size:0.75rem;color:var(--text-muted)">
+        Norms: ${NORM_REQS_LABEL[app.title_code] || '—'}
+        · <a href="${checkerLink}" target="_blank" style="color:var(--accent);font-size:0.74rem">Verify →</a>
+      </span>
+    </td>
+    <td>
+      <div style="font-size:0.8rem;line-height:1.8">
+        Games: ${reqCell(app.games, reqs.minGames, false)}<br>
+        Rating: ${reqCell(app.peak_rating, reqs.minRating || 0, true)}<br>
+        <span style="font-size:0.73rem;color:var(--text-muted)">Base reqs: ${baseOk ? '<span class="req-ok">✓ Met</span>' : '<span class="req-no">✗ Not met</span>'}</span>
+      </div>
+    </td>
+    <td><div class="app-msg">${app.message ? escapeHtml(app.message) : '<em style="opacity:0.4">none</em>'}</div></td>
+    <td style="white-space:nowrap;font-size:0.82rem">${dateStr}</td>
+    <td>${statusHtml}</td>
+    <td>${actionHtml}</td>
+  </tr>`;
+}
+
+function escapeHtml(str) {
+  return String(str || '')
+    .replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')
+    .replaceAll('"','&quot;').replaceAll("'","&#039;");
+}
+
+function renderApplications() {
+  const tbody = document.getElementById('appsBody');
+  if (!tbody) return;
+
+  const filtered = _appFilter === 'all'
+    ? _allApps
+    : _allApps.filter(a => a.status === _appFilter);
+
+  if (!filtered.length) {
+    const msg = _appFilter === 'all' ? 'No applications yet.' : `No ${_appFilter} applications.`;
+    tbody.innerHTML = `<tr><td colspan="7" style="color:var(--text-muted);text-align:center;padding:1.5rem">${msg}</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(buildAppRow).join('');
+
+  // Update tab badge
+  const pending = _allApps.filter(a => a.status === 'pending').length;
+  const tabBtn  = document.getElementById('tab-btn-applications');
+  if (tabBtn) {
+    tabBtn.textContent = pending > 0 ? `Applications (${pending})` : 'Applications';
+  }
+}
+
+async function loadApplications() {
+  const tbody = document.getElementById('appsBody');
+  if (tbody) tbody.innerHTML = `<tr><td colspan="7" style="color:var(--text-muted)">Loading…</td></tr>`;
+
+  const { ok, data } = await api('GET', '/api/applications');
+  if (!ok) {
+    if (tbody) tbody.innerHTML = `<tr><td colspan="7" style="color:#f87171">${data.error || 'Failed to load applications'}</td></tr>`;
+    return;
+  }
+
+  _allApps = data;
+  renderApplications();
+
+  // Show badge on tab
+  const pending = data.filter(a => a.status === 'pending').length;
+  const tabBtn  = document.getElementById('tab-btn-applications');
+  if (tabBtn) tabBtn.textContent = pending > 0 ? `Applications (${pending})` : 'Applications';
+}
+
+async function reviewApp(id, status) {
+  const noteEl = document.getElementById(`note-${id}`);
+  const note   = noteEl ? noteEl.value.trim() : '';
+
+  const confirmMsg = status === 'approved'
+    ? 'Approve this application and award the title to the player?'
+    : 'Deny this application?';
+  if (!confirm(confirmMsg)) return;
+
+  const { ok, data } = await api('PATCH', `/api/applications/${id}`, { status, review_note: note });
+  if (!ok) { toast(data.error || 'Failed to update application', 'err'); return; }
+
+  toast(status === 'approved' ? '✓ Approved — title awarded' : '✗ Application denied');
+  loadApplications();
+  if (status === 'approved') loadPlayers();
 }
 
 // ── Init ─────────────────────────────────────────────────────────────────────

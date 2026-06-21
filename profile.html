@@ -465,6 +465,173 @@
       gap: 0.3rem;
     }
 
+    /* ── Apply for Title modal ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      animation: fadeInUp 0.2s ease;
+    }
+
+    .modal-overlay.hidden { display: none; }
+
+    .modal-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin: 0 0 1.25rem;
+    }
+
+    .modal-field { margin-bottom: 1rem; }
+
+    .modal-label {
+      display: block;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.4rem;
+    }
+
+    .modal-input,
+    .modal-select,
+    .modal-textarea {
+      width: 100%;
+      padding: 0.6rem 0.85rem;
+      border-radius: 8px;
+      border: 1px solid var(--input-border);
+      background: var(--input-bg);
+      color: var(--input-text);
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      box-sizing: border-box;
+      transition: border-color 0.2s;
+    }
+
+    .modal-input:focus,
+    .modal-select:focus,
+    .modal-textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent-glow);
+    }
+
+    .modal-select {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a1a1aa' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.85rem center;
+      padding-right: 2.5rem;
+      cursor: pointer;
+    }
+
+    .modal-textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .modal-stats {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1rem;
+      font-size: 0.83rem;
+    }
+
+    .modal-stat-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding: 0.2rem 0;
+    }
+
+    .modal-stat-label { color: var(--text-muted); }
+
+    .modal-stat-val { font-weight: 700; font-variant-numeric: tabular-nums; }
+
+    .modal-stat-val.met  { color: #4ade80; }
+    .modal-stat-val.unmet { color: #f87171; }
+
+    .modal-info {
+      font-size: 0.79rem;
+      color: var(--text-muted);
+      padding: 0.65rem 0.85rem;
+      background: rgba(139,92,246,0.07);
+      border: 1px solid rgba(139,92,246,0.2);
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 0.6rem;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .modal-cancel-btn {
+      padding: 0.55rem 1.1rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .modal-submit-btn {
+      padding: 0.55rem 1.25rem;
+      border-radius: 8px;
+      border: none;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.88rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .modal-submit-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+    .modal-submit-btn:hover:not(:disabled) { opacity: 0.85; }
+
+    .apply-status-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.2rem 0.55rem;
+      border-radius: 6px;
+    }
+
+    .apply-status-tag.pending  { background: rgba(251,191,36,0.12); color: #fbbf24; border: 1px solid rgba(251,191,36,0.3); }
+    .apply-status-tag.approved { background: rgba(74,222,128,0.10); color: #4ade80; border: 1px solid rgba(74,222,128,0.3); }
+    .apply-status-tag.denied   { background: rgba(248,113,113,0.10); color: #f87171; border: 1px solid rgba(248,113,113,0.3); }
+
     @media (max-width: 600px) {
       .search-card { padding: 1.1rem; }
       .section-card { padding: 1rem; }
@@ -542,7 +709,11 @@
       <div class="section-card" style="margin-top:0">
         <div class="elig-section-hdr">
           <div class="section-title" style="margin-bottom:0">Title Eligibility Progress</div>
-          <button class="norm-scan-btn" id="scanNormsBtn" onclick="triggerNormScan()" disabled>⟳ Scan Norms</button>
+          <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
+            <button class="norm-scan-btn" id="scanNormsBtn" onclick="triggerNormScan()" disabled>⟳ Scan Norms</button>
+            <button class="norm-scan-btn" id="applyTitleBtn" onclick="openApplyModal()" disabled
+                    style="border-color:rgba(139,92,246,0.4);color:var(--accent)">✦ Apply for Title</button>
+          </div>
         </div>
         <p class="elig-note">Base reqs (games + rating) are live from Lichess. Press "Scan Norms" to check qualifying tournament wins.</p>
         <div class="elig-list" id="eligList"></div>
@@ -550,6 +721,17 @@
     </div>
   </div>
 </main>
+
+<!-- ── Apply for Title modal ──────────────────────────────────────────────── -->
+<div class="modal-overlay hidden" id="applyModal" onclick="closeApplyModal(event)">
+  <div class="modal-card" onclick="event.stopPropagation()">
+    <div class="modal-title">✦ Apply for Title</div>
+
+    <div id="applyModalBody">
+      <!-- filled by JS -->
+    </div>
+  </div>
+</div>
 
 <script>
 const STORAGE_KEY = "rk_profile_username";
@@ -803,6 +985,8 @@ async function loadProfile(rawUsername) {
     const losses     = count.loss    ?? 0;
     const draws      = count.draw    ?? 0;
     const peakRating = stat.highest?.int ?? rk.rating ?? 0;
+    _profileGames      = games;
+    _profilePeakRating = peakRating;
     const curRating  = rk.rating ?? 0;
     const winRate    = games ? ((wins / games) * 100).toFixed(1) + "%" : "N/A";
     const memberYear = user.createdAt ? new Date(user.createdAt).getFullYear() : "N/A";
@@ -927,12 +1111,183 @@ async function loadProfile(rawUsername) {
     setStatus(`Loaded profile for ${user.username}.`);
     const scanBtn = document.getElementById("scanNormsBtn");
     if (scanBtn) { scanBtn.disabled = false; scanBtn.textContent = "⟳ Scan Norms"; }
+    const applyBtn = document.getElementById("applyTitleBtn");
+    if (applyBtn) applyBtn.disabled = false;
   } catch (err) {
     setStatus(err.message || "Failed to load profile.", true);
   } finally {
     loadBtn.disabled = false;
   }
 }
+
+// ── Apply-for-title modal ─────────────────────────────────────────────────────
+let _profileGames = 0;
+let _profilePeakRating = 0;
+let _currentLoggedUser = null;
+
+// Fetch logged-in user once on load
+(async () => {
+  try {
+    const r = await fetch("/api/auth/me");
+    const { user } = await r.json();
+    _currentLoggedUser = user;
+  } catch {}
+})();
+
+const APPLY_TITLES = [
+  { code: "RKSGM", label: "RKSGM — Super Grandmaster", minGames: 5000, minRating: 2500 },
+  { code: "RKGM",  label: "RKGM — Grandmaster",         minGames: 3000, minRating: 2400 },
+  { code: "RKIM",  label: "RKIM — International Master", minGames: 2000, minRating: 2300 },
+  { code: "RKM",   label: "RKM — Master",                minGames: 1000, minRating: 2200 },
+  { code: "RKCM",  label: "RKCM — Candidate Master",     minGames:  500, minRating: 2100 },
+  { code: "RKV",   label: "RKV — Veteran",               minGames: 10000, minRating: 0  },
+];
+
+function openApplyModal() {
+  const overlay = document.getElementById("applyModal");
+  const body    = document.getElementById("applyModalBody");
+  overlay.classList.remove("hidden");
+
+  const profileUser = input.value.trim();
+  const loggedUser  = _currentLoggedUser;
+
+  // Not logged in
+  if (!loggedUser) {
+    body.innerHTML = `
+      <div class="modal-info">You need a site account to apply for a title.</div>
+      <div class="modal-actions">
+        <button class="modal-cancel-btn" onclick="closeApplyModal()">Close</button>
+        <button class="modal-submit-btn" onclick="window.location.href='auth.html'">Login / Register</button>
+      </div>`;
+    return;
+  }
+
+  // Logged in but viewing someone else's profile
+  if (loggedUser.username.toLowerCase() !== profileUser.toLowerCase()) {
+    body.innerHTML = `
+      <div class="modal-info">
+        You're logged in as <strong>${loggedUser.username}</strong>. You can only apply for your own title.
+        Load your own profile first, or log in as <strong>${profileUser}</strong>.
+      </div>
+      <div class="modal-actions">
+        <button class="modal-cancel-btn" onclick="closeApplyModal()">Close</button>
+        <button class="modal-submit-btn" onclick="input.value='${loggedUser.username}'; closeApplyModal(); loadProfile('${loggedUser.username}')">Load My Profile</button>
+      </div>`;
+    return;
+  }
+
+  // Default pre-select: highest title for which base reqs are met; fallback to RKCM
+  const defaultTitle = APPLY_TITLES.find(t =>
+    _profileGames >= t.minGames && (t.minRating === 0 || _profilePeakRating >= t.minRating)
+  ) || APPLY_TITLES[APPLY_TITLES.length - 2];
+
+  body.innerHTML = `
+    <div class="modal-field">
+      <label class="modal-label">Lichess Username</label>
+      <input class="modal-input" value="${profileUser}" readonly />
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Title Applying For</label>
+      <select class="modal-select" id="applyTitleSelect" onchange="updateApplyStats()">
+        ${APPLY_TITLES.map(t => `<option value="${t.code}" ${t.code === defaultTitle?.code ? "selected" : ""}>${t.label}</option>`).join("")}
+      </select>
+    </div>
+    <div class="modal-stats" id="applyStatsBox"></div>
+    <div class="modal-field">
+      <label class="modal-label">Message (optional)</label>
+      <textarea class="modal-textarea" id="applyMessage" placeholder="Any additional context for the admin…"></textarea>
+    </div>
+    <div class="modal-info">
+      Your current stats are automatically included. The admin will review your application and verify tournament norms.
+    </div>
+    <div id="applyFeedback" style="margin-bottom:0.75rem;font-size:0.84rem;display:none"></div>
+    <div class="modal-actions">
+      <button class="modal-cancel-btn" onclick="closeApplyModal()">Cancel</button>
+      <button class="modal-submit-btn" id="applySubmitBtn" onclick="submitTitleApplication()">Submit Application</button>
+    </div>`;
+
+  updateApplyStats();
+}
+
+function updateApplyStats() {
+  const box = document.getElementById("applyStatsBox");
+  if (!box) return;
+  const code = document.getElementById("applyTitleSelect")?.value;
+  const def  = APPLY_TITLES.find(t => t.code === code);
+  if (!def) { box.innerHTML = ""; return; }
+
+  const gOk = _profileGames >= def.minGames;
+  const rOk = def.minRating === 0 || _profilePeakRating >= def.minRating;
+
+  box.innerHTML = `
+    <div class="modal-stat-row">
+      <span class="modal-stat-label">RK games</span>
+      <span class="modal-stat-val ${gOk ? "met" : "unmet"}">
+        ${_profileGames.toLocaleString()} / ${def.minGames.toLocaleString()} ${gOk ? "✓" : "✗"}
+      </span>
+    </div>
+    <div class="modal-stat-row">
+      <span class="modal-stat-label">Peak rating</span>
+      <span class="modal-stat-val ${rOk ? "met" : "unmet"}">
+        ${def.minRating === 0 ? "No rating req" : `${_profilePeakRating} / ${def.minRating} ${rOk ? "✓" : "✗"}`}
+      </span>
+    </div>
+    <div class="modal-stat-row" style="margin-top:0.3rem;padding-top:0.3rem;border-top:1px solid var(--border)">
+      <span class="modal-stat-label" style="font-size:0.76rem">Tournament norms</span>
+      <span style="font-size:0.76rem;color:var(--text-muted)">Verified by admin</span>
+    </div>`;
+}
+
+function closeApplyModal(event) {
+  if (event && event.target !== document.getElementById("applyModal")) return;
+  document.getElementById("applyModal").classList.add("hidden");
+}
+
+async function submitTitleApplication() {
+  const btn      = document.getElementById("applySubmitBtn");
+  const feedback = document.getElementById("applyFeedback");
+  const titleCode = document.getElementById("applyTitleSelect")?.value;
+  const message   = (document.getElementById("applyMessage")?.value || "").trim();
+
+  btn.disabled = true;
+  btn.textContent = "Submitting…";
+  feedback.style.display = "none";
+
+  try {
+    const res  = await fetch("/api/applications", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title_code: titleCode, message, games: _profileGames, peak_rating: _profilePeakRating })
+    });
+    const data = await res.json();
+
+    if (!res.ok) {
+      feedback.textContent = data.error || "Submission failed.";
+      feedback.style.color = "#f87171";
+      feedback.style.display = "block";
+      btn.disabled = false;
+      btn.textContent = "Submit Application";
+      return;
+    }
+
+    feedback.textContent = "✓ Application submitted! The admin will review it shortly.";
+    feedback.style.color = "#4ade80";
+    feedback.style.display = "block";
+    btn.disabled = true;
+    btn.textContent = "Submitted";
+  } catch (err) {
+    feedback.textContent = "Network error. Please try again.";
+    feedback.style.color = "#f87171";
+    feedback.style.display = "block";
+    btn.disabled = false;
+    btn.textContent = "Submit Application";
+  }
+}
+
+// Escape key closes modal
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") document.getElementById("applyModal")?.classList.add("hidden");
+});
 
 // ── Norm scanning (shared cache with Title Checker) ──────────────────────────
 const CACHE_PREFIX          = "rk_title_checker_";
