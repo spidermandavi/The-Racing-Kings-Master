@@ -366,6 +366,105 @@
 
     .progress-fill.done { background: #4ade80; }
 
+    /* ── Norm scanning ── */
+    .elig-section-hdr {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .norm-scan-btn {
+      padding: 0.28rem 0.7rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.76rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .norm-scan-btn:hover:not(:disabled) {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .norm-scan-btn:disabled { opacity: 0.45; cursor: default; }
+
+    .norm-slot { margin-top: 0.5rem; }
+
+    .norm-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0.6rem 0 0.5rem;
+    }
+
+    .norm-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0.28rem;
+      margin-top: 0.35rem;
+      padding-left: 0.4rem;
+    }
+
+    .norm-entry {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+      font-size: 0.79rem;
+    }
+
+    .norm-num {
+      color: var(--text-muted);
+      font-size: 0.72rem;
+      min-width: 1.6em;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+    }
+
+    .norm-tname {
+      color: var(--accent);
+      text-decoration: none;
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .norm-tname:hover { text-decoration: underline; }
+
+    .npill {
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .npill.won    { background: rgba(74,222,128,0.1);  border-color: rgba(74,222,128,0.3);  color: #4ade80; }
+    .npill.shield { background: rgba(251,191,36,0.1);  border-color: rgba(251,191,36,0.3);  color: #fbbf24; }
+
+    .norm-scanning-note {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
     @media (max-width: 600px) {
       .search-card { padding: 1.1rem; }
       .section-card { padding: 1rem; }
@@ -441,8 +540,11 @@
 
       <!-- Eligibility -->
       <div class="section-card" style="margin-top:0">
-        <div class="section-title">Title Eligibility Progress</div>
-        <p class="elig-note">Based on games played and peak rating. Tournament requirements need manual verification.</p>
+        <div class="elig-section-hdr">
+          <div class="section-title" style="margin-bottom:0">Title Eligibility Progress</div>
+          <button class="norm-scan-btn" id="scanNormsBtn" onclick="triggerNormScan()" disabled>⟳ Scan Norms</button>
+        </div>
+        <p class="elig-note">Base reqs (games + rating) are live from Lichess. Press "Scan Norms" to check qualifying tournament wins.</p>
         <div class="elig-list" id="eligList"></div>
       </div>
     </div>
@@ -453,12 +555,18 @@
 const STORAGE_KEY = "rk_profile_username";
 
 const TITLE_DEFS = [
-  { code: "RKSGM", name: "Super Grandmaster",    badgeClass: "badge-elite",     minGames: 5000,  minRating: 2500 },
-  { code: "RKGM",  name: "Grandmaster",          badgeClass: "badge-grand",     minGames: 3000,  minRating: 2400 },
-  { code: "RKIM",  name: "International Master", badgeClass: "badge-master",    minGames: 2000,  minRating: 2300 },
-  { code: "RKM",   name: "Master",               badgeClass: "badge-candidate", minGames: 1000,  minRating: 2200 },
-  { code: "RKCM",  name: "Candidate Master",     badgeClass: "badge-clight",    minGames: 500,   minRating: 2100 },
-  { code: "RKV",   name: "Veteran",              badgeClass: "badge-veteran",   minGames: 10000, minRating: 0 }
+  { code: "RKSGM", name: "Super Grandmaster",    badgeClass: "badge-elite",     minGames: 5000,  minRating: 2500,
+    norms: { winsNeeded: 2, perfNeeded: 5, perfThreshold: 2400, shieldWinsNeeded: 1, winOnly: false } },
+  { code: "RKGM",  name: "Grandmaster",          badgeClass: "badge-grand",     minGames: 3000,  minRating: 2400,
+    norms: { winsNeeded: 1, perfNeeded: 3, perfThreshold: 2400, shieldWinsNeeded: 0, winOnly: false } },
+  { code: "RKIM",  name: "International Master", badgeClass: "badge-master",    minGames: 2000,  minRating: 2300,
+    norms: { winsNeeded: 3, perfNeeded: 0, perfThreshold: 2300, shieldWinsNeeded: 0, winOnly: true } },
+  { code: "RKM",   name: "Master",               badgeClass: "badge-candidate", minGames: 1000,  minRating: 2200,
+    norms: { winsNeeded: 3, perfNeeded: 0, perfThreshold: 2200, shieldWinsNeeded: 0, winOnly: true } },
+  { code: "RKCM",  name: "Candidate Master",     badgeClass: "badge-clight",    minGames: 500,   minRating: 2100,
+    norms: { winsNeeded: 3, perfNeeded: 0, perfThreshold: 2100, shieldWinsNeeded: 0, winOnly: true } },
+  { code: "RKV",   name: "Veteran",              badgeClass: "badge-veteran",   minGames: 10000, minRating: 0,
+    norms: null }
 ];
 
 const BADGE_MAP = {
@@ -793,6 +901,15 @@ async function loadProfile(rawUsername) {
             </div>
           </div>`;
 
+      const normSlot = def.norms
+        ? `<div class="norm-slot" id="norm-slot-${def.code}">
+             <div class="norm-divider"></div>
+             <span style="font-size:0.78rem;color:var(--text-muted);font-style:italic">
+               Press "Scan Norms" to check qualifying tournament wins
+             </span>
+           </div>`
+        : "";
+
       return `${i > 0 ? '<hr class="elig-divider">' : ""}
         <div class="elig-item">
           <div class="elig-header">
@@ -802,17 +919,268 @@ async function loadProfile(rawUsername) {
               ${bothMet ? "✓ Base reqs met" : "Not yet eligible"}
             </span>
           </div>
-          <div class="elig-reqs">${gamesRow}${ratingRow}</div>
+          <div class="elig-reqs">${gamesRow}${ratingRow}${normSlot}</div>
         </div>`;
     }).join("");
 
     output.hidden = false;
     setStatus(`Loaded profile for ${user.username}.`);
+    const scanBtn = document.getElementById("scanNormsBtn");
+    if (scanBtn) { scanBtn.disabled = false; scanBtn.textContent = "⟳ Scan Norms"; }
   } catch (err) {
     setStatus(err.message || "Failed to load profile.", true);
   } finally {
     loadBtn.disabled = false;
   }
+}
+
+// ── Norm scanning (shared cache with Title Checker) ──────────────────────────
+const CACHE_PREFIX          = "rk_title_checker_";
+const MAX_TOURNAMENTS       = 1000;
+const LICHESS_HDRS          = { Accept: "application/x-ndjson, application/json;q=0.9" };
+
+function normalizeName(name) { return String(name || "").trim().toLowerCase(); }
+
+function normalizeVariant(v) {
+  if (!v) return "";
+  if (typeof v === "string") return v;
+  return [v.key, v.name, v.short, v.id].filter(Boolean).join(" ");
+}
+
+function parseNdjson(text) {
+  return text.split("\n").map(l => l.trim()).filter(Boolean).map(l => JSON.parse(l));
+}
+
+async function fetchLichess(url, opts = {}) {
+  const res = await fetch(url, { ...opts, headers: { ...LICHESS_HDRS, ...(opts.headers || {}) } });
+  if (!res.ok) throw new Error(`Lichess ${res.status}`);
+  const text = await res.text();
+  if (!text.trim()) return [];
+  const ct = res.headers.get("content-type") || "";
+  return (ct.includes("application/x-ndjson") || text.includes("\n")) ? parseNdjson(text) : JSON.parse(text);
+}
+
+function normalizeTournament(entry) {
+  const tmt    = entry?.tournament || entry || {};
+  const player = entry?.player || {};
+  const id     = tmt.id || entry?.id;
+  const vText  = normalizeVariant(tmt.variant || tmt.perf || tmt.clock?.variant);
+  return {
+    id,
+    name:          tmt.fullName || tmt.name || `Tournament ${id}`,
+    rated:         typeof tmt.rated === "boolean" ? tmt.rated : null,
+    isRacingKings: vText ? /racing.?kings/i.test(vText) : null,
+    shield:        /shield/i.test(tmt.fullName || tmt.name || ""),
+    startsAt:      tmt.startsAt || 0,
+    playerGames:   player.games || 0,
+    performance:   player.performance || 0,
+    wonTournament: player.rank === 1,
+    score:         player.score || 0
+  };
+}
+
+async function getPlayerTournaments(username) {
+  const cKey = `${CACHE_PREFIX}played_tournaments_${normalizeName(username)}`;
+  try {
+    const c = JSON.parse(localStorage.getItem(cKey) || "null");
+    if (Array.isArray(c) && c.length) return c;
+  } catch {}
+  const raw = await fetchLichess(
+    `https://lichess.org/api/user/${encodeURIComponent(username)}/tournament/played?nb=${MAX_TOURNAMENTS}&performance=true`
+  );
+  const tmts = raw.map(normalizeTournament).filter(t => t.id && t.rated !== false && t.isRacingKings !== false)
+    .sort((a, b) => b.startsAt - a.startsAt);
+  localStorage.setItem(cKey, JSON.stringify(tmts));
+  return tmts;
+}
+
+async function getTournamentMeta(id) {
+  const cKey = `${CACHE_PREFIX}tmeta_${id}`;
+  try {
+    const c = JSON.parse(localStorage.getItem(cKey) || "null");
+    if (c) return c;
+  } catch {}
+  const data = await fetchLichess(`https://lichess.org/api/tournament/${encodeURIComponent(id)}`, { headers: { Accept: "application/json" } });
+  const vText = normalizeVariant(data.variant || data.perf || data.clock?.variant);
+  const meta = {
+    id,
+    name:          data.fullName || data.name || data.id || `Tournament ${id}`,
+    rated:         typeof data.rated === "boolean" ? data.rated : null,
+    isRacingKings: vText ? /racing.?kings/i.test(vText) : null,
+    shield:        /shield/i.test(data.fullName || data.name || "")
+  };
+  localStorage.setItem(cKey, JSON.stringify(meta));
+  return meta;
+}
+
+async function getTournamentResults(id) {
+  const cKey = `${CACHE_PREFIX}results_${id}`;
+  try {
+    const c = JSON.parse(localStorage.getItem(cKey) || "null");
+    if (c) return c;
+  } catch {}
+  const results = await fetchLichess(`https://lichess.org/api/tournament/${encodeURIComponent(id)}/results?nb=200`);
+  localStorage.setItem(cKey, JSON.stringify(results));
+  return results;
+}
+
+async function analyzeForPlayer(tmt, username, meta) {
+  if (typeof tmt === "object" && tmt.performance) {
+    return { ...tmt, name: meta?.name || tmt.name, rated: meta?.rated ?? tmt.rated,
+             isRacingKings: meta?.isRacingKings ?? tmt.isRacingKings, shield: meta?.shield ?? tmt.shield };
+  }
+  const results = await getTournamentResults(tmt.id || tmt);
+  const target  = results.find(r => normalizeName(r.username || r.name) === normalizeName(username));
+  return {
+    id: tmt.id, name: meta?.name || `Tournament ${tmt.id}`,
+    rated: meta?.rated ?? null, isRacingKings: meta?.isRacingKings ?? null, shield: meta?.shield ?? false,
+    performance: target?.performance || 0, playerGames: target?.games || 0,
+    wonTournament: target?.rank === 1, score: target?.score || 0
+  };
+}
+
+// ── Norm rendering helpers ────────────────────────────────────────────────────
+function normEntryHtml(n, idx) {
+  return `<div class="norm-entry">
+    <span class="norm-num">#${idx}</span>
+    <a class="norm-tname" href="https://lichess.org/tournament/${n.id}" target="_blank" rel="noopener noreferrer"
+       title="${n.name}">${n.name}</a>
+    <span class="npill">perf ${n.perf}</span>
+    <span class="npill">${n.games}g</span>
+    ${n.won    ? '<span class="npill won">Won</span>'    : ""}
+    ${n.shield ? '<span class="npill shield">Shield</span>' : ""}
+  </div>`;
+}
+
+function renderNormSection(code, nd, scanning) {
+  const def = TITLE_DEFS.find(d => d.code === code);
+  if (!def?.norms) return;
+  const slot = document.getElementById(`norm-slot-${code}`);
+  if (!slot) return;
+  const rules = def.norms;
+
+  let html = '<div class="norm-divider"></div>';
+
+  if (rules.winOnly) {
+    // For RKCM/RKM/RKIM — only wins count
+    html += progressRow(
+      `Tournament wins (≥10 games, ≥${rules.perfThreshold} perf)`,
+      nd.wins.length, rules.winsNeeded
+    );
+    if (nd.wins.length) {
+      html += '<div class="norm-items">' + nd.wins.map((n, i) => normEntryHtml(n, i + 1)).join("") + "</div>";
+    }
+  } else {
+    // For RKGM/RKSGM — wins + performances + optional shield
+    html += progressRow(
+      `Tournament wins (≥10 games, ≥${rules.perfThreshold} perf)`,
+      nd.wins.length, rules.winsNeeded
+    );
+    if (nd.wins.length) {
+      html += '<div class="norm-items">' + nd.wins.map((n, i) => normEntryHtml(n, i + 1)).join("") + "</div>";
+    }
+    html += progressRow(
+      `Tournament performances (≥10 games, ≥${rules.perfThreshold} perf)`,
+      nd.perfs.length, rules.perfNeeded
+    );
+    if (nd.perfs.length) {
+      html += '<div class="norm-items">' + nd.perfs.map((n, i) => normEntryHtml(n, i + 1)).join("") + "</div>";
+    }
+    if (rules.shieldWinsNeeded > 0) {
+      html += progressRow("RK Shield wins", nd.shieldWins, rules.shieldWinsNeeded);
+    }
+  }
+
+  if (scanning) {
+    html += `<div class="norm-scanning-note">
+      <span class="dot-spinner" style="transform:scale(0.75)"><span></span><span></span><span></span></span>
+      Scanning tournaments…
+    </div>`;
+  }
+
+  slot.innerHTML = html;
+}
+
+// ── Main scan entry point ─────────────────────────────────────────────────────
+async function scanNormsForProfile(username) {
+  const normsData = {};
+  TITLE_DEFS.forEach(def => {
+    if (def.norms) normsData[def.code] = { wins: [], perfs: [], shieldWins: 0 };
+  });
+
+  // Set loading state on all norm slots
+  TITLE_DEFS.forEach(def => {
+    if (!def.norms) return;
+    const slot = document.getElementById(`norm-slot-${def.code}`);
+    if (slot) slot.innerHTML = `<div class="norm-divider"></div>
+      <div class="norm-scanning-note">
+        <span class="dot-spinner" style="transform:scale(0.75)"><span></span><span></span><span></span></span>
+        Fetching tournaments…
+      </div>`;
+  });
+
+  const tmts = await getPlayerTournaments(username);
+  const rkTmts = tmts.filter(t => t.isRacingKings !== false && t.rated !== false);
+
+  for (const tmt of rkTmts) {
+    const meta = await getTournamentMeta(tmt.id);
+    if (meta.rated === false || meta.isRacingKings === false) continue;
+
+    const analysis = await analyzeForPlayer(tmt, username, meta);
+    const meetsGames = analysis.playerGames >= 10;
+
+    const normObj = {
+      id:     tmt.id,
+      name:   analysis.name || `Tournament ${tmt.id}`,
+      perf:   analysis.performance,
+      games:  analysis.playerGames,
+      won:    analysis.wonTournament,
+      shield: meta.shield
+    };
+
+    // Check against each title's threshold
+    for (const def of TITLE_DEFS) {
+      if (!def.norms) continue;
+      const nd    = normsData[def.code];
+      const rules = def.norms;
+      const meetsPerf = analysis.performance >= rules.perfThreshold;
+
+      if (rules.winOnly) {
+        if (analysis.wonTournament && meetsGames && meetsPerf) nd.wins.push(normObj);
+      } else {
+        if (analysis.wonTournament && meetsGames && meetsPerf) {
+          nd.wins.push(normObj);
+          if (meta.shield) nd.shieldWins++;
+        }
+        if (meetsGames && meetsPerf) nd.perfs.push(normObj);
+      }
+    }
+
+    // Update displays progressively
+    TITLE_DEFS.forEach(def => { if (def.norms) renderNormSection(def.code, normsData[def.code], true); });
+
+    // Early-exit if all titles have enough norms
+    const allSatisfied = TITLE_DEFS.filter(d => d.norms).every(def => {
+      const nd = normsData[def.code], r = def.norms;
+      return r.winOnly
+        ? nd.wins.length  >= r.winsNeeded
+        : nd.wins.length  >= r.winsNeeded && nd.perfs.length >= r.perfNeeded && nd.shieldWins >= r.shieldWinsNeeded;
+    });
+    if (allSatisfied) break;
+  }
+
+  // Final render — remove "Scanning…" note
+  TITLE_DEFS.forEach(def => { if (def.norms) renderNormSection(def.code, normsData[def.code], false); });
+}
+
+function triggerNormScan() {
+  const btn = document.getElementById("scanNormsBtn");
+  if (btn) { btn.disabled = true; btn.textContent = "Scanning…"; }
+  const username = input.value.trim();
+  if (!username) return;
+  scanNormsForProfile(username).finally(() => {
+    if (btn) { btn.disabled = false; btn.textContent = "⟳ Scan Norms"; }
+  });
 }
 
 // ── Init: try auto-load logged-in user first, then localStorage fallback ─────
