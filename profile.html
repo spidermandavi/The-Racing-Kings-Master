@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Racing Kings Titles - Profile</title>
   <link rel="stylesheet" href="css/global.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
   <style>
     .profile-wrap {
       display: flex;
@@ -195,6 +197,74 @@
 
     .stat-value.highlight { color: var(--gold); }
 
+    /* ── Rating Graph ── */
+    .chart-wrap {
+      position: relative;
+      width: 100%;
+      height: 220px;
+    }
+
+    .chart-period-btns {
+      display: flex;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.9rem;
+    }
+
+    .period-btn {
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+
+    .period-btn.active, .period-btn:hover {
+      background: var(--card-raised);
+      color: var(--text);
+      border-color: var(--border-hover);
+    }
+
+    .period-btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .chart-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 0.6rem;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .chart-summary {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .chart-delta {
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .chart-delta.up   { color: #4ade80; }
+    .chart-delta.down { color: #f87171; }
+    .chart-delta.flat { color: var(--text-muted); }
+
+    .no-history {
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
     /* Site title badges */
     .site-titles-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 
@@ -301,6 +371,7 @@
       .section-card { padding: 1rem; }
       .stats-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
       .profile-username { font-size: 1.1rem; }
+      .chart-wrap { height: 180px; }
     }
   </style>
 </head>
@@ -322,7 +393,7 @@
   <div class="profile-wrap">
     <div class="search-card">
       <h1>Profile Lookup</h1>
-      <p>Enter a Lichess username to view their Racing Kings stats, titles, and eligibility progress.</p>
+      <p>Enter a Lichess username to view their Racing Kings stats, rating graph, titles, and eligibility progress.</p>
       <form class="profile-form" id="profileForm">
         <input id="usernameInput" type="search" autocomplete="off"
                placeholder="e.g. Mysterious_Past" required />
@@ -332,15 +403,43 @@
     </div>
 
     <div id="profileOutput" hidden>
+      <!-- Header -->
       <div class="section-card" id="profileHeader"></div>
+
+      <!-- Stats -->
       <div class="section-card" style="margin-top:0">
         <div class="section-title">Racing Kings Stats</div>
         <div class="stats-grid" id="statsGrid"></div>
       </div>
+
+      <!-- Rating graph -->
+      <div class="section-card" style="margin-top:0" id="chartCard">
+        <div class="section-title">Racing Kings Rating History</div>
+        <div class="chart-meta">
+          <div class="chart-period-btns">
+            <button class="period-btn" onclick="setPeriod(1)">1M</button>
+            <button class="period-btn" onclick="setPeriod(3)">3M</button>
+            <button class="period-btn" onclick="setPeriod(6)">6M</button>
+            <button class="period-btn active" onclick="setPeriod(12)">1Y</button>
+            <button class="period-btn" onclick="setPeriod(0)">All</button>
+          </div>
+          <div>
+            <span class="chart-summary" id="chartSummary"></span>
+            <span class="chart-delta" id="chartDelta"></span>
+          </div>
+        </div>
+        <div class="chart-wrap" id="chartWrap">
+          <canvas id="ratingChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Site titles -->
       <div class="section-card" style="margin-top:0">
         <div class="section-title">Site Titles Held</div>
         <div id="siteTitlesContent"></div>
       </div>
+
+      <!-- Eligibility -->
       <div class="section-card" style="margin-top:0">
         <div class="section-title">Title Eligibility Progress</div>
         <p class="elig-note">Based on games played and peak rating. Tournament requirements need manual verification.</p>
@@ -368,6 +467,7 @@ const BADGE_MAP = {
   RKV: "badge-veteran", RKHM: "badge-special"
 };
 
+// ── DOM refs ────────────────────────────────────────────────────────────────
 const form        = document.getElementById("profileForm");
 const input       = document.getElementById("usernameInput");
 const loadBtn     = document.getElementById("loadBtn");
@@ -378,6 +478,142 @@ const statsGridEl = document.getElementById("statsGrid");
 const siteTitlesEl= document.getElementById("siteTitlesContent");
 const eligListEl  = document.getElementById("eligList");
 
+// ── Chart state ─────────────────────────────────────────────────────────────
+let chartInstance  = null;
+let allRatingPoints = [];   // [{x: Date, y: number}]
+let activePeriod   = 12;    // months (0 = all)
+
+function getThemeColors() {
+  const isLight = document.documentElement.getAttribute("data-theme") === "light";
+  return {
+    accent:    "#8b5cf6",
+    accentFade:"rgba(139,92,246,0.15)",
+    grid:      isLight ? "rgba(0,0,0,0.06)"  : "rgba(255,255,255,0.06)",
+    label:     isLight ? "#71717a"           : "#a1a1aa",
+    tooltip:   isLight ? "#ffffff"           : "#1c1c23",
+    tooltipBorder: isLight ? "#e4e4e7"      : "#3f3f46",
+  };
+}
+
+function filterByPeriod(points, months) {
+  if (!months || !points.length) return points;
+  const cutoff = new Date();
+  cutoff.setMonth(cutoff.getMonth() - months);
+  return points.filter(p => p.x >= cutoff);
+}
+
+function updateDeltaBadge(points) {
+  const deltaEl   = document.getElementById("chartDelta");
+  const summaryEl = document.getElementById("chartSummary");
+  if (points.length < 2) { deltaEl.textContent = ""; summaryEl.textContent = ""; return; }
+  const first = points[0].y;
+  const last  = points[points.length - 1].y;
+  const diff  = last - first;
+  const sign  = diff > 0 ? "+" : "";
+  deltaEl.textContent = `${sign}${diff}`;
+  deltaEl.className   = `chart-delta ${diff > 0 ? "up" : diff < 0 ? "down" : "flat"}`;
+  summaryEl.textContent = `${points.length} data points · `;
+}
+
+function renderChart(points) {
+  const wrap = document.getElementById("chartWrap");
+  if (!points.length) {
+    wrap.innerHTML = '<div class="no-history">No rating history available for this player.</div>';
+    return;
+  }
+
+  // Re-inject canvas if it was replaced
+  if (!document.getElementById("ratingChart")) {
+    wrap.innerHTML = '<canvas id="ratingChart"></canvas>';
+  }
+
+  const c = getThemeColors();
+  const ctx = document.getElementById("ratingChart").getContext("2d");
+
+  // Gradient fill
+  const gradient = ctx.createLinearGradient(0, 0, 0, 220);
+  gradient.addColorStop(0,   c.accentFade);
+  gradient.addColorStop(1,   "rgba(139,92,246,0)");
+
+  if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
+
+  chartInstance = new Chart(ctx, {
+    type: "line",
+    data: {
+      datasets: [{
+        label: "RK Rating",
+        data: points,
+        borderColor: c.accent,
+        backgroundColor: gradient,
+        borderWidth: 2,
+        pointRadius: points.length > 120 ? 0 : 3,
+        pointHoverRadius: 5,
+        pointBackgroundColor: c.accent,
+        tension: 0.3,
+        fill: true,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 500, easing: "easeInOutQuart" },
+      interaction: { mode: "index", intersect: false },
+      scales: {
+        x: {
+          type: "time",
+          time: { tooltipFormat: "MMM d, yyyy", displayFormats: { month: "MMM yyyy", day: "MMM d" } },
+          grid: { color: c.grid },
+          ticks: { color: c.label, maxTicksLimit: 8, maxRotation: 0 },
+          border: { display: false },
+        },
+        y: {
+          grid: { color: c.grid },
+          ticks: {
+            color: c.label,
+            callback: v => v.toLocaleString(),
+            maxTicksLimit: 6,
+          },
+          border: { display: false },
+        }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: c.tooltip,
+          borderColor: c.tooltipBorder,
+          borderWidth: 1,
+          titleColor: c.label,
+          bodyColor: "#8b5cf6",
+          bodyFont: { weight: "bold", size: 14 },
+          padding: 10,
+          callbacks: {
+            label: ctx => ` ${ctx.parsed.y.toLocaleString()}`
+          }
+        }
+      }
+    }
+  });
+
+  updateDeltaBadge(points);
+}
+
+function setPeriod(months) {
+  activePeriod = months;
+  document.querySelectorAll(".period-btn").forEach(b => {
+    const bm = parseInt(b.textContent) || 0;
+    const match = months === 0
+      ? b.textContent === "All"
+      : (months === 1 && b.textContent === "1M") ||
+        (months === 3 && b.textContent === "3M") ||
+        (months === 6 && b.textContent === "6M") ||
+        (months === 12 && b.textContent === "1Y");
+    b.classList.toggle("active", match);
+  });
+  const filtered = filterByPeriod(allRatingPoints, months);
+  renderChart(filtered);
+}
+
+// ── Helpers ──────────────────────────────────────────────────────────────────
 function setStatus(text, isError = false) {
   statusMsg.textContent = text;
   statusMsg.className = "status-msg" + (isError ? " error" : "");
@@ -425,6 +661,7 @@ async function loadPlayers() {
   } catch { return []; }
 }
 
+// ── Main load ────────────────────────────────────────────────────────────────
 async function loadProfile(rawUsername) {
   const username = rawUsername.trim();
   if (!username) { setStatus("Please enter a username.", true); return; }
@@ -435,11 +672,12 @@ async function loadProfile(rawUsername) {
   loadBtn.disabled = true;
 
   try {
-    const [userRes, perfRes, players, topRes] = await Promise.all([
+    const [userRes, perfRes, players, topRes, histRes] = await Promise.all([
       fetch(`https://lichess.org/api/user/${encodeURIComponent(username)}`),
       fetch(`https://lichess.org/api/user/${encodeURIComponent(username)}/perf/racingKings`),
       loadPlayers(),
-      fetch("https://lichess.org/api/player/top/200/racingKings", { headers: { Accept: "application/json" } })
+      fetch("https://lichess.org/api/player/top/200/racingKings", { headers: { Accept: "application/json" } }),
+      fetch(`https://lichess.org/api/user/${encodeURIComponent(username)}/rating-history`)
     ]);
 
     if (!userRes.ok) throw new Error("User not found on Lichess.");
@@ -447,33 +685,34 @@ async function loadProfile(rawUsername) {
     const user    = await userRes.json();
     const perf    = perfRes.ok ? await perfRes.json() : null;
     const topData = topRes.ok  ? await topRes.json()  : null;
+    const hist    = histRes.ok ? await histRes.json() : [];
 
-    const rk          = user.perfs?.racingKings || {};
-    const stat        = perf?.stat || {};
-    const count       = stat.count || {};
-    const games       = count.all ?? rk.games ?? 0;
-    const wins        = count.win ?? 0;
-    const losses      = count.loss ?? 0;
-    const draws       = count.draw ?? 0;
-    const peakRating  = stat.highest?.int ?? rk.rating ?? 0;
-    const curRating   = rk.rating ?? 0;
-    const winRate     = games ? ((wins / games) * 100).toFixed(1) + "%" : "N/A";
-    const memberYear  = user.createdAt ? new Date(user.createdAt).getFullYear() : "N/A";
-    const flag        = getFlagEmoji(user.profile?.country || "");
+    const rk         = user.perfs?.racingKings || {};
+    const stat       = perf?.stat || {};
+    const count      = stat.count || {};
+    const games      = count.all     ?? rk.games  ?? 0;
+    const wins       = count.win     ?? 0;
+    const losses     = count.loss    ?? 0;
+    const draws      = count.draw    ?? 0;
+    const peakRating = stat.highest?.int ?? rk.rating ?? 0;
+    const curRating  = rk.rating ?? 0;
+    const winRate    = games ? ((wins / games) * 100).toFixed(1) + "%" : "N/A";
+    const memberYear = user.createdAt ? new Date(user.createdAt).getFullYear() : "N/A";
+    const flag       = getFlagEmoji(user.profile?.country || "");
     const lichessTitle = user.title || null;
-    const bestStreak  = stat.currentResultStreak?.wins?.v ?? stat.maxResultStreak?.wins?.v ?? null;
+    const bestStreak = stat.currentResultStreak?.wins?.v ?? stat.maxResultStreak?.wins?.v ?? null;
 
     const topUsers = topData?.users || [];
     const rankIdx  = topUsers.findIndex(u => u.id?.toLowerCase() === user.id?.toLowerCase());
     const rank     = rankIdx >= 0 ? `#${rankIdx + 1} of top 200` : "Outside top 200";
 
-    const siteRecord = players.find(
+    const siteRecord    = players.find(
       p => p.username?.toLowerCase() === user.id?.toLowerCase()
         || p.username?.toLowerCase() === user.username?.toLowerCase()
     );
     const siteTitleList = siteRecord?.titles || [];
 
-    // Header
+    // ── Header ────────────────────────────────────────────────────────────
     headerEl.innerHTML = `
       <div class="section-title">Player</div>
       <div class="profile-header">
@@ -494,19 +733,37 @@ async function loadProfile(rawUsername) {
            target="_blank" rel="noopener noreferrer">View on Lichess ↗</a>
       </div>`;
 
-    // Stats
+    // ── Stats ─────────────────────────────────────────────────────────────
     statsGridEl.innerHTML =
       statItem("Current Rating", curRating || "N/A", true) +
-      statItem("Peak Rating", peakRating || "N/A") +
-      statItem("Leaderboard", rank) +
-      statItem("Total Games", games.toLocaleString()) +
-      statItem("Wins", wins.toLocaleString()) +
-      statItem("Losses", losses.toLocaleString()) +
-      statItem("Draws", draws.toLocaleString()) +
-      statItem("Win Rate", winRate) +
+      statItem("Peak Rating",    peakRating || "N/A") +
+      statItem("Leaderboard",    rank) +
+      statItem("Total Games",    games.toLocaleString()) +
+      statItem("Wins",           wins.toLocaleString()) +
+      statItem("Losses",         losses.toLocaleString()) +
+      statItem("Draws",          draws.toLocaleString()) +
+      statItem("Win Rate",       winRate) +
       (bestStreak != null ? statItem("Best Streak", bestStreak) : "");
 
-    // Site titles
+    // ── Rating history graph ───────────────────────────────────────────────
+    const rkHist = hist.find(h => h.name === "Racing Kings");
+    allRatingPoints = (rkHist?.points || []).map(([y, m, d, r]) => ({
+      x: new Date(y, m, d),
+      y: r
+    }));
+    allRatingPoints.sort((a, b) => a.x - b.x);
+
+    activePeriod = 12;
+    document.querySelectorAll(".period-btn").forEach(b => {
+      b.classList.toggle("active", b.textContent === "1Y");
+    });
+
+    const chartWrap = document.getElementById("chartWrap");
+    chartWrap.innerHTML = '<canvas id="ratingChart"></canvas>';
+    const filtered = filterByPeriod(allRatingPoints, activePeriod);
+    renderChart(filtered);
+
+    // ── Site titles ───────────────────────────────────────────────────────
     if (siteTitleList.length > 0) {
       siteTitlesEl.innerHTML = `<div class="site-titles-list">` +
         siteTitleList.map(t => {
@@ -517,7 +774,7 @@ async function loadProfile(rawUsername) {
       siteTitlesEl.innerHTML = `<p class="no-titles">No site titles held yet.</p>`;
     }
 
-    // Eligibility
+    // ── Eligibility ───────────────────────────────────────────────────────
     eligListEl.innerHTML = TITLE_DEFS.map((def, i) => {
       const gamesDone  = games >= def.minGames;
       const ratingDone = def.minRating === 0 || peakRating >= def.minRating;
@@ -558,10 +815,25 @@ async function loadProfile(rawUsername) {
   }
 }
 
+// ── Init: try auto-load logged-in user first, then localStorage fallback ─────
 form.addEventListener("submit", e => { e.preventDefault(); loadProfile(input.value); });
 
-const saved = localStorage.getItem(STORAGE_KEY);
-if (saved) { input.value = saved; loadProfile(saved); }
+async function init() {
+  try {
+    const res  = await fetch("/api/auth/me");
+    const data = await res.json();
+    if (data.user?.username) {
+      input.value = data.user.username;
+      loadProfile(data.user.username);
+      return;
+    }
+  } catch { /* Flask not running / static serve */ }
+
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved) { input.value = saved; loadProfile(saved); }
+}
+
+init();
 </script>
 
 <script src="js/menu.js"></script>
