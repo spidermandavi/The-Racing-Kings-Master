@@ -443,6 +443,8 @@
   <div class="admin-tabs">
     <button class="tab-btn active" onclick="openTab('players')">Players</button>
     <button class="tab-btn" onclick="openTab('applications')" id="tab-btn-applications">Applications</button>
+    <button class="tab-btn" onclick="openTab('usernames')" id="tab-btn-usernames">Username Requests</button>
+    <button class="tab-btn" onclick="openTab('chat')" id="tab-btn-chat">Chat</button>
     <button class="tab-btn" onclick="openTab('users')">Site Accounts</button>
   </div>
 
@@ -507,6 +509,44 @@
     </div>
   </div>
 
+  <!-- USERNAME REQUESTS TAB -->
+  <div class="tab-panel" id="tab-usernames">
+    <div class="section-header">
+      <h2>Username Change Requests</h2>
+      <button class="sm-btn" onclick="loadUsernameRequests()">Refresh</button>
+    </div>
+    <div class="apps-table-wrap">
+      <table class="apps-table">
+        <thead>
+          <tr><th>Current Username</th><th>Requested Username</th><th>Date</th><th>Status</th><th>Note</th><th>Action</th></tr>
+        </thead>
+        <tbody id="unameBody">
+          <tr><td colspan="6" style="color:var(--text-muted)">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CHAT TAB -->
+  <div class="tab-panel" id="tab-chat">
+    <div class="section-header">
+      <h2>User Messages</h2>
+      <div style="display:flex;gap:.5rem;align-items:center">
+        <input id="adminChatSearch" placeholder="Open chat with user…" style="padding:.45rem .8rem;border-radius:8px;border:1px solid var(--input-border);background:var(--input-bg);color:var(--input-text);font-family:inherit;font-size:.85rem;outline:none" />
+        <button class="sm-btn accent" onclick="adminOpenChat(document.getElementById('adminChatSearch').value.trim())">Open</button>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:220px 1fr;height:520px;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden">
+      <div style="border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden">
+        <div style="padding:.7rem .9rem;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text-muted);border-bottom:1px solid var(--border)">Conversations</div>
+        <div id="adminConvList" style="overflow-y:auto;flex:1"></div>
+      </div>
+      <div id="adminChatMain" style="display:flex;flex-direction:column;overflow:hidden">
+        <div style="display:flex;align-items:center;justify-content:center;flex:1;color:var(--text-muted);font-size:.9rem">Select a conversation</div>
+      </div>
+    </div>
+  </div>
+
   <!-- USERS TAB -->
   <div class="tab-panel" id="tab-users">
     <div class="section-header">
@@ -541,6 +581,154 @@ const CHIP_CLASS = {
 
 let currentTab = 'players';
 
+// ── Username Requests ─────────────────────────────────────────────────────────
+let _allUnameReqs = [];
+
+async function loadUsernameRequests() {
+  const tbody = document.getElementById('unameBody');
+  if (!tbody) return;
+  tbody.innerHTML = '<tr><td colspan="6" style="color:var(--text-muted)">Loading…</td></tr>';
+  const { ok, data } = await api('GET', '/api/admin/username-requests');
+  if (!ok) { tbody.innerHTML = `<tr><td colspan="6" style="color:#f87171">${data.error || 'Failed'}</td></tr>`; return; }
+  _allUnameReqs = data;
+  if (!data.length) { tbody.innerHTML = '<tr><td colspan="6" style="color:var(--text-muted)">No requests yet.</td></tr>'; }
+  else {
+    tbody.innerHTML = data.map(r => `
+      <tr>
+        <td style="font-weight:600">${escAdm(r.username)}</td>
+        <td>${escAdm(r.new_username)}</td>
+        <td style="color:var(--text-muted);font-size:.82rem">${r.requested_at ? r.requested_at.slice(0,10) : ''}</td>
+        <td><span class="app-status-badge badge-${r.status}">${r.status}</span></td>
+        <td><input id="uname-note-${r.id}" placeholder="Optional note" style="width:130px;padding:.3rem .5rem;border-radius:6px;border:1px solid var(--input-border);background:var(--input-bg);color:var(--input-text);font-family:inherit;font-size:.8rem" /></td>
+        <td>
+          ${r.status === 'pending' ? `
+            <button class="sm-btn accent" onclick="reviewUnameReq(${r.id},'approved')" style="margin-right:.3rem">Approve</button>
+            <button class="sm-btn danger" onclick="reviewUnameReq(${r.id},'denied')">Deny</button>
+          ` : `<span style="color:var(--text-muted);font-size:.82rem">Reviewed by ${escAdm(r.reviewed_by || '')}</span>`}
+        </td>
+      </tr>`).join('');
+  }
+  const pending = data.filter(r => r.status === 'pending').length;
+  const tabBtn  = document.getElementById('tab-btn-usernames');
+  if (tabBtn) tabBtn.textContent = pending > 0 ? `Username Requests (${pending})` : 'Username Requests';
+}
+
+async function reviewUnameReq(id, status) {
+  const noteEl = document.getElementById(`uname-note-${id}`);
+  const note   = noteEl ? noteEl.value.trim() : '';
+  if (!confirm(status === 'approved' ? 'Approve this username change?' : 'Deny this request?')) return;
+  const { ok, data } = await api('PATCH', `/api/admin/username-requests/${id}`, { status, review_note: note });
+  if (!ok) { toast(data.error || 'Failed', 'err'); return; }
+  toast(status === 'approved' ? '✓ Username changed' : '✗ Request denied');
+  loadUsernameRequests();
+}
+
+// ── Admin Chat ────────────────────────────────────────────────────────────────
+let _adminChatPartner = null;
+let _adminPollTimer   = null;
+let _adminLastCount   = 0;
+let _adminMe          = null;
+
+async function loadAdminConversations() {
+  const list = document.getElementById('adminConvList');
+  if (!list) return;
+  const { ok, data } = await api('GET', '/api/chat/conversations/mine');
+  if (!ok) { list.innerHTML = '<div style="padding:.8rem;color:var(--text-muted);font-size:.83rem">Failed to load</div>'; return; }
+  if (!data.length) { list.innerHTML = '<div style="padding:.8rem;color:var(--text-muted);font-size:.83rem">No conversations yet.</div>'; return; }
+  list.innerHTML = data.map(c => `
+    <div onclick="adminOpenChat('${escAdm(c.username)}')"
+         style="display:flex;align-items:center;gap:.55rem;padding:.65rem .9rem;cursor:pointer;border-bottom:1px solid var(--border);transition:background .15s;${_adminChatPartner?.toLowerCase()===c.username?.toLowerCase()?'background:rgba(139,92,246,.12)':''}"
+         onmouseover="this.style.background='rgba(139,92,246,.07)'" onmouseout="this.style.background='${_adminChatPartner?.toLowerCase()===c.username?.toLowerCase()?'rgba(139,92,246,.12)':'transparent'}'">
+      <div style="width:30px;height:30px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:#fff;flex-shrink:0">${c.username[0].toUpperCase()}</div>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:.86rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${escAdm(c.username)}</div>
+        <div style="font-size:.72rem;color:var(--text-muted)">${c.last_at ? c.last_at.slice(11,16) : ''}</div>
+      </div>
+      ${c.unread > 0 ? `<div style="background:#ef4444;color:#fff;font-size:.7rem;font-weight:700;border-radius:99px;min-width:18px;height:18px;display:flex;align-items:center;justify-content:center;padding:0 5px">${c.unread}</div>` : ''}
+    </div>`).join('');
+}
+
+async function adminOpenChat(partner) {
+  partner = partner.trim();
+  if (!partner) return;
+  _adminChatPartner = partner;
+  clearTimeout(_adminPollTimer);
+  loadAdminConversations();
+  renderAdminChatArea(partner);
+  const msgs = await fetchAdminMessages(partner);
+  renderAdminMessages(msgs, partner);
+  adminStartPolling(partner);
+}
+
+function renderAdminChatArea(partner) {
+  const main = document.getElementById('adminChatMain');
+  if (!main) return;
+  main.innerHTML = `
+    <div style="padding:.75rem 1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.6rem;flex-shrink:0">
+      <div style="width:32px;height:32px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;color:#fff">${partner[0].toUpperCase()}</div>
+      <span style="font-weight:700">${escAdm(partner)}</span>
+    </div>
+    <div id="adminMsgList" style="flex:1;overflow-y:auto;padding:.8rem 1rem;display:flex;flex-direction:column;gap:.4rem"></div>
+    <div style="padding:.65rem .9rem;border-top:1px solid var(--border);display:flex;gap:.5rem;flex-shrink:0">
+      <textarea id="adminMsgInput" placeholder="Type a message…" rows="1"
+        style="flex:1;padding:.6rem .85rem;border-radius:9px;border:1px solid var(--input-border);background:var(--input-bg);color:var(--input-text);font-family:inherit;font-size:.9rem;outline:none;resize:none;max-height:100px;transition:border-color .2s"
+        onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();adminSendMessage()}"
+        oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,100)+'px'"></textarea>
+      <button onclick="adminSendMessage()" style="padding:.6rem 1rem;border-radius:9px;border:none;background:var(--accent);color:#fff;font-size:1rem;cursor:pointer;transition:opacity .2s" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">➤</button>
+    </div>`;
+}
+
+async function fetchAdminMessages(partner) {
+  const { ok, data } = await api('GET', `/api/chat/${encodeURIComponent(partner)}`);
+  return ok ? data : [];
+}
+
+function renderAdminMessages(msgs, partner) {
+  const list = document.getElementById('adminMsgList');
+  if (!list) return;
+  _adminLastCount = msgs.length;
+  if (!msgs.length) { list.innerHTML = '<div style="text-align:center;color:var(--text-muted);font-size:.88rem;margin:auto">No messages yet.</div>'; return; }
+  let lastDate = '', html = '';
+  msgs.forEach(m => {
+    const d = m.sent_at ? m.sent_at.slice(0,10) : '';
+    if (d !== lastDate) { html += `<div style="text-align:center;font-size:.72rem;color:var(--text-muted);margin:.4rem 0">${d}</div>`; lastDate = d; }
+    const mine = _adminMe && m.from_user.toLowerCase() === _adminMe.toLowerCase();
+    html += `<div style="display:flex;flex-direction:column;max-width:72%;align-self:${mine?'flex-end':'flex-start'};align-items:${mine?'flex-end':'flex-start'}">
+      <div style="padding:.5rem .85rem;border-radius:13px;font-size:.88rem;word-break:break-word;${mine?'background:var(--accent);color:#fff;border-bottom-right-radius:4px':'background:var(--card-raised);border-bottom-left-radius:4px'}">${escAdm(m.body)}</div>
+      <div style="font-size:.7rem;color:var(--text-muted);margin-top:2px">${m.sent_at ? m.sent_at.slice(11,16) : ''}</div>
+    </div>`;
+  });
+  list.innerHTML = html;
+  list.scrollTop = list.scrollHeight;
+}
+
+async function adminSendMessage() {
+  const input = document.getElementById('adminMsgInput');
+  if (!input || !_adminChatPartner) return;
+  const body = input.value.trim();
+  if (!body) return;
+  input.disabled = true;
+  const { ok, data } = await api('POST', `/api/chat/${encodeURIComponent(_adminChatPartner)}`, { body });
+  input.disabled = false;
+  if (!ok) { toast(data.error || 'Failed to send', 'err'); return; }
+  input.value = ''; input.style.height = 'auto'; input.focus();
+  const msgs = await fetchAdminMessages(_adminChatPartner);
+  renderAdminMessages(msgs, _adminChatPartner);
+  loadAdminConversations();
+}
+
+function adminStartPolling(partner) {
+  clearTimeout(_adminPollTimer);
+  _adminPollTimer = setTimeout(async () => {
+    if (_adminChatPartner !== partner) return;
+    const msgs = await fetchAdminMessages(partner);
+    if (msgs.length !== _adminLastCount) { renderAdminMessages(msgs, partner); loadAdminConversations(); }
+    adminStartPolling(partner);
+  }, 4000);
+}
+
+function escAdm(s) { const d = document.createElement('div'); d.textContent = String(s||''); return d.innerHTML; }
+
 function openTab(tab) {
   currentTab = tab;
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
@@ -549,6 +737,8 @@ function openTab(tab) {
   event.currentTarget.classList.add('active');
   if (tab === 'users') loadUsers();
   if (tab === 'applications') loadApplications();
+  if (tab === 'usernames') loadUsernameRequests();
+  if (tab === 'chat') { loadAdminConversations(); }
 }
 
 function toast(msg, type = 'ok') {
@@ -916,7 +1106,21 @@ async function init() {
     window.location.href = 'index.html';
     return;
   }
+  _adminMe = user.username;
   loadPlayers();
+  // Check pending username requests
+  const ur = await api('GET', '/api/admin/username-requests');
+  if (ur.ok) {
+    const pending = ur.data.filter(r => r.status === 'pending').length;
+    const tabBtn  = document.getElementById('tab-btn-usernames');
+    if (tabBtn && pending > 0) tabBtn.textContent = `Username Requests (${pending})`;
+  }
+  // Check unread messages
+  const chatCount = await api('GET', '/api/notifications/unread-count');
+  if (chatCount.ok && chatCount.data.count > 0) {
+    const chatBtn = document.getElementById('tab-btn-chat');
+    if (chatBtn) chatBtn.textContent = `Chat (${chatCount.data.count})`;
+  }
 }
 
 init();

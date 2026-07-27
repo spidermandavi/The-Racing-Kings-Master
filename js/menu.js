@@ -8,35 +8,41 @@ const pages = [
   { slug: "about",      label: "About" }
 ];
 
-function applyTheme(theme) {
-  document.documentElement.setAttribute("data-theme", theme);
-  const btn = document.getElementById("themeToggle");
-  if (btn) btn.textContent = theme === "light" ? "☽" : "☀";
-}
+// Theme is applied before DOMContentLoaded so there's no flash
+(function () {
+  const t = localStorage.getItem("rk-theme") || "dark";
+  document.documentElement.setAttribute("data-theme", t);
+})();
 
 document.addEventListener("DOMContentLoaded", () => {
-  const menuPanel  = document.getElementById("menuPanel");
-  const menuBtn    = document.getElementById("menuBtn");
-  const navRight   = document.querySelector(".nav-right");
+  const menuPanel = document.getElementById("menuPanel");
+  const menuBtn   = document.getElementById("menuBtn");
+  const navRight  = document.querySelector(".nav-right");
 
-  // ── Theme toggle ────────────────────────────────────────────────────────
-  const savedTheme = localStorage.getItem("rk-theme") || "dark";
-  applyTheme(savedTheme);
-
+  // ── Notification bell ────────────────────────────────────────────────────
   if (navRight) {
-    const themeBtn = document.createElement("button");
-    themeBtn.className = "icon-btn";
-    themeBtn.id = "themeToggle";
-    themeBtn.setAttribute("aria-label", "Toggle light/dark mode");
-    themeBtn.textContent = savedTheme === "light" ? "☽" : "☀";
-    navRight.insertBefore(themeBtn, navRight.firstChild);
+    const bellWrap = document.createElement("div");
+    bellWrap.style.cssText = "position:relative;display:inline-flex;align-items:center";
 
-    themeBtn.addEventListener("click", () => {
-      const next = (document.documentElement.getAttribute("data-theme") || "dark") === "dark"
-        ? "light" : "dark";
-      localStorage.setItem("rk-theme", next);
-      applyTheme(next);
-    });
+    const bellBtn = document.createElement("button");
+    bellBtn.className = "icon-btn";
+    bellBtn.id = "notifBell";
+    bellBtn.setAttribute("aria-label", "Notifications");
+    bellBtn.innerHTML = "🔔";
+    bellBtn.onclick = () => { window.location.href = "settings.html"; };
+
+    const dot = document.createElement("span");
+    dot.id = "notifDot";
+    dot.style.cssText = `
+      display:none;position:absolute;top:2px;right:2px;
+      width:8px;height:8px;border-radius:50%;
+      background:#ef4444;border:2px solid var(--bg);
+      pointer-events:none;
+    `;
+
+    bellWrap.appendChild(bellBtn);
+    bellWrap.appendChild(dot);
+    navRight.insertBefore(bellWrap, navRight.firstChild);
   }
 
   // ── Build menu links ─────────────────────────────────────────────────────
@@ -48,12 +54,10 @@ document.addEventListener("DOMContentLoaded", () => {
       menuPanel.appendChild(a);
     });
 
-    // Separator
     const sep = document.createElement("div");
     sep.style.cssText = "height:1px;background:var(--border);margin:0.3rem 0.5rem";
     menuPanel.appendChild(sep);
 
-    // Auth placeholder — filled in after fetch
     const authSlot = document.createElement("div");
     authSlot.id = "menuAuthSlot";
     menuPanel.appendChild(authSlot);
@@ -65,19 +69,19 @@ document.addEventListener("DOMContentLoaded", () => {
     authBtn.className = "icon-btn";
     authBtn.id = "navAuthBtn";
     authBtn.style.display = "none";
-    navRight.insertBefore(authBtn, menuBtn);
-    navRight.insertBefore(authBtn, navRight.querySelector("#menuBtn") || navRight.firstChild);
+    // insert before menuBtn
+    const mBtn = navRight.querySelector("#menuBtn");
+    navRight.insertBefore(authBtn, mBtn || null);
   }
 
-  // ── Fetch current user and populate auth UI ──────────────────────────────
+  // ── Fetch current user and populate auth UI + notifications ──────────────
   fetch("/api/auth/me")
     .then(r => r.json())
     .then(({ user }) => {
-      const authSlot = document.getElementById("menuAuthSlot");
+      const authSlot   = document.getElementById("menuAuthSlot");
       const navAuthBtn = document.getElementById("navAuthBtn");
 
       if (!user) {
-        // Not logged in
         if (navAuthBtn) {
           navAuthBtn.textContent = "Login";
           navAuthBtn.style.display = "";
@@ -90,7 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
           authSlot.appendChild(a);
         }
       } else {
-        // Logged in
         if (navAuthBtn) {
           navAuthBtn.textContent = user.username;
           navAuthBtn.style.display = "";
@@ -98,18 +101,28 @@ document.addEventListener("DOMContentLoaded", () => {
           navAuthBtn.style.overflow = "hidden";
           navAuthBtn.style.textOverflow = "ellipsis";
           navAuthBtn.style.whiteSpace = "nowrap";
-          navAuthBtn.onclick = () => {
-            window.location.href = user.is_admin ? "admin.html" : "auth.html";
-          };
+          navAuthBtn.onclick = () => { window.location.href = "settings.html"; };
         }
+
         if (authSlot) {
           if (user.is_admin) {
-            const admin = document.createElement("a");
-            admin.href = "admin.html";
-            admin.textContent = "Admin Panel";
-            admin.style.color = "var(--accent)";
-            authSlot.appendChild(admin);
+            const adminLink = document.createElement("a");
+            adminLink.href = "admin.html";
+            adminLink.textContent = "Admin Panel";
+            adminLink.style.color = "var(--accent)";
+            authSlot.appendChild(adminLink);
           }
+
+          const chatLink = document.createElement("a");
+          chatLink.href = "chat.html";
+          chatLink.textContent = "💬 Chat";
+          authSlot.appendChild(chatLink);
+
+          const settingsLink = document.createElement("a");
+          settingsLink.href = "settings.html";
+          settingsLink.textContent = "⚙ Settings";
+          authSlot.appendChild(settingsLink);
+
           const userLabel = document.createElement("div");
           userLabel.style.cssText = "padding:0.45rem 0.9rem;font-size:0.82rem;color:var(--text-muted)";
           userLabel.textContent = `Signed in as ${user.username}`;
@@ -132,11 +145,13 @@ document.addEventListener("DOMContentLoaded", () => {
           };
           authSlot.appendChild(logoutBtn);
         }
+
+        // Poll notification count
+        pollNotifications();
       }
     })
     .catch(() => {
-      // Server likely static (no Flask) — fall back to showing login link
-      const authSlot = document.getElementById("menuAuthSlot");
+      const authSlot   = document.getElementById("menuAuthSlot");
       const navAuthBtn = document.getElementById("navAuthBtn");
       if (navAuthBtn) {
         navAuthBtn.textContent = "Login";
@@ -155,11 +170,25 @@ document.addEventListener("DOMContentLoaded", () => {
   if (menuBtn && menuPanel) {
     menuBtn.addEventListener("click", () => menuPanel.classList.toggle("open"));
   }
-
   document.addEventListener("click", e => {
     if (menuPanel && menuBtn && !menuPanel.contains(e.target) && !menuBtn.contains(e.target)) {
       menuPanel.classList.remove("open");
     }
   });
-
 });
+
+// ── Notification polling ─────────────────────────────────────────────────────
+function pollNotifications() {
+  fetchNotifCount();
+  setInterval(fetchNotifCount, 15000);
+}
+
+async function fetchNotifCount() {
+  try {
+    const res  = await fetch("/api/notifications/unread-count");
+    if (!res.ok) return;
+    const { count } = await res.json();
+    const dot = document.getElementById("notifDot");
+    if (dot) dot.style.display = count > 0 ? "block" : "none";
+  } catch { /* ignore */ }
+}
