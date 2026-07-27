@@ -24,7 +24,8 @@
     <h1>Players</h1>
     <p id="status">Loading top Racing Kings players from Lichess…</p>
     <div class="search-bar">
-      <input type="search" id="playerSearch" placeholder="Search by username or title…" autocomplete="off" />
+      <input type="search" id="playerSearch" placeholder="Search any Lichess username…" autocomplete="off" />
+      <button class="btn" id="searchBtn" type="button">Search</button>
     </div>
     <div id="playersList"></div>
     <p><a href="index.html">← Back to Home</a></p>
@@ -35,35 +36,60 @@
   const searchInput = document.getElementById("playerSearch");
 
   let enrichedUsersCache = [];
+  const searchBtn = document.getElementById("searchBtn");
 
-  searchInput.addEventListener("input", () => {
-    filterPlayers(searchInput.value.trim().toLowerCase());
+  function escapeHtml(text) {
+    const div = document.createElement("div");
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") searchUser(searchInput.value.trim());
   });
 
-  function filterPlayers(query) {
-    const rows = playersList.querySelectorAll(".player-row");
-    let visible = 0;
-    rows.forEach(row => {
-      const username = (row.dataset.username || "").toLowerCase();
-      const siteTitle = (row.dataset.siteTitle || "").toLowerCase();
-      const lichessTitle = (row.dataset.lichessTitle || "").toLowerCase();
-      const matches = !query ||
-        username.includes(query) ||
-        siteTitle.includes(query) ||
-        lichessTitle.includes(query);
-      row.style.display = matches ? "" : "none";
-      if (matches) visible++;
-    });
-    let noResults = playersList.querySelector(".no-results");
-    if (visible === 0 && rows.length > 0) {
-      if (!noResults) {
-        noResults = document.createElement("p");
-        noResults.className = "no-results";
-        noResults.textContent = "No players match your search.";
-        playersList.appendChild(noResults);
+  searchBtn.addEventListener("click", () => {
+    searchUser(searchInput.value.trim());
+  });
+
+  searchInput.addEventListener("input", () => {
+    if (!searchInput.value.trim()) loadPlayers();
+  });
+
+  async function searchUser(rawUsername) {
+    const username = rawUsername.trim();
+    if (!username) { loadPlayers(); return; }
+
+    statusEl.textContent = `Searching Lichess for ${username}…`;
+    playersList.innerHTML = "";
+
+    try {
+      const [detailRes, perfRes] = await Promise.all([
+        fetch(`https://lichess.org/api/user/${encodeURIComponent(username)}`, {
+          headers: { Accept: "application/json" }
+        }),
+        fetch(`https://lichess.org/api/user/${encodeURIComponent(username)}/perf/racingKings`, {
+          headers: { Accept: "application/json" }
+        })
+      ]);
+
+      if (!detailRes.ok) {
+        throw new Error(detailRes.status === 404 ? "Player not found on Lichess." : "Failed to look up player.");
       }
-    } else if (noResults) {
-      noResults.remove();
+
+      const detail = await detailRes.json();
+      const perf = perfRes.ok ? await perfRes.json() : {};
+      const user = {
+        ...detail,
+        rkPerfCount: perf.stat?.count || {},
+        rkHighestRating: perf.stat?.highest?.int ?? null
+      };
+
+      renderPlayer(user, 0, true);
+      statusEl.textContent = `Showing Lichess user ${user.username || user.id}.`;
+    } catch (error) {
+      statusEl.textContent = error.message || "Search failed.";
+      playersList.innerHTML = `<p class="no-results">Could not find “${escapeHtml(username)}” on Lichess.</p>`;
     }
   }
 
@@ -98,24 +124,16 @@
     return user.profile?.rkSiteTitle || "None";
   }
 
-  function renderPlayer(user, index) {
+  function renderPlayer(user, index, isSearchResult = false) {
     const rk = user.perfs?.racingKings || {};
     const rkCount = user.rkPerfCount || {};
 
-    const games =
-      rkCount.all ??
-      rk.games ??
-      0;
-
+    const games = rkCount.all ?? rk.games ?? 0;
     const wins = rkCount.win ?? 0;
     const winRate = games ? (wins / games) * 100 : Number.NaN;
 
     const rating = rk.rating ?? "N/A";
-    const highest =
-      user.rkHighestRating ??
-      rk?.highest?.int ??
-      rating ??
-      "N/A";
+    const highest = user.rkHighestRating ?? rk?.highest?.int ?? rating ?? "N/A";
 
     const row = document.createElement("article");
     row.className = "player-row";
@@ -128,9 +146,11 @@
     row.dataset.lichessTitle = lichessTitle;
     row.dataset.siteTitle = siteTitle;
 
+    const rankLabel = isSearchResult ? "" : `${index + 1}. `;
+
     row.innerHTML = `
       <div class="row-top">
-        <span>${index + 1}. <a class="player-link" href="#">${username}</a></span>
+        <span>${rankLabel}<a class="player-link" href="#">${escapeHtml(username)}</a></span>
         <span class="rating">${rating}</span>
       </div>
 
@@ -144,6 +164,7 @@
         </ul>
 
         <div class="detail-actions">
+          <a class="btn" href="profile.html?u=${encodeURIComponent(username)}">View Profile</a>
           <a class="btn"
              href="https://lichess.org/@/${encodeURIComponent(username)}"
              target="_blank"

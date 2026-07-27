@@ -1539,6 +1539,14 @@ function triggerNormScan() {
 form.addEventListener("submit", e => { e.preventDefault(); loadProfile(input.value); });
 
 async function init() {
+  const params = new URLSearchParams(window.location.search);
+  const urlUser = params.get("u") || params.get("username");
+  if (urlUser) {
+    input.value = urlUser.trim();
+    loadProfile(urlUser.trim());
+    return;
+  }
+
   try {
     const res  = await fetch("/api/auth/me");
     const data = await res.json();
