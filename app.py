@@ -1,6 +1,6 @@
 import os
 import json
-from datetime import date
+from datetime import date, timedelta
 from flask import Flask, send_from_directory, request, jsonify, session
 
 from db import (
@@ -10,7 +10,11 @@ from db import (
 )
 
 app = Flask(__name__)
-app.secret_key = os.environ.get("RK_SECRET_KEY", "rk-titles-dev-secret-8b5cf6")
+app.secret_key = os.environ.get("SESSION_SECRET") or os.environ.get("RK_SECRET_KEY") or "rk-titles-dev-secret-8b5cf6"
+app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(days=30)
+app.config["SESSION_COOKIE_NAME"] = "rk_session"
+app.config["SESSION_COOKIE_HTTPONLY"] = True
+app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 PLAYERS_FILE = os.path.join(ROOT, "players.json")
@@ -72,6 +76,7 @@ def register():
         return jsonify({"error": result["error"]}), 409
 
     session["user_username"] = username
+    session.permanent = True
     return jsonify({"username": username, "is_admin": is_admin(username)})
 
 
@@ -86,6 +91,7 @@ def login():
         return jsonify({"error": "Invalid username or password"}), 401
 
     session["user_username"] = user["username"]
+    session.permanent = True
     return jsonify({"username": user["username"], "is_admin": is_admin(user["username"])})
 
 

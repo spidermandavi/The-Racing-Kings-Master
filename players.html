@@ -10,10 +10,7 @@
 <body>
 
 <header class="top-bar">
-  <div class="nav-left">
-    <button class="icon-btn" id="backBtn">&lt;</button>
-    <button class="icon-btn" id="forwardBtn">&gt;</button>
-  </div>
+  <div class="nav-left"></div>
 
   <div class="nav-right">
     <button class="icon-btn" id="menuBtn">☰ Menu</button>
@@ -90,53 +87,6 @@
   top200Wrap.appendChild(top200Link);
 
   playersList.insertAdjacentElement("afterend", top200Wrap);
-
-  // ===== LOADING OVERLAY =====
-  const loader = document.createElement("div");
-  loader.innerHTML = `
-    <div class="spinner"></div>
-    <div id="loadingText">Loading players... 0%</div>
-  `;
-
-  Object.assign(loader.style, {
-    position: "fixed",
-    inset: "0",
-    background: "rgba(9,9,11,0.88)",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    gap: "1rem",
-    zIndex: "9999",
-    backdropFilter: "blur(6px)",
-    transition: "opacity 0.4s ease"
-  });
-
-  const spinnerStyle = document.createElement("style");
-  spinnerStyle.textContent = `
-    .spinner {
-      width: 56px;
-      height: 56px;
-      border: 5px solid rgba(255,255,255,0.15);
-      border-top-color: #22d3ee;
-      border-radius: 50%;
-      animation: spin 0.9s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    #loadingText {
-      color: white;
-      font-size: 1rem;
-    }
-  `;
-
-  document.head.appendChild(spinnerStyle);
-  document.body.appendChild(loader);
-
-  const loadingText = document.getElementById("loadingText");
 
   // ===== HELPERS =====
   function formatPercent(value) {
@@ -215,35 +165,6 @@
     playersList.appendChild(row);
   }
 
-  // ===== MENU =====
-  const pages = [
-    { slug: "index", label: "Home" },
-    { slug: "players", label: "Players" },
-    { slug: "profile", label: "Profile" },
-    { slug: "search", label: "Search" },
-    { slug: "titles", label: "Titles" },
-    { slug: "about", label: "About" }
-  ];
-
-  const menuPanel = document.getElementById("menuPanel");
-
-  pages.forEach((page) => {
-    const link = document.createElement("a");
-    link.href = `${page.slug}.html`;
-    link.textContent = page.label;
-    menuPanel.appendChild(link);
-  });
-
-  document.getElementById("menuBtn")
-    .addEventListener("click", () => {
-      menuPanel.classList.toggle("open");
-    });
-
-  document.getElementById("backBtn")
-    .addEventListener("click", () => history.back());
-
-  document.getElementById("forwardBtn")
-    .addEventListener("click", () => history.forward());
 
   // ===== MAIN LOADING =====
   async function loadPlayers() {
@@ -294,18 +215,8 @@
       });
 
       statusEl.textContent = "Top 10 Racing Kings players loaded.";
-
-      loader.style.opacity = "0";
-      setTimeout(() => {
-        loader.remove();
-      }, 400);
     } catch (error) {
       statusEl.textContent = error.message || "Failed to load players.";
-      loadingText.textContent = "Loading failed";
-
-      setTimeout(() => {
-        loader.remove();
-      }, 1200);
     }
   }
 

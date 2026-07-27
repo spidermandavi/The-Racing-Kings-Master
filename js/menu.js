@@ -17,8 +17,6 @@ function applyTheme(theme) {
 document.addEventListener("DOMContentLoaded", () => {
   const menuPanel  = document.getElementById("menuPanel");
   const menuBtn    = document.getElementById("menuBtn");
-  const backBtn    = document.getElementById("backBtn");
-  const forwardBtn = document.getElementById("forwardBtn");
   const navRight   = document.querySelector(".nav-right");
 
   // ── Theme toggle ────────────────────────────────────────────────────────
@@ -164,7 +162,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // ── Back / Forward ───────────────────────────────────────────────────────
-  if (backBtn)    backBtn.addEventListener("click", () => history.back());
-  if (forwardBtn) forwardBtn.addEventListener("click", () => history.forward());
 });

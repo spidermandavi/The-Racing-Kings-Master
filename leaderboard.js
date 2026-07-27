@@ -1,44 +1,7 @@
 const leaderboard = document.getElementById("leaderboard");
-const menuPanel = document.getElementById("menuPanel");
 
 const sortFilter = document.getElementById("sortFilter");
 const titleFilter = document.getElementById("titleFilter");
-
-const pages = [
-  "index",
-  "players",
-  "profile",
-  "search",
-  "titles",
-  "about",
-  "leaderboard"
-];
-
-pages.forEach(page => {
-  const link = document.createElement("a");
-
-  link.href = `${page}.html`;
-
-  link.textContent =
-    page.charAt(0).toUpperCase() +
-    page.slice(1);
-
-  menuPanel.appendChild(link);
-});
-
-document
-  .getElementById("menuBtn")
-  .addEventListener("click", () => {
-    menuPanel.classList.toggle("open");
-  });
-
-document
-  .getElementById("backBtn")
-  .addEventListener("click", () => history.back());
-
-document
-  .getElementById("forwardBtn")
-  .addEventListener("click", () => history.forward());
 
 const titlePriority = {
   RKSGM: 5,
@@ -157,12 +120,7 @@ async function fetchRating(
     const data =
       await response.json();
 
-    return (
-      data?.perfs?.rapid?.rating ||
-      data?.perfs?.blitz?.rating ||
-      data?.perfs?.bullet?.rating ||
-      0
-    );
+    return data?.perfs?.racingKings?.rating || 0;
   } catch {
     return null;
   }
