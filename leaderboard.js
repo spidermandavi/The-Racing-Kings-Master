@@ -2,6 +2,7 @@ const leaderboard = document.getElementById("leaderboard");
 
 const sortFilter = document.getElementById("sortFilter");
 const titleFilter = document.getElementById("titleFilter");
+const memberFilter = document.getElementById("memberFilter");
 
 const titlePriority = {
   RKSGM: 5,
@@ -127,22 +128,48 @@ async function fetchRating(
 }
 
 async function loadPlayers() {
-  const res = await fetch(
-    "players.json"
-  );
-
-  const players =
-    await res.json();
-
   leaderboard.innerHTML =
-    "<p>Loading ratings...</p>";
+    "<p>Loading players and ratings...</p>";
+
+  // Fetch titled players and registered members in parallel
+  const [playersRes, membersRes] = await Promise.all([
+    fetch("players.json"),
+    fetch("/api/members").catch(() => ({ ok: false }))
+  ]);
+
+  const titledPlayers = playersRes.ok ? await playersRes.json() : [];
+  const members = membersRes.ok ? await membersRes.json() : [];
+
+  // Merge titled players and registered members by username
+  const byUsername = new Map();
+
+  titledPlayers.forEach(player => {
+    byUsername.set(player.username.toLowerCase(), {
+      ...player,
+      member: false
+    });
+  });
+
+  members.forEach(member => {
+    const key = member.username.toLowerCase();
+    if (byUsername.has(key)) {
+      byUsername.get(key).member = true;
+    } else {
+      byUsername.set(key, {
+        id: member.id,
+        username: member.username,
+        description: "",
+        titles: [],
+        member: true
+      });
+    }
+  });
+
+  const players = Array.from(byUsername.values());
 
   await Promise.all(
     players.map(async player => {
-      player.rating =
-        await fetchRating(
-          player.username
-        );
+      player.rating = await fetchRating(player.username);
     })
   );
 
@@ -154,61 +181,56 @@ async function loadPlayers() {
 function renderLeaderboard() {
   let players = [...allPlayers];
 
-  const selectedTitle =
-    titleFilter.value;
+  const selectedTitle = titleFilter.value;
+  const sortType = sortFilter.value;
+  const membersOnly = memberFilter && memberFilter.checked;
 
-  const sortType =
-    sortFilter.value;
+  if (membersOnly) {
+    players = players.filter(p => p.member);
+  }
 
-  if (
-    selectedTitle !== "ALL"
-  ) {
+  if (selectedTitle !== "ALL") {
     players = players.filter(
-      player =>
-        playerHasTitle(
-          player,
-          selectedTitle
-        )
+      player => playerHasTitle(player, selectedTitle)
     );
   }
 
+  const aRank = p => getTitleRank(p) || (p.member ? -1 : 0);
+  const aRating = p => p.rating || 0;
+
   if (sortType === "rating") {
     players.sort((a, b) => {
-      return (
-        (b.rating || 0) -
-        (a.rating || 0)
-      );
+      if (aRating(b) !== aRating(a)) return aRating(b) - aRating(a);
+      return aRank(b) - aRank(a);
     });
   } else {
     players.sort((a, b) => {
-      return (
-        getTitleRank(b) -
-        getTitleRank(a)
-      );
+      if (aRank(b) !== aRank(a)) return aRank(b) - aRank(a);
+      return aRating(b) - aRating(a);
     });
   }
 
   leaderboard.innerHTML = "";
 
+  if (players.length === 0) {
+    leaderboard.innerHTML = `<p class="empty-leaderboard">No players match the selected filters.</p>`;
+    return;
+  }
+
   players.forEach(player => {
-    const card =
-      document.createElement(
-        "div"
-      );
+    const card = document.createElement("div");
+    card.className = "player-card";
 
-    card.className =
-      "player-card";
-
-    const bestMain =
-      getBestMainTitle(player);
-
-    const specials =
-      getSpecialTitles(player);
+    const bestMain = getBestMainTitle(player);
+    const specials = getSpecialTitles(player);
 
     card.innerHTML = `
       <div class="player-top">
-        <button class="username-btn" aria-expanded="false">
-          <span class="username">${player.username}</span>
+        <a class="username-link" href="profile.html?u=${encodeURIComponent(player.username)}" title="View ${escHtml(player.username)}'s profile">
+          <span class="username">${escHtml(player.username)}</span>
+        </a>
+        ${player.member ? `<span class="member-badge">Member</span>` : ""}
+        <button class="expand-btn" aria-expanded="false" aria-label="Show stats">
           <span class="expand-icon">▸</span>
         </button>
       </div>
@@ -222,56 +244,44 @@ function renderLeaderboard() {
       </div>
     `;
 
-    const titleRow =
-      document.createElement(
-        "div"
-      );
-
-    titleRow.className =
-      "title-row";
+    const titleRow = document.createElement("div");
+    titleRow.className = "title-row";
 
     if (bestMain) {
-      titleRow.appendChild(
-        createBadge(bestMain.code)
-      );
+      titleRow.appendChild(createBadge(bestMain.code));
     }
 
     specials.forEach(t => {
-      titleRow.appendChild(
-        createBadge(t.code, true)
-      );
+      titleRow.appendChild(createBadge(t.code, true));
     });
 
     card.appendChild(titleRow);
 
-    const dates =
-      document.createElement("div");
+    const dates = document.createElement("div");
     dates.className = "date-list";
     dates.innerHTML = player.titles
       .map(t => `<div>${t.code}: ${t.date}</div>`)
       .join("");
     card.appendChild(dates);
 
-    const statsPanel =
-      document.createElement("div");
+    const statsPanel = document.createElement("div");
     statsPanel.className = "stats-panel";
     statsPanel.hidden = true;
     card.appendChild(statsPanel);
 
-    const usernameBtn =
-      card.querySelector(".username-btn");
+    const expandBtn = card.querySelector(".expand-btn");
 
-    usernameBtn.addEventListener("click", () => {
+    expandBtn.addEventListener("click", () => {
       const isOpen = !statsPanel.hidden;
       if (isOpen) {
         statsPanel.hidden = true;
-        usernameBtn.setAttribute("aria-expanded", "false");
-        usernameBtn.querySelector(".expand-icon").textContent = "▸";
+        expandBtn.setAttribute("aria-expanded", "false");
+        expandBtn.querySelector(".expand-icon").textContent = "▸";
       } else {
         statsPanel.hidden = false;
-        usernameBtn.setAttribute("aria-expanded", "true");
-        usernameBtn.querySelector(".expand-icon").textContent = "▾";
-        loadProfileStats(player.username, statsPanel);
+        expandBtn.setAttribute("aria-expanded", "true");
+        expandBtn.querySelector(".expand-icon").textContent = "▾";
+        loadProfileStats(player.username, statsPanel, player.member);
       }
     });
 
@@ -279,11 +289,17 @@ function renderLeaderboard() {
   });
 }
 
+function escHtml(text) {
+  const div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
+}
+
 const profileCache = {};
 
-async function loadProfileStats(username, panel) {
+async function loadProfileStats(username, panel, isMember = false) {
   if (profileCache[username]) {
-    renderProfileStats(profileCache[username], panel);
+    renderProfileStats(profileCache[username], panel, isMember);
     return;
   }
 
@@ -300,13 +316,13 @@ async function loadProfileStats(username, panel) {
 
     const data = { user, perf };
     profileCache[username] = data;
-    renderProfileStats(data, panel);
+    renderProfileStats(data, panel, isMember);
   } catch {
     panel.innerHTML = `<div class="stats-error">Could not load profile data.</div>`;
   }
 }
 
-function renderProfileStats({ user, perf }, panel) {
+function renderProfileStats({ user, perf }, panel, isMember = false) {
   if (!user) {
     panel.innerHTML = `<div class="stats-error">Player not found on Lichess.</div>`;
     return;
@@ -338,11 +354,17 @@ function renderProfileStats({ user, perf }, panel) {
   panel.innerHTML = `
     <div class="stats-header">
       ${country}${lichessTitle}
-      <a class="stats-lichess-link"
-         href="https://lichess.org/@/${encodeURIComponent(user.username || user.id)}"
-         target="_blank" rel="noopener noreferrer">
-        View on Lichess ↗
-      </a>
+      <div class="stats-header-actions">
+        <a class="stats-profile-link"
+           href="profile.html?u=${encodeURIComponent(user.username || user.id)}">
+          View full profile →
+        </a>
+        <a class="stats-lichess-link"
+           href="https://lichess.org/@/${encodeURIComponent(user.username || user.id)}"
+           target="_blank" rel="noopener noreferrer">
+          View on Lichess ↗
+        </a>
+      </div>
     </div>
     <div class="stats-grid">
       <div class="stat-item">
@@ -397,6 +419,11 @@ sortFilter.addEventListener(
 );
 
 titleFilter.addEventListener(
+  "change",
+  renderLeaderboard
+);
+
+memberFilter.addEventListener(
   "change",
   renderLeaderboard
 );

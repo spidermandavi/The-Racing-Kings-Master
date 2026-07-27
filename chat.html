@@ -140,7 +140,9 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 0.9rem; font-weight: 700; color: #fff;
     }
+    .chat-header a { text-decoration: none; color: inherit; }
     .chat-header-name { font-size: 1rem; font-weight: 700; }
+    .chat-header-name:hover { color: var(--accent); }
     .chat-header-sub  { font-size: 0.78rem; color: var(--text-muted); }
 
     .chat-messages {
@@ -458,11 +460,12 @@ async function openConversation(partner) {
 function renderChatArea(partner, msgs) {
   const main = document.getElementById("chatMain");
   if (!main) return;
+  const profileUrl = `profile.html?u=${encodeURIComponent(partner)}`;
   main.innerHTML = `
     <div class="chat-header">
-      <div class="chat-header-avatar">${partner[0].toUpperCase()}</div>
+      <a class="chat-header-avatar" href="${profileUrl}" title="View ${esc(partner)}'s profile">${partner[0].toUpperCase()}</a>
       <div>
-        <div class="chat-header-name">${esc(partner)}</div>
+        <a class="chat-header-name" href="${profileUrl}" title="View ${esc(partner)}'s profile">${esc(partner)}</a>
         <div class="chat-header-sub">${_isAdmin ? "User" : "Admin"}</div>
       </div>
     </div>

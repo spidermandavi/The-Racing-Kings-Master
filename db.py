@@ -147,6 +147,16 @@ def get_all_users():
     return [dict(r) for r in rows]
 
 
+def get_all_members():
+    """All registered users (members). Used for leaderboard integration."""
+    conn = get_db()
+    rows = conn.execute(
+        "SELECT id, username, is_admin, created_at FROM users ORDER BY username COLLATE NOCASE"
+    ).fetchall()
+    conn.close()
+    return [dict(r) for r in rows]
+
+
 def get_all_admins():
     conn = get_db()
     rows = conn.execute(

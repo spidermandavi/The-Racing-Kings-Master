@@ -663,10 +663,11 @@ async function adminOpenChat(partner) {
 function renderAdminChatArea(partner) {
   const main = document.getElementById('adminChatMain');
   if (!main) return;
+  const profileUrl = `profile.html?u=${encodeURIComponent(partner)}`;
   main.innerHTML = `
     <div style="padding:.75rem 1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.6rem;flex-shrink:0">
-      <div style="width:32px;height:32px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;color:#fff">${partner[0].toUpperCase()}</div>
-      <span style="font-weight:700">${escAdm(partner)}</span>
+      <a href="${profileUrl}" title="View ${escAdm(partner)}'s profile" style="width:32px;height:32px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;color:#fff;text-decoration:none">${partner[0].toUpperCase()}</a>
+      <a href="${profileUrl}" title="View ${escAdm(partner)}'s profile" style="font-weight:700;color:inherit;text-decoration:none">${escAdm(partner)}</a>
     </div>
     <div id="adminMsgList" style="flex:1;overflow-y:auto;padding:.8rem 1rem;display:flex;flex-direction:column;gap:.4rem"></div>
     <div style="padding:.65rem .9rem;border-top:1px solid var(--border);display:flex;gap:.5rem;flex-shrink:0">

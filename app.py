@@ -6,7 +6,7 @@ from flask import Flask, send_from_directory, request, jsonify, session
 from db import (
     init_db, create_user, get_user_by_username,
     verify_password, update_password, update_username, is_admin,
-    get_all_users, get_all_admins, delete_user_by_username,
+    get_all_users, get_all_members, get_all_admins, delete_user_by_username,
     submit_application, get_all_applications, get_user_applications, update_application,
     send_message, get_conversation, mark_conversation_read,
     get_admin_conversations, get_user_conversations,
@@ -235,6 +235,11 @@ def api_mark_notifications_read():
 @app.route("/api/admins")
 def api_get_admins():
     return jsonify(get_all_admins())
+
+
+@app.route("/api/members")
+def api_get_members():
+    return jsonify(get_all_members())
 
 
 @app.route("/api/chat/<other_user>", methods=["GET"])

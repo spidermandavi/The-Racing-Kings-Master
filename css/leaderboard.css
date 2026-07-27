@@ -64,7 +64,7 @@
 }
 
 /* ============================================================
-   USERNAME BUTTON (expand trigger)
+   USERNAME LINK + EXPAND BUTTON
    ============================================================ */
 .player-top {
   display: flex;
@@ -74,14 +74,11 @@
   flex-wrap: wrap;
 }
 
-.username-btn {
+.username-link {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
+  text-decoration: none;
   color: inherit;
   font-family: inherit;
 }
@@ -93,17 +90,101 @@
   transition: color 0.15s;
 }
 
-.username-btn:hover .username { color: var(--accent); }
+.username-link:hover .username { color: var(--accent); }
+
+.expand-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--card-raised);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.35rem 0.55rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-family: inherit;
+  transition: color 0.15s, transform 0.2s, border-color 0.15s;
+}
+
+.expand-btn:hover { color: var(--accent); border-color: var(--accent); }
 
 .expand-icon {
   font-size: 0.85rem;
-  color: var(--text-muted);
-  transition: color 0.15s, transform 0.2s;
+  transition: transform 0.2s;
 }
 
-.username-btn[aria-expanded="true"] .expand-icon {
+.expand-btn[aria-expanded="true"] .expand-icon {
   transform: rotate(90deg);
   color: var(--accent);
+}
+
+.member-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ============================================================
+   MEMBERS-ONLY TOGGLE
+   ============================================================ */
+.toggle-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.15s;
+}
+
+.toggle-pill:hover { border-color: var(--accent); }
+
+.toggle-pill input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 2.2rem;
+  height: 1.2rem;
+  border-radius: 999px;
+  background: var(--border);
+  position: relative;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.toggle-pill input::after {
+  content: "";
+  position: absolute;
+  top: 0.15rem;
+  left: 0.15rem;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.2s;
+}
+
+.toggle-pill input:checked { background: var(--accent); }
+.toggle-pill input:checked::after { transform: translateX(1rem); }
+
+.empty-leaderboard {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 2rem 1rem;
+  font-size: 0.95rem;
 }
 
 /* ============================================================
@@ -204,8 +285,16 @@
   letter-spacing: 0.04em;
 }
 
-.stats-lichess-link {
+.stats-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   margin-left: auto;
+  flex-wrap: wrap;
+}
+
+.stats-profile-link,
+.stats-lichess-link {
   color: var(--accent);
   text-decoration: none;
   font-size: 0.85rem;
@@ -214,6 +303,7 @@
   transition: opacity 0.2s;
 }
 
+.stats-profile-link:hover,
 .stats-lichess-link:hover {
   opacity: 0.75;
   text-decoration: underline;
