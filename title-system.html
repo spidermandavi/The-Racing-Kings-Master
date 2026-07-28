@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Title System — The Racing Kings Master</title>
+  <link rel="stylesheet" href="css/global.css">
+  <style>
+    .ts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .ts-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      animation: fadeInUp 0.4s ease both;
+    }
+    .ts-card:nth-child(1) { animation-delay: 0.05s; }
+    .ts-card:nth-child(2) { animation-delay: 0.12s; }
+    .ts-card:nth-child(3) { animation-delay: 0.19s; }
+    .ts-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px var(--accent-glow);
+      text-decoration: none;
+    }
+    .ts-icon {
+      font-size: 2.2rem;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .ts-card h2 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text);
+      margin: 0;
+    }
+    .ts-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin: 0;
+    }
+    .ts-card-arrow {
+      margin-top: auto;
+      padding-top: 0.75rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    @media (max-width: 480px) {
+      .ts-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<header class="top-bar">
+  <div class="nav-left"></div>
+  <div class="nav-right">
+    <button class="icon-btn" id="menuBtn" aria-label="Open menu">☰ Menu</button>
+  </div>
+</header>
+<nav id="menuPanel" class="menu-panel" aria-label="Quick Menu"></nav>
+
+<main>
+  <h1>Title System</h1>
+  <p class="subtitle">
+    Everything related to official Racing Kings titles — browse requirements, check your eligibility, or explore the titled player leaderboard.
+  </p>
+
+  <div class="ts-grid">
+    <a class="ts-card" href="titles.html">
+      <div class="ts-icon">♛</div>
+      <h2>Titles &amp; Requirements</h2>
+      <p>All official RK title tiers (RKCM through RKSGM), their rating, game, and norm requirements, and current holders.</p>
+      <div class="ts-card-arrow">View Titles →</div>
+    </a>
+
+    <a class="ts-card" href="leaderboard.html">
+      <div class="ts-icon">🏅</div>
+      <h2>Titled Player Leaderboard</h2>
+      <p>The ranked leaderboard of players who hold official Racing Kings titles, with live Lichess ratings and stats.</p>
+      <div class="ts-card-arrow">View Leaderboard →</div>
+    </a>
+
+    <a class="ts-card" href="search.html">
+      <div class="ts-icon">🔍</div>
+      <h2>Title Checker</h2>
+      <p>Enter any Lichess username to instantly check whether they meet the requirements for each RK title tier.</p>
+      <div class="ts-card-arrow">Check Eligibility →</div>
+    </a>
+  </div>
+</main>
+
+<script src="js/menu.js"></script>
+</body>
+</html>

@@ -1,11 +1,10 @@
 const pages = [
-  { slug: "index",      label: "Home" },
-  { slug: "players",    label: "Players" },
-  { slug: "leaderboard",label: "Leaderboard" },
-  { slug: "profile",    label: "Profile" },
-  { slug: "search",     label: "Title Checker" },
-  { slug: "titles",     label: "Titles" },
-  { slug: "about",      label: "About" }
+  { slug: "index",          label: "Home" },
+  { slug: "rk-leaderboard", label: "Leaderboard" },
+  { slug: "hall-of-fame",   label: "Hall of Fame" },
+  { slug: "title-system",   label: "Title System" },
+  { slug: "profile",        label: "Profile" },
+  { slug: "about",          label: "About" }
 ];
 
 // Theme is applied before DOMContentLoaded so there's no flash
