@@ -1,1 +1,2 @@
-- [Leaderboard visual direction](leaderboard-direction.md) — combine an Arena-style top-three spotlight with a dense competitive ranking table.
+- [Leaderboard visual direction](leaderboard-direction.md) — combine an Arena-style top-three spotlight with a dense competitive ranking table; this was graduated to the main app.
+- [Site rename & homepage](site-state.md) — site renamed to "The Racing Kings Master"; new index.html is a full homepage (hero, live stats, nav grid, news, newest members).

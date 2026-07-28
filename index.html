@@ -3,57 +3,593 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Racing Kings Titles</title>
+  <title>The Racing Kings Master</title>
   <link rel="stylesheet" href="css/global.css">
   <style>
-    .grid {
+    /* ── Hero ──────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      padding: clamp(3rem, 8vw, 6rem) 0 clamp(2.5rem, 6vw, 4rem);
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 0%, rgba(139,92,246,0.22), transparent),
+        radial-gradient(ellipse 50% 40% at 80% 80%, rgba(34,211,238,0.10), transparent);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(139,92,246,0.12);
+      border: 1px solid rgba(139,92,246,0.3);
+      border-radius: 999px;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+    }
+    .hero-eyebrow span { opacity: 0.6; }
+    .hero-title {
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #f4f4f5 20%, #8b5cf6 60%, #22d3ee 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+      margin: 0 0 1rem;
+    }
+    .hero-subtitle {
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
+      color: var(--text-soft);
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      line-height: 1.7;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border: none; cursor: pointer;
+      font-family: inherit;
+      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px rgba(139,92,246,0.35);
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-2px); text-decoration: none; }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      background: transparent;
+      color: var(--text);
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      cursor: pointer; font-family: inherit;
+      transition: border-color 0.2s, transform 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--border-hover); transform: translateY(-2px); color: var(--accent); text-decoration: none; }
+
+    /* ── Stats bar ─────────────────────────────────────── */
+    .stats-bar {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 0.75rem;
+      margin: 2.5rem 0;
+    }
+    .stat-tile {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.1rem 1.25rem;
+      text-align: center;
+      transition: border-color 0.2s, transform 0.2s;
+      animation: fadeInUp 0.5s ease both;
+    }
+    .stat-tile:nth-child(1) { animation-delay: 0.05s; }
+    .stat-tile:nth-child(2) { animation-delay: 0.1s; }
+    .stat-tile:nth-child(3) { animation-delay: 0.15s; }
+    .stat-tile:nth-child(4) { animation-delay: 0.2s; }
+    .stat-tile:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+    .stat-tile-icon { font-size: 1.4rem; margin-bottom: 0.4rem; }
+    .stat-tile-value {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+    }
+    .stat-tile-value.accent { color: var(--accent); }
+    .stat-tile-value.gold   { color: var(--gold); }
+    .stat-tile-value.cyan   { color: var(--accent-2); }
+    .stat-tile-label {
+      margin-top: 0.3rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* ── Section headers ───────────────────────────────── */
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.1rem;
+      flex-wrap: wrap;
+    }
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-title-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .section-link {
+      font-size: 0.82rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .section-link:hover { text-decoration: underline; }
+
+    /* ── Nav grid ──────────────────────────────────────── */
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+    }
+    .nav-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.2rem 1.3rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      align-items: flex-start;
       gap: 0.9rem;
-      margin-top: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      animation: fadeInUp 0.4s ease both;
+    }
+    .nav-card:nth-child(1) { animation-delay: 0.05s; }
+    .nav-card:nth-child(2) { animation-delay: 0.10s; }
+    .nav-card:nth-child(3) { animation-delay: 0.15s; }
+    .nav-card:nth-child(4) { animation-delay: 0.20s; }
+    .nav-card:nth-child(5) { animation-delay: 0.25s; }
+    .nav-card:nth-child(6) { animation-delay: 0.30s; }
+    .nav-card:hover { border-color: var(--border-hover); transform: translateY(-3px); box-shadow: 0 6px 28px var(--accent-glow); text-decoration: none; }
+    .nav-card-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .nav-card h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+    .nav-card p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin: 0;
+    }
+
+    /* ── Two-column layout ─────────────────────────────── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    @media (max-width: 768px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    /* ── News cards ────────────────────────────────────── */
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    .news-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.15rem;
+      transition: border-color 0.2s, transform 0.15s;
+      cursor: default;
+    }
+    .news-card:hover { border-color: var(--border-hover); transform: translateX(3px); }
+    .news-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .news-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      padding: 0.18rem 0.5rem;
+      border-radius: 999px;
+      background: rgba(139,92,246,0.15);
+      color: var(--accent);
+    }
+    .news-tag.gold-tag { background: rgba(245,158,11,0.15); color: var(--gold); }
+    .news-tag.cyan-tag { background: rgba(34,211,238,0.12); color: var(--accent-2); }
+    .news-date {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .news-card h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 0.25rem;
+      line-height: 1.35;
+    }
+    .news-card p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+    .news-placeholder-banner {
+      background: linear-gradient(135deg, rgba(139,92,246,0.08), rgba(34,211,238,0.06));
+      border: 1px dashed rgba(139,92,246,0.3);
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+
+    /* ── Members list ──────────────────────────────────── */
+    .members-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .member-row {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.7rem 0.9rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .member-row:hover { border-color: var(--border-hover); transform: translateX(3px); text-decoration: none; }
+    .member-avatar {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .member-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .member-new-badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.15rem 0.45rem;
+      border-radius: 999px;
+      background: rgba(34,211,238,0.15);
+      color: var(--accent-2);
+      white-space: nowrap;
+    }
+    .member-date {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .members-empty {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 1rem;
+    }
+
+    /* ── Divider ───────────────────────────────────────── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 2.5rem 0;
+    }
+
+    @media (max-width: 600px) {
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .nav-grid  { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+      .hero-cta  { flex-direction: column; align-items: center; }
     }
   </style>
 </head>
 <body>
 
-  <header class="top-bar">
-    <div class="nav-left"></div>
-    <div class="nav-right">
-      <button class="icon-btn" id="menuBtn" aria-label="Open menu">☰ Menu</button>
-    </div>
-  </header>
+<header class="top-bar">
+  <div class="nav-left"></div>
+  <div class="nav-right">
+    <button class="icon-btn" id="menuBtn" aria-label="Open menu">☰ Menu</button>
+  </div>
+</header>
+<nav id="menuPanel" class="menu-panel" aria-label="Quick Menu"></nav>
 
-  <nav id="menuPanel" class="menu-panel" aria-label="Quick Menu"></nav>
+<main>
 
-  <main>
-    <h1>Racing Kings Titles</h1>
-    <p class="subtitle">
-      Choose a section to explore players, profiles, titles,
-      and background information about Racing Kings Titles.
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-eyebrow"><span>♛</span> Official Title System</div>
+    <h1 class="hero-title">The Racing Kings Master</h1>
+    <p class="hero-subtitle">
+      The official title tracking system for competitive Racing Kings chess.
+      Earn your title, prove your skill, and join the leaderboard.
     </p>
-    <section class="grid" id="optionsGrid"></section>
-  </main>
+    <div class="hero-cta">
+      <a href="leaderboard.html" class="btn-primary">♛ View Leaderboard</a>
+      <a href="titles.html"     class="btn-ghost">Titles &amp; Requirements →</a>
+    </div>
+  </section>
 
-  <script>
-    const homePages = [
-      { slug: "players",    label: "Players",    desc: "View leaderboards, players and rankings." },
-      { slug: "leaderboard",label: "Leaderboard",desc: "Browse titled Racing Kings players." },
-      { slug: "profile",    label: "Profiles",   desc: "Look up any player's stats and eligibility." },
-      { slug: "search",     label: "Title Checker", desc: "Check title eligibility for any player." },
-      { slug: "titles",     label: "Titles",     desc: "All titles, requirements, and current holders." },
-      { slug: "about",      label: "About",      desc: "Learn what Racing Kings Titles is about." }
-    ];
+  <!-- Live Stats -->
+  <div class="stats-bar" id="statsBar">
+    <div class="stat-tile">
+      <div class="stat-tile-icon">♟</div>
+      <div class="stat-tile-value accent" id="statTitled">—</div>
+      <div class="stat-tile-label">Titled Players</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-tile-icon">👥</div>
+      <div class="stat-tile-value" id="statMembers">—</div>
+      <div class="stat-tile-label">Site Members</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-tile-icon">🏆</div>
+      <div class="stat-tile-value gold" id="statTitlesAwarded">—</div>
+      <div class="stat-tile-label">Titles Awarded</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-tile-icon">📋</div>
+      <div class="stat-tile-value cyan" id="statTitleTypes">5</div>
+      <div class="stat-tile-label">Title Tiers</div>
+    </div>
+  </div>
 
-    const grid = document.getElementById("optionsGrid");
-    homePages.forEach(page => {
-      const card = document.createElement("a");
-      card.href = `${page.slug}.html`;
-      card.className = "option";
-      card.innerHTML = `<h2>${page.label}</h2><p>${page.desc}</p>`;
-      grid.appendChild(card);
+  <!-- Quick Navigation -->
+  <div class="section-header">
+    <div class="section-title"><span class="section-title-dot"></span> Explore</div>
+  </div>
+  <div class="nav-grid">
+    <a class="nav-card" href="leaderboard.html">
+      <div class="nav-card-icon">🏆</div>
+      <div>
+        <h3>Leaderboard</h3>
+        <p>Ranked titled players and site members with live ratings.</p>
+      </div>
+    </a>
+    <a class="nav-card" href="search.html">
+      <div class="nav-card-icon">🔍</div>
+      <div>
+        <h3>Title Checker</h3>
+        <p>Check if any Lichess player meets title requirements.</p>
+      </div>
+    </a>
+    <a class="nav-card" href="titles.html">
+      <div class="nav-card-icon">♛</div>
+      <div>
+        <h3>Titles</h3>
+        <p>All RK title tiers, requirements, and current holders.</p>
+      </div>
+    </a>
+    <a class="nav-card" href="profile.html">
+      <div class="nav-card-icon">👤</div>
+      <div>
+        <h3>Profiles</h3>
+        <p>Deep stats, title history, and eligibility for any player.</p>
+      </div>
+    </a>
+    <a class="nav-card" href="players.html">
+      <div class="nav-card-icon">📋</div>
+      <div>
+        <h3>Players</h3>
+        <p>Browse all officially recognized titled players.</p>
+      </div>
+    </a>
+    <a class="nav-card" href="about.html">
+      <div class="nav-card-icon">ℹ</div>
+      <div>
+        <h3>About</h3>
+        <p>What is The Racing Kings Master and how does it work?</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- News + Newest Members -->
+  <div class="two-col">
+
+    <!-- News -->
+    <div>
+      <div class="section-header">
+        <div class="section-title"><span class="section-title-dot"></span> Latest News</div>
+      </div>
+      <div class="news-list">
+        <div class="news-card">
+          <div class="news-card-meta">
+            <span class="news-tag gold-tag">Title Update</span>
+            <span class="news-date">July 2026</span>
+          </div>
+          <h4>New Title Requirements Published</h4>
+          <p>All title norms and game requirements have been updated. New blitz norm system now in effect for RKCM through RKSGM.</p>
+        </div>
+        <div class="news-card">
+          <div class="news-card-meta">
+            <span class="news-tag">Announcement</span>
+            <span class="news-date">July 2026</span>
+          </div>
+          <h4>Site Rebranded: The Racing Kings Master</h4>
+          <p>The official Racing Kings title site has a new name and a redesigned leaderboard — check it out!</p>
+        </div>
+        <div class="news-card">
+          <div class="news-card-meta">
+            <span class="news-tag cyan-tag">System</span>
+            <span class="news-date">June 2026</span>
+          </div>
+          <h4>RKWC Badge System Introduced</h4>
+          <p>World Champion title has been merged into RKSGM. Former and future RKWC holders receive a special admin-awarded badge alongside their RKSGM.</p>
+        </div>
+        <div class="news-card">
+          <div class="news-card-meta">
+            <span class="news-tag">Community</span>
+            <span class="news-date">June 2026</span>
+          </div>
+          <h4>Title Applications Now Open</h4>
+          <p>Registered members can now apply for titles directly through the site. Admins review all submissions within 72 hours.</p>
+        </div>
+        <div class="news-placeholder-banner">
+          📰 This news section will be updated with real announcements. Stay tuned!
+        </div>
+      </div>
+    </div>
+
+    <!-- Newest Members -->
+    <div>
+      <div class="section-header">
+        <div class="section-title"><span class="section-title-dot"></span> Newest Members</div>
+        <a href="auth.html" class="section-link">Join →</a>
+      </div>
+      <div class="members-list" id="newestMembers">
+        <div class="members-empty">Loading members…</div>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<script>
+// ── Stats ────────────────────────────────────────────────────────────────────
+async function loadStats() {
+  try {
+    const res  = await fetch("/api/stats");
+    if (!res.ok) return;
+    const data = await res.json();
+    const el = id => document.getElementById(id);
+    animateCount(el("statTitled"),        data.titled_players || 0);
+    animateCount(el("statMembers"),       data.members        || 0);
+    animateCount(el("statTitlesAwarded"), data.titles_awarded || 0);
+  } catch (_) {}
+}
+
+function animateCount(el, target) {
+  if (!el) return;
+  if (target === 0) { el.textContent = "0"; return; }
+  let current = 0;
+  const step = Math.ceil(target / 30);
+  const timer = setInterval(() => {
+    current = Math.min(current + step, target);
+    el.textContent = current.toLocaleString();
+    if (current >= target) clearInterval(timer);
+  }, 30);
+}
+
+// ── Newest Members ───────────────────────────────────────────────────────────
+async function loadNewestMembers() {
+  const container = document.getElementById("newestMembers");
+  try {
+    const res     = await fetch("/api/members/newest");
+    if (!res.ok) { container.innerHTML = '<div class="members-empty">Could not load members.</div>'; return; }
+    const members = await res.json();
+    if (!members.length) { container.innerHTML = '<div class="members-empty">No members yet.</div>'; return; }
+
+    container.innerHTML = "";
+    members.forEach((m, i) => {
+      const initial = (m.username || "?")[0].toUpperCase();
+      const joined  = m.created_at
+        ? new Date(m.created_at).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })
+        : "";
+      const isNew = i < 2;
+      const row = document.createElement("a");
+      row.className = "member-row";
+      row.href = `profile.html?u=${encodeURIComponent(m.username)}`;
+      row.innerHTML = `
+        <div class="member-avatar">${escHtml(initial)}</div>
+        <span class="member-name">${escHtml(m.username)}</span>
+        ${isNew ? '<span class="member-new-badge">New</span>' : ""}
+        ${joined ? `<span class="member-date">${joined}</span>` : ""}
+      `;
+      container.appendChild(row);
     });
-  </script>
+  } catch (_) {
+    container.innerHTML = '<div class="members-empty">Could not load members.</div>';
+  }
+}
 
-  <script src="js/menu.js"></script>
+function escHtml(s) {
+  const d = document.createElement("div");
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+loadStats();
+loadNewestMembers();
+</script>
+
+<script src="js/menu.js"></script>
 </body>
 </html>

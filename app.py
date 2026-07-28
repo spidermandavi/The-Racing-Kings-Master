@@ -543,6 +543,29 @@ def api_delete_user(target_username):
     return jsonify({"ok": True})
 
 
+# ── Public stats & newest members ────────────────────────────────────────────
+
+@app.route("/api/stats")
+def api_stats():
+    players = load_players()
+    members = get_all_members()
+    titled_count = len([p for p in players if p.get("titles")])
+    total_titles = sum(len(p.get("titles", [])) for p in players)
+    return jsonify({
+        "titled_players": titled_count,
+        "members": len(members),
+        "titles_awarded": total_titles,
+    })
+
+
+@app.route("/api/members/newest")
+def api_newest_members():
+    members = get_all_members()
+    # Sort by id descending (highest id = most recently registered)
+    members_sorted = sorted(members, key=lambda m: m.get("id", 0), reverse=True)
+    return jsonify(members_sorted[:8])
+
+
 # ── Run ───────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":

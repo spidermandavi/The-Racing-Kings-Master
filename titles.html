@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Racing Kings Titles - Titles</title>
+  <title>Titles — The Racing Kings Master</title>
   <link rel="stylesheet" href="css/global.css">
   <style>
     .titles-grid {
@@ -28,8 +28,6 @@
     .title-card:nth-child(4) { animation-delay: 0.2s; }
     .title-card:nth-child(5) { animation-delay: 0.25s; }
     .title-card:nth-child(6) { animation-delay: 0.3s; }
-    .title-card:nth-child(7) { animation-delay: 0.35s; }
-    .title-card:nth-child(8) { animation-delay: 0.4s; }
 
     .title-card:hover {
       border-color: var(--border-hover);
@@ -86,19 +84,53 @@
       border-top: 1px solid var(--border);
     }
 
+    /* Requirement groups */
+    .req-section {
+      margin-top: 0.9rem;
+    }
+
+    .req-section-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--text-muted);
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
     .title-reqs {
-      margin: 0.85rem 0 0;
+      margin: 0;
       padding-left: 1.2rem;
       list-style: disc;
       display: flex;
       flex-direction: column;
-      gap: 0.3rem;
+      gap: 0.25rem;
     }
 
     .title-reqs li {
       color: var(--text-soft);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+
+    .title-reqs li strong {
+      color: var(--text);
+    }
+
+    .req-note {
+      margin-top: 0.6rem;
+      padding: 0.55rem 0.8rem;
+      background: rgba(139,92,246,0.07);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      font-size: 0.82rem;
+      color: var(--text-soft);
       line-height: 1.5;
+    }
+
+    .req-note.gold-note {
+      background: rgba(245,158,11,0.08);
+      border-left-color: var(--gold);
     }
 
     .holders-section { margin-top: 1rem; }
@@ -141,6 +173,50 @@
       font-style: italic;
     }
 
+    /* Common-requirements box */
+    .common-reqs-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.1rem 1.25rem;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.35s ease both;
+    }
+
+    .common-reqs-box h2 {
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-muted);
+      margin-bottom: 0.65rem;
+    }
+
+    .common-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .common-list li {
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      padding-left: 1.1rem;
+      position: relative;
+    }
+
+    .common-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+
     @media (max-width: 600px) {
       .title-card-header { gap: 0.75rem; }
       .title-badge-large { font-size: 0.85rem; }
@@ -161,84 +237,137 @@
 <main>
   <h1>Titles</h1>
   <p class="subtitle">All official Racing Kings titles, their requirements, and current holders.</p>
+
+  <!-- Common Requirements -->
+  <div class="common-reqs-box">
+    <h2>Universal Requirements (all titles)</h2>
+    <ul class="common-list">
+      <li>Lichess account must be at least <strong>3 months old</strong></li>
+      <li>All norms require a <strong>minimum of 10 games</strong> in the tournament</li>
+      <li>Winning the tournament is <strong>not required</strong> for any norm</li>
+      <li><strong>Blitz norms</strong> = tournaments with 3+0 time control or faster</li>
+      <li>Norm performance rating required equals the <strong>rating threshold</strong> for the title (except RKSGM: <strong>2450</strong>)</li>
+    </ul>
+  </div>
+
   <div class="titles-grid" id="titlesGrid"></div>
 </main>
 
 <script>
 const TITLES = [
   {
-    code: "RKWC",
-    name: "Racing Kings World Champion",
-    badgeClass: "badge-special",
-    reqs: ["Have won at least one RKWC (Racing Kings World Championship)"]
-  },
-  {
     code: "RKSGM",
     name: "Racing Kings Super Grandmaster",
     badgeClass: "badge-elite",
-    reqs: [
-      "5000 or more rated RK games",
-      "Have reached 2500 rating",
-      "2 rated RK tournament wins with at least 10 games and a performance of at least 2400",
-      "5 rated RK tournament performances of at least 2400 with a minimum of 10 games",
-      "1 RK Shield win"
-    ]
+    games: 10000,
+    rating: 2500,
+    normGroups: [
+      {
+        label: "Norm Requirements — either of:",
+        items: [
+          "RKWC (Racing Kings World Champion) — automatically grants RKSGM + the special RKWC badge",
+          "OR: 1 Blitz norm (3+0 or faster, ≥10 games, performance ≥2450) and 1 standard norm (any time control, ≥10 games, performance ≥2450)"
+        ]
+      }
+    ],
+    note: "RKWC holders receive RKSGM plus a special RKWC badge awarded by an admin. The standalone RKWC title no longer exists.",
+    noteClass: "gold-note"
   },
   {
     code: "RKGM",
     name: "Racing Kings Grandmaster",
     badgeClass: "badge-grand",
-    reqs: [
-      "3000 or more rated RK games",
-      "Have reached 2400 rating",
-      "1 rated RK tournament win with at least 10 games and a performance of at least 2400",
-      "3 rated RK tournament performances of at least 2400 with a minimum of 10 games"
+    games: 5000,
+    rating: 2400,
+    normGroups: [
+      {
+        label: "Norm Requirements:",
+        items: [
+          "1 Blitz norm (3+0 or faster, ≥10 games, performance ≥2400)",
+          "1 standard norm (any time control, ≥10 games, performance ≥2400)"
+        ]
+      }
     ]
   },
   {
     code: "RKIM",
     name: "Racing Kings International Master",
     badgeClass: "badge-master",
-    reqs: [
-      "2000 or more rated RK games",
-      "Have reached 2300 rating",
-      "3 rated RK tournament wins with at least 10 games and performances of at least 2300"
+    games: 3000,
+    rating: 2300,
+    normGroups: [
+      {
+        label: "Norm Requirements:",
+        items: [
+          "1 Blitz norm (3+0 or faster, ≥10 games, performance ≥2300)",
+          "1 standard norm (any time control, ≥10 games, performance ≥2300)"
+        ]
+      }
     ]
   },
   {
     code: "RKM",
     name: "Racing Kings Master",
     badgeClass: "badge-candidate",
-    reqs: [
-      "1000 or more rated RK games",
-      "Have reached 2200 rating",
-      "3 rated RK tournament wins with at least 10 games and performances of at least 2200"
+    games: 1000,
+    rating: 2200,
+    normGroups: [
+      {
+        label: "Norm Requirements:",
+        items: [
+          "2 Blitz norms (3+0 or faster, ≥10 games each, performance ≥2200)",
+          "2 standard norms (any time control, ≥10 games each, performance ≥2200)"
+        ]
+      }
     ]
   },
   {
     code: "RKCM",
     name: "Racing Kings Candidate Master",
     badgeClass: "badge-clight",
-    reqs: [
-      "500 or more rated RK games",
-      "Have reached 2100 rating",
-      "3 rated RK tournament wins with at least 10 games and performances of at least 2100"
+    games: 500,
+    rating: 2100,
+    normGroups: [
+      {
+        label: "Norm Requirements:",
+        items: [
+          "2 Blitz norms (3+0 or faster, ≥10 games each, performance ≥2100)",
+          "2 standard norms (any time control, ≥10 games each, performance ≥2100)"
+        ]
+      }
     ]
   },
   {
     code: "RKV",
     name: "Racing Kings Veteran",
     badgeClass: "badge-veteran",
-    reqs: [
-      "10000 or more rated RK games",
-      "Or have been playing RK for at least 5 years"
+    games: null,
+    rating: null,
+    normGroups: [
+      {
+        label: "Requirements:",
+        items: [
+          "10,000 or more rated RK games",
+          "Or have been playing Racing Kings for at least 5 years"
+        ]
+      }
     ]
   },
   {
     code: "RKHM",
     name: "Racing Kings Honorary Master",
     badgeClass: "badge-special",
-    reqs: ["Have accomplished something great for the RK community (must be recognized)"]
+    games: null,
+    rating: null,
+    normGroups: [
+      {
+        label: "Requirements:",
+        items: [
+          "Have made an outstanding contribution to the Racing Kings community",
+          "Must be formally recognized and awarded by an admin"
+        ]
+      }
+    ]
   }
 ];
 
@@ -267,9 +396,36 @@ async function loadTitles() {
     const holdersHTML = count > 0
       ? holders.map(u => `
           <a class="holder-chip"
-             href="https://lichess.org/@/${encodeURIComponent(u)}"
-             target="_blank" rel="noopener noreferrer">${u}</a>`).join("")
+             href="profile.html?u=${encodeURIComponent(u)}">${u}</a>`).join("")
       : `<span class="no-holders">No current holders</span>`;
+
+    // Build requirement sections
+    let reqHTML = "";
+
+    if (title.games !== null) {
+      reqHTML += `
+        <div class="req-section">
+          <div class="req-section-label">Core Requirements</div>
+          <ul class="title-reqs">
+            <li><strong>${title.games.toLocaleString()}+</strong> rated RK games</li>
+            <li>Reach a rating of <strong>${title.rating.toLocaleString()}</strong></li>
+          </ul>
+        </div>`;
+    }
+
+    title.normGroups.forEach(group => {
+      reqHTML += `
+        <div class="req-section">
+          <div class="req-section-label">${group.label}</div>
+          <ul class="title-reqs">
+            ${group.items.map(r => `<li>${r}</li>`).join("")}
+          </ul>
+        </div>`;
+    });
+
+    if (title.note) {
+      reqHTML += `<div class="req-note ${title.noteClass || ""}">${title.note}</div>`;
+    }
 
     const card = document.createElement("div");
     card.className = "title-card";
@@ -284,9 +440,7 @@ async function loadTitles() {
         </div>
       </div>
       <div class="title-card-body">
-        <ul class="title-reqs">
-          ${title.reqs.map(r => `<li>${r}</li>`).join("")}
-        </ul>
+        ${reqHTML}
         <div class="holders-section">
           <div class="holders-label">Current holders</div>
           <div class="holders-list">${holdersHTML}</div>
