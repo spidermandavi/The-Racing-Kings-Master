@@ -19,15 +19,26 @@
 <nav id="menuPanel" class="menu-panel" aria-label="Quick Menu"></nav>
 
 <main>
-  <h1>Titled Player Leaderboard</h1>
-  <p class="subtitle">Browse players who have earned official Racing Kings titles.</p>
+  <div class="leaderboard-heading">
+    <div>
+      <p class="eyebrow">RACING KINGS ARENA</p>
+      <h1>Titled Player Leaderboard</h1>
+      <p class="subtitle">The official ranking for Racing Kings players, titles, and competitive form.</p>
+    </div>
+    <div class="leaderboard-summary" id="leaderboardSummary" aria-label="Leaderboard summary"></div>
+  </div>
 
-  <div class="filter-bar">
-    <select id="sortFilter">
+  <div class="filter-bar leaderboard-toolbar">
+    <label class="search-field" aria-label="Search players">
+      <span aria-hidden="true">⌕</span>
+      <input id="playerSearch" type="search" placeholder="Search players..." autocomplete="off" />
+    </label>
+    <div class="filter-group">
+      <select id="sortFilter" aria-label="Sort leaderboard">
       <option value="titles">Order by Titles</option>
       <option value="rating">Order by Rating</option>
-    </select>
-    <select id="titleFilter">
+      </select>
+      <select id="titleFilter" aria-label="Filter by title">
       <option value="ALL">All Titles</option>
       <option value="RKWC">RKWC Only</option>
       <option value="RKSGM">RKSGM Only</option>
@@ -37,7 +48,8 @@
       <option value="RKCM">RKCM Only</option>
       <option value="RKV">RKV Only</option>
       <option value="RKHM">RKHM Only</option>
-    </select>
+      </select>
+    </div>
     <label class="toggle-pill" for="memberFilter" title="Show only registered site members">
       <input type="checkbox" id="memberFilter" />
       <span>Members only</span>

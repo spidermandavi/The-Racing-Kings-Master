@@ -1,0 +1,1 @@
+- [Leaderboard visual direction](leaderboard-direction.md) — combine an Arena-style top-three spotlight with a dense competitive ranking table.

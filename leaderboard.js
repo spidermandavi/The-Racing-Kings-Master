@@ -3,6 +3,8 @@ const leaderboard = document.getElementById("leaderboard");
 const sortFilter = document.getElementById("sortFilter");
 const titleFilter = document.getElementById("titleFilter");
 const memberFilter = document.getElementById("memberFilter");
+const playerSearch = document.getElementById("playerSearch");
+const leaderboardSummary = document.getElementById("leaderboardSummary");
 
 const titlePriority = {
   RKSGM: 5,
@@ -184,6 +186,7 @@ function renderLeaderboard() {
   const selectedTitle = titleFilter.value;
   const sortType = sortFilter.value;
   const membersOnly = memberFilter && memberFilter.checked;
+  const search = playerSearch ? playerSearch.value.trim().toLowerCase() : "";
 
   if (membersOnly) {
     players = players.filter(p => p.member);
@@ -192,6 +195,12 @@ function renderLeaderboard() {
   if (selectedTitle !== "ALL") {
     players = players.filter(
       player => playerHasTitle(player, selectedTitle)
+    );
+  }
+
+  if (search) {
+    players = players.filter(player =>
+      player.username.toLowerCase().includes(search)
     );
   }
 
@@ -211,82 +220,104 @@ function renderLeaderboard() {
   }
 
   leaderboard.innerHTML = "";
+  renderSummary(players);
 
   if (players.length === 0) {
     leaderboard.innerHTML = `<p class="empty-leaderboard">No players match the selected filters.</p>`;
     return;
   }
 
-  players.forEach(player => {
-    const card = document.createElement("div");
-    card.className = "player-card";
+  const podium = document.createElement("section");
+  podium.className = "podium";
+  podium.setAttribute("aria-label", "Top three players");
+  players.slice(0, 3).forEach((player, index) => podium.appendChild(createPodiumCard(player, index)));
+  leaderboard.appendChild(podium);
 
-    const bestMain = getBestMainTitle(player);
-    const specials = getSpecialTitles(player);
+  const table = document.createElement("section");
+  table.className = "ranking-table-wrap";
+  table.innerHTML = `
+    <div class="ranking-table-header">
+      <span>RANK</span><span>PLAYER</span><span>RATING</span><span>TITLES</span><span></span>
+    </div>
+    <div class="ranking-table" role="list"></div>
+  `;
+  const rows = table.querySelector(".ranking-table");
+  players.slice(3).forEach((player, index) => rows.appendChild(createRankingRow(player, index + 3)));
+  leaderboard.appendChild(table);
+}
 
-    card.innerHTML = `
-      <div class="player-top">
-        <a class="username-link" href="profile.html?u=${encodeURIComponent(player.username)}" title="View ${escHtml(player.username)}'s profile">
-          <span class="username">${escHtml(player.username)}</span>
-        </a>
-        ${player.member ? `<span class="member-badge">Member</span>` : ""}
-        <button class="expand-btn" aria-expanded="false" aria-label="Show stats">
-          <span class="expand-icon">▸</span>
-        </button>
+function renderSummary(players) {
+  if (!leaderboardSummary) return;
+  const titled = players.filter(p => p.titles.length).length;
+  const members = players.filter(p => p.member).length;
+  leaderboardSummary.innerHTML = `
+    <div><strong>${players.length}</strong><span>players</span></div>
+    <div><strong>${titled}</strong><span>titled</span></div>
+    <div><strong>${members}</strong><span>members</span></div>
+  `;
+}
+
+function playerBadges(player) {
+  const badges = [];
+  const bestMain = getBestMainTitle(player);
+  if (bestMain) badges.push(`<span class="title-badge ${titleClassMap[bestMain.code] || ""}">${escHtml(bestMain.code)}</span>`);
+  getSpecialTitles(player).forEach(t => badges.push(`<span class="title-badge special">${escHtml(t.code)}</span>`));
+  return badges.join("");
+}
+
+function createPodiumCard(player, index) {
+  const card = document.createElement("article");
+  card.className = `podium-card podium-${index + 1}`;
+  card.innerHTML = `
+    <div class="podium-rank">#${index + 1}</div>
+    <div class="podium-medal">${index === 0 ? "♛" : index === 1 ? "◇" : "△"}</div>
+    <a class="username-link" href="profile.html?u=${encodeURIComponent(player.username)}">
+      <span class="username">${escHtml(player.username)}</span>
+    </a>
+    ${player.member ? `<span class="member-badge">Member</span>` : ""}
+    <div class="podium-badges">${playerBadges(player)}</div>
+    <strong class="podium-rating">${player.rating ?? "N/A"}</strong>
+    <span class="podium-label">RATING</span>
+    <div class="podium-actions">
+      <a class="profile-button" href="profile.html?u=${encodeURIComponent(player.username)}">Profile</a>
+      <a class="external-button" href="https://lichess.org/@/${encodeURIComponent(player.username)}" target="_blank" rel="noopener noreferrer" aria-label="Open ${escHtml(player.username)} on Lichess">↗</a>
+    </div>
+  `;
+  return card;
+}
+
+function createRankingRow(player, index) {
+  const row = document.createElement("article");
+  row.className = "ranking-row";
+  row.setAttribute("role", "listitem");
+  row.innerHTML = `
+    <div class="rank-number">#${index + 1}</div>
+    <div class="row-player">
+      <div class="avatar">${escHtml(player.username.charAt(0).toUpperCase())}</div>
+      <div class="row-player-info">
+        <a class="username-link" href="profile.html?u=${encodeURIComponent(player.username)}"><span class="username">${escHtml(player.username)}</span></a>
+        <div class="row-meta">${player.member ? `<span class="member-status">● Member</span>` : `<span>Registered player</span>`}${player.titles.length ? ` · ${player.titles.length} title${player.titles.length === 1 ? "" : "s"}` : ""}</div>
       </div>
-
-      <div class="description">
-        ${player.description || ""}
-      </div>
-
-      <div class="player-rating">
-        Rating: ${player.rating ?? "N/A"}
-      </div>
-    `;
-
-    const titleRow = document.createElement("div");
-    titleRow.className = "title-row";
-
-    if (bestMain) {
-      titleRow.appendChild(createBadge(bestMain.code));
-    }
-
-    specials.forEach(t => {
-      titleRow.appendChild(createBadge(t.code, true));
-    });
-
-    card.appendChild(titleRow);
-
-    const dates = document.createElement("div");
-    dates.className = "date-list";
-    dates.innerHTML = player.titles
-      .map(t => `<div>${t.code}: ${t.date}</div>`)
-      .join("");
-    card.appendChild(dates);
-
-    const statsPanel = document.createElement("div");
-    statsPanel.className = "stats-panel";
-    statsPanel.hidden = true;
-    card.appendChild(statsPanel);
-
-    const expandBtn = card.querySelector(".expand-btn");
-
-    expandBtn.addEventListener("click", () => {
-      const isOpen = !statsPanel.hidden;
-      if (isOpen) {
-        statsPanel.hidden = true;
-        expandBtn.setAttribute("aria-expanded", "false");
-        expandBtn.querySelector(".expand-icon").textContent = "▸";
-      } else {
-        statsPanel.hidden = false;
-        expandBtn.setAttribute("aria-expanded", "true");
-        expandBtn.querySelector(".expand-icon").textContent = "▾";
-        loadProfileStats(player.username, statsPanel, player.member);
-      }
-    });
-
-    leaderboard.appendChild(card);
+    </div>
+    <div class="row-rating"><strong>${player.rating ?? "N/A"}</strong><span class="rating-bar"><i style="width:${Math.min(100, Math.max(8, ((player.rating || 0) - 1000) / 14))}%"></i></span></div>
+    <div class="row-titles">${playerBadges(player) || '<span class="no-title">—</span>'}</div>
+    <div class="row-actions">
+      <a class="profile-button" href="profile.html?u=${encodeURIComponent(player.username)}">Profile</a>
+      <button class="expand-btn" aria-expanded="false" aria-label="Show stats for ${escHtml(player.username)}"><span class="expand-icon">⌄</span></button>
+    </div>
+  `;
+  const statsPanel = document.createElement("div");
+  statsPanel.className = "stats-panel";
+  statsPanel.hidden = true;
+  row.appendChild(statsPanel);
+  const expandBtn = row.querySelector(".expand-btn");
+  expandBtn.addEventListener("click", () => {
+    const open = !statsPanel.hidden;
+    statsPanel.hidden = open;
+    expandBtn.setAttribute("aria-expanded", String(!open));
+    if (!open) loadProfileStats(player.username, statsPanel, player.member);
   });
+  return row;
 }
 
 function escHtml(text) {
@@ -427,5 +458,7 @@ memberFilter.addEventListener(
   "change",
   renderLeaderboard
 );
+
+playerSearch.addEventListener("input", renderLeaderboard);
 
 loadPlayers();
