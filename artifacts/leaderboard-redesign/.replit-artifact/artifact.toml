@@ -1,0 +1,18 @@
+kind = "design"
+previewPath = "/__mockup/"
+title = "Leaderboard Redesign"
+version = "1.0.0"
+id = "artifacts/leaderboard-redesign"
+router = "path"
+
+[[services]]
+name = "Component Preview Server"
+paths = [ "/__mockup/" ]
+localPort = 18717
+
+[services.development]
+run = "npm run dev"
+
+[services.env]
+PORT = "18717"
+BASE_PATH = "/__mockup/"
