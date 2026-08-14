@@ -1,36 +1,9 @@
 const recordGrid = document.getElementById('recordGrid');
 const topPlayers = document.getElementById('topPlayers');
 
-// The site does not currently have a verified master list of every strong RK player,
-// so this list combines known community players with players already present in the site data.
-const seedPlayers = [
-  'Mysterious_Past', 'james126', 'Somerandomguy25', 'MandoMan13', 'CuberJ', 'Mixiong'
-];
-
-const cache = new Map();
-
-async function getUser(username) {
-  if (cache.has(username)) return cache.get(username);
-  try {
-    const response = await fetch(`https://lichess.org/api/user/${encodeURIComponent(username)}`);
-    if (!response.ok) return null;
-    const user = await response.json();
-    cache.set(username, user);
-    return user;
-  } catch { return null; }
-}
-
-function ratingOf(user) {
-  return user?.perfs?.racingKings?.rating || 0;
-}
-
-function gamesOf(user) {
-  return user?.perfs?.racingKings?.games || 0;
-}
-
-function userLink(username) {
-  return `https://lichess.org/@/${encodeURIComponent(username)}`;
-}
+const LICHESS_TOP_URL = 'https://lichess.org/api/player/top/10/racingKings';
+const THIJS_RK_ALL = 'https://lichess.thijs.com/rankings/racingkings/all/list_players_points.html';
+const THIJS_SHIELD = 'https://lichess.thijs.com/rankings/racingkings/shield/list_players_trophies.html';
 
 function escapeHtml(value) {
   const div = document.createElement('div');
@@ -38,25 +11,22 @@ function escapeHtml(value) {
   return div.innerHTML;
 }
 
-async function loadSeedPlayers() {
-  let names = [...seedPlayers];
-  try {
-    const response = await fetch('players.json', { cache: 'no-store' });
-    if (response.ok) {
-      const players = await response.json();
-      for (const player of players) if (player?.username) names.push(player.username);
-    }
-  } catch { /* players.json is optional */ }
+function userLink(username) {
+  return `https://lichess.org/@/${encodeURIComponent(username)}`;
+}
 
-  names = [...new Set(names.map(n => String(n).trim()).filter(Boolean))];
-  const users = await Promise.all(names.map(getUser));
-  return users.filter(Boolean);
+function ratingOf(user) {
+  return user?.perfs?.racingKings?.rating ?? 0;
+}
+
+function gamesOf(user) {
+  return user?.perfs?.racingKings?.games ?? 0;
 }
 
 function renderTop10(users) {
   const ranked = users
     .filter(user => ratingOf(user) > 0)
-    .sort((a,b) => ratingOf(b) - ratingOf(a))
+    .sort((a, b) => ratingOf(b) - ratingOf(a))
     .slice(0, 10);
 
   if (!ranked.length) {
@@ -75,43 +45,78 @@ function renderTop10(users) {
     </div>
   `).join('');
 
-  const best = ranked[0];
-  const mostGames = [...users].sort((a,b) => gamesOf(b) - gamesOf(a))[0];
-  const highestRating = best;
-  renderRecordCards({ highestRating, mostGames });
+  renderLiveRecords(ranked);
 }
 
-function renderRecordCards({ highestRating, mostGames }) {
+function renderLiveRecords(ranked) {
+  const leader = ranked[0];
+  const mostGames = [...ranked].sort((a, b) => gamesOf(b) - gamesOf(a))[0];
+
   recordGrid.innerHTML = `
     <article class="record-card">
-      <span class="record-label">Highest Current RK Rating</span>
-      <strong class="record-value">${highestRating ? ratingOf(highestRating) : '—'}</strong>
-      <span class="record-player">${highestRating ? escapeHtml(highestRating.username) : 'No data'}</span>
-      ${highestRating ? `<a href="${userLink(highestRating.username)}" target="_blank" rel="noopener noreferrer">View on Lichess ↗</a>` : ''}
+      <span class="record-label">#1 Current RK Rating</span>
+      <strong class="record-value">${ratingOf(leader)}</strong>
+      <span class="record-player">${escapeHtml(leader.username)}</span>
+      <a href="${userLink(leader.username)}" target="_blank" rel="noopener noreferrer">View on Lichess ↗</a>
     </article>
     <article class="record-card">
-      <span class="record-label">Most RK Games</span>
-      <strong class="record-value">${mostGames ? gamesOf(mostGames).toLocaleString() : '—'}</strong>
-      <span class="record-player">${mostGames ? escapeHtml(mostGames.username) : 'No data'}</span>
-      ${mostGames ? `<a href="${userLink(mostGames.username)}" target="_blank" rel="noopener noreferrer">View on Lichess ↗</a>` : ''}
+      <span class="record-label">Most Games in Current Top 10</span>
+      <strong class="record-value">${gamesOf(mostGames).toLocaleString()}</strong>
+      <span class="record-player">${escapeHtml(mostGames.username)}</span>
+      <a href="${userLink(mostGames.username)}" target="_blank" rel="noopener noreferrer">View on Lichess ↗</a>
     </article>
     <article class="record-card">
-      <span class="record-label">Live Data</span>
-      <strong class="record-value">Lichess</strong>
-      <span class="record-player">Ratings update automatically</span>
-      <span class="hof-note">Historical records are kept separately so live ratings do not overwrite them.</span>
+      <span class="record-label">Historical RK Arena Points</span>
+      <strong class="record-value">50,153</strong>
+      <span class="record-player">nataniel123</span>
+      <a href="${THIJS_RK_ALL}" target="_blank" rel="noopener noreferrer">Open Thijs RK rankings ↗</a>
+    </article>
+    <article class="record-card">
+      <span class="record-label">RK Shield Records</span>
+      <strong class="record-value">View rankings</strong>
+      <span class="record-player">Shield trophy history</span>
+      <a href="${THIJS_SHIELD}" target="_blank" rel="noopener noreferrer">Open Thijs Shield rankings ↗</a>
     </article>
   `;
 }
 
-async function init() {
+async function loadTop10() {
+  topPlayers.innerHTML = '<div class="loading">Loading the Lichess Racing Kings leaderboard…</div>';
+
   try {
-    const users = await loadSeedPlayers();
-    renderTop10(users);
-  } catch {
-    topPlayers.innerHTML = '<p class="loading">Unable to load Lichess data. Please try again later.</p>';
-    renderRecordCards({});
+    const response = await fetch(LICHESS_TOP_URL, { cache: 'no-store' });
+    if (!response.ok) throw new Error(`Lichess returned ${response.status}`);
+    const users = await response.json();
+    renderTop10(Array.isArray(users) ? users : []);
+  } catch (error) {
+    console.error('Could not load Lichess Racing Kings leaderboard:', error);
+    topPlayers.innerHTML = `
+      <div class="loading">
+        <p>Could not load the live leaderboard right now.</p>
+        <a href="https://lichess.org/player/top/racingKings" target="_blank" rel="noopener noreferrer">Open the Lichess Racing Kings leaderboard ↗</a>
+      </div>
+    `;
+    recordGrid.innerHTML = `
+      <article class="record-card">
+        <span class="record-label">Lichess Racing Kings Leaderboard</span>
+        <strong class="record-value">LIVE</strong>
+        <span class="record-player">The official top-player list</span>
+        <a href="https://lichess.org/player/top/racingKings" target="_blank" rel="noopener noreferrer">Open on Lichess ↗</a>
+      </article>
+      <article class="record-card">
+        <span class="record-label">Historical RK Arena Points</span>
+        <strong class="record-value">50,153</strong>
+        <span class="record-player">nataniel123</span>
+        <a href="${THIJS_RK_ALL}" target="_blank" rel="noopener noreferrer">Open Thijs RK rankings ↗</a>
+      </article>
+      <article class="record-card">
+        <span class="record-label">RK Shield Records</span>
+        <strong class="record-value">View rankings</strong>
+        <span class="record-player">Shield trophy history</span>
+        <a href="${THIJS_SHIELD}" target="_blank" rel="noopener noreferrer">Open Thijs Shield rankings ↗</a>
+      </article>
+    `;
   }
 }
 
-init();
+loadTop10();
