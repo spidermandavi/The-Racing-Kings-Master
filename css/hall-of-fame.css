@@ -1,0 +1,34 @@
+.hof-main { width:min(1100px,94%); margin:2rem auto; padding-bottom:4rem; }
+.hof-hero { padding:2.4rem 0 1.5rem; }
+.site-mark { font-weight:700; color:var(--text-soft); font-size:.9rem; }
+.eyebrow { color:var(--accent); font-size:.72rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; margin-bottom:.35rem; }
+.hof-note,.source-note { color:var(--text-muted); font-size:.82rem; margin-top:.65rem; }
+.record-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:1rem 0 2.5rem; }
+.record-card,.info-card,.hof-section { background:var(--card); border:1px solid var(--border); border-radius:16px; box-shadow:0 4px 20px rgba(0,0,0,.18); }
+.record-card { padding:1.35rem; min-height:150px; display:flex; flex-direction:column; justify-content:space-between; }
+.record-card .record-label { color:var(--text-soft); font-size:.8rem; text-transform:uppercase; letter-spacing:.08em; }
+.record-card .record-value { font-size:1.8rem; font-weight:800; color:var(--gold); }
+.record-card .record-player { color:var(--text); font-weight:700; }
+.loading-card,.loading { color:var(--text-muted); }
+.hof-section { padding:1.5rem; margin-top:1.5rem; }
+.section-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:1rem; margin-bottom:1rem; }
+.section-heading h2 { margin:0; }
+.live-pill { color:#22c55e; font-size:.72rem; font-weight:800; letter-spacing:.08em; white-space:nowrap; }
+.top-list { display:flex; flex-direction:column; gap:.55rem; }
+.top-row { display:grid; grid-template-columns:42px 1fr auto auto; align-items:center; gap:1rem; padding:.85rem 1rem; background:var(--surface); border:1px solid var(--border); border-radius:11px; transition:border-color .2s,transform .2s; }
+.top-row:hover { border-color:var(--border-hover); transform:translateX(2px); }
+.top-rank { color:var(--text-muted); font-weight:800; }
+.top-rank.top-1 { color:var(--gold); }
+.top-player { min-width:0; }
+.top-player a { color:var(--text); font-weight:700; }
+.top-player a:hover { color:var(--accent); text-decoration:none; }
+.top-rating { color:var(--gold); font-weight:800; font-variant-numeric:tabular-nums; }
+.top-games { color:var(--text-muted); font-size:.8rem; white-space:nowrap; }
+.community-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; }
+.info-card { padding:1.2rem; box-shadow:none; }
+.record-icon { font-size:1.4rem; display:block; margin-bottom:.6rem; }
+.info-card h3 { margin-bottom:.3rem; }
+.info-card p { font-size:.9rem; margin-bottom:.7rem; }
+.info-card strong { color:var(--accent); font-size:.78rem; }
+.records-guide p { margin-top:.65rem; }
+@media(max-width:760px){ .record-grid,.community-grid{grid-template-columns:1fr;} .top-row{grid-template-columns:34px 1fr auto;} .top-games{display:none;} .hof-hero{padding-top:1.2rem;} }
