@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Racing Kings Hall of Fame — notable records and achievements on Lichess." />
+  <title>RK Hall of Fame</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/hall-of-fame.css">
+</head>
+<body>
+<header class="top-bar">
+  <div class="nav-left"><span class="site-mark">♛ Racing Kings</span></div>
+  <div class="nav-right">
+    <button class="icon-btn" id="menuBtn" aria-label="Open menu">☰ Menu</button>
+  </div>
+</header>
+<nav id="menuPanel" class="menu-panel" aria-label="Quick Menu"></nav>
+
+<main class="hof-main">
+  <section class="hof-hero">
+    <p class="eyebrow">RACING KINGS RECORDS</p>
+    <h1>Hall of Fame</h1>
+    <p class="subtitle">The biggest Racing Kings records and achievements on Lichess.</p>
+    <p class="hof-note">Records are calculated from publicly available Lichess data. Live ratings can change at any time.</p>
+  </section>
+
+  <section class="record-grid" id="recordGrid" aria-live="polite">
+    <article class="record-card loading-card"><span>Loading Lichess records…</span></article>
+  </section>
+
+  <section class="hof-section">
+    <div class="section-heading">
+      <div><p class="eyebrow">CURRENT RANKING</p><h2>Top 10 Racing Kings Players</h2></div>
+      <span class="live-pill">● LIVE</span>
+    </div>
+    <div id="topPlayers" class="top-list"><div class="loading">Loading current ratings…</div></div>
+    <p class="source-note">Current ratings are fetched directly from the Lichess public user API.</p>
+  </section>
+
+  <section class="hof-section">
+    <div class="section-heading"><div><p class="eyebrow">LEGACY RECORDS</p><h2>Community Records</h2></div></div>
+    <div class="community-grid">
+      <article class="info-card"><span class="record-icon">🏆</span><h3>RK Shield Wins</h3><p>The highest number of Racing Kings Shield victories recorded by the community.</p><strong>Community-maintained</strong></article>
+      <article class="info-card"><span class="record-icon">⚔</span><h3>Most RK Games</h3><p>The player with the largest number of Racing Kings games on their Lichess account.</p><strong>Live Lichess data</strong></article>
+      <article class="info-card"><span class="record-icon">📈</span><h3>Highest Rating</h3><p>The highest Racing Kings rating currently visible on Lichess.</p><strong>Live Lichess data</strong></article>
+      <article class="info-card"><span class="record-icon">♛</span><h3>Title Milestones</h3><p>Notable firsts and title achievements recognized by the Racing Kings Master.</p><strong>Community record</strong></article>
+    </div>
+  </section>
+
+  <section class="hof-section records-guide">
+    <h2>About the records</h2>
+    <p>The Hall of Fame is intended as a record book rather than another leaderboard. Current ratings are refreshed from Lichess whenever this page loads. Historical records, tournament wins, Shield victories and other community achievements should only be added when they can be verified.</p>
+  </section>
+</main>
+
+<script src="hall-of-fame.js"></script>
+<script src="js/menu.js"></script>
+</body>
+</html>
