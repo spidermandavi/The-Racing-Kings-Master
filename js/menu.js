@@ -5,7 +5,7 @@
 
 const RK_MENU_PAGES = [
   { slug: 'index', label: 'Home' },
-  { slug: 'leaderboard', label: 'Leaderboard' },
+  { slug: 'leaderboard', label: 'Leaderboards' },
   { slug: 'hall-of-fame', label: 'Hall of Fame' },
   { slug: 'titles', label: 'Titles' },
   { slug: 'players', label: 'Players' },
@@ -62,8 +62,6 @@ const RK_MENU_PAGES = [
   }
 
   async function ensureAuthDependencies() {
-    // Some older pages only included menu.js. Load the shared auth client
-    // automatically so login state is identical everywhere.
     if (!window.supabase) {
       await loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2');
     }
