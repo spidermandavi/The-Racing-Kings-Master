@@ -43,15 +43,49 @@ const RK_MENU_PAGES = [
     panel.appendChild(a);
   }
 
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      const existing = document.querySelector(`script[src="${src}"]`);
+      if (existing) {
+        if (existing.dataset.loaded === 'true') return resolve();
+        existing.addEventListener('load', () => resolve(), { once: true });
+        existing.addEventListener('error', reject, { once: true });
+        return;
+      }
+      const script = document.createElement('script');
+      script.src = src;
+      script.async = false;
+      script.onload = () => { script.dataset.loaded = 'true'; resolve(); };
+      script.onerror = reject;
+      document.head.appendChild(script);
+    });
+  }
+
+  async function ensureAuthDependencies() {
+    // Some older pages only included menu.js. Load the shared auth client
+    // automatically so login state is identical everywhere.
+    if (!window.supabase) {
+      await loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2');
+    }
+    if (!window.rkSupabase || !window.rkAuth) {
+      await loadScript('js/supabase.js');
+    }
+  }
+
   async function renderAuth() {
     const panel = document.getElementById('menuPanel');
     const right = document.querySelector('.nav-right');
     const menuBtn = document.getElementById('menuBtn');
-    if (!panel || !window.rkAuth) return;
+    if (!panel) return;
+
+    panel.querySelector('[data-rk-auth]')?.remove();
+    const authArea = document.createElement('div');
+    authArea.dataset.rkAuth = 'true';
+    panel.appendChild(authArea);
 
     let user = null;
     try {
-      // Give Supabase's auth state a moment to hydrate before rendering.
+      await ensureAuthDependencies();
       const session = await window.rkAuth.session();
       if (session) user = await window.rkAuth.user();
     } catch (error) {
@@ -74,21 +108,21 @@ const RK_MENU_PAGES = [
       authButton.onclick = () => { window.location.href = user ? 'settings.html' : 'auth.html'; };
     }
 
-    addSeparator(panel);
+    addSeparator(authArea);
 
     if (!user) {
-      addAuthLink(panel, 'Login / Register', 'auth.html');
+      addAuthLink(authArea, 'Login / Register', 'auth.html');
       return;
     }
 
     const signedIn = document.createElement('div');
     signedIn.style.cssText = 'padding:.45rem .9rem;font-size:.78rem;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis';
     signedIn.textContent = `Signed in as ${user.username}`;
-    panel.appendChild(signedIn);
+    authArea.appendChild(signedIn);
 
-    if (user.is_admin) addAuthLink(panel, 'Admin Panel', 'admin.html', true);
-    addAuthLink(panel, '💬 Chat', 'chat.html');
-    addAuthLink(panel, '⚙ Settings', 'settings.html');
+    if (user.is_admin) addAuthLink(authArea, 'Admin Panel', 'admin.html', true);
+    addAuthLink(authArea, '💬 Chat', 'chat.html');
+    addAuthLink(authArea, '⚙ Settings', 'settings.html');
 
     const logout = document.createElement('button');
     logout.type = 'button';
@@ -103,7 +137,7 @@ const RK_MENU_PAGES = [
         window.location.href = 'index.html';
       }
     };
-    panel.appendChild(logout);
+    authArea.appendChild(logout);
   }
 
   async function init() {
@@ -113,8 +147,6 @@ const RK_MENU_PAGES = [
 
     panel.innerHTML = '';
     RK_MENU_PAGES.forEach(page => panel.appendChild(makeLink(page.label, pageUrl(page.slug))));
-
-    // Auth controls are appended after the core navigation.
     await renderAuth();
 
     btn.onclick = event => {
@@ -130,11 +162,8 @@ const RK_MENU_PAGES = [
       }
     });
 
-    // Keep every page's menu in sync when Supabase changes auth state.
     if (window.rkSupabase) {
-      window.rkSupabase.auth.onAuthStateChange(() => {
-        setTimeout(renderAuth, 0);
-      });
+      window.rkSupabase.auth.onAuthStateChange(() => setTimeout(renderAuth, 0));
     }
   }
 
