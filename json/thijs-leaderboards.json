@@ -1,0 +1,12 @@
+{
+  "source": "https://lichess.thijs.com",
+  "variant": "Racing Kings",
+  "updatedAt": null,
+  "views": {
+    "points": [],
+    "maximum": [],
+    "events": [],
+    "trophies": []
+  },
+  "note": "This file is populated automatically by .github/workflows/update-thijs-leaderboards.yml. Empty arrays are intentional until the first successful scheduled/manual run."
+}
