@@ -32,7 +32,7 @@ const RK_MENU_PAGES = [
     if (!header || document.querySelector('.rk-brand')) return;
     const brand = document.createElement('a'); brand.className = 'rk-brand'; brand.href = pageUrl('index');
     brand.setAttribute('aria-label', 'The Racing Kings Master — Home'); brand.title = 'The Racing Kings Master — Home';
-    const img = document.createElement('img'); img.src = 'assets/rk-master-logo.svg'; img.alt = 'The Racing Kings Master'; brand.appendChild(img);
+    const img = document.createElement('img'); img.src = 'Images/Home logo.png'; img.alt = 'The Racing Kings Master'; brand.appendChild(img);
     const oldBrand = header.querySelector('.nav-left, .nav-brand, .navbar-brand, .brand');
     if (oldBrand) oldBrand.replaceWith(brand); else header.prepend(brand);
   }
