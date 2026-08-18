@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 180" role="img" aria-labelledby="title desc">
+  <title id="title">The Racing Kings Master</title>
+  <desc id="desc">A crowned racing king emblem with the RK Master wordmark.</desc>
+  <defs>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a855f7"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset=".42" stop-color="#cbd5e1"/>
+      <stop offset="1" stop-color="#64748b"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <g transform="translate(18 20)">
+    <path d="M6 116h128" stroke="url(#accent)" stroke-width="7" stroke-linecap="round" opacity=".9"/>
+    <path d="M20 98h78M36 80h42" stroke="url(#accent)" stroke-width="5" stroke-linecap="round" opacity=".7"/>
+    <path d="M48 112c8-9 14-18 18-29l-7-30 18 13 17-24 17 24 18-13-7 30c4 11 10 20 18 29v12H48z" fill="url(#metal)" stroke="url(#accent)" stroke-width="4" stroke-linejoin="round" filter="url(#glow)"/>
+    <path d="M62 101h50" stroke="#0b1020" stroke-width="6" stroke-linecap="round" opacity=".65"/>
+    <circle cx="77" cy="43" r="4" fill="#fff"/>
+    <circle cx="94" cy="30" r="4" fill="#fff"/>
+    <circle cx="111" cy="43" r="4" fill="#fff"/>
+  </g>
+  <g transform="translate(175 42)">
+    <text x="0" y="54" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="58" font-weight="800" letter-spacing="2" fill="url(#metal)">RK MASTER</text>
+    <text x="3" y="91" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="18" font-weight="700" letter-spacing="6" fill="url(#accent)">THE RACING KINGS</text>
+  </g>
+</svg>
