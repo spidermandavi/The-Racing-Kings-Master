@@ -5,6 +5,18 @@
   function showSuccess(id, msg) { if (typeof window.showOk === 'function') window.showOk(id, msg); }
   function hide(id) { if (typeof window.hideMsg === 'function') window.hideMsg(id); }
 
+  function getSafeRedirect() {
+    const requested = new URLSearchParams(window.location.search).get('redirect');
+    if (!requested) return 'index.html';
+    // Only allow an internal relative page path. This prevents open redirects.
+    if (requested.startsWith('/') || requested.startsWith('http:') || requested.startsWith('https:') || requested.includes('://')) return 'index.html';
+    return requested;
+  }
+
+  function redirectAfterAuth() {
+    window.location.href = getSafeRedirect();
+  }
+
   window.handleLogin = async function (e) {
     e.preventDefault();
     hide('loginError'); hide('loginSuccess');
@@ -19,7 +31,7 @@
       if (error) throw error;
       const { data: profile } = await supabase.from('profiles').select('username').eq('id', data.user.id).maybeSingle();
       showSuccess('loginSuccess', `Welcome back, ${profile?.username || email}! Redirecting…`);
-      setTimeout(() => { window.location.href = 'index.html'; }, 700);
+      setTimeout(redirectAfterAuth, 700);
     } catch (error) {
       showError('loginError', error.message || 'Login failed.');
     } finally {
@@ -51,7 +63,7 @@
       if (error) throw error;
       if (data.session) {
         showSuccess('registerSuccess', `Account created! Welcome, ${username}! Redirecting…`);
-        setTimeout(() => { window.location.href = 'index.html'; }, 900);
+        setTimeout(redirectAfterAuth, 900);
       } else {
         showSuccess('registerSuccess', 'Account created. Please check your email to verify your account.');
       }
@@ -65,7 +77,11 @@
   document.addEventListener('DOMContentLoaded', async function () {
     const supabase = client();
     if (!supabase) return;
-    const { data } = await supabase.auth.getSession();
-    if (data.session) window.location.href = 'index.html';
+    const { data, error } = await supabase.auth.getSession();
+    if (error) {
+      console.warn('Could not restore auth session:', error);
+      return;
+    }
+    if (data.session) redirectAfterAuth();
   });
 })();
