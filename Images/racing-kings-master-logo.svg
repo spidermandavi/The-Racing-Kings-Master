@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 180" role="img" aria-labelledby="title desc">
+  <title id="title">The Racing Kings Master logo</title>
+  <desc id="desc">A crowned racing chess king with motion lines and the words RK MASTER.</desc>
+  <defs>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8b5cf6"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4f4f5"/>
+      <stop offset="0.48" stop-color="#a1a1aa"/>
+      <stop offset="1" stop-color="#52525b"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- subtle racing trails -->
+  <path d="M18 66h82M4 88h88M28 110h62" fill="none" stroke="url(#accent)" stroke-width="7" stroke-linecap="round" opacity=".72"/>
+
+  <!-- stylized king/crown -->
+  <g transform="translate(92 16)" filter="url(#glow)">
+    <path d="M52 4v25M39 16h26" stroke="url(#accent)" stroke-width="8" stroke-linecap="round"/>
+    <path d="M24 34l17 12 11-14 11 14 17-12-8 31H32z" fill="url(#metal)" stroke="url(#accent)" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M34 65h36l-6 54H40z" fill="url(#metal)" stroke="#71717a" stroke-width="3"/>
+    <path d="M27 119h50l8 18H19z" fill="url(#metal)" stroke="#71717a" stroke-width="3"/>
+    <rect x="14" y="137" width="76" height="11" rx="5.5" fill="url(#accent)"/>
+  </g>
+
+  <!-- wordmark -->
+  <g transform="translate(220 47)">
+    <text x="0" y="45" fill="#f4f4f5" font-family="Inter,Arial,sans-serif" font-size="48" font-weight="900" letter-spacing="2">RK</text>
+    <text x="91" y="45" fill="url(#accent)" font-family="Inter,Arial,sans-serif" font-size="48" font-weight="900" letter-spacing="2">MASTER</text>
+    <rect x="2" y="61" width="366" height="3" rx="1.5" fill="url(#accent)" opacity=".85"/>
+    <text x="2" y="92" fill="#a1a1aa" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="700" letter-spacing="4">THE RACING KINGS</text>
+  </g>
+</svg>
