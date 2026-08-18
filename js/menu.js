@@ -41,6 +41,46 @@ const RK_MENU_PAGES = [
     });
   }
 
+  function ensureBranding() {
+    const left = document.querySelector('.nav-left');
+    if (!left) return;
+
+    let logo = left.querySelector('.site-logo');
+    if (!logo) {
+      logo = document.createElement('a');
+      logo.className = 'site-logo';
+      logo.href = 'index.html';
+      logo.setAttribute('aria-label', 'The Racing Kings Master home');
+      left.prepend(logo);
+    }
+
+    logo.innerHTML = `
+      <img class="site-logo-image" src="Images/racing-kings-master-logo.svg" alt="The Racing Kings Master" width="180" height="45">
+      <span class="site-logo-fallback" aria-hidden="true"><span class="site-logo-mark">RK</span><span class="site-logo-text">MASTER</span></span>
+    `;
+
+    if (!document.getElementById('rkLogoStyles')) {
+      const style = document.createElement('style');
+      style.id = 'rkLogoStyles';
+      style.textContent = `
+        .site-logo{display:inline-flex;align-items:center;min-width:0;text-decoration:none!important;line-height:1;transition:transform .2s ease,filter .2s ease}
+        .site-logo:hover{transform:translateY(-1px);filter:drop-shadow(0 0 12px var(--accent-glow))}
+        .site-logo-image{display:block;width:180px;height:45px;object-fit:contain;object-position:left center}
+        .site-logo-fallback{display:none;align-items:center;gap:.35rem;font-weight:900;letter-spacing:.08em}
+        .site-logo-mark{color:var(--text);font-size:1.05rem}
+        .site-logo-text{color:var(--accent);font-size:.95rem}
+        @media(max-width:520px){.site-logo-image{width:132px;height:36px}.site-logo-fallback{font-size:.8rem}}
+      `;
+      document.head.appendChild(style);
+    }
+
+    const img = logo.querySelector('.site-logo-image');
+    img.addEventListener('error', () => {
+      img.style.display = 'none';
+      logo.querySelector('.site-logo-fallback').style.display = 'inline-flex';
+    }, { once: true });
+  }
+
   async function ensureAuthDependencies() {
     if (!window.supabase) await loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2');
     if (!window.rkSupabase || !window.rkAuth) await loadScript('js/supabase.js');
@@ -79,6 +119,7 @@ const RK_MENU_PAGES = [
 
   async function init() {
     const panel = document.getElementById('menuPanel'); const btn = document.getElementById('menuBtn');
+    ensureBranding();
     if (!panel || !btn) return;
     panel.innerHTML = ''; RK_MENU_PAGES.forEach(page => panel.appendChild(makeLink(page.label, pageUrl(page.slug))));
     await renderAuth();
