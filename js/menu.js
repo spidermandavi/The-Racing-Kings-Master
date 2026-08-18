@@ -22,6 +22,11 @@ const RK_MENU_PAGES = [
   function addSeparator(panel) { const sep = document.createElement('div'); sep.setAttribute('aria-hidden', 'true'); sep.style.cssText = 'height:1px;background:var(--border);margin:.3rem .5rem'; panel.appendChild(sep); }
   function addAuthLink(panel, label, href, accent = false) { const a = makeLink(label, href); if (accent) a.style.color = 'var(--accent)'; panel.appendChild(a); }
 
+  function ensureLogoStyles() {
+    if (document.querySelector('link[data-rk-logo-css]')) return;
+    const link = document.createElement('link'); link.rel = 'stylesheet'; link.href = 'css/logo.css'; link.dataset.rkLogoCss = 'true'; document.head.appendChild(link);
+  }
+
   function ensureBrand() {
     const header = document.querySelector('header, .site-header, .topbar, .navbar, .nav-bar');
     if (!header || document.querySelector('.rk-brand')) return;
@@ -48,7 +53,7 @@ const RK_MENU_PAGES = [
   }
 
   async function init() {
-    ensureBrand(); const panel = document.getElementById('menuPanel'), btn = document.getElementById('menuBtn'); if (!panel || !btn) return;
+    ensureLogoStyles(); ensureBrand(); const panel = document.getElementById('menuPanel'), btn = document.getElementById('menuBtn'); if (!panel || !btn) return;
     panel.innerHTML = ''; RK_MENU_PAGES.forEach(page => panel.appendChild(makeLink(page.label, pageUrl(page.slug)))); await renderAuth();
     btn.onclick = event => { event.stopPropagation(); panel.classList.toggle('open'); btn.setAttribute('aria-expanded', panel.classList.contains('open') ? 'true' : 'false'); };
     document.addEventListener('click', event => { if (!panel.contains(event.target) && !btn.contains(event.target)) { panel.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); } });
