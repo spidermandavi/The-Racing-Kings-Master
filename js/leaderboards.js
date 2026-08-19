@@ -27,10 +27,15 @@ function playerLink(username) {
   return `https://lichess.org/@/${encodeURIComponent(username)}`;
 }
 
+// Leaderboard numbers are displayed without locale separators:
+// 2527, not 2,527.
 function formatNumber(value) {
   if (value == null || value === '') return '—';
   const n = Number(value);
-  return Number.isFinite(n) ? n.toLocaleString() : escapeHtml(value);
+  if (Number.isFinite(n)) {
+    return Number.isInteger(n) ? String(n) : String(n);
+  }
+  return escapeHtml(value);
 }
 
 function renderRows(container, rows, metricLabel, valueKey = 'value', usernameKey = 'username') {
@@ -78,7 +83,6 @@ async function loadRatings() {
       meta: `${formatNumber(p.perfs.racingKings.progress || 0)} rating progress${p.online ? ' · online' : ''}`
     })), 'rating');
 
-    // Make the source label useful instead of merely decorative.
     const link = document.querySelector('[data-board="rating"] .board-link');
     if (link) {
       link.innerHTML = `<a href="${TOP_RATING_URL}" target="_blank" rel="noopener noreferrer">Lichess Top 200 ↗</a>`;
@@ -128,10 +132,6 @@ async function loadThijsBoards() {
     const data = await response.json();
 
     const views = data?.views || {};
-
-    // The snapshot stores the parsed Thijs rankings under views.*.
-    // Older snapshots used points/maximum/events/shield at the root, so retain
-    // that fallback for backwards compatibility.
     const points = views.points || data.points || [];
     const maximum = views.maximum || data.maximum || [];
     const events = views.events || data.events || [];
