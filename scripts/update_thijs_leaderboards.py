@@ -16,6 +16,17 @@ SOURCES = {
     "trophies": "https://lichess.thijs.com/rankings/racingkings/shield/list_players_trophies.html",
 }
 
+# Exact zero-based column indexes from the table structure supplied for this site:
+# 0 ranking, 1 name, 2 first places, 3 second places, 4 third places,
+# 5 total points, 6 total events, 7 first/last date, 8 average score, 9 max score.
+METRIC_COLUMNS = {
+    "points": 5,
+    "maximum": 9,
+    "events": 6,
+    # The shield leaderboard's requested value is the amount of 1st places.
+    "trophies": 2,
+}
+
 USER_AGENT = "RacingKingsMaster/1.0"
 RETRIES = 4
 
@@ -44,7 +55,6 @@ def clean(value):
 
 
 def parse_number(value):
-    """Extract the actual numeric value, never a title such as GM/FM/NM."""
     value = clean(value)
     match = re.search(r"-?\d+(?:[,.]\d+)?", value)
     if not match:
@@ -58,40 +68,28 @@ def parse_table(html, metric):
     if not table_match:
         raise RuntimeError(f"No table found for {metric}")
 
+    target_column = METRIC_COLUMNS[metric]
     table = table_match.group(1)
     raw_rows = re.findall(r"<tr[^>]*>([\s\S]*?)</tr>", table, re.I)
     rows = []
 
     for raw_row in raw_rows:
         cells = re.findall(r"<(?:td|th)[^>]*>([\s\S]*?)</(?:td|th)>", raw_row, re.I)
-        if not cells:
+        if len(cells) <= target_column:
             continue
 
         texts = [clean(cell) for cell in cells]
-        rank_index = next((i for i, text in enumerate(texts) if re.fullmatch(r"\d+\.?", text)), None)
-        if rank_index is None:
+        # Data rows always start with the ranking; skip the header safely.
+        if not re.fullmatch(r"\d+\.?", texts[0]):
             continue
 
-        # Username comes from the actual player link, not from surrounding title text.
-        user_match = re.search(r'href=["\'][^"\']*/@/([^"\'?/#]+)', raw_row, re.I)
-        if not user_match:
-            user_match = re.search(r'href=["\']player/([^"\'?/#]+)', raw_row, re.I)
-        if not user_match:
+        # The player name is the second column. Extracting its visible text keeps
+        # titles such as GM/FM/NM out of the username even if they are nested in HTML.
+        username = texts[1]
+        if not username:
             continue
-        username = unescape(user_match.group(1)).strip()
 
-        # Find the LAST numeric data cell after the player information. This avoids
-        # treating rank or title cells as the score. Thijs ranking tables place the
-        # requested metric in the final data column.
-        value = None
-        value_index = None
-        for index in range(len(cells) - 1, rank_index, -1):
-            candidate = parse_number(cells[index])
-            if candidate is not None:
-                value = candidate
-                value_index = index
-                break
-
+        value = parse_number(cells[target_column])
         if value is None:
             continue
 
@@ -99,7 +97,7 @@ def parse_table(html, metric):
             "username": username,
             "primary": value,
             "metric": metric,
-            "rank": int(texts[rank_index].rstrip(".")),
+            "rank": int(texts[0].rstrip(".")),
             "meta": "",
         })
 
