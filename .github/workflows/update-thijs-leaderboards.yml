@@ -4,12 +4,18 @@ on:
   schedule:
     - cron: '17 */6 * * *'
   workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/update_thijs_leaderboards.py'
+      - '.github/workflows/update-thijs-leaderboards.yml'
 
 permissions:
   contents: write
 
 jobs:
   update:
+    # The generated JSON commit must not start another update loop.
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
