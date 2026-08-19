@@ -16,17 +16,9 @@ SOURCES = {
     "trophies": "https://lichess.thijs.com/rankings/racingkings/shield/list_players_trophies.html",
 }
 
-# Exact zero-based column indexes from the table structure supplied for this site:
-# 0 ranking, 1 name, 2 first places, 3 second places, 4 third places,
-# 5 total points, 6 total events, 7 first/last date, 8 average score, 9 max score.
-METRIC_COLUMNS = {
-    "points": 5,
-    "maximum": 9,
-    "events": 6,
-    # The shield leaderboard's requested value is the amount of 1st places.
-    "trophies": 2,
-}
-
+# Zero-based positions in the logical table after splitting every row into cells:
+# ranking, name, 1st, 2nd, 3rd, total points, total events, dates, average, max.
+METRIC_COLUMNS = {"points": 5, "maximum": 9, "events": 6, "trophies": 2}
 USER_AGENT = "RacingKingsMaster/1.0"
 RETRIES = 4
 
@@ -55,40 +47,48 @@ def clean(value):
 
 
 def parse_number(value):
-    value = clean(value)
-    match = re.search(r"-?\d+(?:[,.]\d+)?", value)
+    match = re.search(r"-?\d+(?:[,.]\d+)?", clean(value))
     if not match:
         return None
     number = match.group(0).replace(",", "")
     return float(number) if "." in number else int(number)
 
 
+def split_cells(raw_row):
+    return re.findall(r"<(?:td|th)\b[^>]*>([\s\S]*?)</(?:td|th)>", raw_row, re.I)
+
+
+def username_from_name_cell(cell):
+    # The title is often a separate span/link inside the name cell. Prefer the
+    # Lichess profile href, whose path contains the real username.
+    match = re.search(r'href=["\'][^"\']*(?:lichess\.org)?/?@/([^"\'?/#<]+)', cell, re.I)
+    if match:
+        return unescape(match.group(1)).strip()
+
+    # Fallback: remove known title spans, then use remaining visible text.
+    without_titles = re.sub(r"<(?:span|a)\b[^>]*class=[\"'][^\"']*(?:title|utitle)[^\"']*[\"'][^>]*>[\s\S]*?</(?:span|a)>", "", cell, flags=re.I)
+    value = clean(without_titles)
+    return value if value and value.upper() not in {"GM", "IM", "FM", "CM", "NM", "WGM", "WIM", "WFM", "WCM"} else None
+
+
 def parse_table(html, metric):
-    table_match = re.search(r"<table[^>]*>([\s\S]*?)</table>", html, re.I)
+    table_match = re.search(r"<table\b[^>]*>([\s\S]*?)</table>", html, re.I)
     if not table_match:
         raise RuntimeError(f"No table found for {metric}")
 
     target_column = METRIC_COLUMNS[metric]
-    table = table_match.group(1)
-    raw_rows = re.findall(r"<tr[^>]*>([\s\S]*?)</tr>", table, re.I)
     rows = []
-
-    for raw_row in raw_rows:
-        cells = re.findall(r"<(?:td|th)[^>]*>([\s\S]*?)</(?:td|th)>", raw_row, re.I)
-        if len(cells) <= target_column:
+    for raw_row in re.findall(r"<tr\b[^>]*>([\s\S]*?)</tr>", table_match.group(1), re.I):
+        cells = split_cells(raw_row)
+        if len(cells) < 10:
             continue
-
         texts = [clean(cell) for cell in cells]
-        # Data rows always start with the ranking; skip the header safely.
         if not re.fullmatch(r"\d+\.?", texts[0]):
             continue
 
-        # The player name is the second column. Extracting its visible text keeps
-        # titles such as GM/FM/NM out of the username even if they are nested in HTML.
-        username = texts[1]
+        username = username_from_name_cell(cells[1])
         if not username:
             continue
-
         value = parse_number(cells[target_column])
         if value is None:
             continue
@@ -124,12 +124,6 @@ def main():
 
     with open("json/thijs-leaderboards.json", "w", encoding="utf-8") as output:
         json.dump(data, output, ensure_ascii=False, indent=2)
-
-    print(json.dumps({
-        "updatedAt": data["updatedAt"],
-        "counts": {key: len(value) for key, value in data["views"].items()},
-        "errors": data["errors"],
-    }, indent=2))
 
 
 if __name__ == "__main__":
