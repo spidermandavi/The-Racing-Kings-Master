@@ -12,9 +12,8 @@ async function response(url,label,accept='application/json'){let r;try{r=await f
 async function json(url,label){return(await response(url,label)).json()}
 async function getUser(u){return json(api(`user/${userPath(u)}`),'User lookup')}
 async function getPerf(u){const r=await response(api(`user/${userPath(u)}/perf/racingKings`),'Racing Kings performance');return r.json()}
-async function getPeakRating(u){const perf=await getPerf(u);const peak=Number(perf?.stat?.highest?.int);if(Number.isFinite(peak)&&peak>0)return peak;throw new Error('Lichess did not return a peak Racing Kings rating for this account.')}
 async function getTournaments(u){const r=await response(api(`user/${userPath(u)}/tournament/played`,{nb:1000,performance:true}),'Tournament history','application/json, application/x-ndjson');const t=await r.text();if(!t.trim())return[];try{return JSON.parse(t)}catch{return t.trim().split(/\r?\n/).filter(Boolean).map(x=>JSON.parse(x))}}
-function games(user,perf){const n=perf?.stat?.count?.all??user.perfs?.racingKings?.games??0;return Number(n)||0}
+function games(user,perf){const n=perf?.stat?.count?.rated??0;return Number(n)||0}
 function oldEnough(u){return Number(u.createdAt)&&Date.now()-Number(u.createdAt)>=THREE_MONTHS}
 function normList(data){if(Array.isArray(data))return data;if(Array.isArray(data?.created))return data.created;if(Array.isArray(data?.started))return data.started;if(Array.isArray(data?.finished))return data.finished;if(Array.isArray(data?.tournaments))return data.tournaments;return[]}
 function isRK(t){const v=String(t.variant?.key||t.variant||t.perf?.key||t.perf||'').toLowerCase().replace(/[^a-z]/g,'');return v==='racingkings'||/racing.?kings/i.test(String(t.fullName||t.name||''))}
