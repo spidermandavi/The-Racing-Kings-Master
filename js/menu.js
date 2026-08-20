@@ -4,60 +4,19 @@
    ============================================================ */
 
 const RK_MENU_PAGES = [
-  { slug: 'index', label: 'Home' },
-  { slug: 'leaderboard', label: 'Leaderboards' },
-  { slug: 'hall-of-fame', label: 'Hall of Fame' },
-  { slug: 'titles', label: 'Titles' },
-  { slug: 'players', label: 'Players' },
-  { slug: 'title-checker', label: 'Title Checker' },
-  { slug: 'profile', label: 'Profile' },
-  { slug: 'about', label: 'About' }
+  { slug: 'index', label: 'Home' }, { slug: 'leaderboard', label: 'Leaderboards' },
+  { slug: 'hall-of-fame', label: 'Hall of Fame' }, { slug: 'titles', label: 'Titles' },
+  { slug: 'players', label: 'Players' }, { slug: 'title-checker', label: 'Title Checker' },
+  { slug: 'profile', label: 'Profile' }, { slug: 'about', label: 'About' }
 ];
-
-(function setTheme() { document.documentElement.setAttribute('data-theme', localStorage.getItem('rk-theme') || 'dark'); })();
-
-(function initGlobalMenu() {
-  function pageUrl(slug) { return slug === 'index' ? 'index.html' : `${slug}.html`; }
-  function makeLink(label, href) { const a = document.createElement('a'); a.href = href; a.textContent = label; return a; }
-  function addSeparator(panel) { const sep = document.createElement('div'); sep.setAttribute('aria-hidden', 'true'); sep.style.cssText = 'height:1px;background:var(--border);margin:.3rem .5rem'; panel.appendChild(sep); }
-  function addAuthLink(panel, label, href, accent = false) { const a = makeLink(label, href); if (accent) a.style.color = 'var(--accent)'; panel.appendChild(a); }
-
-  function ensureLogoStyles() {
-    if (document.querySelector('link[data-rk-logo-css]')) return;
-    const link = document.createElement('link'); link.rel = 'stylesheet'; link.href = 'css/logo.css'; link.dataset.rkLogoCss = 'true'; document.head.appendChild(link);
-  }
-
-  function ensureBrand() {
-    const header = document.querySelector('header, .site-header, .topbar, .navbar, .nav-bar');
-    if (!header || document.querySelector('.rk-brand')) return;
-    const brand = document.createElement('a'); brand.className = 'rk-brand'; brand.href = pageUrl('index');
-    brand.setAttribute('aria-label', 'The Racing Kings Master — Home'); brand.title = 'The Racing Kings Master — Home';
-    const img = document.createElement('img'); img.src = 'Images/Home logo.png'; img.alt = 'The Racing Kings Master'; brand.appendChild(img);
-    const oldBrand = header.querySelector('.nav-left, .nav-brand, .navbar-brand, .brand');
-    if (oldBrand) oldBrand.replaceWith(brand); else header.prepend(brand);
-  }
-
-  function loadScript(src) { return new Promise((resolve, reject) => { const existing = document.querySelector(`script[src="${src}"]`); if (existing) { if (existing.dataset.loaded === 'true') return resolve(); existing.addEventListener('load', resolve, { once: true }); existing.addEventListener('error', reject, { once: true }); return; } const script = document.createElement('script'); script.src = src; script.async = false; script.onload = () => { script.dataset.loaded = 'true'; resolve(); }; script.onerror = reject; document.head.appendChild(script); }); }
-  async function ensureAuthDependencies() { if (!window.supabase) await loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2'); if (!window.rkSupabase || !window.rkAuth) await loadScript('js/supabase.js'); if (document.getElementById('applyModal')) await loadScript('js/profile-auth-fix.js'); }
-
-  async function renderAuth() {
-    const panel = document.getElementById('menuPanel'), right = document.querySelector('.nav-right'), menuBtn = document.getElementById('menuBtn'); if (!panel) return;
-    panel.querySelector('[data-rk-auth]')?.remove(); const authArea = document.createElement('div'); authArea.dataset.rkAuth = 'true'; panel.appendChild(authArea);
-    let user = null; try { await ensureAuthDependencies(); const session = await window.rkAuth.session(); if (session) user = await window.rkAuth.user(); } catch (error) { console.warn('Global auth menu could not load profile:', error); }
-    let authButton = document.getElementById('navAuthBtn'); if (!authButton && right) { authButton = document.createElement('button'); authButton.className = 'icon-btn'; authButton.id = 'navAuthBtn'; authButton.type = 'button'; right.insertBefore(authButton, menuBtn || null); }
-    if (authButton) { authButton.style.display = ''; authButton.textContent = user ? `👤 ${user.username}` : 'Login'; authButton.setAttribute('aria-label', user ? `Account: ${user.username}` : 'Login'); authButton.onclick = () => { window.location.href = user ? 'settings.html' : 'auth.html'; }; }
-    addSeparator(authArea); if (!user) { addAuthLink(authArea, 'Login / Register', 'auth.html'); return; }
-    const signedIn = document.createElement('div'); signedIn.style.cssText = 'padding:.45rem .9rem;font-size:.78rem;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis'; signedIn.textContent = `Signed in as ${user.username}`; authArea.appendChild(signedIn);
-    if (user.is_admin) addAuthLink(authArea, 'Admin Panel', 'admin.html', true); addAuthLink(authArea, '💬 Chat', 'chat.html'); addAuthLink(authArea, '⚙ Settings', 'settings.html');
-    const logout = document.createElement('button'); logout.type = 'button'; logout.textContent = 'Logout'; logout.style.cssText = 'display:block;width:calc(100% - .8rem);margin:.15rem .4rem .2rem;padding:.5rem .6rem;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text-muted);font:inherit;text-align:left;cursor:pointer'; logout.onclick = async () => { logout.disabled = true; logout.textContent = 'Logging out…'; try { await window.rkSupabase.auth.signOut(); } finally { window.location.href = 'index.html'; } }; authArea.appendChild(logout);
-  }
-
-  async function init() {
-    ensureLogoStyles(); ensureBrand(); const panel = document.getElementById('menuPanel'), btn = document.getElementById('menuBtn'); if (!panel || !btn) return;
-    panel.innerHTML = ''; RK_MENU_PAGES.forEach(page => panel.appendChild(makeLink(page.label, pageUrl(page.slug)))); await renderAuth();
-    btn.onclick = event => { event.stopPropagation(); panel.classList.toggle('open'); btn.setAttribute('aria-expanded', panel.classList.contains('open') ? 'true' : 'false'); };
-    document.addEventListener('click', event => { if (!panel.contains(event.target) && !btn.contains(event.target)) { panel.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); } });
-    if (window.rkSupabase) window.rkSupabase.auth.onAuthStateChange(() => setTimeout(renderAuth, 0));
-  }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true }); else init();
+(function setTheme(){document.documentElement.setAttribute('data-theme',localStorage.getItem('rk-theme')||'dark');})();
+(function initGlobalMenu(){
+  const pageUrl=s=>s==='index'?'index.html':`${s}.html`;
+  const makeLink=(l,h)=>{const a=document.createElement('a');a.href=h;a.textContent=l;return a;};
+  const loadScript=src=>new Promise((resolve,reject)=>{const e=document.querySelector(`script[src="${src}"]`);if(e)return e.dataset.loaded==='true'?resolve():(e.addEventListener('load',resolve,{once:true}),e.addEventListener('error',reject,{once:true}));const s=document.createElement('script');s.src=src;s.async=false;s.onload=()=>{s.dataset.loaded='true';resolve();};s.onerror=reject;document.head.appendChild(s);});
+  async function deps(){if(!window.supabase)await loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2');if(!window.rkSupabase||!window.rkAuth)await loadScript('js/supabase.js');}
+  function logo(){if(document.querySelector('.rk-brand'))return;const h=document.querySelector('header,.site-header,.topbar,.navbar,.nav-bar');if(!h)return;const a=document.createElement('a');a.className='rk-brand';a.href='index.html';a.innerHTML='<img src="Images/Home logo.png" alt="The Racing Kings Master">';h.prepend(a);}
+  async function auth(){const panel=document.getElementById('menuPanel'),right=document.querySelector('.nav-right'),menuBtn=document.getElementById('menuBtn');if(!panel)return;panel.querySelector('[data-rk-auth]')?.remove();const area=document.createElement('div');area.dataset.rkAuth='true';panel.appendChild(area);let user=null;try{await deps();const s=await window.rkAuth.session();if(s)user=await window.rkAuth.user();}catch(e){console.warn(e);}let b=document.getElementById('navAuthBtn');if(!b&&right){b=document.createElement('button');b.className='icon-btn';b.id='navAuthBtn';b.type='button';right.insertBefore(b,menuBtn||null);}if(b){b.textContent=user?`👤 ${user.username}`:'Login';b.onclick=()=>location.href=user?'settings.html':'auth.html';}if(!user){area.appendChild(makeLink('Login / Register','auth.html'));return;}const info=document.createElement('div');info.style.cssText='padding:.45rem .9rem;font-size:.78rem;color:var(--text-muted)';info.textContent=`Signed in as ${user.username}`;area.appendChild(info);area.appendChild(makeLink('💬 Chat','chat.html'));area.appendChild(makeLink('⚙ Settings','settings.html'));const out=document.createElement('button');out.className='icon-btn';out.style.cssText='margin:.4rem;width:calc(100% - .8rem);justify-content:flex-start';out.textContent='Logout';out.onclick=async()=>{await window.rkSupabase.auth.signOut();location.href='index.html';};area.appendChild(out);}
+  async function init(){logo();const panel=document.getElementById('menuPanel'),btn=document.getElementById('menuBtn');if(!panel||!btn)return;panel.innerHTML='';RK_MENU_PAGES.forEach(p=>panel.appendChild(makeLink(p.label,pageUrl(p.slug))));await auth();btn.onclick=e=>{e.stopPropagation();panel.classList.toggle('open');};document.addEventListener('click',e=>{if(!panel.contains(e.target)&&!btn.contains(e.target))panel.classList.remove('open');});if(!window.rkSupabase)await deps();await loadScript('js/notifications.js');if(window.rkSupabase)window.rkSupabase.auth.onAuthStateChange(()=>setTimeout(auth,0));}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
