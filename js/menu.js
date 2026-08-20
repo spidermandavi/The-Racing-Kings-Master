@@ -9,7 +9,7 @@ const RK_MENU_PAGES = [
   { slug: 'hall-of-fame', label: 'Hall of Fame' },
   { slug: 'titles', label: 'Titles' },
   { slug: 'players', label: 'Players' },
-  { slug: 'search', label: 'Title Checker' },
+  { slug: 'title-checker', label: 'Title Checker' },
   { slug: 'profile', label: 'Profile' },
   { slug: 'about', label: 'About' }
 ];
