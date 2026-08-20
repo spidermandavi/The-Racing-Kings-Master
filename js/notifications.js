@@ -4,11 +4,20 @@
   let currentUserId = null;
   let initialized = false;
 
+  function ensureStyles() {
+    if (document.getElementById('rkNotificationStyles')) return;
+    const link = document.createElement('link');
+    link.id = 'rkNotificationStyles';
+    link.rel = 'stylesheet';
+    link.href = 'css/notifications.css';
+    document.head.appendChild(link);
+  }
   function icon() { return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'; }
   function timeAgo(value) { const s=Math.max(0,Math.floor((Date.now()-new Date(value))/1000)); if(s<60)return'Just now'; if(s<3600)return`${Math.floor(s/60)}m ago`; if(s<86400)return`${Math.floor(s/3600)}h ago`; return`${Math.floor(s/86400)}d ago`; }
   function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 
   function ensureUI() {
+    ensureStyles();
     const right=document.querySelector('.nav-right'); const menu=document.getElementById('menuBtn');
     if(!right || document.getElementById('notificationBtn')) return;
     const wrap=document.createElement('div'); wrap.className='notification-wrap';
