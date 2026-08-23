@@ -11,36 +11,34 @@
   <header class="top-bar"><div class="nav-left"></div><div class="nav-right"><button class="icon-btn" id="menuBtn" type="button">☰ Menu</button></div></header>
   <nav id="menuPanel" class="menu-panel"></nav>
   <main>
-    <section class="page-head"><div><span class="eyebrow">ADMIN ONLY</span><h1>Player Specific Training</h1><p class="subtitle">Private tools for analysing individual players and preparing targeted training.</p></div></section>
+    <section class="page-head"><div><span class="eyebrow">ADMIN ONLY</span><h1>Player Specific Training</h1><p class="subtitle">Deep Racing Kings player reports from Lichess games, including moves, evaluations, clocks, openings and play-time patterns.</p></div></section>
     <div id="accessState" class="access-card">Checking administrator permissions…</div>
     <section id="app" hidden>
       <div class="route-tabs"><a class="route-tab active" href="player-specific-training.html?route=player-stats">Player Stats</a><span class="route-tab disabled">More routes coming soon</span></div>
-      <section class="panel intro-panel">
-        <h2>Player Stats</h2>
-        <p>Find out <strong>when a player usually plays</strong>, weighted by the number of games, and how their <strong>win rate changes by hour</strong>. Lichess provides the game timestamps in UTC. You can choose the timezone used for the charts below; <strong>UTC is the default</strong>.</p>
-      </section>
+      <section class="panel intro-panel"><h2>Player Report</h2><p>The Lichess game-export request now fetches full Racing Kings PGNs with clocks, engine evaluations and opening tags. Up to <strong>5,000</strong> games are analysed in the browser.</p></section>
       <section class="panel source-panel">
         <div class="source-switch" role="tablist"><button class="source-btn active" data-source="api" type="button">Fetch from Lichess</button><button class="source-btn" data-source="file" type="button">Upload PGN</button></div>
         <div id="apiSource" class="source-content">
-          <div class="form-grid"><label>Username<input id="username" type="text" placeholder="Lichess username" autocomplete="off"></label><label>From date (UTC)<input id="fromDate" type="date"></label><label>To date (UTC)<input id="toDate" type="date"></label></div>
-          <div class="variant-row"><span>Variants</span><div id="variantOptions" class="variant-options"></div></div>
-          <button id="fetchBtn" class="primary-btn" type="button">Fetch and analyse games</button>
-          <p class="helper">The selected fetch range is interpreted from 00:00:00 UTC on the first date through 23:59:59.999 UTC on the last date.</p>
+          <div class="form-grid form-grid-extended"><label>Username<input id="username" type="text" placeholder="Lichess username" autocomplete="off"></label><label>From date (UTC)<input id="fromDate" type="date"></label><label>To date (UTC)<input id="toDate" type="date"></label><label>Maximum games<input id="maxGames" type="number" min="1" max="5000" value="5000"></label></div>
+          <div class="variant-row"><span>Variant</span><div class="variant-options"><label class="variant-chip active"><input type="checkbox" value="racingKings" checked disabled> Racing Kings</label></div></div>
+          <label class="checkbox-row"><input id="ratedOnly" type="checkbox" checked> Rated games only</label>
+          <button id="fetchBtn" class="primary-btn" type="button">Fetch and build player report</button>
+          <p class="helper">Uses the Lichess Games API with rated=true, tags=true, clocks=true, evals=true, opening=true, max≤5000 and perfType=racingKings. Date filters remain optional.</p>
         </div>
         <div id="fileSource" class="source-content" hidden><label class="upload-zone" for="pgnFile"><strong>Choose a Lichess PGN file</strong><span>The file is processed locally in your browser and is not uploaded to this website.</span><input id="pgnFile" type="file" accept=".pgn,text/plain,application/x-chess-pgn"></label><button id="fileBtn" class="primary-btn" type="button">Analyse uploaded games</button></div>
+        <div id="loadingBox" class="loading-box" hidden><div class="spinner" aria-hidden="true"></div><div class="loading-copy"><strong id="loadingTitle">Working…</strong><span id="loadingDetail">Preparing analysis</span></div><div class="progress-track"><div id="progressBar" class="progress-bar" style="width:0%"></div></div><div class="progress-meta"><span id="progressPercent">0%</span><span id="progressCount">0 games</span></div></div>
         <div id="status" class="status" aria-live="polite"></div>
       </section>
+      <section class="panel saved-panel"><div class="saved-head"><div><h2>Recent reports</h2><p>Reports are kept in browser storage so a refresh does not remove them.</p></div><button id="clearReportsBtn" class="secondary-btn" type="button">Clear saved reports</button></div><div id="savedReports" class="saved-reports"><span class="muted">No saved reports yet.</span></div></section>
       <section id="summary" class="summary-grid" hidden></section>
       <section id="results" hidden>
-        <section class="panel charts-panel">
-          <div class="charts-head"><div><h2>Overall</h2><p id="overallDescription">24 hourly buckets.</p></div><span id="overallTimezone" class="timezone-badge">Timezone: UTC</span></div>
-          <div class="timezone-control"><label for="timezoneSelect">Chart timezone</label><select id="timezoneSelect"></select><span class="timezone-help">Game timestamps come from Lichess as UTC; this setting converts them for the charts and weekday grouping.</span></div>
-          <div class="chart-card full"><canvas id="overallChart"></canvas></div>
-        </section>
-        <section class="panel charts-panel">
-          <div class="charts-head"><div><h2>By day of week</h2><p>Each chart shows when the player plays and the win rate for that weekday.</p></div><span id="weekdayTimezone" class="timezone-badge">Timezone: UTC</span></div>
-          <div id="weekdayCharts" class="weekday-grid"></div>
-        </section>
+        <section class="panel stats-panel"><div class="section-head"><div><h2>Player overview</h2><p id="overviewText"></p></div></div><div id="statGrid" class="stat-grid"></div></section>
+        <section class="panel charts-panel"><div class="charts-head"><div><h2>When the player plays</h2><p id="overallDescription">24 hourly buckets.</p></div><span id="overallTimezone" class="timezone-badge">Timezone: UTC</span></div><div class="timezone-control"><label for="timezoneSelect">Chart timezone</label><select id="timezoneSelect"></select><span class="timezone-help">Game timestamps come from Lichess as UTC. This setting converts the hourly and weekday charts.</span></div><div class="chart-card full"><canvas id="overallChart"></canvas></div></section>
+        <section class="panel charts-panel"><div class="charts-head"><div><h2>By day of week</h2><p>Weekday totals are calculated across the complete selected date range, not only the latest week.</p></div><span id="weekdayTimezone" class="timezone-badge">Timezone: UTC</span></div><div id="weekdayCharts" class="weekday-grid"></div></section>
+        <section class="panel openings-panel"><div class="section-head"><div><h2>Opening report</h2><p>Common openings and the openings producing the weakest results in this sample.</p></div></div><div class="two-column-tables"><div><h3>Most common openings</h3><div id="commonOpenings" class="data-list"></div></div><div><h3>Most dangerous openings</h3><div id="dangerousOpenings" class="data-list"></div></div></div></section>
+        <section class="panel timing-panel"><div class="section-head"><div><h2>Clock & position phases</h2><p>Clock times come from Lichess PGN comments. Thinking time is inferred from consecutive clock values; phase stats show where the player's moves occur.</p></div></div><div id="phaseGrid" class="phase-grid"></div></section>
+        <section class="panel explorer-panel"><div class="section-head"><div><h2>Move database & explorer</h2><p>Every row is one of the player's recurring moves, ordered for easy study. Click a row to open a representative position on the built-in Racing Kings board.</p></div></div><div class="explorer-layout"><div class="move-database"><div class="explorer-toolbar"><label>Order<select id="moveSort"><option value="frequency">Most played</option><option value="winrate">Best win rate</option><option value="worstrate">Worst win rate</option><option value="eval">Best average eval</option><option value="ply">Move order</option></select></label><label>Minimum games<input id="moveMinGames" type="number" min="1" value="1"></label></div><div id="moveTable" class="table-scroll"></div></div><div class="board-panel"><div class="board-head"><div><strong id="selectedMoveTitle">Select a move</strong><span id="selectedMoveMeta">The board will appear here.</span></div><div class="board-controls"><button id="prevMoveBtn" class="secondary-btn" type="button">← Previous</button><button id="nextMoveBtn" class="secondary-btn" type="button">Next →</button></div></div><div id="board" class="rk-board" aria-label="Racing Kings analysis board"></div><div id="boardMoveList" class="board-move-list"></div></div></div></section>
+        <section class="panel game-list-panel"><div class="section-head"><div><h2>Game sample</h2><p>Open any game and step through its moves. This uses the same local game data saved with the report.</p></div></div><div id="gameList" class="game-list"></div><div id="gameViewer" class="game-viewer" hidden><div class="viewer-head"><div><strong id="viewerTitle"></strong><span id="viewerMeta"></span></div><div class="board-controls"><button id="viewerPrev" class="secondary-btn" type="button">←</button><button id="viewerNext" class="secondary-btn" type="button">→</button></div></div><div class="viewer-layout"><div><div id="viewerBoard" class="rk-board"></div></div><div id="viewerMoves" class="viewer-moves"></div></div></div></section>
       </section>
     </section>
   </main>
