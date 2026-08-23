@@ -83,7 +83,11 @@ Storage.prototype.setItem=function(key,value){
     const db=await new Promise((resolve,reject)=>{
       req.onsuccess=()=>resolve(req.result);
       req.onerror=()=>reject(req.error);
-      req.onupgradeneeded=()=>{};
+      req.onupgradeneeded=()=>{
+        if(!req.result.objectStoreNames.contains(STORE)){
+          req.result.createObjectStore(STORE,{keyPath:'id'});
+        }
+      };
     });
     const tx=db.transaction(STORE,'readwrite');
     tx.objectStore(STORE).clear();
