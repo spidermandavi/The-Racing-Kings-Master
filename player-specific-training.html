@@ -14,6 +14,7 @@
   <main>
     <section class="page-head"><div><span class="eyebrow">ADMIN ONLY</span><h1>Player Specific Training</h1><p class="subtitle">Deep Racing Kings player reports from Lichess games, including results, positions, evaluations, clocks, openings and play-time patterns.</p></div></section>
     <div id="accessState" class="access-card">Checking administrator permissions…</div>
+
     <section id="app" hidden>
       <div class="route-tabs"><a class="route-tab active" href="player-specific-training.html?route=player-stats">Player Stats</a><span class="route-tab disabled">More routes coming soon</span></div>
 
@@ -36,7 +37,7 @@
         <div id="fileSource" class="source-content" hidden><label class="upload-zone" for="pgnFile"><strong>Choose a Lichess PGN file</strong><span>The file is processed locally in your browser and is not uploaded to this website.</span><input id="pgnFile" type="file" accept=".pgn,text/plain,application/x-chess-pgn"></label><button id="fileBtn" class="primary-btn" type="button">Analyse uploaded games</button></div>
 
         <div class="filter-panel">
-          <div class="filter-head"><div><h3>Training filters</h3><p>These filters are applied after fetching the PGNs.</p></div><button id="resetFiltersBtn" class="secondary-btn" type="button">Reset filters</button></div>
+          <div class="filter-head"><div><h3>Training filters</h3><p>Filters update the current report immediately; fetching is only needed to change the underlying game sample.</p></div><button id="resetFiltersBtn" class="secondary-btn" type="button">Reset filters</button></div>
           <div class="filter-grid">
             <label>Color<select id="colorFilter"><option value="all">All colors</option><option value="white">White</option><option value="black">Black</option></select></label>
             <label>Time control<select id="timeControlFilter"><option value="all">All time controls</option><option value="bullet">Bullet</option><option value="blitz">Blitz</option><option value="rapid">Rapid</option><option value="classical">Classical</option><option value="correspondence">Correspondence</option></select></label>
@@ -55,25 +56,15 @@
       <section id="summary" class="summary-grid" hidden></section>
       <section id="results" hidden>
         <div id="reportWarnings" class="report-warnings"></div>
-
         <section class="panel stats-panel"><div class="section-head"><div><h2>Player overview</h2><p id="overviewText"></p></div></div><div id="statGrid" class="stat-grid"></div></section>
-
         <section class="panel training-panel"><div class="section-head"><div><h2>Training priorities</h2><p>Automatic signals intended to tell you what deserves study first.</p></div></div><div id="trainingPriorityGrid" class="priority-grid"></div></section>
-
-        <section class="panel trend-panel"><div class="section-head"><div><h2>Recent form</h2><p id="trendSummary"></p></div></section>
-
+        <section class="panel trend-panel"><div class="section-head"><div><h2>Recent form</h2><p id="trendSummary"></p></div></div><div id="recentFormGrid" class="trend-grid"></div></section>
         <section class="panel color-panel"><div class="section-head"><div><h2>Results by color</h2><p>White/Black splits include draws in the score percentage.</p></div></div><div id="colorStats" class="data-list two-up-data"></div></section>
-
         <section class="panel charts-panel"><div class="charts-head"><div><h2>When the player plays</h2><p>24 hourly buckets across the complete selected range.</p></div><span id="overallTimezone" class="timezone-badge">Timezone: UTC</span></div><div class="timezone-control"><label for="timezoneSelect">Chart timezone</label><select id="timezoneSelect"></select><span class="timezone-help">Lichess timestamps are parsed as UTC. This selector converts them for the hourly and weekday charts only.</span></div><div class="chart-card full"><canvas id="overallChart"></canvas></div></section>
-
         <section class="panel charts-panel"><div class="charts-head"><div><h2>By day of week</h2><p>Each weekday aggregates every matching game in the selected range, not just the most recent week.</p></div><span id="weekdayTimezone" class="timezone-badge">Timezone: UTC</span></div><div id="weekdayCharts" class="weekday-grid"></div></section>
-
         <section class="panel openings-panel"><div class="section-head"><div><h2>Opening report</h2><p>Common openings and the openings producing the weakest scores in this sample.</p></div></div><div class="two-column-tables"><div><h3>Most common openings</h3><div id="commonOpenings" class="data-list"></div></div><div><h3>Most dangerous openings</h3><div id="dangerousOpenings" class="data-list"></div></div></div></section>
-
         <section class="panel timing-panel"><div class="section-head"><div><h2>Clock & position phases</h2><p>Thinking time is inferred from consecutive Lichess clock values. Evaluation values are shown from the player's perspective.</p></div></div><div id="phaseGrid" class="phase-grid"></div></section>
-
-        <section class="panel explorer-panel"><div class="section-head"><div><h2>Position-specific move explorer</h2><p>A move is grouped by the exact pre-move Racing Kings position, not merely by SAN and move number.</p></div></div><div class="explorer-layout"><div class="move-database"><div class="explorer-toolbar"><label>Order<select id="moveSort"><option value="frequency">Most played</option><option value="winrate">Best score</option><option value="worstrate">Worst score</option><option value="ply">Move order</option></select></label><label>Minimum games<input id="moveMinGames" type="number" min="1" value="1"></label></div><div id="moveTable" class="table-scroll"></div></div><div class="board-panel"><div class="board-head"><div><strong id="selectedMoveTitle">Select a move</strong><span id="selectedMoveMeta">The board will appear here.</span></div><div class="board-controls"><button id="prevMoveBtn" class="secondary-btn" type="button">← Previous</button><button id="nextMoveBtn" class="secondary-btn" type="button">Next →</button></div></div><div id="board" class="rk-board" aria-label="Racing Kings analysis board"></div><p id="boardRuleNote" class="board-rule-note">Racing Kings position • no pawns • no castling • checks are forbidden.</p><div id="boardMoveList" class="board-move-list"></div></div></div></section>
-
+        <section class="panel explorer-panel"><div class="section-head"><div><h2>Position-specific move explorer</h2><p>A move is grouped by the exact pre-move Racing Kings position, not merely by SAN and move number.</p></div></div><div class="explorer-layout"><div class="move-database"><div class="explorer-toolbar"><label>Order<select id="moveSort"><option value="frequency">Most played</option><option value="score">Best score</option><option value="worst">Worst score</option><option value="ply">Move order</option></select></label><label>Minimum games<input id="moveMinGames" type="number" min="1" value="1"></label></div><div id="moveTable" class="table-scroll"></div></div><div class="board-panel"><div class="board-head"><div><strong id="selectedMoveTitle">Select a move</strong><span id="selectedMoveMeta">The board will appear here.</span></div><div class="board-controls"><button id="prevMoveBtn" class="secondary-btn" type="button">← Previous</button><button id="nextMoveBtn" class="secondary-btn" type="button">Next →</button></div></div><div id="board" class="rk-board" aria-label="Racing Kings analysis board"></div><p id="boardRuleNote" class="board-rule-note">Racing Kings position • no pawns • no castling • checks are forbidden.</p><div id="boardMoveList" class="board-move-list"></div></div></div></section>
         <section class="panel game-list-panel"><div class="section-head"><div><h2>Game sample</h2><p>Open any game and step through the moves using the same Racing Kings starting position.</p></div></div><div id="gameList" class="game-list"></div><div id="gameViewer" class="game-viewer" hidden><div class="viewer-head"><div><strong id="viewerTitle"></strong><span id="viewerMeta"></span></div><div class="board-controls"><button id="viewerPrev" class="secondary-btn" type="button">←</button><button id="viewerNext" class="secondary-btn" type="button">→</button></div></div><div class="viewer-layout"><div><div id="viewerBoard" class="rk-board"></div><p id="viewerRuleNote" class="board-rule-note">Racing Kings: no checks, no castling, no pawns.</p></div><div id="viewerMoves" class="viewer-moves"></div></div></div></section>
       </section>
     </section>
