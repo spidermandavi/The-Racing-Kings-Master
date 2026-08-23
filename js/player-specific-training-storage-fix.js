@@ -1,37 +1,23 @@
 (()=>{
 'use strict';
 
-// Keep player-training persistence compact and, importantly, non-fatal.
-// A browser storage quota failure must never make a successfully analysed report fail.
+// Keep player-training persistence compact and non-fatal. A browser storage quota
+// failure must never make a successfully analysed report fail.
 const DB_NAME='rkPlayerReportsV3';
 const STORE='reports';
 const INDEX_KEY='rkPlayerReportIndexV3';
-const CLEANUP_KEY='rkPlayerReportStorageCompactedV2';
+const CLEANUP_KEY='rkPlayerReportStorageCompactedV3';
 const MAX_SAVED_POSITIONS=500;
 const MAX_POSITION_MOVES=6;
 const MAX_POSITION_EVALS=3;
-const MAX_SAVED_GAMES=250;
-const MAX_SAVED_MOVES_PER_GAME=0;
+const MAX_SAVED_GAMES=50;
+const MAX_SAVED_MOVES_PER_GAME=200;
 
 const compactGame=(game)=>{
   if(!game||typeof game!=='object')return game;
   const copy={
     id:game.id,
-    headers:game.headers?{
-      White:game.headers.White,
-      Black:game.headers.Black,
-      Result:game.headers.Result,
-      UTCDate:game.headers.UTCDate,
-      UTCTime:game.headers.UTCTime,
-      Date:game.headers.Date,
-      TimeControl:game.headers.TimeControl,
-      Opening:game.headers.Opening,
-      Variation:game.headers.Variation,
-      ECO:game.headers.ECO,
-      Site:game.headers.Site,
-      WhiteElo:game.headers.WhiteElo,
-      BlackElo:game.headers.BlackElo
-    }:undefined,
+    headers:game.headers?{...game.headers}:undefined,
     date:game.date,
     color:game.color,
     outcome:game.outcome,
@@ -40,9 +26,10 @@ const compactGame=(game)=>{
     timeControlBucket:game.timeControlBucket,
     isTournament:game.isTournament
   };
-  // Saved reports are restored as frozen analysis snapshots. Full moves remain in memory
-  // for the active report, while persistence keeps only a small game metadata sample.
-  if(MAX_SAVED_MOVES_PER_GAME>0&&Array.isArray(game.moves))copy.moves=game.moves.slice(0,MAX_SAVED_MOVES_PER_GAME);
+  // Keep a small playable sample so opening a saved report still has useful games,
+  // while preventing thousands of complete move trees from occupying IndexedDB.
+  if(Array.isArray(game.moves))copy.moves=game.moves.slice(0,MAX_SAVED_MOVES_PER_GAME);
+  else copy.moves=[];
   return copy;
 };
 
@@ -65,10 +52,7 @@ const compactReport=(value)=>{
           .slice()
           .sort((a,b)=>(b.games||0)-(a.games||0))
           .slice(0,MAX_POSITION_MOVES)
-          .map(m=>({
-            ...m,
-            evals:Array.isArray(m.evals)?m.evals.slice(-MAX_POSITION_EVALS):[]
-          }))
+          .map(m=>({...m,evals:Array.isArray(m.evals)?m.evals.slice(-MAX_POSITION_EVALS):[]}))
           :[]
       }));
   }
@@ -111,7 +95,7 @@ Storage.prototype.setItem=function(key,value){
   return originalSetItem.call(this,key,value);
 };
 
-// Clear the oversized legacy V3 cache once after installing the new compact format.
+// Clear oversized legacy caches once so the compact format can start cleanly.
 (async()=>{
   try{
     if(localStorage.getItem(CLEANUP_KEY)==='1')return;
@@ -120,9 +104,7 @@ Storage.prototype.setItem=function(key,value){
       req.onsuccess=()=>resolve(req.result);
       req.onerror=()=>reject(req.error);
       req.onupgradeneeded=()=>{
-        if(!req.result.objectStoreNames.contains(STORE)){
-          req.result.createObjectStore(STORE,{keyPath:'id'});
-        }
+        if(!req.result.objectStoreNames.contains(STORE))req.result.createObjectStore(STORE,{keyPath:'id'});
       };
     });
     const tx=db.transaction(STORE,'readwrite');
