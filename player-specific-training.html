@@ -11,51 +11,34 @@
   <header class="top-bar"><div class="nav-left"></div><div class="nav-right"><button class="icon-btn" id="menuBtn" type="button">☰ Menu</button></div></header>
   <nav id="menuPanel" class="menu-panel"></nav>
   <main>
-    <section class="page-head">
-      <div><span class="eyebrow">ADMIN ONLY</span><h1>Player Specific Training</h1><p class="subtitle">Private tools for analysing individual players and preparing targeted training.</p></div>
-    </section>
+    <section class="page-head"><div><span class="eyebrow">ADMIN ONLY</span><h1>Player Specific Training</h1><p class="subtitle">Private tools for analysing individual players and preparing targeted training.</p></div></section>
     <div id="accessState" class="access-card">Checking administrator permissions…</div>
     <section id="app" hidden>
-      <div class="route-tabs">
-        <a class="route-tab active" href="player-specific-training.html?route=player-stats">Player Stats</a>
-        <span class="route-tab disabled">More routes coming soon</span>
-      </div>
+      <div class="route-tabs"><a class="route-tab active" href="player-specific-training.html?route=player-stats">Player Stats</a><span class="route-tab disabled">More routes coming soon</span></div>
       <section class="panel intro-panel">
         <h2>Player Stats</h2>
-        <p>Find out <strong>when a player usually plays</strong>, weighted by the number of games, and how their <strong>win rate changes by hour</strong>. Times are always analysed and displayed in <strong>UTC</strong>, using Lichess game timestamps.</p>
+        <p>Find out <strong>when a player usually plays</strong>, weighted by the number of games, and how their <strong>win rate changes by hour</strong>. Lichess provides the game timestamps in UTC. You can choose the timezone used for the charts below; <strong>UTC is the default</strong>.</p>
       </section>
       <section class="panel source-panel">
-        <div class="source-switch" role="tablist">
-          <button class="source-btn active" data-source="api" type="button">Fetch from Lichess</button>
-          <button class="source-btn" data-source="file" type="button">Upload PGN</button>
-        </div>
+        <div class="source-switch" role="tablist"><button class="source-btn active" data-source="api" type="button">Fetch from Lichess</button><button class="source-btn" data-source="file" type="button">Upload PGN</button></div>
         <div id="apiSource" class="source-content">
-          <div class="form-grid">
-            <label>Username<input id="username" type="text" placeholder="Lichess username" autocomplete="off"></label>
-            <label>From date (UTC)<input id="fromDate" type="date"></label>
-            <label>To date (UTC)<input id="toDate" type="date"></label>
-          </div>
-          <div class="variant-row">
-            <span>Variants</span>
-            <div id="variantOptions" class="variant-options"></div>
-          </div>
+          <div class="form-grid"><label>Username<input id="username" type="text" placeholder="Lichess username" autocomplete="off"></label><label>From date (UTC)<input id="fromDate" type="date"></label><label>To date (UTC)<input id="toDate" type="date"></label></div>
+          <div class="variant-row"><span>Variants</span><div id="variantOptions" class="variant-options"></div></div>
           <button id="fetchBtn" class="primary-btn" type="button">Fetch and analyse games</button>
-          <p class="helper">The selected date range is interpreted from 00:00:00 UTC on the first date through 23:59:59.999 UTC on the last date.</p>
+          <p class="helper">The selected fetch range is interpreted from 00:00:00 UTC on the first date through 23:59:59.999 UTC on the last date.</p>
         </div>
-        <div id="fileSource" class="source-content" hidden>
-          <label class="upload-zone" for="pgnFile"><strong>Choose a Lichess PGN file</strong><span>The file is processed locally in your browser and is not uploaded to this website.</span><input id="pgnFile" type="file" accept=".pgn,text/plain,application/x-chess-pgn"></label>
-          <button id="fileBtn" class="primary-btn" type="button">Analyse uploaded games</button>
-        </div>
+        <div id="fileSource" class="source-content" hidden><label class="upload-zone" for="pgnFile"><strong>Choose a Lichess PGN file</strong><span>The file is processed locally in your browser and is not uploaded to this website.</span><input id="pgnFile" type="file" accept=".pgn,text/plain,application/x-chess-pgn"></label><button id="fileBtn" class="primary-btn" type="button">Analyse uploaded games</button></div>
         <div id="status" class="status" aria-live="polite"></div>
       </section>
       <section id="summary" class="summary-grid" hidden></section>
       <section id="results" hidden>
         <section class="panel charts-panel">
-          <div class="charts-head"><div><h2>Overall</h2><p>24 hourly buckets in UTC.</p></div><span class="timezone-badge">Timezone: UTC</span></div>
+          <div class="charts-head"><div><h2>Overall</h2><p id="overallDescription">24 hourly buckets.</p></div><span id="overallTimezone" class="timezone-badge">Timezone: UTC</span></div>
+          <div class="timezone-control"><label for="timezoneSelect">Chart timezone</label><select id="timezoneSelect"></select><span class="timezone-help">Game timestamps come from Lichess as UTC; this setting converts them for the charts and weekday grouping.</span></div>
           <div class="chart-card full"><canvas id="overallChart"></canvas></div>
         </section>
         <section class="panel charts-panel">
-          <div class="charts-head"><div><h2>By day of week</h2><p>Each chart shows when the player plays and the win rate for that weekday.</p></div><span class="timezone-badge">Timezone: UTC</span></div>
+          <div class="charts-head"><div><h2>By day of week</h2><p>Each chart shows when the player plays and the win rate for that weekday.</p></div><span id="weekdayTimezone" class="timezone-badge">Timezone: UTC</span></div>
           <div id="weekdayCharts" class="weekday-grid"></div>
         </section>
       </section>
