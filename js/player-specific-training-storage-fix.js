@@ -141,10 +141,14 @@ IDBObjectStore.prototype.get=function(key){
         compact.meta={...(compact.meta||{}),sourcePersistence:'full-source-store'};
       }else{
         compact.meta={...(compact.meta||{}),sourcePersistence:'compact-only'};
+        compact.meta.sourceTotal=compact.games?.length||0;
+        compact.meta.filteredTotal=compact.games?.length||0;
       }
     }catch(error){
       console.warn('Could not rehydrate full player-report source games.',error);
       compact.meta={...(compact.meta||{}),sourcePersistence:'compact-only'};
+      compact.meta.sourceTotal=compact.games?.length||0;
+      compact.meta.filteredTotal=compact.games?.length||0;
     }
     proxy.result=compact;
     proxy.onsuccess?.call(proxy,{target:proxy});
