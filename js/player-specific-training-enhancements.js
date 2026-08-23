@@ -189,6 +189,26 @@ function installUploadPlayerSelector(){
   return true;
 }
 
+function installClearReportsWrapper(){
+  const button=document.getElementById('clearReportsBtn');
+  if(!button||typeof button.onclick!=='function')return false;
+  if(button.dataset.sourceCleanupInstalled==='1')return true;
+  const original=button.onclick;
+  button.onclick=async()=>{
+    await original();
+    try{
+      await new Promise((resolve,reject)=>{
+        const req=indexedDB.deleteDatabase('rkPlayerReportSourceV1');
+        req.onsuccess=resolve;
+        req.onerror=()=>reject(req.error);
+        req.onblocked=()=>resolve();
+      });
+    }catch(error){console.warn('Could not clear full player-report source cache.',error);}
+  };
+  button.dataset.sourceCleanupInstalled='1';
+  return true;
+}
+
 function installPerformancePolish(){
   document.querySelectorAll('.weekday-grid,.game-list,.table-scroll').forEach(el=>{el.style.contentVisibility='auto';el.style.containIntrinsicSize='500px';});
   const tz=document.getElementById('timezoneSelect');
@@ -203,7 +223,7 @@ function installPerformancePolish(){
 function boot(){
   startBoardObserver();
   installPerformancePolish();
-  if(!installUploadPlayerSelector())setTimeout(boot,50);
+  if(!installUploadPlayerSelector()||!installClearReportsWrapper())setTimeout(boot,50);
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(boot,0),{once:true});else setTimeout(boot,0);
 })();
