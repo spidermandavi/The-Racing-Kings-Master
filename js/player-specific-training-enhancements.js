@@ -67,25 +67,56 @@ window.fetch=async(input,init)=>{
   }
 };
 
-function applyLichessBoardStyling(){
-  for(const board of [document.getElementById('board'),document.getElementById('viewerBoard')]){
-    if(!board)continue;
-    board.classList.add('lichess-style-board');
-    board.querySelectorAll('.rk-piece').forEach(piece=>{
-      const t=piece.textContent||'';
-      const white='♔♕♖♗♘♙'.includes(t);
-      piece.classList.toggle('rk-piece-white',white);
-      piece.classList.toggle('rk-piece-black',!white);
-    });
+const PIECE_MAP={'♔':'K','♕':'Q','♖':'R','♗':'B','♘':'N','♙':'P','♚':'k','♛':'q','♜':'r','♝':'b','♞':'n','♟':'p'};
+const boardToFen=board=>{
+  const squares=[...board.querySelectorAll('.rk-square')];
+  if(squares.length!==64||squares.some(s=>s.querySelector('img')))return null;
+  const ranks=[];
+  for(let rank=0;rank<8;rank++){
+    let row='',empty=0;
+    for(let file=0;file<8;file++){
+      const square=squares[rank*8+file];
+      const piece=square?.querySelector('.rk-piece')?.textContent?.trim()||'';
+      const symbol=PIECE_MAP[piece];
+      if(symbol){if(empty){row+=empty;empty=0;}row+=symbol;}else empty++;
+    }
+    if(empty)row+=empty;
+    ranks.push(row);
   }
-}
-const boardObserver=new MutationObserver(applyLichessBoardStyling);
+  return `${ranks.join('/')} w - - 0 1`;
+};
+const renderLichessBoard=board=>{
+  if(!board||board.querySelector('img[data-lichess-board]'))return;
+  const fen=boardToFen(board);
+  if(!fen)return;
+  const img=document.createElement('img');
+  img.dataset.lichessBoard='1';
+  img.alt='Racing Kings position rendered by Lichess';
+  img.decoding='async';
+  img.loading='eager';
+  img.src=`https://lichess1.org/export/fen.gif?fen=${encodeURIComponent(fen)}&color=white&theme=brown&piece=cburnett`;
+  img.style.display='block';
+  img.style.width='100%';
+  img.style.height='100%';
+  img.style.aspectRatio='1 / 1';
+  img.style.objectFit='contain';
+  img.style.background='#b58863';
+  board.replaceChildren(img);
+};
+const boardObserver=new MutationObserver(mutations=>{
+  const boards=new Set();
+  for(const m of mutations){const b=m.target.closest?.('.rk-board');if(b)boards.add(b);}
+  requestAnimationFrame(()=>boards.forEach(renderLichessBoard));
+});
 const startBoardObserver=()=>{
   for(const id of ['board','viewerBoard']){
     const el=document.getElementById(id);
     if(el)boardObserver.observe(el,{childList:true,subtree:true});
   }
-  applyLichessBoardStyling();
+  for(const id of ['board','viewerBoard']){
+    const el=document.getElementById(id);
+    if(el)requestAnimationFrame(()=>renderLichessBoard(el));
+  }
 };
 
 function installUploadPlayerSelector(){
