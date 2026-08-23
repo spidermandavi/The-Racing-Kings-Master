@@ -6,6 +6,7 @@
 const DB_NAME='rkPlayerReportsV3';
 const STORE='reports';
 const INDEX_KEY='rkPlayerReportIndexV3';
+const CLEANUP_KEY='rkPlayerReportStorageCompactedV1';
 const MAX_SAVED_POSITIONS=1000;
 const MAX_POSITION_MOVES=8;
 const MAX_POSITION_EVALS=4;
@@ -45,13 +46,11 @@ IDBObjectStore.prototype.put=function(value,...args){
 
       // Store only one copy of the game sample. sourceGames is redundant in a saved snapshot;
       // the live report still keeps it in memory for filtering.
-      const compact={...value,sourceGames:undefined,meta,stats};
+      const compact={...value,meta,stats};
       delete compact.sourceGames;
       return originalPut.call(this,compact,...args);
     }
   }catch(error){
-    // Never let the quota guard itself break report creation. The original operation remains
-    // available when the object is not one of our player-report records.
     console.warn('Player report storage compaction failed; using original value.',error);
   }
   return originalPut.call(this,value,...args);
@@ -74,4 +73,30 @@ Storage.prototype.setItem=function(key,value){
   }
   return originalSetItem.call(this,key,value);
 };
+
+// The old implementation could already have filled the browser quota with oversized
+// V3 records. Clear that legacy cache once so the new compact format can start cleanly.
+(async()=>{
+  try{
+    if(localStorage.getItem(CLEANUP_KEY)==='1')return;
+    const req=indexedDB.open(DB_NAME,1);
+    const db=await new Promise((resolve,reject)=>{
+      req.onsuccess=()=>resolve(req.result);
+      req.onerror=()=>reject(req.error);
+      req.onupgradeneeded=()=>{};
+    });
+    const tx=db.transaction(STORE,'readwrite');
+    tx.objectStore(STORE).clear();
+    await new Promise((resolve,reject)=>{
+      tx.oncomplete=resolve;
+      tx.onerror=()=>reject(tx.error);
+      tx.onabort=()=>reject(tx.error||new Error('IndexedDB cleanup aborted'));
+    });
+    db.close();
+    localStorage.removeItem(INDEX_KEY);
+    localStorage.setItem(CLEANUP_KEY,'1');
+  }catch(error){
+    console.warn('Could not perform one-time player-report cache cleanup.',error);
+  }
+})();
 })();
