@@ -44,6 +44,8 @@
   <section class="section-label" id="future"><h2>About the data</h2><span>Transparent sources</span></section>
   <div class="info-strip"><div class="info-card"><strong>Live rating</strong><p>The rating board calls the official Lichess API directly, so it reflects the current top Racing Kings players rather than a manually maintained list.</p></div><div class="info-card"><strong>Official titles</strong><p>Title holders come from the site's Supabase database. When there are no awarded titles yet, this board correctly reports that there are no holders.</p></div><div class="info-card"><strong>Tournament records</strong><p>Historical arena boards are sourced from Lichess Arena Rankings by Thijs. The repository refresh job keeps a local JSON snapshot so static hosting can display it reliably.</p></div></div>
 </main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
 <script src="js/leaderboards.js"></script><script src="js/menu.js"></script>
 </body>
 </html>
