@@ -13,18 +13,19 @@
     catch { return String(url || '').includes(HISTORY_SUFFIX); }
   }
 
-  // Lichess has historically used display names for performance types. Normalise
-  // the history response so the profile page does not depend on exact casing/text.
+  // Normalise the Racing Kings history label so the profile page is not dependent
+  // on Lichess display-name casing or wording.
   window.fetch = async function (input, init) {
     const response = await ORIGINAL_FETCH(input, init);
     if (!isRatingHistory(typeof input === 'string' ? input : input?.url)) return response;
     try {
       const data = await response.clone().json();
       if (!Array.isArray(data)) return response;
-      const normalised = data.map(entry => ({
-        ...entry,
-        name: String(entry?.name || '').trim()
-      }));
+      const normalised = data.map(entry => {
+        const rawName = String(entry?.name || '').trim();
+        const isRacingKings = /racing\s*kings/i.test(rawName) || rawName.replace(/[_\s-]/g, '').toLowerCase() === 'racingkings';
+        return { ...entry, name: isRacingKings ? 'Racing Kings' : rawName };
+      });
       return new Response(JSON.stringify(normalised), {
         status: response.status,
         statusText: response.statusText,
@@ -63,7 +64,6 @@
     cutoff.setMonth(cutoff.getMonth() - months);
     const time = cutoff.getTime();
     const visible = points.filter(p => p.x >= time);
-    // Keep one point before the cutoff so the line has a meaningful starting edge.
     const before = points.filter(p => p.x < time).at(-1);
     return before ? [before, ...visible] : visible;
   }
@@ -188,9 +188,7 @@
     if (periodHookInstalled || typeof window.setPeriod !== 'function') return;
     const original = window.setPeriod;
     window.setPeriod = function (months) {
-      try {
-        rkPeriod = months;
-      } catch {}
+      try { rkPeriod = months; } catch {}
       document.querySelectorAll('.period-btn').forEach(button => {
         button.classList.toggle('active', (months === 0 && button.textContent === 'All') || (`${months}M` === button.textContent) || (months === 12 && button.textContent === '1Y'));
       });
