@@ -15,6 +15,27 @@ const supabaseClient = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
 
 window.rkSupabase = supabaseClient;
 
+function fallbackUserFromSession(session) {
+  const authUser = session?.user;
+  if (!authUser) return null;
+
+  return {
+    id: authUser.id,
+    username:
+      authUser.user_metadata?.username ||
+      authUser.user_metadata?.lichess_username ||
+      authUser.email?.split('@')[0] ||
+      'Member',
+    country: authUser.user_metadata?.country || null,
+    description: null,
+    rating: null,
+    is_admin: false,
+    created_at: authUser.created_at || null,
+    updated_at: null,
+    email: authUser.email || null
+  };
+}
+
 window.rkAuth = {
   async session() {
     const { data, error } = await supabaseClient.auth.getSession();
@@ -26,27 +47,28 @@ window.rkAuth = {
     const session = await this.session();
     if (!session) return null;
 
-    // maybeSingle() prevents a missing profile from making the global menu
-    // incorrectly treat an authenticated session as logged out.
-    const { data, error } = await supabaseClient
-      .from('profiles')
-      .select('id,username,country,description,rating,is_admin,created_at,updated_at')
-      .eq('id', session.user.id)
-      .maybeSingle();
+    // A valid Supabase session is authoritative for authentication.
+    // Start with a session-derived user so a profile-table/RLS/network
+    // problem can never make the global UI incorrectly say "Login".
+    const fallback = fallbackUserFromSession(session);
 
-    if (error) throw error;
+    try {
+      const { data, error } = await supabaseClient
+        .from('profiles')
+        .select('id,username,country,description,rating,is_admin,created_at,updated_at')
+        .eq('id', session.user.id)
+        .maybeSingle();
 
-    return data ? { ...data, email: session.user.email } : {
-      id: session.user.id,
-      username: session.user.user_metadata?.username || session.user.email?.split('@')[0] || 'Member',
-      country: null,
-      description: null,
-      rating: null,
-      is_admin: false,
-      created_at: null,
-      updated_at: null,
-      email: session.user.email
-    };
+      if (error) {
+        console.warn('Could not load site profile; keeping authenticated session:', error);
+        return fallback;
+      }
+
+      return data ? { ...fallback, ...data, email: session.user.email } : fallback;
+    } catch (error) {
+      console.warn('Could not load site profile; keeping authenticated session:', error);
+      return fallback;
+    }
   },
 
   async requireUser() {
