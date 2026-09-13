@@ -18,8 +18,6 @@ const RK_MENU_PAGES = [
   async function deps(){if(!window.supabase)await loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2');if(!window.rkSupabase||!window.rkAuth)await loadScript('js/supabase.js');}
   function logo(){ensureLogoStyle();const h=document.querySelector('header.top-bar,header,.site-header,.topbar,.navbar,.nav-bar');if(!h)return;let left=h.querySelector('.nav-left');if(!left){left=document.createElement('div');left.className='nav-left';h.prepend(left);}let a=h.querySelector('.rk-brand');if(!a){a=document.createElement('a');a.className='rk-brand';a.href='index.html';a.setAttribute('aria-label','The Racing Kings Master — Home');a.title='The Racing Kings Master — Home';a.innerHTML='<img src="Images/Home logo.png" alt="The Racing Kings Master" width="190" height="44">';}if(a.parentElement!==left)left.prepend(a);const img=a.querySelector('img');if(img){img.src='Images/Home logo.png';img.alt='The Racing Kings Master';img.width=190;img.height=44;}a.href='index.html';}
 
-  function escapeHtml(value){const d=document.createElement('div');d.textContent=value==null?'':String(value);return d.innerHTML;}
-
   async function syncHomepageTitleStats(){
     if(!window.rkSupabase||!document.getElementById('statTitled'))return;
     try{
@@ -71,6 +69,9 @@ const RK_MENU_PAGES = [
         }
       });
 
+      [...grid.querySelectorAll('.title-card .title-reqs li')].forEach(li=>{
+        if(li.innerHTML.includes('3+0 or faster'))li.innerHTML=li.innerHTML.replaceAll('3+0 or faster','3+0, 3+2, or 5+0');
+      });
       const blitzItem=[...document.querySelectorAll('.common-list li')].find(li=>li.textContent.toLowerCase().includes('blitz norms'));
       if(blitzItem)blitzItem.innerHTML='<strong>Blitz norms</strong> = tournaments using 3+0, 3+2, or 5+0 time controls';
     }catch(e){console.warn('Could not sync title holders from Supabase:',e);}
