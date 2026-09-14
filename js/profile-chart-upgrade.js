@@ -8,6 +8,40 @@
   let suppressObserver = false;
   let periodHookInstalled = false;
 
+  // The profile page's older renderer asks Chart.js for a time scale. Make that
+  // request use a plain numeric timestamp scale instead, so the graph does not
+  // depend on the external date adapter being available or initialized correctly.
+  const OriginalChart = window.Chart;
+  if (typeof OriginalChart === 'function' && !window.__rkChartWrapped) {
+    window.Chart = new Proxy(OriginalChart, {
+      construct(target, args) {
+        const config = args?.[1];
+        if (config?.options?.scales?.x?.type === 'time') {
+          const patched = {
+            ...config,
+            options: {
+              ...config.options,
+              scales: {
+                ...config.options.scales,
+                x: {
+                  ...config.options.scales.x,
+                  type: 'linear',
+                  ticks: {
+                    ...(config.options.scales.x.ticks || {}),
+                    callback: value => new Date(value).toLocaleDateString(undefined, { month: 'short', year: 'numeric' })
+                  }
+                }
+              }
+            }
+          };
+          return Reflect.construct(target, [args[0], patched]);
+        }
+        return Reflect.construct(target, args);
+      }
+    });
+    window.__rkChartWrapped = true;
+  }
+
   function isRatingHistory(url) {
     try { return new URL(url, location.href).pathname.endsWith(HISTORY_SUFFIX); }
     catch { return String(url || '').includes(HISTORY_SUFFIX); }
