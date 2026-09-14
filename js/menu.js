@@ -7,7 +7,7 @@ const RK_MENU_PAGES = [
   { slug: 'index', label: 'Home' }, { slug: 'leaderboard', label: 'Leaderboards' },
   { slug: 'hall-of-fame', label: 'Hall of Fame' }, { slug: 'titles', label: 'Titles' },
   { slug: 'players', label: 'Players' }, { slug: 'title-checker', label: 'Title Checker' },
-  { slug: 'profile', label: 'Profile' }, { slug: 'about', label: 'About' }
+  { slug: 'profile', label: 'Profile' }, { slug: 'team', label: 'Lichess Team' }, { slug: 'about', label: 'About' }
 ];
 (function setTheme(){document.documentElement.setAttribute('data-theme',localStorage.getItem('rk-theme')||'dark');})();
 (function initGlobalMenu(){
@@ -28,7 +28,6 @@ const RK_MENU_PAGES = [
     const output=document.getElementById('profileOutput');
     const titleEl=document.getElementById('siteTitlesContent');
     if(!output||!titleEl||!window.rkSupabase)return;
-
     const refreshProfileTitles=async()=>{
       const input=document.getElementById('usernameInput');
       const username=input?.value?.trim();
@@ -46,42 +45,11 @@ const RK_MENU_PAGES = [
         titleEl.innerHTML='<div class="site-titles-list">'+rows.map(row=>{const code=String(row.title||'').toUpperCase();const date=row.awarded_at?new Date(row.awarded_at).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):'';return `<span class="site-title-badge ${badgeMap[code]||'badge-veteran'}">${code}${date?`<span class="since-label">· ${date}</span>`:''}</span>`;}).join('')+'</div>';
       }catch(e){console.warn('Could not sync profile titles from Supabase:',e);}
     };
-
-    window.openApplyModal=function(){
-      const overlay=document.getElementById('applyModal'),body=document.getElementById('applyModalBody');
-      if(!overlay||!body)return;
-      const profileUser=document.getElementById('usernameInput')?.value?.trim()||'';
-      if(!user){body.innerHTML='<div class="modal-info">You need a site account to apply for a title.</div><div class="modal-actions"><button class="modal-cancel-btn" onclick="closeApplyModal()">Close</button><button class="modal-submit-btn" onclick="window.location.href=\'auth.html\'">Login / Register</button></div>';overlay.classList.remove('hidden');return;}
-      if(!profileUser||String(user.username).toLowerCase()!==profileUser.toLowerCase()){
-        body.innerHTML=`<div class="modal-info">You're logged in as <strong>${user.username}</strong>. You can only apply for your own title. Load your own profile first.</div><div class="modal-actions"><button class="modal-cancel-btn" onclick="closeApplyModal()">Close</button><button class="modal-submit-btn" onclick="document.getElementById('usernameInput').value='${String(user.username).replace(/'/g,"\\'")}';closeApplyModal();loadProfile('${String(user.username).replace(/'/g,"\\'")}')">Load My Profile</button></div>`;overlay.classList.remove('hidden');return;
-      }
-      const stats=readProfileStats();
-      const defs=[['RKSGM','Super Grandmaster',5000,2500],['RKGM','Grandmaster',5000,2400],['RKIM','International Master',3000,2300],['RKM','Master',1000,2200],['RKCM','Candidate Master',500,2100],['RKV','Veteran',10000,0]];
-      const first=defs.find(d=>stats.games>=d[2]&&(d[3]===0||stats.peakRating>=d[3]))||defs[defs.length-2];
-      overlay.classList.remove('hidden');
-      body.innerHTML=`<div class="modal-field"><label class="modal-label">Lichess Username</label><input class="modal-input" value="${profileUser.replace(/"/g,'&quot;')}" readonly /></div><div class="modal-field"><label class="modal-label">Title Applying For</label><select class="modal-select" id="applyTitleSelect" onchange="updateApplyStats()">${defs.map(d=>`<option value="${d[0]}" ${d[0]===first[0]?'selected':''}>${d[0]} — ${d[1]}</option>`).join('')}</select></div><div class="modal-stats" id="applyStatsBox"></div><div class="modal-field"><label class="modal-label">Message (optional)</label><textarea class="modal-textarea" id="applyMessage" placeholder="Any additional context for the admin…"></textarea></div><div class="modal-info">Your current Lichess stats are included automatically. Tournament norms are reviewed by an admin. RKWC and RKHM are manually awarded and are not automatic applications.</div><div id="applyFeedback" style="margin-bottom:.75rem;font-size:.84rem;display:none"></div><div class="modal-actions"><button class="modal-cancel-btn" onclick="closeApplyModal()">Cancel</button><button class="modal-submit-btn" id="applySubmitBtn" onclick="submitTitleApplication()">Submit Application</button></div>`;
-      window.updateApplyStats();
-    };
-
-    window.updateApplyStats=function(){
-      const box=document.getElementById('applyStatsBox');if(!box)return;const code=document.getElementById('applyTitleSelect')?.value;const defs={RKSGM:[5000,2500],RKGM:[5000,2400],RKIM:[3000,2300],RKM:[1000,2200],RKCM:[500,2100],RKV:[10000,0]};const def=defs[code];const stats=readProfileStats();if(!def){box.innerHTML='';return;}const gOk=stats.games>=def[0],rOk=def[1]===0||stats.peakRating>=def[1];box.innerHTML=`<div class="modal-stat-row"><span class="modal-stat-label">RK games</span><span class="modal-stat-val ${gOk?'met':'unmet'}">${stats.games.toLocaleString()} / ${def[0].toLocaleString()} ${gOk?'✓':'✗'}</span></div><div class="modal-stat-row"><span class="modal-stat-label">Peak rating</span><span class="modal-stat-val ${rOk?'met':'unmet'}">${def[1]===0?'No rating req':`${stats.peakRating} / ${def[1]} ${rOk?'✓':'✗'}`}</span></div><div class="modal-stat-row" style="margin-top:.3rem;padding-top:.3rem;border-top:1px solid var(--border)"><span class="modal-stat-label" style="font-size:.76rem">Tournament norms</span><span style="font-size:.76rem;color:var(--text-muted)">Verified by admin</span></div>`;};
-
-    window.submitTitleApplication=async function(){
-      const btn=document.getElementById('applySubmitBtn'),feedback=document.getElementById('applyFeedback'),titleCode=document.getElementById('applyTitleSelect')?.value,message=(document.getElementById('applyMessage')?.value||'').trim();
-      if(!btn||!feedback||!titleCode||!user?.id)return;
-      const stats=readProfileStats();btn.disabled=true;btn.textContent='Submitting…';feedback.style.display='none';
-      try{
-        const {data:existing,error:existingError}=await window.rkSupabase.from('title_applications').select('id').eq('user_id',user.id).eq('title_code',titleCode).eq('status','pending').limit(1);if(existingError)throw existingError;if(existing?.length)throw new Error('You already have a pending application for this title.');
-        const {error}=await window.rkSupabase.from('title_applications').insert({user_id:user.id,title_code:titleCode,message,games:stats.games,peak_rating:stats.peakRating});if(error)throw error;
-        feedback.textContent='✓ Application submitted! The admin will review it shortly.';feedback.style.color='#4ade80';feedback.style.display='block';btn.textContent='Submitted';
-      }catch(e){feedback.textContent=e.message||'Submission failed.';feedback.style.color='#f87171';feedback.style.display='block';btn.disabled=false;btn.textContent='Submit Application';}
-    };
-
+    window.openApplyModal=async function(){return;};
     if(typeof window.loadProfile==='function'&&!window.__rkProfileLoadWrapped){const originalLoadProfile=window.loadProfile;window.loadProfile=async function(...args){const result=await originalLoadProfile.apply(this,args);await refreshProfileTitles();return result;};window.__rkProfileLoadWrapped=true;}
     if(typeof window.loadProfile==='function'&&!document.getElementById('usernameInput')?.value&&user?.username)document.getElementById('usernameInput').value=user.username;
     await refreshProfileTitles();
   }
-
   function fixLegacyCheckerLinks(){document.querySelectorAll('a[href="search.html"]').forEach(a=>{a.href='title-checker.html';});}
   async function auth(){const panel=document.getElementById('menuPanel'),right=document.querySelector('.nav-right'),menuBtn=document.getElementById('menuBtn');if(!panel)return;panel.querySelector('[data-rk-auth]')?.remove();const area=document.createElement('div');area.dataset.rkAuth='true';panel.appendChild(area);let user=null;try{await deps();const s=await window.rkAuth.session();if(s)user=await window.rkAuth.user();}catch(e){console.warn(e);}let b=document.getElementById('navAuthBtn');if(!b&&right){b=document.createElement('button');b.className='icon-btn';b.id='navAuthBtn';b.type='button';right.insertBefore(b,menuBtn||null);}if(b){b.textContent=user?`👤 ${user.username}`:'Login';b.onclick=()=>location.href=user?'settings.html':'auth.html';}if(!user){area.appendChild(makeLink('Login / Register','auth.html'));return;}const info=document.createElement('div');info.style.cssText='padding:.45rem .9rem;font-size:.78rem;color:var(--text-muted)';info.textContent=`Signed in as ${user.username}`;area.appendChild(info);area.appendChild(makeLink('💬 Chat','chat.html'));area.appendChild(makeLink('⚙ Settings','settings.html'));if(user.is_admin){area.appendChild(makeLink('🛡 Admin Panel','admin.html'));area.appendChild(makeLink('🎯 Player Specific Training','player-specific-training.html?route=player-stats'));}const out=document.createElement('button');out.className='icon-btn';out.style.cssText='margin:.4rem;width:calc(100% - .8rem);justify-content:flex-start';out.textContent='Logout';out.onclick=async()=>{await window.rkSupabase.auth.signOut();location.href='index.html';};area.appendChild(out);}
   async function init(){logo();const panel=document.getElementById('menuPanel'),btn=document.getElementById('menuBtn');if(!panel||!btn)return;panel.innerHTML='';RK_MENU_PAGES.forEach(p=>panel.appendChild(makeLink(p.label,pageUrl(p.slug))));await auth();fixLegacyCheckerLinks();await syncHomepageTitleStats();await syncTitlesPage();await syncProfilePage(await window.rkAuth.user().catch(()=>null));btn.onclick=e=>{e.stopPropagation();panel.classList.toggle('open');};document.addEventListener('click',e=>{if(!panel.contains(e.target)&&!btn.contains(e.target))panel.classList.remove('open');});if(!window.rkSupabase)await deps();await loadScript('js/notifications.js');if(window.rkSupabase)window.rkSupabase.auth.onAuthStateChange(()=>setTimeout(auth,0));}
