@@ -17,32 +17,36 @@ RK_TITLE_RULES.isBlitzControl = clock => RK_TITLE_RULES.universal.blitzControls.
 RK_TITLE_RULES.get = code => RK_TITLE_RULES.titles[String(code || '').trim().toUpperCase()] || null;
 window.RK_TITLE_RULES = RK_TITLE_RULES;
 
-// Compatibility bridge for the profile application UI. The title data above
-// remains the canonical source of truth; this keeps the application modal in
-// sync with the same rules used by the profile eligibility section.
+// Compatibility bridge for the profile application UI.
 (function bridgeTitleApplicationRules(){
   if(window.__rkCanonicalApplicationBridge)return;
   window.__rkCanonicalApplicationBridge=true;
 
   const esc=v=>String(v??'').replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]));
+
+  // IMPORTANT: use the actual stats object produced by profile.js. Do not
+  // scrape the rendered stats card, because formatting/UI text can change and
+  // can turn a valid game count into 0 or another incorrect value.
   const getStats=()=>{
-    const rows=[...document.querySelectorAll('#statsGrid .stat-item')];
-    const get=labels=>{
-      const list=Array.isArray(labels)?labels:[labels];
-      const row=rows.find(r=>list.includes(r.querySelector('.stat-label')?.textContent?.trim().toLowerCase()));
-      return row?.querySelector('.stat-value')?.textContent?.replace(/[^0-9.-]/g,'')||'';
+    const s=window.rkProfile?.stats;
+    return {
+      games:Number(s?.games)||0,
+      peakRating:Number(s?.peak)||0
     };
-    return {games:Number(get(['rated rk games','total games']))||0,peakRating:Number(get('peak rating'))||0};
   };
+
   const eligibleDefs=()=>{
     const stats=getStats();
     return RK_TITLE_RULES.order
-      .filter(code=>{const d=RK_TITLE_RULES.get(code);return d&&!d.adminAwarded&&!d.recognitionOnly&&stats.games>=d.ratedGames&&(d.rating==null||stats.peakRating>=d.rating);})
+      .filter(code=>{
+        const d=RK_TITLE_RULES.get(code);
+        return d&&!d.adminAwarded&&!d.recognitionOnly&&
+          stats.games>=d.ratedGames&&
+          (d.rating==null||stats.peakRating>=d.rating);
+      })
       .map(code=>RK_TITLE_RULES.get(code));
   };
 
-  // Make the two profile actions read as primary/secondary controls instead of
-  // muted outline links, without affecting other buttons site-wide.
   const addProfileButtonStyles=()=>{
     if(document.getElementById('rk-profile-action-styles'))return;
     const style=document.createElement('style');
@@ -85,7 +89,8 @@ window.RK_TITLE_RULES = RK_TITLE_RULES;
 
       const defs=eligibleDefs();
       if(!defs.length){
-        body.innerHTML='<div class="modal-info">You currently meet the games and rating requirements for none of the application-based titles. Tournament norms are checked separately.</div><div class="modal-actions"><button class="modal-cancel-btn" onclick="closeApplyModal()">Close</button></div>';
+        const s=getStats();
+        body.innerHTML=`<div class="modal-info">You currently meet the games and rating requirements for none of the application-based titles.</div><div class="modal-info" style="margin-top:.5rem">Current rated Racing Kings games: <strong>${s.games.toLocaleString()}</strong><br>Peak Racing Kings rating: <strong>${s.peakRating||'N/A'}</strong></div><div class="modal-actions"><button class="modal-cancel-btn" onclick="closeApplyModal()">Close</button></div>`;
         overlay.classList.remove('hidden');
         return;
       }
@@ -101,7 +106,10 @@ window.RK_TITLE_RULES = RK_TITLE_RULES;
       const code=document.getElementById('applyTitleSelect')?.value;
       const d=RK_TITLE_RULES.get(code);
       if(!d){box.innerHTML='';return;}
-      const stats=getStats(),gOk=stats.games>=d.ratedGames,rOk=d.rating==null||stats.peakRating>=d.rating,baseOk=gOk&&rOk;
+      const stats=getStats();
+      const gOk=stats.games>=d.ratedGames;
+      const rOk=d.rating==null||stats.peakRating>=d.rating;
+      const baseOk=gOk&&rOk;
       box.innerHTML=`<div class="modal-stat-row"><span class="modal-stat-label">Rated RK games</span><span class="modal-stat-val ${gOk?'met':'unmet'}">${stats.games.toLocaleString()} / ${d.ratedGames.toLocaleString()} ${gOk?'✓':'✗'}</span></div><div class="modal-stat-row"><span class="modal-stat-label">Peak rating</span><span class="modal-stat-val ${rOk?'met':'unmet'}">${d.rating==null?'No rating requirement':`${stats.peakRating} / ${d.rating} ${rOk?'✓':'✗'}`}</span></div><div class="modal-stat-row" style="margin-top:.3rem;padding-top:.3rem;border-top:1px solid var(--border)"><span class="modal-stat-label" style="font-size:.76rem">Tournament norms</span><span style="font-size:.76rem;color:var(--text-muted)">Verified by admin</span></div>`;
       const submit=document.getElementById('applySubmitBtn');
       if(submit)submit.disabled=!baseOk;
