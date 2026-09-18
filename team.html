@@ -20,7 +20,6 @@
   <section class="team-note"><span>↻</span><p>Statistics on this page are read directly from the public Lichess API. Ratings can change whenever players play on Lichess.</p></section>
 </main>
 <script src="js/menu.js"></script>
-<script>new MutationObserver(()=>{const p=document.getElementById('menuPanel');if(p&&!p.querySelector('[data-team-link]')){const a=document.createElement('a');a.href='team.html';a.textContent='Lichess Team';a.dataset.teamLink='true';p.appendChild(a)}}).observe(document.getElementById('menuPanel'),{childList:true,subtree:true});</script>
 <script src="js/team.js"></script>
 </body>
 </html>
