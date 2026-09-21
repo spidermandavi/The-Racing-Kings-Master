@@ -4,6 +4,13 @@
   let currentUserId = null;
   let initialized = false;
 
+  const TYPE_LABELS = {
+    news: 'New article',
+    message: 'New message',
+    title_application: 'Title application',
+    title_awarded: 'Title awarded'
+  };
+
   function ensureStyles() {
     if (document.getElementById('rkNotificationStyles')) return;
     const link = document.createElement('link');
@@ -33,7 +40,7 @@
   function render(items) {
     const badge=document.getElementById('notificationBadge'), list=document.getElementById('notificationList'); if(!badge||!list)return;
     const unread=items.filter(n=>!n.read).length; badge.textContent=unread>99?'99+':unread; badge.hidden=!unread;
-    list.innerHTML=items.length?items.map(n=>`<button type="button" class="notification-item ${n.read?'':'unread'}" data-notification-id="${esc(n.id)}" data-link="${esc(n.link||'')}"><span class="notification-title">${esc(n.title||n.type||'Notification')}</span>${n.body?`<span class="notification-body">${esc(n.body)}</span>`:''}<span class="notification-time">${timeAgo(n.created_at)}</span></button>`).join(''):'<div class="notification-empty">No notifications yet.</div>';
+    list.innerHTML=items.length?items.map(n=>`<button type="button" class="notification-item ${n.read?'':'unread'}" data-notification-id="${esc(n.id)}" data-link="${esc(n.link||'')}"><span class="notification-title">${esc(TYPE_LABELS[n.type]||n.title||n.type||'Notification')}</span>${n.body?`<span class="notification-body">${esc(n.body)}</span>`:''}<span class="notification-time">${timeAgo(n.created_at)}</span></button>`).join(''):'<div class="notification-empty">No notifications yet.</div>';
   }
 
   async function loadNotifications() {
@@ -43,7 +50,12 @@
   }
   async function markRead(id){if(!id||!window.rkSupabase)return;await window.rkSupabase.from('notifications').update({read:true}).eq('id',id).eq('user_id',currentUserId);await loadNotifications();}
   async function markAllRead(){if(!window.rkSupabase||!currentUserId)return;await window.rkSupabase.from('notifications').update({read:true}).eq('user_id',currentUserId).eq('read',false);await loadNotifications();}
-  function subscribe(){if(channel||!window.rkSupabase||!currentUserId)return;channel=window.rkSupabase.channel(`rk-notifications-${currentUserId}`).on('postgres_changes',{event:'*',schema:'public',table:'notifications',filter:`user_id=eq.${currentUserId}`},loadNotifications).subscribe();}
+  function subscribe(){
+    if(channel||!window.rkSupabase||!currentUserId)return;
+    channel=window.rkSupabase.channel(`rk-notifications-${currentUserId}`)
+      .on('postgres_changes',{event:'*',schema:'public',table:'notifications',filter:`user_id=eq.${currentUserId}`},loadNotifications)
+      .subscribe(status=>{ if(status==='CHANNEL_ERROR'||status==='TIMED_OUT'){console.warn('Notification realtime subscription failed:',status);channel=null;} });
+  }
   async function syncUser(){ensureUI();const {data:{session}}=await window.rkSupabase.auth.getSession();const id=session?.user?.id||null;if(channel&&id!==currentUserId){window.rkSupabase.removeChannel(channel);channel=null;}currentUserId=id;if(id){await loadNotifications();subscribe();}else render([]);}
   async function init(){if(initialized)return;initialized=true;ensureUI();if(!window.rkSupabase)return;await syncUser();window.rkSupabase.auth.onAuthStateChange(()=>setTimeout(syncUser,0));}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
