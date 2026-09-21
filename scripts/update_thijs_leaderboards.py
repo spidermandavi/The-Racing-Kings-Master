@@ -196,11 +196,14 @@ def main():
                 views[metric] = []
 
     now = datetime.now(timezone.utc).isoformat()
+    fully_successful = len(successful) == len(SOURCES)
     data = {
         "thijsSource": "https://lichess.thijs.com",
         "variant": "Racing Kings",
         "updatedAt": now,
-        "lastSuccessfulUpdate": now if successful else existing.get("lastSuccessfulUpdate"),
+        "lastAttemptedUpdate": now,
+        "lastSuccessfulUpdate": now if fully_successful else existing.get("lastSuccessfulUpdate"),
+        "health": "healthy" if fully_successful else ("partial" if successful else "stale"),
         "successfulMetrics": successful,
         "views": views,
         "errors": errors,
