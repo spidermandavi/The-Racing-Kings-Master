@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-09-21T13:10:18.098049+00:00",
-  "lastSuccessfulUpdate": "2026-09-21T13:10:18.098049+00:00",
+  "updatedAt": "2026-09-21T13:11:15.819894+00:00",
+  "lastSuccessfulUpdate": "2026-09-21T13:11:15.819894+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
