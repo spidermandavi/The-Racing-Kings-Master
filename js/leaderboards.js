@@ -6,7 +6,7 @@
    ============================================================ */
 
 const TOP_PLAYERS_DATA_URL = 'json/lichess-top-players.json';
-const THIJS_DATA_URL = 'json/thijs-leaderboards.json';
+const THIJS_DATA_URL = 'json/thijs-leaderboards.json';\nconst PEAK_RATING_DATA_URL = 'json/peak-lichess-ratings.json';
 const TOP_RATING_URL = 'https://lichess.org/player/top/racingKings';
 
 const ratingBoard = document.getElementById('ratingBoard');
@@ -179,6 +179,43 @@ function normalizeSnapshotRows(rows, metric) {
     Number.isFinite(Number(row.value)) &&
     (metric !== 'trophies' || /gold.*silver.*bronze/i.test(row.meta))
   ).sort((a, b) => Number(b.value) - Number(a.value));
+}
+
+async function loadPeakRatings() {
+  try {
+    const response = await fetch(PEAK_RATING_DATA_URL, {
+      headers: { Accept: 'application/json' },
+      cache: 'no-store'
+    });
+
+    if (!response.ok) throw new Error(`Peak-rating snapshot returned ${response.status}`);
+
+    const data = await response.json();
+    const players = Array.isArray(data?.players) ? data.players.slice(0, 20) : [];
+
+    if (!players.length) throw new Error('Peak-rating snapshot is empty');
+
+    renderRows(
+      peakBoard,
+      players.map(player => ({
+        username: player.username,
+        value: player.peakRating,
+        meta: 'Google Sheets'
+      })),
+      'peak rating'
+    );
+
+    const link = document.querySelector('[data-board="peak"] .board-link');
+    if (link) {
+      const sourceUrl = data.spreadsheetUrl || 'https://docs.google.com/spreadsheets/d/1HFcPCSp_31L8KgwjkNeyHHDwNMJ7gdB_fk6LU1z608o/edit';
+      link.innerHTML = `<a href="${sourceUrl}" target="_blank" rel="noopener noreferrer">Google Sheets ↗</a>`;
+    }
+  } catch (error) {
+    console.warn('Peak Lichess rating snapshot is not available:', error);
+    if (peakBoard) {
+      setBoardMessage(peakBoard, 'Peak-rating data is waiting for the first successful Google Sheets refresh.', 'error');
+    }
+  }
 }
 
 async function loadThijsBoards() {
