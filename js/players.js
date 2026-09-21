@@ -324,46 +324,75 @@
     return titleMap;
   }
 
+  function formatSnapshotTime(value) {
+    if (!value) return 'unknown';
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return value;
+    return date.toLocaleString(undefined, {
+      dateStyle: 'medium',
+      timeStyle: 'short'
+    });
+  }
+
   async function loadPlayers() {
-    statusEl.textContent = 'Loading the live Lichess top 10…';
+    statusEl.textContent = 'Loading the automatic top 20 snapshot…';
     clearList(playersList);
 
     try {
-      const titleMap = await buildTitleMap();
-      const response = await fetch('https://lichess.org/api/player/top/10/racingKings', {
+      const snapshotResponse = await fetch('json/lichess-top-players.json', {
+        cache: 'no-store',
         headers: { Accept: 'application/json' }
       });
 
-      if (!response.ok) throw new Error('Failed to load the Racing Kings leaderboard.');
+      if (!snapshotResponse.ok) {
+        throw new Error('The cached Racing Kings leaderboard could not be loaded.');
+      }
 
-      const data = await response.json();
-      const users = data.users || [];
+      const snapshot = await snapshotResponse.json();
+      const users = Array.isArray(snapshot.players) ? snapshot.players.slice(0, 20) : [];
 
-      topUsers = await Promise.all(
-        users.map(async (user) => {
-          const [detail, perf] = await Promise.all([
-            fetchLichessUser(user.id),
-            Promise.resolve(user)
-          ]);
+      if (users.length === 0) {
+        throw new Error('The cached Racing Kings leaderboard is empty.');
+      }
 
+      // Scheduled snapshots are complete. Only the initial/legacy seed needs
+      // live enrichment while the first automatic refresh is being installed.
+      const needsEnrichment = users.some((user) =>
+        !user?.rkPerfCount ||
+        user.rkPerfCount.all == null ||
+        user.rkHighestRating == null
+      );
+
+      if (needsEnrichment) {
+        topUsers = await Promise.all(users.map(async (user) => {
+          const detail = await fetchLichessUser(user.username || user.id);
           return {
             ...user,
             ...detail,
-            rkPerfCount: detail.rkPerfCount,
-            rkHighestRating: detail.rkHighestRating
+            id: user.id || detail.id || user.username,
+            username: user.username || detail.username,
+            title: user.title ?? detail.title,
+            perfs: user.perfs || detail.perfs
           };
-        })
-      );
+        }));
+      } else {
+        topUsers = users;
+      }
 
+      const titleMap = await buildTitleMap();
       topUsers = mergeSiteTitles(topUsers, titleMap);
 
       topUsers.forEach((user, index) => renderTopPlayer(user, index));
       renderStatusCount(topCountEl, topUsers.length, topUsers.length === 1 ? 'player' : 'players');
-      statusEl.textContent = 'Live Racing Kings leaderboard from Lichess';
+
+      const snapshotDate = formatSnapshotTime(snapshot.updatedAt);
+      statusEl.textContent = snapshot.health === 'healthy'
+        ? 'Automatically updated from Lichess · Last update: ' + snapshotDate
+        : 'Automatically updated from Lichess · Snapshot has a refresh warning · Last update: ' + snapshotDate;
     } catch (error) {
-      console.warn('Could not load top players:', error);
-      playersList.innerHTML = '<p class="section-empty">The live leaderboard could not be loaded right now.</p>';
-      statusEl.textContent = 'Leaderboard unavailable.';
+      console.warn('Could not load automatic top players:', error);
+      playersList.innerHTML = '<p class="section-empty">The automatic leaderboard snapshot could not be loaded right now.</p>';
+      statusEl.textContent = 'Leaderboard snapshot unavailable.';
       renderStatusCount(topCountEl, 0, 'players');
     }
   }
