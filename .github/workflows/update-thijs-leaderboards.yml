@@ -7,7 +7,7 @@ on:
   push:
     paths:
       - 'scripts/update_thijs_leaderboards.py'
-      - 'scripts/update_lichess_top_players.py'
+      - 'scripts/update_lichess_top_players.py'\n      - 'scripts/update_peak_lichess_ratings.py'
       - '.github/workflows/update-thijs-leaderboards.yml'
 
 permissions:
@@ -31,11 +31,11 @@ jobs:
       - name: Update Lichess top 20 players
         run: python3 scripts/update_lichess_top_players.py
 
-      - name: Commit changed snapshots
+      - name: Update peak Lichess ratings from Google Sheets\n        run: python3 scripts/update_peak_lichess_ratings.py\n\n      - name: Commit changed snapshots
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add json/thijs-leaderboards.json json/lichess-top-players.json
+          git add json/thijs-leaderboards.json json/lichess-top-players.json json/peak-lichess-ratings.json
           git diff --cached --quiet || git commit -m "Update Racing Kings data"
           git pull --rebase origin main
           git push
@@ -69,5 +69,5 @@ jobs:
               print("\n".join("::warning::" + item for item in failures))
               raise SystemExit(1)
 
-          print("Racing Kings data refresh is healthy: 5 Thijs datasets + 20 Lichess top players.")
+          print("Racing Kings data refresh is healthy: 5 Thijs datasets + 20 Lichess top players + peak-rating sheet snapshot.")
           PY
