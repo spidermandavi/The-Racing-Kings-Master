@@ -6,7 +6,8 @@
    ============================================================ */
 
 const TOP_PLAYERS_DATA_URL = 'json/lichess-top-players.json';
-const THIJS_DATA_URL = 'json/thijs-leaderboards.json';\nconst PEAK_RATING_DATA_URL = 'json/peak-lichess-ratings.json';
+const THIJS_DATA_URL = 'json/thijs-leaderboards.json';
+const PEAK_RATING_DATA_URL = 'json/peak-lichess-ratings.json';
 const TOP_RATING_URL = 'https://lichess.org/player/top/racingKings';
 
 const ratingBoard = document.getElementById('ratingBoard');
@@ -15,6 +16,7 @@ const pointsBoard = document.getElementById('pointsBoard');
 const maximumBoard = document.getElementById('maximumBoard');
 const eventsBoard = document.getElementById('eventsBoard');
 const shieldBoard = document.getElementById('shieldBoard');
+const peakBoard = document.getElementById('peakBoard');
 const victoriesBoard = document.getElementById('victoriesBoard');
 
 function escapeHtml(value) {
@@ -271,5 +273,6 @@ async function loadThijsBoards() {
 Promise.allSettled([
   loadRatings(),
   loadTitles(),
+  loadPeakRatings(),
   loadThijsBoards()
 ]);
