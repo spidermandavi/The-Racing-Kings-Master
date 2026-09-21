@@ -7,7 +7,8 @@ on:
   push:
     paths:
       - 'scripts/update_thijs_leaderboards.py'
-      - 'scripts/update_lichess_top_players.py'\n      - 'scripts/update_peak_lichess_ratings.py'
+      - 'scripts/update_lichess_top_players.py'
+      - 'scripts/update_peak_lichess_ratings.py'
       - '.github/workflows/update-thijs-leaderboards.yml'
 
 permissions:
@@ -25,13 +26,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Update Thijs tournament leaderboards
         run: python3 scripts/update_thijs_leaderboards.py
 
       - name: Update Lichess top 20 players
         run: python3 scripts/update_lichess_top_players.py
 
-      - name: Update peak Lichess ratings from Google Sheets\n        run: python3 scripts/update_peak_lichess_ratings.py\n\n      - name: Commit changed snapshots
+      - name: Update peak Lichess ratings from Google Sheets
+        run: python3 scripts/update_peak_lichess_ratings.py
+
+      - name: Commit changed snapshots
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -64,6 +69,12 @@ jobs:
               failures.append(f"Lichess top-player snapshot has {len(top.get('players', []))} players; expected 20")
           if top.get("errors"):
               failures.append("Lichess player errors: " + "; ".join(f"{k}: {v}" for k, v in top["errors"].items()))
+
+          peak = json.loads(Path("json/peak-lichess-ratings.json").read_text(encoding="utf-8"))
+          if peak.get("health") == "error":
+              failures.append("Peak Lichess rating sheet refresh failed.")
+          if not peak.get("players"):
+              failures.append("Peak Lichess rating snapshot contains no players.")
 
           if failures:
               print("\n".join("::warning::" + item for item in failures))
