@@ -179,6 +179,9 @@ def parse_trophy_table(html, metric):
 
 
 def parse_table(html, metric):
+    if metric in ("victories", "trophies"):
+        return parse_trophy_table(html, metric)
+
     tables = re.findall(r"<table\b[^>]*>([\s\S]*?)</table>", html, re.I)
     if not tables:
         raise RuntimeError(f"No table found for {metric}")
