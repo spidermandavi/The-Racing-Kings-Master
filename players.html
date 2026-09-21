@@ -3,248 +3,97 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Racing Kings Master - Players</title>
+  <title>The Racing Kings Master — Players</title>
   <link rel="stylesheet" href="css/global.css">
-  
+  <link rel="stylesheet" href="css/players.css">
 </head>
 <body>
 
 <header class="top-bar">
   <div class="nav-left"></div>
-
   <div class="nav-right">
-    <button class="icon-btn" id="menuBtn">☰ Menu</button>
+    <button class="icon-btn" id="menuBtn" aria-label="Open menu">☰ Menu</button>
   </div>
 </header>
 
-<nav id="menuPanel" class="menu-panel"></nav>
-  
-  <main class="players-main">
-<section class="card">
-    <h1>Players</h1>
-    <p id="status">Loading top Racing Kings players from Lichess…</p>
-    <div class="search-bar">
-      <input type="search" id="playerSearch" placeholder="Search any Lichess username…" autocomplete="off" />
-      <button class="btn" id="searchBtn" type="button">Search</button>
+<nav id="menuPanel" class="menu-panel" aria-label="Quick Menu"></nav>
+
+<main class="players-page">
+  <section class="players-hero">
+    <div>
+      <span class="eyebrow">RACING KINGS DIRECTORY</span>
+      <h1>Players</h1>
+      <p>Follow the strongest competitors and discover the players who hold official Racing Kings Master titles.</p>
     </div>
-    <div id="playersList"></div>
-    <p><a href="index.html">← Back to Home</a></p>
+    <div class="hero-stat">
+      <span>LIVE</span>
+      <strong>Lichess</strong>
+      <small>Top rankings update automatically</small>
+    </div>
   </section>
-  <script>
-  const playersList = document.getElementById("playersList");
-  const statusEl = document.getElementById("status");
-  const searchInput = document.getElementById("playerSearch");
 
-  let enrichedUsersCache = [];
-  const searchBtn = document.getElementById("searchBtn");
+  <nav class="player-category-nav" aria-label="Player categories">
+    <a href="#top-players" class="category-link active">
+      <span class="category-icon">♛</span>
+      <span>
+        <strong>Top Players</strong>
+        <small>Live Lichess ranking</small>
+      </span>
+    </a>
+    <a href="#titled-players" class="category-link">
+      <span class="category-icon">✦</span>
+      <span>
+        <strong>Titled Players</strong>
+        <small>Official site title holders</small>
+      </span>
+    </a>
+  </nav>
 
-  function escapeHtml(text) {
-    const div = document.createElement("div");
-    div.textContent = text;
-    return div.innerHTML;
-  }
-
-  searchInput.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") searchUser(searchInput.value.trim());
-  });
-
-  searchBtn.addEventListener("click", () => {
-    searchUser(searchInput.value.trim());
-  });
-
-  searchInput.addEventListener("input", () => {
-    if (!searchInput.value.trim()) loadPlayers();
-  });
-
-  async function searchUser(rawUsername) {
-    const username = rawUsername.trim();
-    if (!username) { loadPlayers(); return; }
-
-    statusEl.textContent = `Searching Lichess for ${username}…`;
-    playersList.innerHTML = "";
-
-    try {
-      const [detailRes, perfRes] = await Promise.all([
-        fetch(`https://lichess.org/api/user/${encodeURIComponent(username)}`, {
-          headers: { Accept: "application/json" }
-        }),
-        fetch(`https://lichess.org/api/user/${encodeURIComponent(username)}/perf/racingKings`, {
-          headers: { Accept: "application/json" }
-        })
-      ]);
-
-      if (!detailRes.ok) {
-        throw new Error(detailRes.status === 404 ? "Player not found on Lichess." : "Failed to look up player.");
-      }
-
-      const detail = await detailRes.json();
-      const perf = perfRes.ok ? await perfRes.json() : {};
-      const user = {
-        ...detail,
-        rkPerfCount: perf.stat?.count || {},
-        rkHighestRating: perf.stat?.highest?.int ?? null
-      };
-
-      renderPlayer(user, 0, true);
-      statusEl.textContent = `Showing Lichess user ${user.username || user.id}.`;
-    } catch (error) {
-      statusEl.textContent = error.message || "Search failed.";
-      playersList.innerHTML = `<p class="no-results">Could not find “${escapeHtml(username)}” on Lichess.</p>`;
-    }
-  }
-
-  // ===== BUTTONS / FOOTER ACTIONS =====
-  const backLink = document.querySelector('a[href="index.html"]');
-  if (backLink) {
-    backLink.classList.add("btn");
-    const backWrap = backLink.parentElement;
-    if (backWrap) backWrap.classList.add("players-actions");
-  }
-
-  const top200Link = document.createElement("a");
-  top200Link.className = "btn";
-  top200Link.href = "https://lichess.org/player/top/200/racingKings";
-  top200Link.target = "_blank";
-  top200Link.rel = "noopener noreferrer";
-  top200Link.textContent = "See Top 200 on Lichess";
-
-  const top200Wrap = document.createElement("div");
-  top200Wrap.className = "players-actions";
-  top200Wrap.appendChild(top200Link);
-
-  playersList.insertAdjacentElement("afterend", top200Wrap);
-
-  // ===== HELPERS =====
-  function formatPercent(value) {
-    if (!Number.isFinite(value)) return "N/A";
-    return `${value.toFixed(1)}%`;
-  }
-
-  function getSiteTitle(user) {
-    return user.profile?.rkSiteTitle || "None";
-  }
-
-  function renderPlayer(user, index, isSearchResult = false) {
-    const rk = user.perfs?.racingKings || {};
-    const rkCount = user.rkPerfCount || {};
-
-    const games = rkCount.all ?? rk.games ?? 0;
-    const wins = rkCount.win ?? 0;
-    const winRate = games ? (wins / games) * 100 : Number.NaN;
-
-    const rating = rk.rating ?? "N/A";
-    const highest = user.rkHighestRating ?? rk?.highest?.int ?? rating ?? "N/A";
-
-    const row = document.createElement("article");
-    row.className = "player-row";
-
-    const username = user.username || user.id || "Unknown";
-    const lichessTitle = user.title || "None";
-    const siteTitle = getSiteTitle(user);
-
-    row.dataset.username = username;
-    row.dataset.lichessTitle = lichessTitle;
-    row.dataset.siteTitle = siteTitle;
-
-    const rankLabel = isSearchResult ? "" : `${index + 1}. `;
-
-    row.innerHTML = `
-      <div class="row-top">
-        <span>${rankLabel}<a class="player-link" href="#">${escapeHtml(username)}</a></span>
-        <span class="rating">${rating}</span>
+  <section class="player-section" id="top-players">
+    <div class="section-heading">
+      <div>
+        <span class="section-kicker">01 · COMPETITIVE RANKING</span>
+        <h2>Top Players</h2>
+        <p id="status">Loading the live Lichess top 10…</p>
       </div>
+      <span class="section-count" id="topCount">— players</span>
+    </div>
 
-      <div class="player-details">
-        <ul>
-          <li><strong>Lichess title:</strong> ${lichessTitle}</li>
-          <li><strong>Site title:</strong> ${siteTitle}</li>
-          <li><strong>Racing Kings games:</strong> ${games}</li>
-          <li><strong>Winrate:</strong> ${formatPercent(winRate)}</li>
-          <li><strong>Highest rating:</strong> ${highest}</li>
-        </ul>
+    <div class="search-bar player-search">
+      <input type="search" id="playerSearch" placeholder="Search any Lichess username…" autocomplete="off" />
+      <button class="btn btn-accent" id="searchBtn" type="button">Search</button>
+    </div>
 
-        <div class="detail-actions">
-          <a class="btn" href="profile.html?u=${encodeURIComponent(username)}">View Profile</a>
-          <a class="btn"
-             href="https://lichess.org/@/${encodeURIComponent(username)}"
-             target="_blank"
-             rel="noopener noreferrer">
-             Lichess Profile
-          </a>
-        </div>
+    <div id="playersList" class="players-list"></div>
+
+    <div class="section-footer">
+      <a class="btn" href="https://lichess.org/player/top/200/racingKings" target="_blank" rel="noopener noreferrer">
+        View Top 200 on Lichess <span>↗</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="player-section titled-section" id="titled-players">
+    <div class="section-heading">
+      <div>
+        <span class="section-kicker">02 · OFFICIAL RECOGNITION</span>
+        <h2>Titled Players</h2>
+        <p id="titledStatus">Loading official title holders…</p>
       </div>
-    `;
+      <span class="section-count section-count-gold" id="titledCount">— titled players</span>
+    </div>
 
-    const link = row.querySelector(".player-link");
-    const details = row.querySelector(".player-details");
+    <div id="titledPlayersList" class="titled-grid"></div>
+  </section>
 
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-      details.classList.toggle("open");
-    });
-
-    playersList.appendChild(row);
-  }
-
-
-  // ===== MAIN LOADING =====
-  async function loadPlayers() {
-    try {
-      statusEl.textContent = "Loading top Racing Kings players...";
-
-      const topRes = await fetch("https://lichess.org/api/player/top/10/racingKings", {
-        headers: { Accept: "application/json" }
-      });
-
-      if (!topRes.ok) {
-        throw new Error("Failed to load leaderboard.");
-      }
-
-      const topData = await topRes.json();
-      const users = topData.users || [];
-
-      const enrichedUsers = await Promise.all(
-        users.map(async (u) => {
-          const [detailRes, perfRes] = await Promise.all([
-            fetch(`https://lichess.org/api/user/${encodeURIComponent(u.id)}`, {
-              headers: { Accept: "application/json" }
-            }),
-            fetch(`https://lichess.org/api/user/${encodeURIComponent(u.id)}/perf/racingKings`, {
-              headers: { Accept: "application/json" }
-            })
-          ]);
-
-          let detail = {};
-          let perf = {};
-
-          if (detailRes.ok) detail = await detailRes.json();
-          if (perfRes.ok) perf = await perfRes.json();
-
-          return {
-            ...u,
-            ...detail,
-            rkPerfCount: perf.stat?.count || {},
-            rkHighestRating: perf.stat?.highest?.int ?? null
-          };
-        })
-      );
-
-      playersList.innerHTML = "";
-
-      enrichedUsers.forEach((user, index) => {
-        renderPlayer(user, index);
-      });
-
-      statusEl.textContent = "Top 10 Racing Kings players loaded.";
-    } catch (error) {
-      statusEl.textContent = error.message || "Failed to load players.";
-    }
-  }
-
-  loadPlayers();
-</script>
-
+  <div class="players-back">
+    <a href="index.html">← Back to Home</a>
+  </div>
 </main>
-  <script src="js/menu.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+<script src="js/players.js"></script>
+<script src="js/menu.js"></script>
 </body>
 </html>
