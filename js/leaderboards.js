@@ -15,6 +15,7 @@ const pointsBoard = document.getElementById('pointsBoard');
 const maximumBoard = document.getElementById('maximumBoard');
 const eventsBoard = document.getElementById('eventsBoard');
 const shieldBoard = document.getElementById('shieldBoard');
+const victoriesBoard = document.getElementById('victoriesBoard');
 
 function escapeHtml(value) {
   const div = document.createElement('div');
@@ -175,7 +176,8 @@ function normalizeSnapshotRows(rows, metric) {
     row.username &&
     row.value != null &&
     row.metric === metric &&
-    Number.isFinite(Number(row.value))
+    Number.isFinite(Number(row.value)) &&
+    (metric !== 'trophies' || /gold.*silver.*bronze/i.test(row.meta))
   ).sort((a, b) => Number(b.value) - Number(a.value));
 }
 
@@ -193,6 +195,7 @@ async function loadThijsBoards() {
 
     const boards = [
       { key: 'points', container: pointsBoard, label: 'points' },
+      { key: 'victories', container: victoriesBoard, label: 'wins' },
       { key: 'maximum', container: maximumBoard, label: 'score' },
       { key: 'events', container: eventsBoard, label: 'events' },
       { key: 'trophies', container: shieldBoard, label: 'trophies' }
