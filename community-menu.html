@@ -11,13 +11,14 @@
 <body>
 <header class="top-bar"><div class="nav-left"><a class="rk-brand" href="index.html" aria-label="The Racing Kings Master — Home"></a></div><div class="nav-right"><button class="icon-btn" id="menuBtn" aria-label="Open menu">☰ Menu</button></div></header>
 <nav id="menuPanel" class="menu-panel" aria-label="Site menu"></nav>
-<main class="category-main">
+<main class="category-main" data-menu-category="community-menu">
   <section class="category-hero"><span class="category-eyebrow">♛ Category</span><h1 class="category-title">Community</h1><p class="category-description">Connect with the Racing Kings community and learn more about The Racing Kings Master.</p></section>
   
-  <section class="category-grid" aria-label="Community options"><a class="category-card" href="team.html"><span class="category-card-icon">👥</span><h2>Lichess Team</h2><p>Visit the Racing Kings Master team and view its live community statistics.</p><span class="category-card-arrow">→</span></a><a class="category-card" href="about.html"><span class="category-card-icon">ℹ</span><h2>About</h2><p>Learn what the project is, how it works, and where it is heading.</p><span class="category-card-arrow">→</span></a></section>
+  <section id="categoryOptions" class="category-grid" aria-label="Community options"></section>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/supabase.js"></script>
 <script src="js/menu.js"></script>
+<script src="js/menu-category.js"></script>
 </body>
 </html>
