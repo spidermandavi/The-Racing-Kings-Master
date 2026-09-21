@@ -16,6 +16,7 @@ from urllib.request import Request, urlopen
 
 SOURCES = {
     "points": "https://lichess.thijs.com/rankings/racingkings/all/list_players_points.html",
+    "victories": "https://lichess.thijs.com/rankings/racingkings/all/list_players_points.html",
     "maximum": "https://lichess.thijs.com/rankings/racingkings/all/list_players_maximum.html",
     "events": "https://lichess.thijs.com/rankings/racingkings/all/list_players_events.html",
     "trophies": "https://lichess.thijs.com/rankings/racingkings/shield/list_players_trophies.html",
@@ -25,6 +26,7 @@ SOURCES = {
 # and removing punctuation/extra spaces.
 HEADER_ALIASES = {
     "points": ("total points", "points", "point"),
+    "victories": ("total points", "points", "point"),
     "maximum": ("maximum", "max", "highest score", "best score"),
     "events": ("total events", "events", "event", "tournaments", "tournament"),
     "trophies": ("trophies", "trophy", "shield trophies", "shields", "shield wins"),
@@ -109,6 +111,71 @@ def find_index(headers, aliases):
             if header == alias or alias in header:
                 return index
     return None
+
+
+def parse_trophy_table(html, metric):
+    """Parse the three trophy columns (gold, silver, bronze).
+
+    Thijs labels these columns with repeated 'g' headers, so the normal
+    semantic-column parser cannot reliably identify the requested value.
+    For tournament victories we use gold trophies (1st-place finishes).
+    For shield trophies we use the total of gold + silver + bronze trophies.
+    """
+    tables = re.findall(r"<table\b[^>]*>([\s\S]*?)</table>", html, re.I)
+    if not tables:
+        raise RuntimeError(f"No table found for {metric}")
+
+    best_rows = []
+    for table in tables:
+        raw_rows = re.findall(r"<tr\b[^>]*>([\s\S]*?)</tr>", table, re.I)
+        parsed_rows = [split_cells(row) for row in raw_rows]
+        parsed_rows = [row for row in parsed_rows if row]
+        if len(parsed_rows) < 2:
+            continue
+
+        header_row = next((row for row in parsed_rows if any(kind.lower() == "th" for kind, _ in row)), parsed_rows[0])
+        headers = [header_key(cell) for _, cell in header_row]
+        name_index = find_index(headers, NAME_ALIASES)
+        rank_index = find_index(headers, RANK_ALIASES)
+        points_index = find_index(headers, ("points", "total points", "point"))
+
+        if name_index is None:
+            name_index = 2 if len(headers) > 2 else 0
+
+        rows = []
+        for row in parsed_rows:
+            if row is header_row:
+                continue
+            cells = [cell for _, cell in row]
+            trophy_start = name_index + 1
+            trophy_end = points_index if points_index is not None and points_index > trophy_start else trophy_start + 3
+            trophy_values = [parse_number(cell) for cell in cells[trophy_start:trophy_end]]
+            trophy_values = [value for value in trophy_values if value is not None][:3]
+            if len(cells) <= name_index or len(trophy_values) < 3:
+                continue
+
+            username = username_from_name_cell(cells[name_index])
+            if not username:
+                continue
+
+            gold, silver, bronze = trophy_values
+            primary = gold if metric == "victories" else gold + silver + bronze
+            rank = parse_number(cells[rank_index]) if rank_index is not None and len(cells) > rank_index else None
+
+            rows.append({
+                "username": username,
+                "primary": primary,
+                "metric": metric,
+                "rank": int(rank) if isinstance(rank, (int, float)) else len(rows) + 1,
+                "meta": f"{gold} gold · {silver} silver · {bronze} bronze",
+            })
+
+        if len(rows) > len(best_rows):
+            best_rows = rows
+
+    if not best_rows:
+        raise RuntimeError(f"No trophy rows parsed for {metric}")
+    return best_rows
 
 
 def parse_table(html, metric):
