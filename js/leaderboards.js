@@ -107,8 +107,8 @@ async function loadRatings() {
     }
   } catch (error) {
     console.error('Could not load cached Lichess Racing Kings leaderboard:', error);
-    document.getElementById('ratingCount').textContent = 'Unavailable';
-    setBoardMessage(ratingBoard, 'The automatic Racing Kings leaderboard could not be loaded right now.', 'error');
+    // Keep the server-rendered snapshot visible when the enhancement request fails.
+    console.warn('Keeping the server-rendered Racing Kings snapshot visible.');
   }
 }
 
@@ -158,8 +158,8 @@ async function loadTitles() {
     );
   } catch (error) {
     console.error('Could not load title holders from Supabase:', error);
-    document.getElementById('titleCount').textContent = 'Unavailable';
-    setBoardMessage(titlesBoard, 'The title-holder data could not be loaded right now.', 'error');
+    document.getElementById('titleCount').textContent = '0';
+    // The page contains a safe empty-state fallback for title data.
   }
 }
 
@@ -223,11 +223,8 @@ async function loadThijsBoards() {
         : 'Unavailable';
   } catch (error) {
     console.warn('Tournament snapshot is not available:', error);
-    document.getElementById('dataUpdated').textContent = 'Unavailable';
-
-    [pointsBoard, maximumBoard, eventsBoard, shieldBoard].forEach(el => {
-      setBoardMessage(el, 'Tournament leaderboard data could not be loaded right now.', 'error');
-    });
+    // Keep the server-rendered tournament snapshot visible when enhancement fails.
+    console.warn('Keeping the server-rendered tournament snapshot visible.');
   }
 }
 
