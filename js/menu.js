@@ -5,17 +5,17 @@
 
 const RK_MENU_GROUPS = [
   { slug: 'racing-kings-menu', label: 'Racing Kings', items: [
-    { slug: 'leaderboard', label: 'Leaderboards' },
-    { slug: 'hall-of-fame', label: 'Hall of Fame' },
-    { slug: 'players', label: 'Players' }
+    { slug: 'leaderboard', label: 'Leaderboards', icon: '🏆', description: 'View the site\'s Racing Kings rankings and live player ratings.' },
+    { slug: 'hall-of-fame', label: 'Hall of Fame', icon: '👑', description: 'Explore the players and achievements that have shaped Racing Kings.' },
+    { slug: 'players', label: 'Players', icon: '👥', description: 'Browse officially recognized players and open individual profiles.' }
   ]},
   { slug: 'titles-menu', label: 'Titles', items: [
-    { slug: 'titles', label: 'Titles' },
-    { slug: 'title-checker', label: 'Title Checker' }
+    { slug: 'titles', label: 'Titles', icon: '♛', description: 'See every title tier, its requirements, and current holders.' },
+    { slug: 'title-checker', label: 'Title Checker', icon: '✓', description: 'Check a Lichess Racing Kings player against the current criteria.' }
   ]},
   { slug: 'community-menu', label: 'Community', items: [
-    { slug: 'team', label: 'Lichess Team' },
-    { slug: 'about', label: 'About' }
+    { slug: 'team', label: 'Lichess Team', icon: '👥', description: 'Visit the Racing Kings Master team and view its live community statistics.' },
+    { slug: 'about', label: 'About', icon: 'ℹ', description: 'Learn what the project is, how it works, and where it is heading.' }
   ]},
   { slug: 'account-menu', label: 'Account', items: [] }
 ];
