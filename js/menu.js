@@ -4,19 +4,20 @@
    ============================================================ */
 
 const RK_MENU_GROUPS = [
-  { label: 'Racing Kings', items: [
+  { slug: 'racing-kings-menu', label: 'Racing Kings', items: [
     { slug: 'leaderboard', label: 'Leaderboards' },
     { slug: 'hall-of-fame', label: 'Hall of Fame' },
     { slug: 'players', label: 'Players' }
   ]},
-  { label: 'Titles', items: [
+  { slug: 'titles-menu', label: 'Titles', items: [
     { slug: 'titles', label: 'Titles' },
     { slug: 'title-checker', label: 'Title Checker' }
   ]},
-  { label: 'Community', items: [
+  { slug: 'community-menu', label: 'Community', items: [
     { slug: 'team', label: 'Lichess Team' },
     { slug: 'about', label: 'About' }
-  ]}
+  ]},
+  { slug: 'account-menu', label: 'Account', items: [] }
 ];
 (function setTheme(){document.documentElement.setAttribute('data-theme',localStorage.getItem('rk-theme')||'dark');})();
 (function initGlobalMenu(){
@@ -44,15 +45,8 @@ const RK_MENU_GROUPS = [
     await refreshProfileTitles();
   }
   function fixLegacyCheckerLinks(){document.querySelectorAll('a[href="search.html"]').forEach(a=>{a.href='title-checker.html';});}
-  async function auth(){const panel=document.getElementById('menuPanel'),right=document.querySelector('.nav-right'),menuBtn=document.getElementById('menuBtn');if(!panel)return;panel.querySelector('[data-rk-auth]')?.remove();let user=null;try{await deps();const s=await window.rkAuth.session();if(s)user=await window.rkAuth.user();}catch(e){console.warn(e);}let b=document.getElementById('navAuthBtn');if(!b&&right){b=document.createElement('button');b.className='icon-btn';b.id='navAuthBtn';b.type='button';right.insertBefore(b,menuBtn||null);}if(b){b.textContent=user?`👤 ${user.username}`:'Login';b.onclick=()=>location.href=user?'settings.html':'auth.html';}
-    const account=document.querySelector('[data-menu-group="Account"]');if(!account)return;
-    const old=account.querySelector('[data-rk-auth]');if(old)old.remove();
-    const area=document.createElement('div');area.dataset.rkAuth='true';
-    if(!user){area.appendChild(makeLink('Login / Register','auth.html'));}
-    else{const info=document.createElement('div');info.style.cssText='padding:.45rem .9rem;font-size:.78rem;color:var(--text-muted)';info.textContent=`Signed in as ${user.username}`;area.appendChild(info);area.appendChild(makeLink('👤 My Profile',`profile.html?u=${encodeURIComponent(user.username)}`));area.appendChild(makeLink('💬 Chat','chat.html'));area.appendChild(makeLink('⚙ Settings','settings.html'));if(user.is_admin){area.appendChild(makeLink('🛡 Admin Panel','admin.html'));area.appendChild(makeLink('🎯 Player Specific Training','player-specific-training.html?route=player-stats'));}const out=document.createElement('button');out.className='icon-btn';out.style.cssText='margin:.4rem;width:calc(100% - .8rem);justify-content:flex-start';out.textContent='Logout';out.onclick=async()=>{await window.rkSupabase.auth.signOut();location.href='index.html';};area.appendChild(out);}
-    account.appendChild(area);
-  }
-  function buildMenu(){const panel=document.getElementById('menuPanel');if(!panel)return;panel.innerHTML='';const home=makeLink('Home','index.html');home.className='menu-home';panel.appendChild(home);RK_MENU_GROUPS.forEach(group=>{const section=document.createElement('div');section.className='menu-section';section.dataset.menuGroup=group.label;const heading=document.createElement('div');heading.className='menu-section-title';heading.textContent=group.label;section.appendChild(heading);group.items.forEach(p=>section.appendChild(makeLink(p.label,pageUrl(p.slug))));panel.appendChild(section);});const account=document.createElement('div');account.className='menu-section';account.dataset.menuGroup='Account';const heading=document.createElement('div');heading.className='menu-section-title';heading.textContent='Account';account.appendChild(heading);panel.appendChild(account);}
+  async function auth(){const right=document.querySelector('.nav-right'),menuBtn=document.getElementById('menuBtn');let user=null;try{await deps();const s=await window.rkAuth.session();if(s)user=await window.rkAuth.user();}catch(e){console.warn(e);}let b=document.getElementById('navAuthBtn');if(!b&&right){b=document.createElement('button');b.className='icon-btn';b.id='navAuthBtn';b.type='button';right.insertBefore(b,menuBtn||null);}if(b){b.textContent=user?'👤 '+user.username:'Login';b.onclick=()=>location.href=user?'settings.html':'auth.html';}}
+  function buildMenu(){const panel=document.getElementById('menuPanel');if(!panel)return;panel.innerHTML='';const home=makeLink('Home','index.html');home.className='menu-home';panel.appendChild(home);RK_MENU_GROUPS.forEach(group=>{const section=document.createElement('div');section.className='menu-section';section.dataset.menuGroup=group.label;const heading=makeLink(group.label,pageUrl(group.slug));heading.className='menu-section-link';heading.setAttribute('aria-label','Open '+group.label+' menu');section.appendChild(heading);panel.appendChild(section);});}
   async function init(){logo();const panel=document.getElementById('menuPanel'),btn=document.getElementById('menuBtn');if(!panel||!btn)return;buildMenu();await auth();fixLegacyCheckerLinks();await syncHomepageTitleStats();await syncTitlesPage();await syncProfilePage(await window.rkAuth.user().catch(()=>null));btn.onclick=e=>{e.stopPropagation();panel.classList.toggle('open');};document.addEventListener('click',e=>{if(!panel.contains(e.target)&&!btn.contains(e.target))panel.classList.remove('open');});if(!window.rkSupabase)await deps();await loadScript('js/notifications.js');if(window.rkSupabase)window.rkSupabase.auth.onAuthStateChange(()=>setTimeout(auth,0));}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
