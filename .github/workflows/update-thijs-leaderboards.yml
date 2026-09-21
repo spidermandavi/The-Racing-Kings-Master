@@ -13,6 +13,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: racing-kings-data-refresh
+  cancel-in-progress: true
+
 jobs:
   update:
     # The generated JSON commit must not start another update loop.
@@ -33,6 +37,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add json/thijs-leaderboards.json json/lichess-top-players.json
           git diff --cached --quiet || git commit -m "Update Racing Kings data"
+          git pull --rebase origin main
           git push
 
       - name: Health check
