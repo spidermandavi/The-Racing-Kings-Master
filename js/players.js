@@ -108,36 +108,36 @@
     article.className = 'player-row';
     article.style.animationDelay = Math.min(index * 0.045, 0.5) + 's';
 
-    article.innerHTML = \`
-      <div class="player-rank">\${searchResult ? '<span class="rank-search">SEARCH</span>' : '<span class="rank-number">' + (index + 1) + '</span>'}</div>
+    article.innerHTML = `
+      <div class="player-rank">${searchResult ? '<span class="rank-search">SEARCH</span>' : '<span class="rank-number">' + (index + 1) + '</span>'}</div>
       <div class="player-main">
         <div class="player-heading">
-          <a class="player-link" href="profile.html?u=\${encodeURIComponent(username)}">\${esc(username)}</a>
+          <a class="player-link" href="profile.html?u=${encodeURIComponent(username)}">${esc(username)}</a>
           <div class="player-badge-group">
-            \${lichessTitle ? '<span class="lichess-title-badge">' + esc(lichessTitle) + '</span>' : ''}
-            \${siteTitles.length ? titleBadge(siteTitles[0], true) : '<span class="untitled-badge">No site title</span>'}
+            ${lichessTitle ? '<span class="lichess-title-badge">' + esc(lichessTitle) + '</span>' : ''}
+            ${siteTitles.length ? titleBadge(siteTitles[0], true) : '<span class="untitled-badge">No site title</span>'}
           </div>
         </div>
         <div class="player-metrics">
-          <span><strong>\${esc(formatRating(rating))}</strong><em>rating</em></span>
-          <span><strong>\${games.toLocaleString()}</strong><em>games</em></span>
-          <span><strong>\${esc(formatPercent(getWinRate(user)))}</strong><em>win rate</em></span>
+          <span><strong>${esc(formatRating(rating))}</strong><em>rating</em></span>
+          <span><strong>${games.toLocaleString()}</strong><em>games</em></span>
+          <span><strong>${esc(formatPercent(getWinRate(user)))}</strong><em>win rate</em></span>
         </div>
       </div>
-      <button class="player-expand" type="button" aria-expanded="false" aria-label="Show \${esc(username)} details">+</button>
+      <button class="player-expand" type="button" aria-expanded="false" aria-label="Show ${esc(username)} details">+</button>
       <div class="player-details">
         <div class="details-grid">
-          <div><span>Highest rating</span><strong>\${esc(formatRating(highest))}</strong></div>
-          <div><span>Lichess title</span><strong>\${esc(lichessTitle || 'None')}</strong></div>
-          <div><span>Racing Kings games</span><strong>\${games.toLocaleString()}</strong></div>
-          <div><span>Site title\${siteTitles.length === 1 ? '' : 's'}</span><strong>\${siteTitles.length ? esc(siteTitles.join(', ')) : 'None'}</strong></div>
+          <div><span>Highest rating</span><strong>${esc(formatRating(highest))}</strong></div>
+          <div><span>Lichess title</span><strong>${esc(lichessTitle || 'None')}</strong></div>
+          <div><span>Racing Kings games</span><strong>${games.toLocaleString()}</strong></div>
+          <div><span>Site title${siteTitles.length === 1 ? '' : 's'}</span><strong>${siteTitles.length ? esc(siteTitles.join(', ')) : 'None'}</strong></div>
         </div>
         <div class="detail-actions">
-          <a class="btn" href="profile.html?u=\${encodeURIComponent(username)}">View Profile</a>
-          <a class="btn" href="https://lichess.org/@/\${encodeURIComponent(username)}" target="_blank" rel="noopener noreferrer">Lichess Profile</a>
+          <a class="btn" href="profile.html?u=${encodeURIComponent(username)}">View Profile</a>
+          <a class="btn" href="https://lichess.org/@/${encodeURIComponent(username)}" target="_blank" rel="noopener noreferrer">Lichess Profile</a>
         </div>
       </div>
-    \`;
+    `;
 
     const expandButton = article.querySelector('.player-expand');
     const details = article.querySelector('.player-details');
@@ -164,21 +164,21 @@
     article.className = 'titled-player-card';
     article.style.animationDelay = Math.min(index * 0.05, 0.6) + 's';
 
-    article.innerHTML = \`
+    article.innerHTML = `
       <div class="titled-card-top">
-        <div class="title-emblem \${info.className}">\${esc(highestTitle)}</div>
+        <div class="title-emblem ${info.className}">${esc(highestTitle)}</div>
         <div class="titled-card-heading">
-          <a href="profile.html?u=\${encodeURIComponent(username)}" class="titled-username">\${esc(username)}</a>
-          <span class="titled-name">Racing Kings \${esc(info.name)}</span>
+          <a href="profile.html?u=${encodeURIComponent(username)}" class="titled-username">${esc(username)}</a>
+          <span class="titled-name">Racing Kings ${esc(info.name)}</span>
         </div>
       </div>
-      <div class="all-titles">\${titleSummary(titles)}</div>
+      <div class="all-titles">${titleSummary(titles)}</div>
       <div class="titled-card-stats">
-        <span><strong>\${esc(formatRating(rk.rating))}</strong><em>current rating</em></span>
-        <span><strong>\${getGames(lichess).toLocaleString()}</strong><em>RK games</em></span>
+        <span><strong>${esc(formatRating(rk.rating))}</strong><em>current rating</em></span>
+        <span><strong>${getGames(lichess).toLocaleString()}</strong><em>RK games</em></span>
       </div>
-      <a class="titled-profile-link" href="profile.html?u=\${encodeURIComponent(username)}">Open player profile <span>→</span></a>
-    \`;
+      <a class="titled-profile-link" href="profile.html?u=${encodeURIComponent(username)}">Open player profile <span>→</span></a>
+    `;
 
     titledPlayersList.appendChild(article);
   }
@@ -197,7 +197,12 @@
       let detail = {};
       let perf = {};
 
-      if (detailRes.ok) detail = await detailRes.json();
+      if (!detailRes.ok) {
+        if (detailRes.status === 404) throw new Error('Player not found on Lichess.');
+        throw new Error('Could not load the Lichess player.');
+      }
+
+      detail = await detailRes.json();
       if (perfRes.ok) perf = await perfRes.json();
 
       return {
@@ -249,11 +254,13 @@
         if (!item.titles.includes(code)) item.titles.push(code);
       }
 
-      titledProfiles = Array.from(grouped.values())
-        .sort((a, b) => {
-          const rankDiff = titleRank(a.titles[0]) - titleRank(b.titles[0]);
-          return rankDiff || a.username.localeCompare(b.username);
-        });
+      titledProfiles = Array.from(grouped.values()).map((player) => ({
+        ...player,
+        titles: player.titles.slice().sort((a, b) => titleRank(a) - titleRank(b))
+      })).sort((a, b) => {
+        const rankDiff = titleRank(a.titles[0]) - titleRank(b.titles[0]);
+        return rankDiff || a.username.localeCompare(b.username);
+      });
 
       const enriched = await Promise.all(
         titledProfiles.map(async (player) => ({
