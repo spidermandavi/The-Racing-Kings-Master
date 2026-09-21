@@ -44,7 +44,7 @@ jobs:
           failures = []
 
           thijs = json.loads(Path("json/thijs-leaderboards.json").read_text(encoding="utf-8"))
-          required = {"points", "maximum", "events", "trophies"}
+          required = {"points", "victories", "maximum", "events", "trophies"}
           successful = set(thijs.get("successfulMetrics", []))
           if successful != required:
               failures.append(
@@ -64,5 +64,5 @@ jobs:
               print("\n".join("::warning::" + item for item in failures))
               raise SystemExit(1)
 
-          print("Racing Kings data refresh is healthy: 4 Thijs datasets + 20 Lichess top players.")
+          print("Racing Kings data refresh is healthy: 5 Thijs datasets + 20 Lichess top players.")
           PY
