@@ -1,12 +1,13 @@
-name: Update Racing Kings tournament leaderboards
+name: Update Racing Kings data
 
 on:
   schedule:
-    - cron: '17 */6 * * *'
+    - cron: '7 * * * *'
   workflow_dispatch:
   push:
     paths:
       - 'scripts/update_thijs_leaderboards.py'
+      - 'scripts/update_lichess_top_players.py'
       - '.github/workflows/update-thijs-leaderboards.yml'
 
 permissions:
@@ -20,12 +21,48 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Update snapshot
+      - name: Update Thijs tournament leaderboards
         run: python3 scripts/update_thijs_leaderboards.py
-      - name: Commit changed snapshot
+
+      - name: Update Lichess top 20 players
+        run: python3 scripts/update_lichess_top_players.py
+
+      - name: Commit changed snapshots
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add json/thijs-leaderboards.json
-          git diff --cached --quiet || git commit -m "Update Racing Kings tournament leaderboards"
+          git add json/thijs-leaderboards.json json/lichess-top-players.json
+          git diff --cached --quiet || git commit -m "Update Racing Kings data"
           git push
+
+      - name: Health check
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          failures = []
+
+          thijs = json.loads(Path("json/thijs-leaderboards.json").read_text(encoding="utf-8"))
+          required = {"points", "maximum", "events", "trophies"}
+          successful = set(thijs.get("successfulMetrics", []))
+          if successful != required:
+              failures.append(
+                  "Thijs refresh incomplete: "
+                  + ", ".join(sorted(required - successful))
+              )
+          if thijs.get("errors"):
+              failures.append("Thijs errors: " + "; ".join(f"{k}: {v}" for k, v in thijs["errors"].items()))
+
+          top = json.loads(Path("json/lichess-top-players.json").read_text(encoding="utf-8"))
+          if len(top.get("players", [])) != 20:
+              failures.append(f"Lichess top-player snapshot has {len(top.get('players', []))} players; expected 20")
+          if top.get("errors"):
+              failures.append("Lichess player errors: " + "; ".join(f"{k}: {v}" for k, v in top["errors"].items()))
+
+          if failures:
+              print("\n".join("::warning::" + item for item in failures))
+              raise SystemExit(1)
+
+          print("Racing Kings data refresh is healthy: 4 Thijs datasets + 20 Lichess top players.")
+          PY
