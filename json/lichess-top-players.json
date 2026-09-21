@@ -1,0 +1,154 @@
+{
+  "source": "https://lichess.org",
+  "endpoint": "https://lichess.org/api/player/top/20/racingKings",
+  "variant": "Racing Kings",
+  "limit": 20,
+  "updatedAt": "2026-09-21T11:43:54Z",
+  "lastSuccessfulUpdate": null,
+  "health": "seed",
+  "errors": {
+    "seed": "Initial seed contains the current public top-10 listing; the next scheduled Actions run replaces it with the full top 20 snapshot."
+  },
+  "players": [
+    {
+      "id": "M-A01",
+      "username": "M-A01",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2532
+        }
+      },
+      "rkPerfCount": null,
+      "rkHighestRating": null,
+      "winRate": null,
+      "rank": 1
+    },
+    {
+      "id": "NilSeWon",
+      "username": "NilSeWon",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2522
+        }
+      },
+      "rkPerfCount": null,
+      "rkHighestRating": null,
+      "winRate": null,
+      "rank": 2
+    },
+    {
+      "id": "QueenEatingDragon",
+      "username": "QueenEatingDragon",
+      "title": "NM",
+      "perfs": {
+        "racingKings": {
+          "rating": 2520
+        }
+      },
+      "rkPerfCount": null,
+      "rkHighestRating": null,
+      "winRate": null,
+      "rank": 3
+    },
+    {
+      "id": "OSCARSM80",
+      "username": "OSCARSM80",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2439
+        }
+      },
+      "rkPerfCount": null,
+      "rkHighestRating": null,
+      "winRate": null,
+      "rank": 4
+    },
+    {
+      "id": "CyberShredder",
+      "username": "CyberShredder",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2394
+        }
+      },
+      "rkPerfCount": null,
+      "rkHighestRating": null,
+      "winRate": null,
+      "rank": 5
+    },
+    {
+      "id": "Isabel_de_Castilla",
+      "username": "Isabel_de_Castilla",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2381
+        }
+      },
+      "rkPerfCount": null,
+      "rkHighestRating": null,
+      "winRate": null,
+      "rank": 6
+    },
+    {
+      "id": "Gautham_A",
+      "username": "Gautham_A",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2360
+        }
+      },
+      "rkPerfCount": null,
+      "rkHighestRating": null,
+      "winRate": null,
+      "rank": 7
+    },
+    {
+      "id": "playanotherone",
+      "username": "playanotherone",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2347
+        }
+      },
+      "rkPerfCount": null,
+      "rkHighestRating": null,
+      "winRate": null,
+      "rank": 8
+    },
+    {
+      "id": "cr0c0d1l3",
+      "username": "cr0c0d1l3",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2343
+        }
+      },
+      "rkPerfCount": null,
+      "rkHighestRating": null,
+      "winRate": null,
+      "rank": 9
+    },
+    {
+      "id": "R2300",
+      "username": "R2300",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2330
+        }
+      },
+      "rkPerfCount": null,
+      "rkHighestRating": null,
+      "winRate": null,
+      "rank": 10
+    }
+  ]
+}
