@@ -1,12 +1,13 @@
 {
   "thijsSource": "https://lichess.thijs.com",
   "variant": "Racing Kings",
-  "updatedAt": "2026-09-21T11:49:13.307620+00:00",
-  "lastAttemptedUpdate": "2026-09-21T11:49:13.307620+00:00",
-  "lastSuccessfulUpdate": "2026-09-21T11:49:13.307620+00:00",
+  "updatedAt": "2026-09-21T13:10:17.965213+00:00",
+  "lastAttemptedUpdate": "2026-09-21T13:10:17.965213+00:00",
+  "lastSuccessfulUpdate": "2026-09-21T13:10:17.965213+00:00",
   "health": "healthy",
   "successfulMetrics": [
     "points",
+    "victories",
     "maximum",
     "events",
     "trophies"
@@ -21542,6 +21543,7008 @@
         "primary": 221,
         "metric": "trophies",
         "rank": 75,
+        "meta": ""
+      }
+    ],
+    "victories": [
+      {
+        "username": "nataniel123",
+        "primary": 50153,
+        "metric": "victories",
+        "rank": 1,
+        "meta": ""
+      },
+      {
+        "username": "playanotherone",
+        "primary": 36868,
+        "metric": "victories",
+        "rank": 2,
+        "meta": ""
+      },
+      {
+        "username": "r2300",
+        "primary": 32945,
+        "metric": "victories",
+        "rank": 3,
+        "meta": ""
+      },
+      {
+        "username": "anthonyplayer2012",
+        "primary": 31425,
+        "metric": "victories",
+        "rank": 4,
+        "meta": ""
+      },
+      {
+        "username": "royalmaniac",
+        "primary": 23125,
+        "metric": "victories",
+        "rank": 5,
+        "meta": ""
+      },
+      {
+        "username": "imakemanymistakes",
+        "primary": 23088,
+        "metric": "victories",
+        "rank": 6,
+        "meta": ""
+      },
+      {
+        "username": "mosty351",
+        "primary": 22064,
+        "metric": "victories",
+        "rank": 7,
+        "meta": ""
+      },
+      {
+        "username": "jaraxis",
+        "primary": 21377,
+        "metric": "victories",
+        "rank": 8,
+        "meta": ""
+      },
+      {
+        "username": "kristal",
+        "primary": 20487,
+        "metric": "victories",
+        "rank": 9,
+        "meta": ""
+      },
+      {
+        "username": "nov3x",
+        "primary": 20032,
+        "metric": "victories",
+        "rank": 10,
+        "meta": ""
+      },
+      {
+        "username": "queeneatingdragon",
+        "primary": 19442,
+        "metric": "victories",
+        "rank": 11,
+        "meta": ""
+      },
+      {
+        "username": "aliakbar2011",
+        "primary": 19127,
+        "metric": "victories",
+        "rank": 12,
+        "meta": ""
+      },
+      {
+        "username": "seth_7777777",
+        "primary": 18767,
+        "metric": "victories",
+        "rank": 13,
+        "meta": ""
+      },
+      {
+        "username": "imnotplayanotherone",
+        "primary": 18251,
+        "metric": "victories",
+        "rank": 14,
+        "meta": ""
+      },
+      {
+        "username": "cicinio64",
+        "primary": 17491,
+        "metric": "victories",
+        "rank": 15,
+        "meta": ""
+      },
+      {
+        "username": "denorus",
+        "primary": 17294,
+        "metric": "victories",
+        "rank": 16,
+        "meta": ""
+      },
+      {
+        "username": "moscowneversleep",
+        "primary": 16142,
+        "metric": "victories",
+        "rank": 17,
+        "meta": ""
+      },
+      {
+        "username": "mmo_mikhail",
+        "primary": 15847,
+        "metric": "victories",
+        "rank": 18,
+        "meta": ""
+      },
+      {
+        "username": "yacob2000",
+        "primary": 15373,
+        "metric": "victories",
+        "rank": 19,
+        "meta": ""
+      },
+      {
+        "username": "burik69",
+        "primary": 15145,
+        "metric": "victories",
+        "rank": 20,
+        "meta": ""
+      },
+      {
+        "username": "johnny143",
+        "primary": 14958,
+        "metric": "victories",
+        "rank": 21,
+        "meta": ""
+      },
+      {
+        "username": "oliverashstardust",
+        "primary": 14496,
+        "metric": "victories",
+        "rank": 22,
+        "meta": ""
+      },
+      {
+        "username": "eltun_ltn",
+        "primary": 14416,
+        "metric": "victories",
+        "rank": 23,
+        "meta": ""
+      },
+      {
+        "username": "the_cricketer",
+        "primary": 14209,
+        "metric": "victories",
+        "rank": 24,
+        "meta": ""
+      },
+      {
+        "username": "fs-schach",
+        "primary": 13928,
+        "metric": "victories",
+        "rank": 25,
+        "meta": ""
+      },
+      {
+        "username": "jacobo_asse",
+        "primary": 13732,
+        "metric": "victories",
+        "rank": 26,
+        "meta": ""
+      },
+      {
+        "username": "askchess",
+        "primary": 13707,
+        "metric": "victories",
+        "rank": 27,
+        "meta": ""
+      },
+      {
+        "username": "fatherwar587",
+        "primary": 12955,
+        "metric": "victories",
+        "rank": 28,
+        "meta": ""
+      },
+      {
+        "username": "ozer_cinar",
+        "primary": 12801,
+        "metric": "victories",
+        "rank": 29,
+        "meta": ""
+      },
+      {
+        "username": "mani_adim",
+        "primary": 12329,
+        "metric": "victories",
+        "rank": 30,
+        "meta": ""
+      },
+      {
+        "username": "yehonatan-chess",
+        "primary": 12303,
+        "metric": "victories",
+        "rank": 31,
+        "meta": ""
+      },
+      {
+        "username": "yura-11",
+        "primary": 12243,
+        "metric": "victories",
+        "rank": 32,
+        "meta": ""
+      },
+      {
+        "username": "vladislavalikin",
+        "primary": 11848,
+        "metric": "victories",
+        "rank": 33,
+        "meta": ""
+      },
+      {
+        "username": "abc-terminator",
+        "primary": 11837,
+        "metric": "victories",
+        "rank": 34,
+        "meta": ""
+      },
+      {
+        "username": "guitar09",
+        "primary": 11716,
+        "metric": "victories",
+        "rank": 35,
+        "meta": ""
+      },
+      {
+        "username": "enoc19",
+        "primary": 11716,
+        "metric": "victories",
+        "rank": 36,
+        "meta": ""
+      },
+      {
+        "username": "hjtt",
+        "primary": 11619,
+        "metric": "victories",
+        "rank": 37,
+        "meta": ""
+      },
+      {
+        "username": "m-a01",
+        "primary": 11370,
+        "metric": "victories",
+        "rank": 38,
+        "meta": ""
+      },
+      {
+        "username": "sandipondeob2009",
+        "primary": 11199,
+        "metric": "victories",
+        "rank": 39,
+        "meta": ""
+      },
+      {
+        "username": "natso",
+        "primary": 10810,
+        "metric": "victories",
+        "rank": 40,
+        "meta": ""
+      },
+      {
+        "username": "tesset12",
+        "primary": 10541,
+        "metric": "victories",
+        "rank": 41,
+        "meta": ""
+      },
+      {
+        "username": "doooovid",
+        "primary": 10172,
+        "metric": "victories",
+        "rank": 42,
+        "meta": ""
+      },
+      {
+        "username": "kodd70",
+        "primary": 10137,
+        "metric": "victories",
+        "rank": 43,
+        "meta": ""
+      },
+      {
+        "username": "hugesleepysnake",
+        "primary": 9912,
+        "metric": "victories",
+        "rank": 44,
+        "meta": ""
+      },
+      {
+        "username": "imvencut",
+        "primary": 9743,
+        "metric": "victories",
+        "rank": 45,
+        "meta": ""
+      },
+      {
+        "username": "seth_777",
+        "primary": 9544,
+        "metric": "victories",
+        "rank": 46,
+        "meta": ""
+      },
+      {
+        "username": "alepuller",
+        "primary": 9490,
+        "metric": "victories",
+        "rank": 47,
+        "meta": ""
+      },
+      {
+        "username": "metin81",
+        "primary": 9070,
+        "metric": "victories",
+        "rank": 48,
+        "meta": ""
+      },
+      {
+        "username": "racingkings123",
+        "primary": 9060,
+        "metric": "victories",
+        "rank": 49,
+        "meta": ""
+      },
+      {
+        "username": "hipno",
+        "primary": 9033,
+        "metric": "victories",
+        "rank": 50,
+        "meta": ""
+      },
+      {
+        "username": "feofan_ars",
+        "primary": 8996,
+        "metric": "victories",
+        "rank": 51,
+        "meta": ""
+      },
+      {
+        "username": "abcxyzaothatday",
+        "primary": 8929,
+        "metric": "victories",
+        "rank": 52,
+        "meta": ""
+      },
+      {
+        "username": "theusualdumbkid",
+        "primary": 8847,
+        "metric": "victories",
+        "rank": 53,
+        "meta": ""
+      },
+      {
+        "username": "tommynelson",
+        "primary": 8798,
+        "metric": "victories",
+        "rank": 54,
+        "meta": ""
+      },
+      {
+        "username": "pekkablunder",
+        "primary": 8789,
+        "metric": "victories",
+        "rank": 55,
+        "meta": ""
+      },
+      {
+        "username": "arnishbasu",
+        "primary": 8783,
+        "metric": "victories",
+        "rank": 56,
+        "meta": ""
+      },
+      {
+        "username": "esiritoneh",
+        "primary": 8547,
+        "metric": "victories",
+        "rank": 57,
+        "meta": ""
+      },
+      {
+        "username": "huguitooo_xd",
+        "primary": 8484,
+        "metric": "victories",
+        "rank": 58,
+        "meta": ""
+      },
+      {
+        "username": "an0ja",
+        "primary": 8397,
+        "metric": "victories",
+        "rank": 59,
+        "meta": ""
+      },
+      {
+        "username": "olindanyaradzochapel",
+        "primary": 8327,
+        "metric": "victories",
+        "rank": 60,
+        "meta": ""
+      },
+      {
+        "username": "francis920",
+        "primary": 8322,
+        "metric": "victories",
+        "rank": 61,
+        "meta": ""
+      },
+      {
+        "username": "rassimalgeria",
+        "primary": 8257,
+        "metric": "victories",
+        "rank": 62,
+        "meta": ""
+      },
+      {
+        "username": "lingeshwaran056",
+        "primary": 8215,
+        "metric": "victories",
+        "rank": 63,
+        "meta": ""
+      },
+      {
+        "username": "gleb_momot",
+        "primary": 8202,
+        "metric": "victories",
+        "rank": 64,
+        "meta": ""
+      },
+      {
+        "username": "ganiev2",
+        "primary": 8103,
+        "metric": "victories",
+        "rank": 65,
+        "meta": ""
+      },
+      {
+        "username": "meet_raval1",
+        "primary": 8088,
+        "metric": "victories",
+        "rank": 66,
+        "meta": ""
+      },
+      {
+        "username": "soltan138",
+        "primary": 7970,
+        "metric": "victories",
+        "rank": 67,
+        "meta": ""
+      },
+      {
+        "username": "lahan_2014",
+        "primary": 7851,
+        "metric": "victories",
+        "rank": 68,
+        "meta": ""
+      },
+      {
+        "username": "ananddeepu",
+        "primary": 7575,
+        "metric": "victories",
+        "rank": 69,
+        "meta": ""
+      },
+      {
+        "username": "mohamed-adnan",
+        "primary": 7559,
+        "metric": "victories",
+        "rank": 70,
+        "meta": ""
+      },
+      {
+        "username": "narflorkp",
+        "primary": 7464,
+        "metric": "victories",
+        "rank": 71,
+        "meta": ""
+      },
+      {
+        "username": "rohanarun22",
+        "primary": 7441,
+        "metric": "victories",
+        "rank": 72,
+        "meta": ""
+      },
+      {
+        "username": "sherlockholmeswatson",
+        "primary": 7409,
+        "metric": "victories",
+        "rank": 73,
+        "meta": ""
+      },
+      {
+        "username": "ziogino",
+        "primary": 7307,
+        "metric": "victories",
+        "rank": 74,
+        "meta": ""
+      },
+      {
+        "username": "sachmaty8",
+        "primary": 7261,
+        "metric": "victories",
+        "rank": 75,
+        "meta": ""
+      },
+      {
+        "username": "huangyudong",
+        "primary": 7166,
+        "metric": "victories",
+        "rank": 76,
+        "meta": ""
+      },
+      {
+        "username": "bernabecamposecoros",
+        "primary": 7008,
+        "metric": "victories",
+        "rank": 77,
+        "meta": ""
+      },
+      {
+        "username": "oleksandr_koval",
+        "primary": 6846,
+        "metric": "victories",
+        "rank": 78,
+        "meta": ""
+      },
+      {
+        "username": "artem_medvedev-04",
+        "primary": 6717,
+        "metric": "victories",
+        "rank": 79,
+        "meta": ""
+      },
+      {
+        "username": "vertified_rkpenguin",
+        "primary": 6680,
+        "metric": "victories",
+        "rank": 80,
+        "meta": ""
+      },
+      {
+        "username": "mrrivermonsta",
+        "primary": 6667,
+        "metric": "victories",
+        "rank": 81,
+        "meta": ""
+      },
+      {
+        "username": "sriramprasad",
+        "primary": 6638,
+        "metric": "victories",
+        "rank": 82,
+        "meta": ""
+      },
+      {
+        "username": "cybershredder",
+        "primary": 6569,
+        "metric": "victories",
+        "rank": 83,
+        "meta": ""
+      },
+      {
+        "username": "texas_trump",
+        "primary": 6489,
+        "metric": "victories",
+        "rank": 84,
+        "meta": ""
+      },
+      {
+        "username": "johnzou",
+        "primary": 6447,
+        "metric": "victories",
+        "rank": 85,
+        "meta": ""
+      },
+      {
+        "username": "vishwa2012",
+        "primary": 6401,
+        "metric": "victories",
+        "rank": 86,
+        "meta": ""
+      },
+      {
+        "username": "ahavasi1",
+        "primary": 6365,
+        "metric": "victories",
+        "rank": 87,
+        "meta": ""
+      },
+      {
+        "username": "meeresschach",
+        "primary": 6341,
+        "metric": "victories",
+        "rank": 88,
+        "meta": ""
+      },
+      {
+        "username": "vibranium18",
+        "primary": 6337,
+        "metric": "victories",
+        "rank": 89,
+        "meta": ""
+      },
+      {
+        "username": "savrasova54",
+        "primary": 6312,
+        "metric": "victories",
+        "rank": 90,
+        "meta": ""
+      },
+      {
+        "username": "bap33",
+        "primary": 6234,
+        "metric": "victories",
+        "rank": 91,
+        "meta": ""
+      },
+      {
+        "username": "aij000",
+        "primary": 6075,
+        "metric": "victories",
+        "rank": 92,
+        "meta": ""
+      },
+      {
+        "username": "ferfadd",
+        "primary": 6074,
+        "metric": "victories",
+        "rank": 93,
+        "meta": ""
+      },
+      {
+        "username": "massanto",
+        "primary": 6011,
+        "metric": "victories",
+        "rank": 94,
+        "meta": ""
+      },
+      {
+        "username": "dannygreene123",
+        "primary": 6009,
+        "metric": "victories",
+        "rank": 95,
+        "meta": ""
+      },
+      {
+        "username": "max_flm",
+        "primary": 5999,
+        "metric": "victories",
+        "rank": 96,
+        "meta": ""
+      },
+      {
+        "username": "queenofpersia",
+        "primary": 5998,
+        "metric": "victories",
+        "rank": 97,
+        "meta": ""
+      },
+      {
+        "username": "rassim2012_cr7",
+        "primary": 5903,
+        "metric": "victories",
+        "rank": 98,
+        "meta": ""
+      },
+      {
+        "username": "chesshyperofficial",
+        "primary": 5796,
+        "metric": "victories",
+        "rank": 99,
+        "meta": ""
+      },
+      {
+        "username": "josepiscoya",
+        "primary": 5710,
+        "metric": "victories",
+        "rank": 100,
+        "meta": ""
+      },
+      {
+        "username": "iblunderalot124",
+        "primary": 5695,
+        "metric": "victories",
+        "rank": 101,
+        "meta": ""
+      },
+      {
+        "username": "respectmytalant",
+        "primary": 5620,
+        "metric": "victories",
+        "rank": 102,
+        "meta": ""
+      },
+      {
+        "username": "eaadhavan2015",
+        "primary": 5557,
+        "metric": "victories",
+        "rank": 103,
+        "meta": ""
+      },
+      {
+        "username": "fewfiet",
+        "primary": 5522,
+        "metric": "victories",
+        "rank": 104,
+        "meta": ""
+      },
+      {
+        "username": "gkr_gabriel",
+        "primary": 5457,
+        "metric": "victories",
+        "rank": 105,
+        "meta": ""
+      },
+      {
+        "username": "strila01",
+        "primary": 5452,
+        "metric": "victories",
+        "rank": 106,
+        "meta": ""
+      },
+      {
+        "username": "adza02",
+        "primary": 5416,
+        "metric": "victories",
+        "rank": 107,
+        "meta": ""
+      },
+      {
+        "username": "ali-bayern",
+        "primary": 5385,
+        "metric": "victories",
+        "rank": 108,
+        "meta": ""
+      },
+      {
+        "username": "darsh1700",
+        "primary": 5353,
+        "metric": "victories",
+        "rank": 109,
+        "meta": ""
+      },
+      {
+        "username": "sathsaradissanayakee",
+        "primary": 5328,
+        "metric": "victories",
+        "rank": 110,
+        "meta": ""
+      },
+      {
+        "username": "aarish2805",
+        "primary": 5259,
+        "metric": "victories",
+        "rank": 111,
+        "meta": ""
+      },
+      {
+        "username": "corywong8888",
+        "primary": 5223,
+        "metric": "victories",
+        "rank": 112,
+        "meta": ""
+      },
+      {
+        "username": "bagera9",
+        "primary": 5209,
+        "metric": "victories",
+        "rank": 113,
+        "meta": ""
+      },
+      {
+        "username": "mandoman13",
+        "primary": 5203,
+        "metric": "victories",
+        "rank": 114,
+        "meta": ""
+      },
+      {
+        "username": "kiettuan20135",
+        "primary": 5140,
+        "metric": "victories",
+        "rank": 115,
+        "meta": ""
+      },
+      {
+        "username": "suri_pinky",
+        "primary": 5138,
+        "metric": "victories",
+        "rank": 116,
+        "meta": ""
+      },
+      {
+        "username": "properfarmerotterrk",
+        "primary": 5057,
+        "metric": "victories",
+        "rank": 117,
+        "meta": ""
+      },
+      {
+        "username": "luisfabiano_3lur",
+        "primary": 5021,
+        "metric": "victories",
+        "rank": 118,
+        "meta": ""
+      },
+      {
+        "username": "danielrimner",
+        "primary": 5006,
+        "metric": "victories",
+        "rank": 119,
+        "meta": ""
+      },
+      {
+        "username": "blueberry_pancakes",
+        "primary": 4996,
+        "metric": "victories",
+        "rank": 120,
+        "meta": ""
+      },
+      {
+        "username": "swimmingnest",
+        "primary": 4992,
+        "metric": "victories",
+        "rank": 121,
+        "meta": ""
+      },
+      {
+        "username": "alisan-bmp",
+        "primary": 4968,
+        "metric": "victories",
+        "rank": 122,
+        "meta": ""
+      },
+      {
+        "username": "samugarcia2021",
+        "primary": 4919,
+        "metric": "victories",
+        "rank": 123,
+        "meta": ""
+      },
+      {
+        "username": "civil2000",
+        "primary": 4807,
+        "metric": "victories",
+        "rank": 124,
+        "meta": ""
+      },
+      {
+        "username": "t_challa_4ever",
+        "primary": 4778,
+        "metric": "victories",
+        "rank": 125,
+        "meta": ""
+      },
+      {
+        "username": "goku_evolution_red",
+        "primary": 4757,
+        "metric": "victories",
+        "rank": 126,
+        "meta": ""
+      },
+      {
+        "username": "cinar_arican",
+        "primary": 4739,
+        "metric": "victories",
+        "rank": 127,
+        "meta": ""
+      },
+      {
+        "username": "masterclaws",
+        "primary": 4669,
+        "metric": "victories",
+        "rank": 128,
+        "meta": ""
+      },
+      {
+        "username": "chevss",
+        "primary": 4665,
+        "metric": "victories",
+        "rank": 129,
+        "meta": ""
+      },
+      {
+        "username": "dmms",
+        "primary": 4652,
+        "metric": "victories",
+        "rank": 130,
+        "meta": ""
+      },
+      {
+        "username": "dmartin0",
+        "primary": 4650,
+        "metric": "victories",
+        "rank": 131,
+        "meta": ""
+      },
+      {
+        "username": "iva182",
+        "primary": 4648,
+        "metric": "victories",
+        "rank": 132,
+        "meta": ""
+      },
+      {
+        "username": "dudewithafakeid",
+        "primary": 4635,
+        "metric": "victories",
+        "rank": 133,
+        "meta": ""
+      },
+      {
+        "username": "the_rivermonsta",
+        "primary": 4608,
+        "metric": "victories",
+        "rank": 134,
+        "meta": ""
+      },
+      {
+        "username": "aayan849",
+        "primary": 4569,
+        "metric": "victories",
+        "rank": 135,
+        "meta": ""
+      },
+      {
+        "username": "bodhini2018",
+        "primary": 4541,
+        "metric": "victories",
+        "rank": 136,
+        "meta": ""
+      },
+      {
+        "username": "dtran",
+        "primary": 4532,
+        "metric": "victories",
+        "rank": 137,
+        "meta": ""
+      },
+      {
+        "username": "neneksur",
+        "primary": 4489,
+        "metric": "victories",
+        "rank": 138,
+        "meta": ""
+      },
+      {
+        "username": "ezhik_1988",
+        "primary": 4472,
+        "metric": "victories",
+        "rank": 139,
+        "meta": ""
+      },
+      {
+        "username": "geparrd",
+        "primary": 4411,
+        "metric": "victories",
+        "rank": 140,
+        "meta": ""
+      },
+      {
+        "username": "s_u_r_j_y_a",
+        "primary": 4405,
+        "metric": "victories",
+        "rank": 141,
+        "meta": ""
+      },
+      {
+        "username": "baothienle",
+        "primary": 4387,
+        "metric": "victories",
+        "rank": 142,
+        "meta": ""
+      },
+      {
+        "username": "kex09",
+        "primary": 4381,
+        "metric": "victories",
+        "rank": 143,
+        "meta": ""
+      },
+      {
+        "username": "adam_b_409",
+        "primary": 4374,
+        "metric": "victories",
+        "rank": 144,
+        "meta": ""
+      },
+      {
+        "username": "toverdraak",
+        "primary": 4362,
+        "metric": "victories",
+        "rank": 145,
+        "meta": ""
+      },
+      {
+        "username": "chess_fighter09",
+        "primary": 4350,
+        "metric": "victories",
+        "rank": 146,
+        "meta": ""
+      },
+      {
+        "username": "yogesh02005",
+        "primary": 4328,
+        "metric": "victories",
+        "rank": 147,
+        "meta": ""
+      },
+      {
+        "username": "original_king",
+        "primary": 4284,
+        "metric": "victories",
+        "rank": 148,
+        "meta": ""
+      },
+      {
+        "username": "saulgoodmanhuell",
+        "primary": 4270,
+        "metric": "victories",
+        "rank": 149,
+        "meta": ""
+      },
+      {
+        "username": "matusayayim",
+        "primary": 4243,
+        "metric": "victories",
+        "rank": 150,
+        "meta": ""
+      },
+      {
+        "username": "frederic001",
+        "primary": 4237,
+        "metric": "victories",
+        "rank": 151,
+        "meta": ""
+      },
+      {
+        "username": "mo_2011",
+        "primary": 4230,
+        "metric": "victories",
+        "rank": 152,
+        "meta": ""
+      },
+      {
+        "username": "wisethriftyshell",
+        "primary": 4218,
+        "metric": "victories",
+        "rank": 153,
+        "meta": ""
+      },
+      {
+        "username": "andreas2011",
+        "primary": 4149,
+        "metric": "victories",
+        "rank": 154,
+        "meta": ""
+      },
+      {
+        "username": "volcha_rus",
+        "primary": 4132,
+        "metric": "victories",
+        "rank": 155,
+        "meta": ""
+      },
+      {
+        "username": "gojoka",
+        "primary": 4112,
+        "metric": "victories",
+        "rank": 156,
+        "meta": ""
+      },
+      {
+        "username": "leyteris",
+        "primary": 4085,
+        "metric": "victories",
+        "rank": 157,
+        "meta": ""
+      },
+      {
+        "username": "melton-s",
+        "primary": 4016,
+        "metric": "victories",
+        "rank": 158,
+        "meta": ""
+      },
+      {
+        "username": "bilsson",
+        "primary": 4010,
+        "metric": "victories",
+        "rank": 159,
+        "meta": ""
+      },
+      {
+        "username": "emiliano2sadrc1",
+        "primary": 4001,
+        "metric": "victories",
+        "rank": 160,
+        "meta": ""
+      },
+      {
+        "username": "zoro67",
+        "primary": 3904,
+        "metric": "victories",
+        "rank": 161,
+        "meta": ""
+      },
+      {
+        "username": "ashanestnicholas",
+        "primary": 3898,
+        "metric": "victories",
+        "rank": 162,
+        "meta": ""
+      },
+      {
+        "username": "james126",
+        "primary": 3872,
+        "metric": "victories",
+        "rank": 163,
+        "meta": ""
+      },
+      {
+        "username": "sahchin",
+        "primary": 3857,
+        "metric": "victories",
+        "rank": 164,
+        "meta": ""
+      },
+      {
+        "username": "jichess10000",
+        "primary": 3849,
+        "metric": "victories",
+        "rank": 165,
+        "meta": ""
+      },
+      {
+        "username": "febinlloyd",
+        "primary": 3814,
+        "metric": "victories",
+        "rank": 166,
+        "meta": ""
+      },
+      {
+        "username": "samvel0804",
+        "primary": 3803,
+        "metric": "victories",
+        "rank": 167,
+        "meta": ""
+      },
+      {
+        "username": "oscarsm80",
+        "primary": 3787,
+        "metric": "victories",
+        "rank": 168,
+        "meta": ""
+      },
+      {
+        "username": "hithwik",
+        "primary": 3778,
+        "metric": "victories",
+        "rank": 169,
+        "meta": ""
+      },
+      {
+        "username": "e101",
+        "primary": 3768,
+        "metric": "victories",
+        "rank": 170,
+        "meta": ""
+      },
+      {
+        "username": "oliveirasamuel",
+        "primary": 3735,
+        "metric": "victories",
+        "rank": 171,
+        "meta": ""
+      },
+      {
+        "username": "ollieparker",
+        "primary": 3714,
+        "metric": "victories",
+        "rank": 172,
+        "meta": ""
+      },
+      {
+        "username": "sorokindanya",
+        "primary": 3683,
+        "metric": "victories",
+        "rank": 173,
+        "meta": ""
+      },
+      {
+        "username": "giancz91",
+        "primary": 3656,
+        "metric": "victories",
+        "rank": 174,
+        "meta": ""
+      },
+      {
+        "username": "magicionfromriga",
+        "primary": 3650,
+        "metric": "victories",
+        "rank": 175,
+        "meta": ""
+      },
+      {
+        "username": "keshav_2000",
+        "primary": 3600,
+        "metric": "victories",
+        "rank": 176,
+        "meta": ""
+      },
+      {
+        "username": "untalented7862",
+        "primary": 3593,
+        "metric": "victories",
+        "rank": 177,
+        "meta": ""
+      },
+      {
+        "username": "hungry_admiral",
+        "primary": 3557,
+        "metric": "victories",
+        "rank": 178,
+        "meta": ""
+      },
+      {
+        "username": "satyamakadia",
+        "primary": 3549,
+        "metric": "victories",
+        "rank": 179,
+        "meta": ""
+      },
+      {
+        "username": "grakm",
+        "primary": 3549,
+        "metric": "victories",
+        "rank": 180,
+        "meta": ""
+      },
+      {
+        "username": "the_troubled_patzer",
+        "primary": 3542,
+        "metric": "victories",
+        "rank": 181,
+        "meta": ""
+      },
+      {
+        "username": "menace2011",
+        "primary": 3518,
+        "metric": "victories",
+        "rank": 182,
+        "meta": ""
+      },
+      {
+        "username": "lasswag2021i",
+        "primary": 3508,
+        "metric": "victories",
+        "rank": 183,
+        "meta": ""
+      },
+      {
+        "username": "panioistp2023",
+        "primary": 3496,
+        "metric": "victories",
+        "rank": 184,
+        "meta": ""
+      },
+      {
+        "username": "alucasm",
+        "primary": 3481,
+        "metric": "victories",
+        "rank": 185,
+        "meta": ""
+      },
+      {
+        "username": "thetaksa75",
+        "primary": 3460,
+        "metric": "victories",
+        "rank": 186,
+        "meta": ""
+      },
+      {
+        "username": "bluedoggy",
+        "primary": 3449,
+        "metric": "victories",
+        "rank": 187,
+        "meta": ""
+      },
+      {
+        "username": "lusito2020",
+        "primary": 3445,
+        "metric": "victories",
+        "rank": 188,
+        "meta": ""
+      },
+      {
+        "username": "renzopp123",
+        "primary": 3444,
+        "metric": "victories",
+        "rank": 189,
+        "meta": ""
+      },
+      {
+        "username": "afteralongtime",
+        "primary": 3439,
+        "metric": "victories",
+        "rank": 190,
+        "meta": ""
+      },
+      {
+        "username": "drawinglikeanish",
+        "primary": 3434,
+        "metric": "victories",
+        "rank": 191,
+        "meta": ""
+      },
+      {
+        "username": "lifeofinjustice",
+        "primary": 3409,
+        "metric": "victories",
+        "rank": 192,
+        "meta": ""
+      },
+      {
+        "username": "moritz872",
+        "primary": 3389,
+        "metric": "victories",
+        "rank": 193,
+        "meta": ""
+      },
+      {
+        "username": "nikolas-09",
+        "primary": 3336,
+        "metric": "victories",
+        "rank": 194,
+        "meta": ""
+      },
+      {
+        "username": "hardhiksurana",
+        "primary": 3328,
+        "metric": "victories",
+        "rank": 195,
+        "meta": ""
+      },
+      {
+        "username": "nikfar_bardia",
+        "primary": 3324,
+        "metric": "victories",
+        "rank": 196,
+        "meta": ""
+      },
+      {
+        "username": "lucasghattas",
+        "primary": 3320,
+        "metric": "victories",
+        "rank": 197,
+        "meta": ""
+      },
+      {
+        "username": "esn08",
+        "primary": 3320,
+        "metric": "victories",
+        "rank": 198,
+        "meta": ""
+      },
+      {
+        "username": "thisisrex",
+        "primary": 3316,
+        "metric": "victories",
+        "rank": 199,
+        "meta": ""
+      },
+      {
+        "username": "lc-racing",
+        "primary": 3311,
+        "metric": "victories",
+        "rank": 200,
+        "meta": ""
+      },
+      {
+        "username": "hammer_strike",
+        "primary": 3262,
+        "metric": "victories",
+        "rank": 201,
+        "meta": ""
+      },
+      {
+        "username": "sjc_sakith",
+        "primary": 3250,
+        "metric": "victories",
+        "rank": 202,
+        "meta": ""
+      },
+      {
+        "username": "ninjagouniverse",
+        "primary": 3230,
+        "metric": "victories",
+        "rank": 203,
+        "meta": ""
+      },
+      {
+        "username": "yb_1",
+        "primary": 3217,
+        "metric": "victories",
+        "rank": 204,
+        "meta": ""
+      },
+      {
+        "username": "counterclarkwise",
+        "primary": 3198,
+        "metric": "victories",
+        "rank": 205,
+        "meta": ""
+      },
+      {
+        "username": "aarya1",
+        "primary": 3197,
+        "metric": "victories",
+        "rank": 206,
+        "meta": ""
+      },
+      {
+        "username": "manosss",
+        "primary": 3192,
+        "metric": "victories",
+        "rank": 207,
+        "meta": ""
+      },
+      {
+        "username": "mani13866",
+        "primary": 3188,
+        "metric": "victories",
+        "rank": 208,
+        "meta": ""
+      },
+      {
+        "username": "babosos",
+        "primary": 3167,
+        "metric": "victories",
+        "rank": 209,
+        "meta": ""
+      },
+      {
+        "username": "trantuankietthba",
+        "primary": 3142,
+        "metric": "victories",
+        "rank": 210,
+        "meta": ""
+      },
+      {
+        "username": "luka3916",
+        "primary": 3120,
+        "metric": "victories",
+        "rank": 211,
+        "meta": ""
+      },
+      {
+        "username": "venufork",
+        "primary": 3119,
+        "metric": "victories",
+        "rank": 212,
+        "meta": ""
+      },
+      {
+        "username": "resq-eydi",
+        "primary": 3106,
+        "metric": "victories",
+        "rank": 213,
+        "meta": ""
+      },
+      {
+        "username": "aidas08",
+        "primary": 3103,
+        "metric": "victories",
+        "rank": 214,
+        "meta": ""
+      },
+      {
+        "username": "astrocat789",
+        "primary": 3091,
+        "metric": "victories",
+        "rank": 215,
+        "meta": ""
+      },
+      {
+        "username": "kos99",
+        "primary": 3076,
+        "metric": "victories",
+        "rank": 216,
+        "meta": ""
+      },
+      {
+        "username": "ctdnamhongminh3i",
+        "primary": 3069,
+        "metric": "victories",
+        "rank": 217,
+        "meta": ""
+      },
+      {
+        "username": "sudila",
+        "primary": 3059,
+        "metric": "victories",
+        "rank": 218,
+        "meta": ""
+      },
+      {
+        "username": "ilaaaaaaaaaaaaaaares",
+        "primary": 3059,
+        "metric": "victories",
+        "rank": 219,
+        "meta": ""
+      },
+      {
+        "username": "zidan_s",
+        "primary": 3054,
+        "metric": "victories",
+        "rank": 220,
+        "meta": ""
+      },
+      {
+        "username": "rkasaurus_rex",
+        "primary": 3041,
+        "metric": "victories",
+        "rank": 221,
+        "meta": ""
+      },
+      {
+        "username": "c9c0cc9",
+        "primary": 3040,
+        "metric": "victories",
+        "rank": 222,
+        "meta": ""
+      },
+      {
+        "username": "rzayev07",
+        "primary": 3040,
+        "metric": "victories",
+        "rank": 223,
+        "meta": ""
+      },
+      {
+        "username": "p_parsa90_90",
+        "primary": 3031,
+        "metric": "victories",
+        "rank": 224,
+        "meta": ""
+      },
+      {
+        "username": "khushi_gupta",
+        "primary": 3024,
+        "metric": "victories",
+        "rank": 225,
+        "meta": ""
+      },
+      {
+        "username": "battw",
+        "primary": 3024,
+        "metric": "victories",
+        "rank": 226,
+        "meta": ""
+      },
+      {
+        "username": "masterdragon1",
+        "primary": 3001,
+        "metric": "victories",
+        "rank": 227,
+        "meta": ""
+      },
+      {
+        "username": "dismoitout",
+        "primary": 2999,
+        "metric": "victories",
+        "rank": 228,
+        "meta": ""
+      },
+      {
+        "username": "vic2r",
+        "primary": 2990,
+        "metric": "victories",
+        "rank": 229,
+        "meta": ""
+      },
+      {
+        "username": "janadd",
+        "primary": 2963,
+        "metric": "victories",
+        "rank": 230,
+        "meta": ""
+      },
+      {
+        "username": "daniil_savelev",
+        "primary": 2944,
+        "metric": "victories",
+        "rank": 231,
+        "meta": ""
+      },
+      {
+        "username": "davidli135",
+        "primary": 2942,
+        "metric": "victories",
+        "rank": 232,
+        "meta": ""
+      },
+      {
+        "username": "mejordelajedrez2011",
+        "primary": 2929,
+        "metric": "victories",
+        "rank": 233,
+        "meta": ""
+      },
+      {
+        "username": "cacarl",
+        "primary": 2902,
+        "metric": "victories",
+        "rank": 234,
+        "meta": ""
+      },
+      {
+        "username": "utahraptor_11",
+        "primary": 2876,
+        "metric": "victories",
+        "rank": 235,
+        "meta": ""
+      },
+      {
+        "username": "lazzari-marco",
+        "primary": 2845,
+        "metric": "victories",
+        "rank": 236,
+        "meta": ""
+      },
+      {
+        "username": "jazzyf",
+        "primary": 2844,
+        "metric": "victories",
+        "rank": 237,
+        "meta": ""
+      },
+      {
+        "username": "anuhas_dharana_2010",
+        "primary": 2822,
+        "metric": "victories",
+        "rank": 238,
+        "meta": ""
+      },
+      {
+        "username": "aleksspieler",
+        "primary": 2815,
+        "metric": "victories",
+        "rank": 239,
+        "meta": ""
+      },
+      {
+        "username": "variantplayerkian",
+        "primary": 2782,
+        "metric": "victories",
+        "rank": 240,
+        "meta": ""
+      },
+      {
+        "username": "schach_laeufer",
+        "primary": 2781,
+        "metric": "victories",
+        "rank": 241,
+        "meta": ""
+      },
+      {
+        "username": "manuelkarol875",
+        "primary": 2768,
+        "metric": "victories",
+        "rank": 242,
+        "meta": ""
+      },
+      {
+        "username": "stillinflipflops",
+        "primary": 2767,
+        "metric": "victories",
+        "rank": 243,
+        "meta": ""
+      },
+      {
+        "username": "jagovanhouten_lckb",
+        "primary": 2765,
+        "metric": "victories",
+        "rank": 244,
+        "meta": ""
+      },
+      {
+        "username": "marlonc",
+        "primary": 2757,
+        "metric": "victories",
+        "rank": 245,
+        "meta": ""
+      },
+      {
+        "username": "grgchess",
+        "primary": 2750,
+        "metric": "victories",
+        "rank": 246,
+        "meta": ""
+      },
+      {
+        "username": "chessmastersofficial",
+        "primary": 2749,
+        "metric": "victories",
+        "rank": 247,
+        "meta": ""
+      },
+      {
+        "username": "lawenforcer17",
+        "primary": 2742,
+        "metric": "victories",
+        "rank": 248,
+        "meta": ""
+      },
+      {
+        "username": "jaksietegouzywa",
+        "primary": 2737,
+        "metric": "victories",
+        "rank": 249,
+        "meta": ""
+      },
+      {
+        "username": "varun2184",
+        "primary": 2728,
+        "metric": "victories",
+        "rank": 250,
+        "meta": ""
+      },
+      {
+        "username": "aasav",
+        "primary": 2716,
+        "metric": "victories",
+        "rank": 251,
+        "meta": ""
+      },
+      {
+        "username": "mahithmrt",
+        "primary": 2709,
+        "metric": "victories",
+        "rank": 252,
+        "meta": ""
+      },
+      {
+        "username": "diffusion",
+        "primary": 2688,
+        "metric": "victories",
+        "rank": 253,
+        "meta": ""
+      },
+      {
+        "username": "rk_competitor",
+        "primary": 2654,
+        "metric": "victories",
+        "rank": 254,
+        "meta": ""
+      },
+      {
+        "username": "ganchess01",
+        "primary": 2652,
+        "metric": "victories",
+        "rank": 255,
+        "meta": ""
+      },
+      {
+        "username": "fkalman",
+        "primary": 2649,
+        "metric": "victories",
+        "rank": 256,
+        "meta": ""
+      },
+      {
+        "username": "reddy777",
+        "primary": 2629,
+        "metric": "victories",
+        "rank": 257,
+        "meta": ""
+      },
+      {
+        "username": "reyanshsp",
+        "primary": 2628,
+        "metric": "victories",
+        "rank": 258,
+        "meta": ""
+      },
+      {
+        "username": "balizetornado45",
+        "primary": 2626,
+        "metric": "victories",
+        "rank": 259,
+        "meta": ""
+      },
+      {
+        "username": "arhammr7",
+        "primary": 2621,
+        "metric": "victories",
+        "rank": 260,
+        "meta": ""
+      },
+      {
+        "username": "special_yeet",
+        "primary": 2610,
+        "metric": "victories",
+        "rank": 261,
+        "meta": ""
+      },
+      {
+        "username": "arshadi87",
+        "primary": 2609,
+        "metric": "victories",
+        "rank": 262,
+        "meta": ""
+      },
+      {
+        "username": "sdrawkcabog",
+        "primary": 2595,
+        "metric": "victories",
+        "rank": 263,
+        "meta": ""
+      },
+      {
+        "username": "germanvyshegor",
+        "primary": 2595,
+        "metric": "victories",
+        "rank": 264,
+        "meta": ""
+      },
+      {
+        "username": "berserkallgames",
+        "primary": 2593,
+        "metric": "victories",
+        "rank": 265,
+        "meta": ""
+      },
+      {
+        "username": "david360er",
+        "primary": 2591,
+        "metric": "victories",
+        "rank": 266,
+        "meta": ""
+      },
+      {
+        "username": "mukta0922",
+        "primary": 2588,
+        "metric": "victories",
+        "rank": 267,
+        "meta": ""
+      },
+      {
+        "username": "ludovicm59",
+        "primary": 2585,
+        "metric": "victories",
+        "rank": 268,
+        "meta": ""
+      },
+      {
+        "username": "wlaver",
+        "primary": 2571,
+        "metric": "victories",
+        "rank": 269,
+        "meta": ""
+      },
+      {
+        "username": "walker_22",
+        "primary": 2566,
+        "metric": "victories",
+        "rank": 270,
+        "meta": ""
+      },
+      {
+        "username": "nickelplatedburners1",
+        "primary": 2535,
+        "metric": "victories",
+        "rank": 271,
+        "meta": ""
+      },
+      {
+        "username": "chess23456789",
+        "primary": 2526,
+        "metric": "victories",
+        "rank": 272,
+        "meta": ""
+      },
+      {
+        "username": "va_20201212",
+        "primary": 2520,
+        "metric": "victories",
+        "rank": 273,
+        "meta": ""
+      },
+      {
+        "username": "peanutbutter12345",
+        "primary": 2514,
+        "metric": "victories",
+        "rank": 274,
+        "meta": ""
+      },
+      {
+        "username": "redeemer_d",
+        "primary": 2505,
+        "metric": "victories",
+        "rank": 275,
+        "meta": ""
+      },
+      {
+        "username": "ultimatekh3noob",
+        "primary": 2473,
+        "metric": "victories",
+        "rank": 276,
+        "meta": ""
+      },
+      {
+        "username": "da_big_chezz",
+        "primary": 2473,
+        "metric": "victories",
+        "rank": 277,
+        "meta": ""
+      },
+      {
+        "username": "samochernovnick",
+        "primary": 2465,
+        "metric": "victories",
+        "rank": 278,
+        "meta": ""
+      },
+      {
+        "username": "a_47",
+        "primary": 2450,
+        "metric": "victories",
+        "rank": 279,
+        "meta": ""
+      },
+      {
+        "username": "haddonreeves",
+        "primary": 2440,
+        "metric": "victories",
+        "rank": 280,
+        "meta": ""
+      },
+      {
+        "username": "simplesimpson03",
+        "primary": 2436,
+        "metric": "victories",
+        "rank": 281,
+        "meta": ""
+      },
+      {
+        "username": "imartin0",
+        "primary": 2435,
+        "metric": "victories",
+        "rank": 282,
+        "meta": ""
+      },
+      {
+        "username": "mr_thunder23",
+        "primary": 2430,
+        "metric": "victories",
+        "rank": 283,
+        "meta": ""
+      },
+      {
+        "username": "statham13",
+        "primary": 2417,
+        "metric": "victories",
+        "rank": 284,
+        "meta": ""
+      },
+      {
+        "username": "footballingchess",
+        "primary": 2392,
+        "metric": "victories",
+        "rank": 285,
+        "meta": ""
+      },
+      {
+        "username": "spritenfifa21",
+        "primary": 2386,
+        "metric": "victories",
+        "rank": 286,
+        "meta": ""
+      },
+      {
+        "username": "xyz22",
+        "primary": 2386,
+        "metric": "victories",
+        "rank": 287,
+        "meta": ""
+      },
+      {
+        "username": "bgs3c1_dtbminh",
+        "primary": 2385,
+        "metric": "victories",
+        "rank": 288,
+        "meta": ""
+      },
+      {
+        "username": "divessh",
+        "primary": 2376,
+        "metric": "victories",
+        "rank": 289,
+        "meta": ""
+      },
+      {
+        "username": "kir-19-prg-1751",
+        "primary": 2361,
+        "metric": "victories",
+        "rank": 290,
+        "meta": ""
+      },
+      {
+        "username": "gryffin160",
+        "primary": 2358,
+        "metric": "victories",
+        "rank": 291,
+        "meta": ""
+      },
+      {
+        "username": "eliasdum",
+        "primary": 2327,
+        "metric": "victories",
+        "rank": 292,
+        "meta": ""
+      },
+      {
+        "username": "racingkingsking",
+        "primary": 2321,
+        "metric": "victories",
+        "rank": 293,
+        "meta": ""
+      },
+      {
+        "username": "arjan_chess2",
+        "primary": 2317,
+        "metric": "victories",
+        "rank": 294,
+        "meta": ""
+      },
+      {
+        "username": "ymyugimaga",
+        "primary": 2313,
+        "metric": "victories",
+        "rank": 295,
+        "meta": ""
+      },
+      {
+        "username": "lloydfebin",
+        "primary": 2303,
+        "metric": "victories",
+        "rank": 296,
+        "meta": ""
+      },
+      {
+        "username": "weapon9knight",
+        "primary": 2299,
+        "metric": "victories",
+        "rank": 297,
+        "meta": ""
+      },
+      {
+        "username": "bearzerker",
+        "primary": 2297,
+        "metric": "victories",
+        "rank": 298,
+        "meta": ""
+      },
+      {
+        "username": "ilma9307",
+        "primary": 2294,
+        "metric": "victories",
+        "rank": 299,
+        "meta": ""
+      },
+      {
+        "username": "lukasdjam",
+        "primary": 2246,
+        "metric": "victories",
+        "rank": 300,
+        "meta": ""
+      },
+      {
+        "username": "duracell233",
+        "primary": 2221,
+        "metric": "victories",
+        "rank": 301,
+        "meta": ""
+      },
+      {
+        "username": "holstentor",
+        "primary": 2218,
+        "metric": "victories",
+        "rank": 302,
+        "meta": ""
+      },
+      {
+        "username": "chrollo_l",
+        "primary": 2211,
+        "metric": "victories",
+        "rank": 303,
+        "meta": ""
+      },
+      {
+        "username": "buecherfresser11",
+        "primary": 2207,
+        "metric": "victories",
+        "rank": 304,
+        "meta": ""
+      },
+      {
+        "username": "amintavakkoli",
+        "primary": 2195,
+        "metric": "victories",
+        "rank": 305,
+        "meta": ""
+      },
+      {
+        "username": "victor222-elrey",
+        "primary": 2193,
+        "metric": "victories",
+        "rank": 306,
+        "meta": ""
+      },
+      {
+        "username": "shivakpv",
+        "primary": 2183,
+        "metric": "victories",
+        "rank": 307,
+        "meta": ""
+      },
+      {
+        "username": "sdk_dhinesh",
+        "primary": 2180,
+        "metric": "victories",
+        "rank": 308,
+        "meta": ""
+      },
+      {
+        "username": "anaranel",
+        "primary": 2176,
+        "metric": "victories",
+        "rank": 309,
+        "meta": ""
+      },
+      {
+        "username": "vsriram4tha",
+        "primary": 2171,
+        "metric": "victories",
+        "rank": 310,
+        "meta": ""
+      },
+      {
+        "username": "honzinb",
+        "primary": 2167,
+        "metric": "victories",
+        "rank": 311,
+        "meta": ""
+      },
+      {
+        "username": "driftmate",
+        "primary": 2163,
+        "metric": "victories",
+        "rank": 312,
+        "meta": ""
+      },
+      {
+        "username": "chess345678",
+        "primary": 2157,
+        "metric": "victories",
+        "rank": 313,
+        "meta": ""
+      },
+      {
+        "username": "thiago_siqueira",
+        "primary": 2143,
+        "metric": "victories",
+        "rank": 314,
+        "meta": ""
+      },
+      {
+        "username": "sundar1974",
+        "primary": 2140,
+        "metric": "victories",
+        "rank": 315,
+        "meta": ""
+      },
+      {
+        "username": "hossein-6831xyz",
+        "primary": 2125,
+        "metric": "victories",
+        "rank": 316,
+        "meta": ""
+      },
+      {
+        "username": "adriascproxd",
+        "primary": 2123,
+        "metric": "victories",
+        "rank": 317,
+        "meta": ""
+      },
+      {
+        "username": "fighter798",
+        "primary": 2121,
+        "metric": "victories",
+        "rank": 318,
+        "meta": ""
+      },
+      {
+        "username": "maximpro116",
+        "primary": 2118,
+        "metric": "victories",
+        "rank": 319,
+        "meta": ""
+      },
+      {
+        "username": "broh",
+        "primary": 2107,
+        "metric": "victories",
+        "rank": 320,
+        "meta": ""
+      },
+      {
+        "username": "ritvik_n123",
+        "primary": 2106,
+        "metric": "victories",
+        "rank": 321,
+        "meta": ""
+      },
+      {
+        "username": "efeefekagankagan",
+        "primary": 2105,
+        "metric": "victories",
+        "rank": 322,
+        "meta": ""
+      },
+      {
+        "username": "reborn_2",
+        "primary": 2102,
+        "metric": "victories",
+        "rank": 323,
+        "meta": ""
+      },
+      {
+        "username": "mohomadishan",
+        "primary": 2096,
+        "metric": "victories",
+        "rank": 324,
+        "meta": ""
+      },
+      {
+        "username": "killemall77",
+        "primary": 2095,
+        "metric": "victories",
+        "rank": 325,
+        "meta": ""
+      },
+      {
+        "username": "javi0111",
+        "primary": 2080,
+        "metric": "victories",
+        "rank": 326,
+        "meta": ""
+      },
+      {
+        "username": "ahmad394",
+        "primary": 2077,
+        "metric": "victories",
+        "rank": 327,
+        "meta": ""
+      },
+      {
+        "username": "variant_master55",
+        "primary": 2061,
+        "metric": "victories",
+        "rank": 328,
+        "meta": ""
+      },
+      {
+        "username": "santiy",
+        "primary": 2061,
+        "metric": "victories",
+        "rank": 329,
+        "meta": ""
+      },
+      {
+        "username": "luckacyrus",
+        "primary": 2049,
+        "metric": "victories",
+        "rank": 330,
+        "meta": ""
+      },
+      {
+        "username": "almansur131",
+        "primary": 2042,
+        "metric": "victories",
+        "rank": 331,
+        "meta": ""
+      },
+      {
+        "username": "captain_tsubasa_10",
+        "primary": 2039,
+        "metric": "victories",
+        "rank": 332,
+        "meta": ""
+      },
+      {
+        "username": "bondkp777",
+        "primary": 2033,
+        "metric": "victories",
+        "rank": 333,
+        "meta": ""
+      },
+      {
+        "username": "victorariasl_ia",
+        "primary": 2030,
+        "metric": "victories",
+        "rank": 334,
+        "meta": ""
+      },
+      {
+        "username": "thirunavukkarasu",
+        "primary": 2025,
+        "metric": "victories",
+        "rank": 335,
+        "meta": ""
+      },
+      {
+        "username": "elchinm",
+        "primary": 2022,
+        "metric": "victories",
+        "rank": 336,
+        "meta": ""
+      },
+      {
+        "username": "hirukar",
+        "primary": 2010,
+        "metric": "victories",
+        "rank": 337,
+        "meta": ""
+      },
+      {
+        "username": "brazilninja",
+        "primary": 2004,
+        "metric": "victories",
+        "rank": 338,
+        "meta": ""
+      },
+      {
+        "username": "jozzy",
+        "primary": 1986,
+        "metric": "victories",
+        "rank": 339,
+        "meta": ""
+      },
+      {
+        "username": "red_cherry1",
+        "primary": 1985,
+        "metric": "victories",
+        "rank": 340,
+        "meta": ""
+      },
+      {
+        "username": "panthers498wjhs",
+        "primary": 1980,
+        "metric": "victories",
+        "rank": 341,
+        "meta": ""
+      },
+      {
+        "username": "chess_fighter2806",
+        "primary": 1970,
+        "metric": "victories",
+        "rank": 342,
+        "meta": ""
+      },
+      {
+        "username": "royalracer_2",
+        "primary": 1965,
+        "metric": "victories",
+        "rank": 343,
+        "meta": ""
+      },
+      {
+        "username": "sprout01",
+        "primary": 1962,
+        "metric": "victories",
+        "rank": 344,
+        "meta": ""
+      },
+      {
+        "username": "acaciaisnotatree",
+        "primary": 1958,
+        "metric": "victories",
+        "rank": 345,
+        "meta": ""
+      },
+      {
+        "username": "stinkypotato",
+        "primary": 1955,
+        "metric": "victories",
+        "rank": 346,
+        "meta": ""
+      },
+      {
+        "username": "thinkfast_movefast",
+        "primary": 1950,
+        "metric": "victories",
+        "rank": 347,
+        "meta": ""
+      },
+      {
+        "username": "aleksandr201014",
+        "primary": 1948,
+        "metric": "victories",
+        "rank": 348,
+        "meta": ""
+      },
+      {
+        "username": "niccless",
+        "primary": 1944,
+        "metric": "victories",
+        "rank": 349,
+        "meta": ""
+      },
+      {
+        "username": "falconf7",
+        "primary": 1938,
+        "metric": "victories",
+        "rank": 350,
+        "meta": ""
+      },
+      {
+        "username": "nichicrack",
+        "primary": 1934,
+        "metric": "victories",
+        "rank": 351,
+        "meta": ""
+      },
+      {
+        "username": "goran2013",
+        "primary": 1925,
+        "metric": "victories",
+        "rank": 352,
+        "meta": ""
+      },
+      {
+        "username": "sahin2013",
+        "primary": 1903,
+        "metric": "victories",
+        "rank": 353,
+        "meta": ""
+      },
+      {
+        "username": "chrisboyissick",
+        "primary": 1894,
+        "metric": "victories",
+        "rank": 354,
+        "meta": ""
+      },
+      {
+        "username": "alancheng",
+        "primary": 1891,
+        "metric": "victories",
+        "rank": 355,
+        "meta": ""
+      },
+      {
+        "username": "queenivyab",
+        "primary": 1891,
+        "metric": "victories",
+        "rank": 356,
+        "meta": ""
+      },
+      {
+        "username": "tks-bhm-ryani",
+        "primary": 1885,
+        "metric": "victories",
+        "rank": 357,
+        "meta": ""
+      },
+      {
+        "username": "space_warrior1212",
+        "primary": 1864,
+        "metric": "victories",
+        "rank": 358,
+        "meta": ""
+      },
+      {
+        "username": "ilia171115",
+        "primary": 1855,
+        "metric": "victories",
+        "rank": 359,
+        "meta": ""
+      },
+      {
+        "username": "retiredproffesor",
+        "primary": 1854,
+        "metric": "victories",
+        "rank": 360,
+        "meta": ""
+      },
+      {
+        "username": "ular_pyton",
+        "primary": 1853,
+        "metric": "victories",
+        "rank": 361,
+        "meta": ""
+      },
+      {
+        "username": "brainiac_legend",
+        "primary": 1850,
+        "metric": "victories",
+        "rank": 362,
+        "meta": ""
+      },
+      {
+        "username": "f4everrunninghumbird",
+        "primary": 1844,
+        "metric": "victories",
+        "rank": 363,
+        "meta": ""
+      },
+      {
+        "username": "gluteusmaximus",
+        "primary": 1830,
+        "metric": "victories",
+        "rank": 364,
+        "meta": ""
+      },
+      {
+        "username": "dhashahlanraj_king",
+        "primary": 1829,
+        "metric": "victories",
+        "rank": 365,
+        "meta": ""
+      },
+      {
+        "username": "chessplayer02013",
+        "primary": 1824,
+        "metric": "victories",
+        "rank": 366,
+        "meta": ""
+      },
+      {
+        "username": "pierre7654",
+        "primary": 1816,
+        "metric": "victories",
+        "rank": 367,
+        "meta": ""
+      },
+      {
+        "username": "law17enforcer",
+        "primary": 1808,
+        "metric": "victories",
+        "rank": 368,
+        "meta": ""
+      },
+      {
+        "username": "schaakserver",
+        "primary": 1808,
+        "metric": "victories",
+        "rank": 369,
+        "meta": ""
+      },
+      {
+        "username": "gooliver10",
+        "primary": 1808,
+        "metric": "victories",
+        "rank": 370,
+        "meta": ""
+      },
+      {
+        "username": "anonymblaameis",
+        "primary": 1807,
+        "metric": "victories",
+        "rank": 371,
+        "meta": ""
+      },
+      {
+        "username": "kristofer1",
+        "primary": 1807,
+        "metric": "victories",
+        "rank": 372,
+        "meta": ""
+      },
+      {
+        "username": "properfarmerotter",
+        "primary": 1801,
+        "metric": "victories",
+        "rank": 373,
+        "meta": ""
+      },
+      {
+        "username": "jrplayer1425",
+        "primary": 1799,
+        "metric": "victories",
+        "rank": 374,
+        "meta": ""
+      },
+      {
+        "username": "yagizozcelik250",
+        "primary": 1794,
+        "metric": "victories",
+        "rank": 375,
+        "meta": ""
+      },
+      {
+        "username": "panthers191wjhs",
+        "primary": 1790,
+        "metric": "victories",
+        "rank": 376,
+        "meta": ""
+      },
+      {
+        "username": "kevindaniel1974",
+        "primary": 1787,
+        "metric": "victories",
+        "rank": 377,
+        "meta": ""
+      },
+      {
+        "username": "racatoant",
+        "primary": 1783,
+        "metric": "victories",
+        "rank": 378,
+        "meta": ""
+      },
+      {
+        "username": "ivanchu26",
+        "primary": 1783,
+        "metric": "victories",
+        "rank": 379,
+        "meta": ""
+      },
+      {
+        "username": "go-ahead",
+        "primary": 1779,
+        "metric": "victories",
+        "rank": 380,
+        "meta": ""
+      },
+      {
+        "username": "zlaya_bea",
+        "primary": 1767,
+        "metric": "victories",
+        "rank": 381,
+        "meta": ""
+      },
+      {
+        "username": "meredy",
+        "primary": 1765,
+        "metric": "victories",
+        "rank": 382,
+        "meta": ""
+      },
+      {
+        "username": "prajeethbatchu",
+        "primary": 1764,
+        "metric": "victories",
+        "rank": 383,
+        "meta": ""
+      },
+      {
+        "username": "ksyu04_04",
+        "primary": 1744,
+        "metric": "victories",
+        "rank": 384,
+        "meta": ""
+      },
+      {
+        "username": "deinebewegung",
+        "primary": 1731,
+        "metric": "victories",
+        "rank": 385,
+        "meta": ""
+      },
+      {
+        "username": "filippulapa13",
+        "primary": 1721,
+        "metric": "victories",
+        "rank": 386,
+        "meta": ""
+      },
+      {
+        "username": "vyshegorgerman",
+        "primary": 1710,
+        "metric": "victories",
+        "rank": 387,
+        "meta": ""
+      },
+      {
+        "username": "apollo2023",
+        "primary": 1709,
+        "metric": "victories",
+        "rank": 388,
+        "meta": ""
+      },
+      {
+        "username": "nottimakha",
+        "primary": 1707,
+        "metric": "victories",
+        "rank": 389,
+        "meta": ""
+      },
+      {
+        "username": "fele007",
+        "primary": 1705,
+        "metric": "victories",
+        "rank": 390,
+        "meta": ""
+      },
+      {
+        "username": "mrcool123",
+        "primary": 1704,
+        "metric": "victories",
+        "rank": 391,
+        "meta": ""
+      },
+      {
+        "username": "goku1500p",
+        "primary": 1690,
+        "metric": "victories",
+        "rank": 392,
+        "meta": ""
+      },
+      {
+        "username": "divyanshu_verma-ind",
+        "primary": 1689,
+        "metric": "victories",
+        "rank": 393,
+        "meta": ""
+      },
+      {
+        "username": "slonnd",
+        "primary": 1685,
+        "metric": "victories",
+        "rank": 394,
+        "meta": ""
+      },
+      {
+        "username": "pickalicious",
+        "primary": 1685,
+        "metric": "victories",
+        "rank": 395,
+        "meta": ""
+      },
+      {
+        "username": "chessloldss",
+        "primary": 1683,
+        "metric": "victories",
+        "rank": 396,
+        "meta": ""
+      },
+      {
+        "username": "dcea02",
+        "primary": 1679,
+        "metric": "victories",
+        "rank": 397,
+        "meta": ""
+      },
+      {
+        "username": "lmartin0",
+        "primary": 1672,
+        "metric": "victories",
+        "rank": 398,
+        "meta": ""
+      },
+      {
+        "username": "martc12",
+        "primary": 1671,
+        "metric": "victories",
+        "rank": 399,
+        "meta": ""
+      },
+      {
+        "username": "cagin2013",
+        "primary": 1663,
+        "metric": "victories",
+        "rank": 400,
+        "meta": ""
+      },
+      {
+        "username": "monkielikechess",
+        "primary": 1656,
+        "metric": "victories",
+        "rank": 401,
+        "meta": ""
+      },
+      {
+        "username": "zigisk",
+        "primary": 1648,
+        "metric": "victories",
+        "rank": 402,
+        "meta": ""
+      },
+      {
+        "username": "jwchess21_2",
+        "primary": 1647,
+        "metric": "victories",
+        "rank": 403,
+        "meta": ""
+      },
+      {
+        "username": "mukta1234",
+        "primary": 1646,
+        "metric": "victories",
+        "rank": 404,
+        "meta": ""
+      },
+      {
+        "username": "theinvisible_ninja",
+        "primary": 1646,
+        "metric": "victories",
+        "rank": 405,
+        "meta": ""
+      },
+      {
+        "username": "vsubhangstar",
+        "primary": 1640,
+        "metric": "victories",
+        "rank": 406,
+        "meta": ""
+      },
+      {
+        "username": "volnov__alexey",
+        "primary": 1633,
+        "metric": "victories",
+        "rank": 407,
+        "meta": ""
+      },
+      {
+        "username": "kir_1751_vinuth",
+        "primary": 1631,
+        "metric": "victories",
+        "rank": 408,
+        "meta": ""
+      },
+      {
+        "username": "tmartin0",
+        "primary": 1629,
+        "metric": "victories",
+        "rank": 409,
+        "meta": ""
+      },
+      {
+        "username": "doska5",
+        "primary": 1629,
+        "metric": "victories",
+        "rank": 410,
+        "meta": ""
+      },
+      {
+        "username": "royal_ranger_25",
+        "primary": 1623,
+        "metric": "victories",
+        "rank": 411,
+        "meta": ""
+      },
+      {
+        "username": "frezmati221",
+        "primary": 1619,
+        "metric": "victories",
+        "rank": 412,
+        "meta": ""
+      },
+      {
+        "username": "aaa007",
+        "primary": 1611,
+        "metric": "victories",
+        "rank": 413,
+        "meta": ""
+      },
+      {
+        "username": "hanif2020",
+        "primary": 1608,
+        "metric": "victories",
+        "rank": 414,
+        "meta": ""
+      },
+      {
+        "username": "deydinov",
+        "primary": 1598,
+        "metric": "victories",
+        "rank": 415,
+        "meta": ""
+      },
+      {
+        "username": "adriasc2015",
+        "primary": 1596,
+        "metric": "victories",
+        "rank": 416,
+        "meta": ""
+      },
+      {
+        "username": "daniel1201",
+        "primary": 1593,
+        "metric": "victories",
+        "rank": 417,
+        "meta": ""
+      },
+      {
+        "username": "thibault-epl",
+        "primary": 1592,
+        "metric": "victories",
+        "rank": 418,
+        "meta": ""
+      },
+      {
+        "username": "new-battle",
+        "primary": 1591,
+        "metric": "victories",
+        "rank": 419,
+        "meta": ""
+      },
+      {
+        "username": "ingu_ltn",
+        "primary": 1580,
+        "metric": "victories",
+        "rank": 420,
+        "meta": ""
+      },
+      {
+        "username": "strategic_move_2007",
+        "primary": 1579,
+        "metric": "victories",
+        "rank": 421,
+        "meta": ""
+      },
+      {
+        "username": "grainiac",
+        "primary": 1575,
+        "metric": "victories",
+        "rank": 422,
+        "meta": ""
+      },
+      {
+        "username": "desinduac1",
+        "primary": 1575,
+        "metric": "victories",
+        "rank": 423,
+        "meta": ""
+      },
+      {
+        "username": "lightning060",
+        "primary": 1571,
+        "metric": "victories",
+        "rank": 424,
+        "meta": ""
+      },
+      {
+        "username": "jesusrc-218",
+        "primary": 1569,
+        "metric": "victories",
+        "rank": 425,
+        "meta": ""
+      },
+      {
+        "username": "valo767",
+        "primary": 1567,
+        "metric": "victories",
+        "rank": 426,
+        "meta": ""
+      },
+      {
+        "username": "filip_buba",
+        "primary": 1563,
+        "metric": "victories",
+        "rank": 427,
+        "meta": ""
+      },
+      {
+        "username": "falconpower",
+        "primary": 1559,
+        "metric": "victories",
+        "rank": 428,
+        "meta": ""
+      },
+      {
+        "username": "jenson10",
+        "primary": 1558,
+        "metric": "victories",
+        "rank": 429,
+        "meta": ""
+      },
+      {
+        "username": "oso-2022",
+        "primary": 1555,
+        "metric": "victories",
+        "rank": 430,
+        "meta": ""
+      },
+      {
+        "username": "arkaz17",
+        "primary": 1554,
+        "metric": "victories",
+        "rank": 431,
+        "meta": ""
+      },
+      {
+        "username": "goltpopularplanet",
+        "primary": 1553,
+        "metric": "victories",
+        "rank": 432,
+        "meta": ""
+      },
+      {
+        "username": "blunderfulplayer",
+        "primary": 1552,
+        "metric": "victories",
+        "rank": 433,
+        "meta": ""
+      },
+      {
+        "username": "vlad_00",
+        "primary": 1548,
+        "metric": "victories",
+        "rank": 434,
+        "meta": ""
+      },
+      {
+        "username": "incredible_india_23",
+        "primary": 1547,
+        "metric": "victories",
+        "rank": 435,
+        "meta": ""
+      },
+      {
+        "username": "ch3333",
+        "primary": 1546,
+        "metric": "victories",
+        "rank": 436,
+        "meta": ""
+      },
+      {
+        "username": "yohy",
+        "primary": 1535,
+        "metric": "victories",
+        "rank": 437,
+        "meta": ""
+      },
+      {
+        "username": "theyuriy",
+        "primary": 1534,
+        "metric": "victories",
+        "rank": 438,
+        "meta": ""
+      },
+      {
+        "username": "against_the_world",
+        "primary": 1534,
+        "metric": "victories",
+        "rank": 439,
+        "meta": ""
+      },
+      {
+        "username": "clever13921392",
+        "primary": 1533,
+        "metric": "victories",
+        "rank": 440,
+        "meta": ""
+      },
+      {
+        "username": "javelin_ua",
+        "primary": 1532,
+        "metric": "victories",
+        "rank": 441,
+        "meta": ""
+      },
+      {
+        "username": "fantastictricks",
+        "primary": 1527,
+        "metric": "victories",
+        "rank": 442,
+        "meta": ""
+      },
+      {
+        "username": "yjp",
+        "primary": 1526,
+        "metric": "victories",
+        "rank": 443,
+        "meta": ""
+      },
+      {
+        "username": "carlesslilian",
+        "primary": 1523,
+        "metric": "victories",
+        "rank": 444,
+        "meta": ""
+      },
+      {
+        "username": "general_rajshaurya",
+        "primary": 1517,
+        "metric": "victories",
+        "rank": 445,
+        "meta": ""
+      },
+      {
+        "username": "tjmorley",
+        "primary": 1505,
+        "metric": "victories",
+        "rank": 446,
+        "meta": ""
+      },
+      {
+        "username": "racingkingschess",
+        "primary": 1502,
+        "metric": "victories",
+        "rank": 447,
+        "meta": ""
+      },
+      {
+        "username": "hirundir",
+        "primary": 1498,
+        "metric": "victories",
+        "rank": 448,
+        "meta": ""
+      },
+      {
+        "username": "captainjackrogers",
+        "primary": 1494,
+        "metric": "victories",
+        "rank": 449,
+        "meta": ""
+      },
+      {
+        "username": "davidkoz2014",
+        "primary": 1486,
+        "metric": "victories",
+        "rank": 450,
+        "meta": ""
+      },
+      {
+        "username": "advayathebest",
+        "primary": 1479,
+        "metric": "victories",
+        "rank": 451,
+        "meta": ""
+      },
+      {
+        "username": "flamin-hot-cheetos",
+        "primary": 1477,
+        "metric": "victories",
+        "rank": 452,
+        "meta": ""
+      },
+      {
+        "username": "turkeychilli",
+        "primary": 1475,
+        "metric": "victories",
+        "rank": 453,
+        "meta": ""
+      },
+      {
+        "username": "rapidchessleicester",
+        "primary": 1472,
+        "metric": "victories",
+        "rank": 454,
+        "meta": ""
+      },
+      {
+        "username": "nikfar_nima",
+        "primary": 1465,
+        "metric": "victories",
+        "rank": 455,
+        "meta": ""
+      },
+      {
+        "username": "adam_babaev",
+        "primary": 1457,
+        "metric": "victories",
+        "rank": 456,
+        "meta": ""
+      },
+      {
+        "username": "john_33",
+        "primary": 1457,
+        "metric": "victories",
+        "rank": 457,
+        "meta": ""
+      },
+      {
+        "username": "pablovagnoni",
+        "primary": 1455,
+        "metric": "victories",
+        "rank": 458,
+        "meta": ""
+      },
+      {
+        "username": "namish2013",
+        "primary": 1453,
+        "metric": "victories",
+        "rank": 459,
+        "meta": ""
+      },
+      {
+        "username": "aineunnielin",
+        "primary": 1452,
+        "metric": "victories",
+        "rank": 460,
+        "meta": ""
+      },
+      {
+        "username": "mrtwistermeal",
+        "primary": 1452,
+        "metric": "victories",
+        "rank": 461,
+        "meta": ""
+      },
+      {
+        "username": "techno_never_dies",
+        "primary": 1449,
+        "metric": "victories",
+        "rank": 462,
+        "meta": ""
+      },
+      {
+        "username": "faustoo2000",
+        "primary": 1446,
+        "metric": "victories",
+        "rank": 463,
+        "meta": ""
+      },
+      {
+        "username": "sahchinjoe",
+        "primary": 1445,
+        "metric": "victories",
+        "rank": 464,
+        "meta": ""
+      },
+      {
+        "username": "dansany4",
+        "primary": 1432,
+        "metric": "victories",
+        "rank": 465,
+        "meta": ""
+      },
+      {
+        "username": "racingkingsqueen",
+        "primary": 1424,
+        "metric": "victories",
+        "rank": 466,
+        "meta": ""
+      },
+      {
+        "username": "cyan0477",
+        "primary": 1421,
+        "metric": "victories",
+        "rank": 467,
+        "meta": ""
+      },
+      {
+        "username": "passionate_trader",
+        "primary": 1420,
+        "metric": "victories",
+        "rank": 468,
+        "meta": ""
+      },
+      {
+        "username": "zebreuuu",
+        "primary": 1419,
+        "metric": "victories",
+        "rank": 469,
+        "meta": ""
+      },
+      {
+        "username": "playchess_30",
+        "primary": 1413,
+        "metric": "victories",
+        "rank": 470,
+        "meta": ""
+      },
+      {
+        "username": "abelleroyer",
+        "primary": 1413,
+        "metric": "victories",
+        "rank": 471,
+        "meta": ""
+      },
+      {
+        "username": "baloonhead123",
+        "primary": 1405,
+        "metric": "victories",
+        "rank": 472,
+        "meta": ""
+      },
+      {
+        "username": "the_epic_gustaver",
+        "primary": 1403,
+        "metric": "victories",
+        "rank": 473,
+        "meta": ""
+      },
+      {
+        "username": "ryazanov_alexander",
+        "primary": 1400,
+        "metric": "victories",
+        "rank": 474,
+        "meta": ""
+      },
+      {
+        "username": "ben2006tor",
+        "primary": 1398,
+        "metric": "victories",
+        "rank": 475,
+        "meta": ""
+      },
+      {
+        "username": "aatu65536",
+        "primary": 1390,
+        "metric": "victories",
+        "rank": 476,
+        "meta": ""
+      },
+      {
+        "username": "dss_play",
+        "primary": 1387,
+        "metric": "victories",
+        "rank": 477,
+        "meta": ""
+      },
+      {
+        "username": "yurdooom",
+        "primary": 1386,
+        "metric": "victories",
+        "rank": 478,
+        "meta": ""
+      },
+      {
+        "username": "victorpolovchenya",
+        "primary": 1380,
+        "metric": "victories",
+        "rank": 479,
+        "meta": ""
+      },
+      {
+        "username": "akabra",
+        "primary": 1375,
+        "metric": "victories",
+        "rank": 480,
+        "meta": ""
+      },
+      {
+        "username": "jaisk2011",
+        "primary": 1375,
+        "metric": "victories",
+        "rank": 481,
+        "meta": ""
+      },
+      {
+        "username": "amirmohaad3456",
+        "primary": 1374,
+        "metric": "victories",
+        "rank": 482,
+        "meta": ""
+      },
+      {
+        "username": "panthers479wjhs",
+        "primary": 1373,
+        "metric": "victories",
+        "rank": 483,
+        "meta": ""
+      },
+      {
+        "username": "duck2324",
+        "primary": 1371,
+        "metric": "victories",
+        "rank": 484,
+        "meta": ""
+      },
+      {
+        "username": "asher123-123",
+        "primary": 1368,
+        "metric": "victories",
+        "rank": 485,
+        "meta": ""
+      },
+      {
+        "username": "alimahmoodi",
+        "primary": 1364,
+        "metric": "victories",
+        "rank": 486,
+        "meta": ""
+      },
+      {
+        "username": "jesuschristishope2",
+        "primary": 1363,
+        "metric": "victories",
+        "rank": 487,
+        "meta": ""
+      },
+      {
+        "username": "zdzislaw_pelowski",
+        "primary": 1357,
+        "metric": "victories",
+        "rank": 488,
+        "meta": ""
+      },
+      {
+        "username": "alfie_mill21",
+        "primary": 1353,
+        "metric": "victories",
+        "rank": 489,
+        "meta": ""
+      },
+      {
+        "username": "misha_star_10",
+        "primary": 1352,
+        "metric": "victories",
+        "rank": 490,
+        "meta": ""
+      },
+      {
+        "username": "ltn_genius",
+        "primary": 1346,
+        "metric": "victories",
+        "rank": 491,
+        "meta": ""
+      },
+      {
+        "username": "sanukav_2011",
+        "primary": 1345,
+        "metric": "victories",
+        "rank": 492,
+        "meta": ""
+      },
+      {
+        "username": "aebroadus",
+        "primary": 1342,
+        "metric": "victories",
+        "rank": 493,
+        "meta": ""
+      },
+      {
+        "username": "leonid1966sofi",
+        "primary": 1335,
+        "metric": "victories",
+        "rank": 494,
+        "meta": ""
+      },
+      {
+        "username": "awchess22",
+        "primary": 1333,
+        "metric": "victories",
+        "rank": 495,
+        "meta": ""
+      },
+      {
+        "username": "arionb",
+        "primary": 1328,
+        "metric": "victories",
+        "rank": 496,
+        "meta": ""
+      },
+      {
+        "username": "hero09",
+        "primary": 1327,
+        "metric": "victories",
+        "rank": 497,
+        "meta": ""
+      },
+      {
+        "username": "estebanandres",
+        "primary": 1326,
+        "metric": "victories",
+        "rank": 498,
+        "meta": ""
+      },
+      {
+        "username": "mathealira",
+        "primary": 1320,
+        "metric": "victories",
+        "rank": 499,
+        "meta": ""
+      },
+      {
+        "username": "fantasticpoliana6",
+        "primary": 1312,
+        "metric": "victories",
+        "rank": 500,
+        "meta": ""
+      },
+      {
+        "username": "samnosus",
+        "primary": 1305,
+        "metric": "victories",
+        "rank": 501,
+        "meta": ""
+      },
+      {
+        "username": "racing_kings2021",
+        "primary": 1300,
+        "metric": "victories",
+        "rank": 502,
+        "meta": ""
+      },
+      {
+        "username": "vtkchess",
+        "primary": 1299,
+        "metric": "victories",
+        "rank": 503,
+        "meta": ""
+      },
+      {
+        "username": "i_like_sheep",
+        "primary": 1294,
+        "metric": "victories",
+        "rank": 504,
+        "meta": ""
+      },
+      {
+        "username": "j7227",
+        "primary": 1294,
+        "metric": "victories",
+        "rank": 505,
+        "meta": ""
+      },
+      {
+        "username": "anthonyracingkings",
+        "primary": 1292,
+        "metric": "victories",
+        "rank": 506,
+        "meta": ""
+      },
+      {
+        "username": "ktimash",
+        "primary": 1292,
+        "metric": "victories",
+        "rank": 507,
+        "meta": ""
+      },
+      {
+        "username": "tinni_supergirl",
+        "primary": 1289,
+        "metric": "victories",
+        "rank": 508,
+        "meta": ""
+      },
+      {
+        "username": "bodhini2019",
+        "primary": 1289,
+        "metric": "victories",
+        "rank": 509,
+        "meta": ""
+      },
+      {
+        "username": "veremu",
+        "primary": 1289,
+        "metric": "victories",
+        "rank": 510,
+        "meta": ""
+      },
+      {
+        "username": "coolcoldice",
+        "primary": 1287,
+        "metric": "victories",
+        "rank": 511,
+        "meta": ""
+      },
+      {
+        "username": "fastman_ru",
+        "primary": 1282,
+        "metric": "victories",
+        "rank": 512,
+        "meta": ""
+      },
+      {
+        "username": "hanhanzhu_ia",
+        "primary": 1282,
+        "metric": "victories",
+        "rank": 513,
+        "meta": ""
+      },
+      {
+        "username": "rubenjamrog",
+        "primary": 1274,
+        "metric": "victories",
+        "rank": 514,
+        "meta": ""
+      },
+      {
+        "username": "wongwuhuah",
+        "primary": 1271,
+        "metric": "victories",
+        "rank": 515,
+        "meta": ""
+      },
+      {
+        "username": "scorpprocs",
+        "primary": 1270,
+        "metric": "victories",
+        "rank": 516,
+        "meta": ""
+      },
+      {
+        "username": "me_am",
+        "primary": 1270,
+        "metric": "victories",
+        "rank": 517,
+        "meta": ""
+      },
+      {
+        "username": "cybershredder200",
+        "primary": 1265,
+        "metric": "victories",
+        "rank": 518,
+        "meta": ""
+      },
+      {
+        "username": "abc-royal",
+        "primary": 1264,
+        "metric": "victories",
+        "rank": 519,
+        "meta": ""
+      },
+      {
+        "username": "mani-najmi",
+        "primary": 1257,
+        "metric": "victories",
+        "rank": 520,
+        "meta": ""
+      },
+      {
+        "username": "speed-king",
+        "primary": 1256,
+        "metric": "victories",
+        "rank": 521,
+        "meta": ""
+      },
+      {
+        "username": "aqiljimin13",
+        "primary": 1252,
+        "metric": "victories",
+        "rank": 522,
+        "meta": ""
+      },
+      {
+        "username": "bot_agent_karya",
+        "primary": 1248,
+        "metric": "victories",
+        "rank": 523,
+        "meta": ""
+      },
+      {
+        "username": "klimenko_v",
+        "primary": 1247,
+        "metric": "victories",
+        "rank": 524,
+        "meta": ""
+      },
+      {
+        "username": "ishan_666",
+        "primary": 1246,
+        "metric": "victories",
+        "rank": 525,
+        "meta": ""
+      },
+      {
+        "username": "edenandre29",
+        "primary": 1241,
+        "metric": "victories",
+        "rank": 526,
+        "meta": ""
+      },
+      {
+        "username": "ferfad",
+        "primary": 1241,
+        "metric": "victories",
+        "rank": 527,
+        "meta": ""
+      },
+      {
+        "username": "yagizc-1b",
+        "primary": 1236,
+        "metric": "victories",
+        "rank": 528,
+        "meta": ""
+      },
+      {
+        "username": "mnula_hesara",
+        "primary": 1235,
+        "metric": "victories",
+        "rank": 529,
+        "meta": ""
+      },
+      {
+        "username": "openleftgoblin",
+        "primary": 1235,
+        "metric": "victories",
+        "rank": 530,
+        "meta": ""
+      },
+      {
+        "username": "dhashahlarajdavidraj",
+        "primary": 1234,
+        "metric": "victories",
+        "rank": 531,
+        "meta": ""
+      },
+      {
+        "username": "ekateria",
+        "primary": 1227,
+        "metric": "victories",
+        "rank": 532,
+        "meta": ""
+      },
+      {
+        "username": "thesaintmichael",
+        "primary": 1225,
+        "metric": "victories",
+        "rank": 533,
+        "meta": ""
+      },
+      {
+        "username": "asu777",
+        "primary": 1224,
+        "metric": "victories",
+        "rank": 534,
+        "meta": ""
+      },
+      {
+        "username": "e5e5e5e",
+        "primary": 1223,
+        "metric": "victories",
+        "rank": 535,
+        "meta": ""
+      },
+      {
+        "username": "danger_rk_2",
+        "primary": 1222,
+        "metric": "victories",
+        "rank": 536,
+        "meta": ""
+      },
+      {
+        "username": "curvedsoup",
+        "primary": 1216,
+        "metric": "victories",
+        "rank": 537,
+        "meta": ""
+      },
+      {
+        "username": "kagan_trn",
+        "primary": 1215,
+        "metric": "victories",
+        "rank": 538,
+        "meta": ""
+      },
+      {
+        "username": "santhosh600",
+        "primary": 1212,
+        "metric": "victories",
+        "rank": 539,
+        "meta": ""
+      },
+      {
+        "username": "nren21",
+        "primary": 1207,
+        "metric": "victories",
+        "rank": 540,
+        "meta": ""
+      },
+      {
+        "username": "racingkings2",
+        "primary": 1207,
+        "metric": "victories",
+        "rank": 541,
+        "meta": ""
+      },
+      {
+        "username": "wanttobesupergm",
+        "primary": 1207,
+        "metric": "victories",
+        "rank": 542,
+        "meta": ""
+      },
+      {
+        "username": "xilacorigami",
+        "primary": 1203,
+        "metric": "victories",
+        "rank": 543,
+        "meta": ""
+      },
+      {
+        "username": "darktip",
+        "primary": 1203,
+        "metric": "victories",
+        "rank": 544,
+        "meta": ""
+      },
+      {
+        "username": "last_resort_sigma",
+        "primary": 1201,
+        "metric": "victories",
+        "rank": 545,
+        "meta": ""
+      },
+      {
+        "username": "mohammadrmmp",
+        "primary": 1200,
+        "metric": "victories",
+        "rank": 546,
+        "meta": ""
+      },
+      {
+        "username": "prajeethishere",
+        "primary": 1193,
+        "metric": "victories",
+        "rank": 547,
+        "meta": ""
+      },
+      {
+        "username": "somebody457",
+        "primary": 1192,
+        "metric": "victories",
+        "rank": 548,
+        "meta": ""
+      },
+      {
+        "username": "stg_18",
+        "primary": 1190,
+        "metric": "victories",
+        "rank": 549,
+        "meta": ""
+      },
+      {
+        "username": "pj111164",
+        "primary": 1190,
+        "metric": "victories",
+        "rank": 550,
+        "meta": ""
+      },
+      {
+        "username": "time22",
+        "primary": 1187,
+        "metric": "victories",
+        "rank": 551,
+        "meta": ""
+      },
+      {
+        "username": "sudilachess",
+        "primary": 1184,
+        "metric": "victories",
+        "rank": 552,
+        "meta": ""
+      },
+      {
+        "username": "satyathegreatrkplaye",
+        "primary": 1184,
+        "metric": "victories",
+        "rank": 553,
+        "meta": ""
+      },
+      {
+        "username": "gmaaragm",
+        "primary": 1183,
+        "metric": "victories",
+        "rank": 554,
+        "meta": ""
+      },
+      {
+        "username": "n_r_10",
+        "primary": 1178,
+        "metric": "victories",
+        "rank": 555,
+        "meta": ""
+      },
+      {
+        "username": "royaldulanjan",
+        "primary": 1176,
+        "metric": "victories",
+        "rank": 556,
+        "meta": ""
+      },
+      {
+        "username": "darkninja111",
+        "primary": 1174,
+        "metric": "victories",
+        "rank": 557,
+        "meta": ""
+      },
+      {
+        "username": "emilschlegel",
+        "primary": 1173,
+        "metric": "victories",
+        "rank": 558,
+        "meta": ""
+      },
+      {
+        "username": "slava_e7e5",
+        "primary": 1172,
+        "metric": "victories",
+        "rank": 559,
+        "meta": ""
+      },
+      {
+        "username": "xenon_54",
+        "primary": 1172,
+        "metric": "victories",
+        "rank": 560,
+        "meta": ""
+      },
+      {
+        "username": "spidermandavi",
+        "primary": 1171,
+        "metric": "victories",
+        "rank": 561,
+        "meta": ""
+      },
+      {
+        "username": "kkmax",
+        "primary": 1168,
+        "metric": "victories",
+        "rank": 562,
+        "meta": ""
+      },
+      {
+        "username": "slmth",
+        "primary": 1168,
+        "metric": "victories",
+        "rank": 563,
+        "meta": ""
+      },
+      {
+        "username": "mot3397",
+        "primary": 1163,
+        "metric": "victories",
+        "rank": 564,
+        "meta": ""
+      },
+      {
+        "username": "vwkian",
+        "primary": 1161,
+        "metric": "victories",
+        "rank": 565,
+        "meta": ""
+      },
+      {
+        "username": "divessh_27",
+        "primary": 1160,
+        "metric": "victories",
+        "rank": 566,
+        "meta": ""
+      },
+      {
+        "username": "sisbris",
+        "primary": 1158,
+        "metric": "victories",
+        "rank": 567,
+        "meta": ""
+      },
+      {
+        "username": "z-rc02",
+        "primary": 1153,
+        "metric": "victories",
+        "rank": 568,
+        "meta": ""
+      },
+      {
+        "username": "alaparthi",
+        "primary": 1146,
+        "metric": "victories",
+        "rank": 569,
+        "meta": ""
+      },
+      {
+        "username": "ticoxe",
+        "primary": 1144,
+        "metric": "victories",
+        "rank": 570,
+        "meta": ""
+      },
+      {
+        "username": "liongihansith-2012",
+        "primary": 1141,
+        "metric": "victories",
+        "rank": 571,
+        "meta": ""
+      },
+      {
+        "username": "xi888ix",
+        "primary": 1131,
+        "metric": "victories",
+        "rank": 572,
+        "meta": ""
+      },
+      {
+        "username": "chessplayer_2013",
+        "primary": 1130,
+        "metric": "victories",
+        "rank": 573,
+        "meta": ""
+      },
+      {
+        "username": "vnncghast",
+        "primary": 1128,
+        "metric": "victories",
+        "rank": 574,
+        "meta": ""
+      },
+      {
+        "username": "supra_x",
+        "primary": 1128,
+        "metric": "victories",
+        "rank": 575,
+        "meta": ""
+      },
+      {
+        "username": "greatindian1212",
+        "primary": 1127,
+        "metric": "victories",
+        "rank": 576,
+        "meta": ""
+      },
+      {
+        "username": "crownhawks",
+        "primary": 1126,
+        "metric": "victories",
+        "rank": 577,
+        "meta": ""
+      },
+      {
+        "username": "olp_ntanhkhoi2013",
+        "primary": 1123,
+        "metric": "victories",
+        "rank": 578,
+        "meta": ""
+      },
+      {
+        "username": "colidyre",
+        "primary": 1121,
+        "metric": "victories",
+        "rank": 579,
+        "meta": ""
+      },
+      {
+        "username": "vkhorasan_19",
+        "primary": 1120,
+        "metric": "victories",
+        "rank": 580,
+        "meta": ""
+      },
+      {
+        "username": "dennismateus1",
+        "primary": 1114,
+        "metric": "victories",
+        "rank": 581,
+        "meta": ""
+      },
+      {
+        "username": "nvincable",
+        "primary": 1112,
+        "metric": "victories",
+        "rank": 582,
+        "meta": ""
+      },
+      {
+        "username": "beginer1993",
+        "primary": 1112,
+        "metric": "victories",
+        "rank": 583,
+        "meta": ""
+      },
+      {
+        "username": "pasion_ajedrecistica",
+        "primary": 1108,
+        "metric": "victories",
+        "rank": 584,
+        "meta": ""
+      },
+      {
+        "username": "lobomil",
+        "primary": 1107,
+        "metric": "victories",
+        "rank": 585,
+        "meta": ""
+      },
+      {
+        "username": "abearwhocanplaychess",
+        "primary": 1107,
+        "metric": "victories",
+        "rank": 586,
+        "meta": ""
+      },
+      {
+        "username": "zeus17r",
+        "primary": 1105,
+        "metric": "victories",
+        "rank": 587,
+        "meta": ""
+      },
+      {
+        "username": "the_knight_of_spring",
+        "primary": 1105,
+        "metric": "victories",
+        "rank": 588,
+        "meta": ""
+      },
+      {
+        "username": "white_gekko",
+        "primary": 1102,
+        "metric": "victories",
+        "rank": 589,
+        "meta": ""
+      },
+      {
+        "username": "sopran",
+        "primary": 1097,
+        "metric": "victories",
+        "rank": 590,
+        "meta": ""
+      },
+      {
+        "username": "amirhafez2018",
+        "primary": 1089,
+        "metric": "victories",
+        "rank": 591,
+        "meta": ""
+      },
+      {
+        "username": "dhashahlanraj",
+        "primary": 1088,
+        "metric": "victories",
+        "rank": 592,
+        "meta": ""
+      },
+      {
+        "username": "vats-dudhatra",
+        "primary": 1085,
+        "metric": "victories",
+        "rank": 593,
+        "meta": ""
+      },
+      {
+        "username": "lchessmaster3",
+        "primary": 1084,
+        "metric": "victories",
+        "rank": 594,
+        "meta": ""
+      },
+      {
+        "username": "bashkir85",
+        "primary": 1084,
+        "metric": "victories",
+        "rank": 595,
+        "meta": ""
+      },
+      {
+        "username": "thelittleprince01",
+        "primary": 1081,
+        "metric": "victories",
+        "rank": 596,
+        "meta": ""
+      },
+      {
+        "username": "ippo-makanaochi",
+        "primary": 1076,
+        "metric": "victories",
+        "rank": 597,
+        "meta": ""
+      },
+      {
+        "username": "mobinashad",
+        "primary": 1076,
+        "metric": "victories",
+        "rank": 598,
+        "meta": ""
+      },
+      {
+        "username": "rajaracingking",
+        "primary": 1076,
+        "metric": "victories",
+        "rank": 599,
+        "meta": ""
+      },
+      {
+        "username": "jeimov",
+        "primary": 1074,
+        "metric": "victories",
+        "rank": 600,
+        "meta": ""
+      },
+      {
+        "username": "hopefully_anonymous",
+        "primary": 1073,
+        "metric": "victories",
+        "rank": 601,
+        "meta": ""
+      },
+      {
+        "username": "arasta_juana",
+        "primary": 1069,
+        "metric": "victories",
+        "rank": 602,
+        "meta": ""
+      },
+      {
+        "username": "zezo_2022",
+        "primary": 1064,
+        "metric": "victories",
+        "rank": 603,
+        "meta": ""
+      },
+      {
+        "username": "kaisar2014",
+        "primary": 1064,
+        "metric": "victories",
+        "rank": 604,
+        "meta": ""
+      },
+      {
+        "username": "novichok-a232",
+        "primary": 1062,
+        "metric": "victories",
+        "rank": 605,
+        "meta": ""
+      },
+      {
+        "username": "filipkopecny",
+        "primary": 1061,
+        "metric": "victories",
+        "rank": 606,
+        "meta": ""
+      },
+      {
+        "username": "petya_lysenko",
+        "primary": 1059,
+        "metric": "victories",
+        "rank": 607,
+        "meta": ""
+      },
+      {
+        "username": "isaiaspiscoya",
+        "primary": 1048,
+        "metric": "victories",
+        "rank": 608,
+        "meta": ""
+      },
+      {
+        "username": "daniilshmatko",
+        "primary": 1047,
+        "metric": "victories",
+        "rank": 609,
+        "meta": ""
+      },
+      {
+        "username": "imartin07",
+        "primary": 1047,
+        "metric": "victories",
+        "rank": 610,
+        "meta": ""
+      },
+      {
+        "username": "ashketchung",
+        "primary": 1045,
+        "metric": "victories",
+        "rank": 611,
+        "meta": ""
+      },
+      {
+        "username": "kajnyt-6codtu-xyrceq",
+        "primary": 1041,
+        "metric": "victories",
+        "rank": 612,
+        "meta": ""
+      },
+      {
+        "username": "schachmachtschwach",
+        "primary": 1040,
+        "metric": "victories",
+        "rank": 613,
+        "meta": ""
+      },
+      {
+        "username": "blunderpandazz",
+        "primary": 1036,
+        "metric": "victories",
+        "rank": 614,
+        "meta": ""
+      },
+      {
+        "username": "ajnel",
+        "primary": 1036,
+        "metric": "victories",
+        "rank": 615,
+        "meta": ""
+      },
+      {
+        "username": "mmadmab",
+        "primary": 1029,
+        "metric": "victories",
+        "rank": 616,
+        "meta": ""
+      },
+      {
+        "username": "xanderc1",
+        "primary": 1026,
+        "metric": "victories",
+        "rank": 617,
+        "meta": ""
+      },
+      {
+        "username": "forverts",
+        "primary": 1023,
+        "metric": "victories",
+        "rank": 618,
+        "meta": ""
+      },
+      {
+        "username": "dbwagner",
+        "primary": 1022,
+        "metric": "victories",
+        "rank": 619,
+        "meta": ""
+      },
+      {
+        "username": "botangel",
+        "primary": 1022,
+        "metric": "victories",
+        "rank": 620,
+        "meta": ""
+      },
+      {
+        "username": "jerphaas",
+        "primary": 1021,
+        "metric": "victories",
+        "rank": 621,
+        "meta": ""
+      },
+      {
+        "username": "tornon",
+        "primary": 1020,
+        "metric": "victories",
+        "rank": 622,
+        "meta": ""
+      },
+      {
+        "username": "dma7",
+        "primary": 1018,
+        "metric": "victories",
+        "rank": 623,
+        "meta": ""
+      },
+      {
+        "username": "hellork123",
+        "primary": 1016,
+        "metric": "victories",
+        "rank": 624,
+        "meta": ""
+      },
+      {
+        "username": "ali_alishahi",
+        "primary": 1016,
+        "metric": "victories",
+        "rank": 625,
+        "meta": ""
+      },
+      {
+        "username": "jodaswisher",
+        "primary": 1015,
+        "metric": "victories",
+        "rank": 626,
+        "meta": ""
+      },
+      {
+        "username": "someone_u_know",
+        "primary": 1014,
+        "metric": "victories",
+        "rank": 627,
+        "meta": ""
+      },
+      {
+        "username": "tony_c",
+        "primary": 1012,
+        "metric": "victories",
+        "rank": 628,
+        "meta": ""
+      },
+      {
+        "username": "om2022",
+        "primary": 1011,
+        "metric": "victories",
+        "rank": 629,
+        "meta": ""
+      },
+      {
+        "username": "diegodpchess01",
+        "primary": 1009,
+        "metric": "victories",
+        "rank": 630,
+        "meta": ""
+      },
+      {
+        "username": "aleschytra",
+        "primary": 1005,
+        "metric": "victories",
+        "rank": 631,
+        "meta": ""
+      },
+      {
+        "username": "puzzlesandpuzzles",
+        "primary": 1002,
+        "metric": "victories",
+        "rank": 632,
+        "meta": ""
+      },
+      {
+        "username": "egezytn7",
+        "primary": 1002,
+        "metric": "victories",
+        "rank": 633,
+        "meta": ""
+      },
+      {
+        "username": "give_me_time1",
+        "primary": 1002,
+        "metric": "victories",
+        "rank": 634,
+        "meta": ""
+      },
+      {
+        "username": "reomastercl",
+        "primary": 999,
+        "metric": "victories",
+        "rank": 635,
+        "meta": ""
+      },
+      {
+        "username": "mehlfeld",
+        "primary": 995,
+        "metric": "victories",
+        "rank": 636,
+        "meta": ""
+      },
+      {
+        "username": "rugevit",
+        "primary": 993,
+        "metric": "victories",
+        "rank": 637,
+        "meta": ""
+      },
+      {
+        "username": "inampudi",
+        "primary": 991,
+        "metric": "victories",
+        "rank": 638,
+        "meta": ""
+      },
+      {
+        "username": "sofiya-cat-sh",
+        "primary": 990,
+        "metric": "victories",
+        "rank": 639,
+        "meta": ""
+      },
+      {
+        "username": "nandapria2001",
+        "primary": 990,
+        "metric": "victories",
+        "rank": 640,
+        "meta": ""
+      },
+      {
+        "username": "hamster2011ja",
+        "primary": 990,
+        "metric": "victories",
+        "rank": 641,
+        "meta": ""
+      },
+      {
+        "username": "lelingo",
+        "primary": 989,
+        "metric": "victories",
+        "rank": 642,
+        "meta": ""
+      },
+      {
+        "username": "jery94",
+        "primary": 986,
+        "metric": "victories",
+        "rank": 643,
+        "meta": ""
+      },
+      {
+        "username": "suchit10",
+        "primary": 986,
+        "metric": "victories",
+        "rank": 644,
+        "meta": ""
+      },
+      {
+        "username": "vinvin1",
+        "primary": 981,
+        "metric": "victories",
+        "rank": 645,
+        "meta": ""
+      },
+      {
+        "username": "domino_h",
+        "primary": 981,
+        "metric": "victories",
+        "rank": 646,
+        "meta": ""
+      },
+      {
+        "username": "e3_player",
+        "primary": 979,
+        "metric": "victories",
+        "rank": 647,
+        "meta": ""
+      },
+      {
+        "username": "drltn",
+        "primary": 978,
+        "metric": "victories",
+        "rank": 648,
+        "meta": ""
+      },
+      {
+        "username": "sharpmind",
+        "primary": 977,
+        "metric": "victories",
+        "rank": 649,
+        "meta": ""
+      },
+      {
+        "username": "chessapple78",
+        "primary": 976,
+        "metric": "victories",
+        "rank": 650,
+        "meta": ""
+      },
+      {
+        "username": "icigo",
+        "primary": 976,
+        "metric": "victories",
+        "rank": 651,
+        "meta": ""
+      },
+      {
+        "username": "balmond2711",
+        "primary": 974,
+        "metric": "victories",
+        "rank": 652,
+        "meta": ""
+      },
+      {
+        "username": "sorokindaniil",
+        "primary": 973,
+        "metric": "victories",
+        "rank": 653,
+        "meta": ""
+      },
+      {
+        "username": "aloisp",
+        "primary": 972,
+        "metric": "victories",
+        "rank": 654,
+        "meta": ""
+      },
+      {
+        "username": "inventing_chess",
+        "primary": 972,
+        "metric": "victories",
+        "rank": 655,
+        "meta": ""
+      },
+      {
+        "username": "lincoln2020",
+        "primary": 966,
+        "metric": "victories",
+        "rank": 656,
+        "meta": ""
+      },
+      {
+        "username": "executivegame",
+        "primary": 964,
+        "metric": "victories",
+        "rank": 657,
+        "meta": ""
+      },
+      {
+        "username": "avsamarth",
+        "primary": 964,
+        "metric": "victories",
+        "rank": 658,
+        "meta": ""
+      },
+      {
+        "username": "amcharana",
+        "primary": 962,
+        "metric": "victories",
+        "rank": 659,
+        "meta": ""
+      },
+      {
+        "username": "adi_chesslearner20",
+        "primary": 958,
+        "metric": "victories",
+        "rank": 660,
+        "meta": ""
+      },
+      {
+        "username": "kemalseviner",
+        "primary": 957,
+        "metric": "victories",
+        "rank": 661,
+        "meta": ""
+      },
+      {
+        "username": "pablito1970",
+        "primary": 956,
+        "metric": "victories",
+        "rank": 662,
+        "meta": ""
+      },
+      {
+        "username": "amir8787",
+        "primary": 955,
+        "metric": "victories",
+        "rank": 663,
+        "meta": ""
+      },
+      {
+        "username": "chemist_00",
+        "primary": 954,
+        "metric": "victories",
+        "rank": 664,
+        "meta": ""
+      },
+      {
+        "username": "a-keiki",
+        "primary": 953,
+        "metric": "victories",
+        "rank": 665,
+        "meta": ""
+      },
+      {
+        "username": "ishangupta8the",
+        "primary": 952,
+        "metric": "victories",
+        "rank": 666,
+        "meta": ""
+      },
+      {
+        "username": "mrblack101",
+        "primary": 948,
+        "metric": "victories",
+        "rank": 667,
+        "meta": ""
+      },
+      {
+        "username": "shamu05",
+        "primary": 946,
+        "metric": "victories",
+        "rank": 668,
+        "meta": ""
+      },
+      {
+        "username": "jeziorak",
+        "primary": 943,
+        "metric": "victories",
+        "rank": 669,
+        "meta": ""
+      },
+      {
+        "username": "fluke180",
+        "primary": 940,
+        "metric": "victories",
+        "rank": 670,
+        "meta": ""
+      },
+      {
+        "username": "mla96",
+        "primary": 939,
+        "metric": "victories",
+        "rank": 671,
+        "meta": ""
+      },
+      {
+        "username": "diabolo1",
+        "primary": 932,
+        "metric": "victories",
+        "rank": 672,
+        "meta": ""
+      },
+      {
+        "username": "racingdwarf",
+        "primary": 925,
+        "metric": "victories",
+        "rank": 673,
+        "meta": ""
+      },
+      {
+        "username": "chessking140911",
+        "primary": 923,
+        "metric": "victories",
+        "rank": 674,
+        "meta": ""
+      },
+      {
+        "username": "odgwolfie",
+        "primary": 923,
+        "metric": "victories",
+        "rank": 675,
+        "meta": ""
+      },
+      {
+        "username": "cyberendmonkey",
+        "primary": 922,
+        "metric": "victories",
+        "rank": 676,
+        "meta": ""
+      },
+      {
+        "username": "torturedgeniuscminor",
+        "primary": 921,
+        "metric": "victories",
+        "rank": 677,
+        "meta": ""
+      },
+      {
+        "username": "wgoto744",
+        "primary": 920,
+        "metric": "victories",
+        "rank": 678,
+        "meta": ""
+      },
+      {
+        "username": "taulambda",
+        "primary": 919,
+        "metric": "victories",
+        "rank": 679,
+        "meta": ""
+      },
+      {
+        "username": "arjunsharma12",
+        "primary": 915,
+        "metric": "victories",
+        "rank": 680,
+        "meta": ""
+      },
+      {
+        "username": "revishna",
+        "primary": 913,
+        "metric": "victories",
+        "rank": 681,
+        "meta": ""
+      },
+      {
+        "username": "chessmaster_no_1",
+        "primary": 912,
+        "metric": "victories",
+        "rank": 682,
+        "meta": ""
+      },
+      {
+        "username": "mlundo",
+        "primary": 912,
+        "metric": "victories",
+        "rank": 683,
+        "meta": ""
+      },
+      {
+        "username": "jorkkix",
+        "primary": 910,
+        "metric": "victories",
+        "rank": 684,
+        "meta": ""
+      },
+      {
+        "username": "shenaniganschess",
+        "primary": 906,
+        "metric": "victories",
+        "rank": 685,
+        "meta": ""
+      },
+      {
+        "username": "wilsonpickettt",
+        "primary": 904,
+        "metric": "victories",
+        "rank": 686,
+        "meta": ""
+      },
+      {
+        "username": "artyr-13",
+        "primary": 899,
+        "metric": "victories",
+        "rank": 687,
+        "meta": ""
+      },
+      {
+        "username": "madridvol",
+        "primary": 899,
+        "metric": "victories",
+        "rank": 688,
+        "meta": ""
+      },
+      {
+        "username": "maratzj",
+        "primary": 899,
+        "metric": "victories",
+        "rank": 689,
+        "meta": ""
+      },
+      {
+        "username": "bastidas-juan",
+        "primary": 896,
+        "metric": "victories",
+        "rank": 690,
+        "meta": ""
+      },
+      {
+        "username": "dirkeyleakys",
+        "primary": 895,
+        "metric": "victories",
+        "rank": 691,
+        "meta": ""
+      },
+      {
+        "username": "mustardjb",
+        "primary": 894,
+        "metric": "victories",
+        "rank": 692,
+        "meta": ""
+      },
+      {
+        "username": "asiangurl",
+        "primary": 894,
+        "metric": "victories",
+        "rank": 693,
+        "meta": ""
+      },
+      {
+        "username": "fc_manchester_city",
+        "primary": 884,
+        "metric": "victories",
+        "rank": 694,
+        "meta": ""
+      },
+      {
+        "username": "romashka1008",
+        "primary": 883,
+        "metric": "victories",
+        "rank": 695,
+        "meta": ""
+      },
+      {
+        "username": "arian-ghb",
+        "primary": 881,
+        "metric": "victories",
+        "rank": 696,
+        "meta": ""
+      },
+      {
+        "username": "riyansh07",
+        "primary": 878,
+        "metric": "victories",
+        "rank": 697,
+        "meta": ""
+      },
+      {
+        "username": "electrowolf932",
+        "primary": 877,
+        "metric": "victories",
+        "rank": 698,
+        "meta": ""
+      },
+      {
+        "username": "atdhfcde3",
+        "primary": 877,
+        "metric": "victories",
+        "rank": 699,
+        "meta": ""
+      },
+      {
+        "username": "novichok-a234",
+        "primary": 874,
+        "metric": "victories",
+        "rank": 700,
+        "meta": ""
+      },
+      {
+        "username": "satvik008",
+        "primary": 871,
+        "metric": "victories",
+        "rank": 701,
+        "meta": ""
+      },
+      {
+        "username": "emiliano2sad",
+        "primary": 868,
+        "metric": "victories",
+        "rank": 702,
+        "meta": ""
+      },
+      {
+        "username": "captain-iran",
+        "primary": 867,
+        "metric": "victories",
+        "rank": 703,
+        "meta": ""
+      },
+      {
+        "username": "gamer_x9",
+        "primary": 867,
+        "metric": "victories",
+        "rank": 704,
+        "meta": ""
+      },
+      {
+        "username": "thvtdaohoanghai2012",
+        "primary": 867,
+        "metric": "victories",
+        "rank": 705,
+        "meta": ""
+      },
+      {
+        "username": "williamshookespeare",
+        "primary": 866,
+        "metric": "victories",
+        "rank": 706,
+        "meta": ""
+      },
+      {
+        "username": "propropro2010",
+        "primary": 865,
+        "metric": "victories",
+        "rank": 707,
+        "meta": ""
+      },
+      {
+        "username": "king_of_chess_2014",
+        "primary": 864,
+        "metric": "victories",
+        "rank": 708,
+        "meta": ""
+      },
+      {
+        "username": "yash5507",
+        "primary": 863,
+        "metric": "victories",
+        "rank": 709,
+        "meta": ""
+      },
+      {
+        "username": "reallylowelo",
+        "primary": 862,
+        "metric": "victories",
+        "rank": 710,
+        "meta": ""
+      },
+      {
+        "username": "girlz_can_too",
+        "primary": 857,
+        "metric": "victories",
+        "rank": 711,
+        "meta": ""
+      },
+      {
+        "username": "senkadagalapura",
+        "primary": 856,
+        "metric": "victories",
+        "rank": 712,
+        "meta": ""
+      },
+      {
+        "username": "qpwoeirut",
+        "primary": 856,
+        "metric": "victories",
+        "rank": 713,
+        "meta": ""
+      },
+      {
+        "username": "advaydesh123",
+        "primary": 856,
+        "metric": "victories",
+        "rank": 714,
+        "meta": ""
+      },
+      {
+        "username": "eeshanth123",
+        "primary": 853,
+        "metric": "victories",
+        "rank": 715,
+        "meta": ""
+      },
+      {
+        "username": "arthurvitalino456",
+        "primary": 849,
+        "metric": "victories",
+        "rank": 716,
+        "meta": ""
+      },
+      {
+        "username": "v_988",
+        "primary": 848,
+        "metric": "victories",
+        "rank": 717,
+        "meta": ""
+      },
+      {
+        "username": "dobhogadh",
+        "primary": 846,
+        "metric": "victories",
+        "rank": 718,
+        "meta": ""
+      },
+      {
+        "username": "sofiya-sh",
+        "primary": 842,
+        "metric": "victories",
+        "rank": 719,
+        "meta": ""
+      },
+      {
+        "username": "kolyazaver2013",
+        "primary": 841,
+        "metric": "victories",
+        "rank": 720,
+        "meta": ""
+      },
+      {
+        "username": "cheetahchessyt",
+        "primary": 841,
+        "metric": "victories",
+        "rank": 721,
+        "meta": ""
+      },
+      {
+        "username": "krapivinars",
+        "primary": 837,
+        "metric": "victories",
+        "rank": 722,
+        "meta": ""
+      },
+      {
+        "username": "idgosh",
+        "primary": 834,
+        "metric": "victories",
+        "rank": 723,
+        "meta": ""
+      },
+      {
+        "username": "billu12345",
+        "primary": 833,
+        "metric": "victories",
+        "rank": 724,
+        "meta": ""
+      },
+      {
+        "username": "abhis0423",
+        "primary": 832,
+        "metric": "victories",
+        "rank": 725,
+        "meta": ""
+      },
+      {
+        "username": "ernzfaeldonia",
+        "primary": 831,
+        "metric": "victories",
+        "rank": 726,
+        "meta": ""
+      },
+      {
+        "username": "kazakh",
+        "primary": 829,
+        "metric": "victories",
+        "rank": 727,
+        "meta": ""
+      },
+      {
+        "username": "adhi_chess",
+        "primary": 828,
+        "metric": "victories",
+        "rank": 728,
+        "meta": ""
+      },
+      {
+        "username": "among_us_letsplay",
+        "primary": 828,
+        "metric": "victories",
+        "rank": 729,
+        "meta": ""
+      },
+      {
+        "username": "steel_real",
+        "primary": 828,
+        "metric": "victories",
+        "rank": 730,
+        "meta": ""
+      },
+      {
+        "username": "millzgambit",
+        "primary": 828,
+        "metric": "victories",
+        "rank": 731,
+        "meta": ""
+      },
+      {
+        "username": "anthonyracingkings_2",
+        "primary": 827,
+        "metric": "victories",
+        "rank": 732,
+        "meta": ""
+      },
+      {
+        "username": "shyonfire",
+        "primary": 827,
+        "metric": "victories",
+        "rank": 733,
+        "meta": ""
+      },
+      {
+        "username": "the-game-over",
+        "primary": 822,
+        "metric": "victories",
+        "rank": 734,
+        "meta": ""
+      },
+      {
+        "username": "romasidorov",
+        "primary": 821,
+        "metric": "victories",
+        "rank": 735,
+        "meta": ""
+      },
+      {
+        "username": "samiov",
+        "primary": 816,
+        "metric": "victories",
+        "rank": 736,
+        "meta": ""
+      },
+      {
+        "username": "goosfraba369",
+        "primary": 814,
+        "metric": "victories",
+        "rank": 737,
+        "meta": ""
+      },
+      {
+        "username": "chessthepawn",
+        "primary": 814,
+        "metric": "victories",
+        "rank": 738,
+        "meta": ""
+      },
+      {
+        "username": "arvheckjays",
+        "primary": 813,
+        "metric": "victories",
+        "rank": 739,
+        "meta": ""
+      },
+      {
+        "username": "javanshir2013",
+        "primary": 811,
+        "metric": "victories",
+        "rank": 740,
+        "meta": ""
+      },
+      {
+        "username": "hrant55",
+        "primary": 810,
+        "metric": "victories",
+        "rank": 741,
+        "meta": ""
+      },
+      {
+        "username": "antoine-epl",
+        "primary": 808,
+        "metric": "victories",
+        "rank": 742,
+        "meta": ""
+      },
+      {
+        "username": "chesslo_22",
+        "primary": 807,
+        "metric": "victories",
+        "rank": 743,
+        "meta": ""
+      },
+      {
+        "username": "t_v_q_f_t_c-1",
+        "primary": 804,
+        "metric": "victories",
+        "rank": 744,
+        "meta": ""
+      },
+      {
+        "username": "horse_radish",
+        "primary": 804,
+        "metric": "victories",
+        "rank": 745,
+        "meta": ""
+      },
+      {
+        "username": "chessben123",
+        "primary": 802,
+        "metric": "victories",
+        "rank": 746,
+        "meta": ""
+      },
+      {
+        "username": "adityanumber",
+        "primary": 800,
+        "metric": "victories",
+        "rank": 747,
+        "meta": ""
+      },
+      {
+        "username": "annaggodage2010",
+        "primary": 799,
+        "metric": "victories",
+        "rank": 748,
+        "meta": ""
+      },
+      {
+        "username": "zeus_5060",
+        "primary": 798,
+        "metric": "victories",
+        "rank": 749,
+        "meta": ""
+      },
+      {
+        "username": "optomais365",
+        "primary": 794,
+        "metric": "victories",
+        "rank": 750,
+        "meta": ""
+      },
+      {
+        "username": "pitagoraschile",
+        "primary": 794,
+        "metric": "victories",
+        "rank": 751,
+        "meta": ""
+      },
+      {
+        "username": "sir_umbra",
+        "primary": 792,
+        "metric": "victories",
+        "rank": 752,
+        "meta": ""
+      },
+      {
+        "username": "chessmaster512",
+        "primary": 791,
+        "metric": "victories",
+        "rank": 753,
+        "meta": ""
+      },
+      {
+        "username": "travisnemata",
+        "primary": 791,
+        "metric": "victories",
+        "rank": 754,
+        "meta": ""
+      },
+      {
+        "username": "chessequalslife",
+        "primary": 791,
+        "metric": "victories",
+        "rank": 755,
+        "meta": ""
+      },
+      {
+        "username": "ankabra7",
+        "primary": 791,
+        "metric": "victories",
+        "rank": 756,
+        "meta": ""
+      },
+      {
+        "username": "yukoza421",
+        "primary": 791,
+        "metric": "victories",
+        "rank": 757,
+        "meta": ""
+      },
+      {
+        "username": "hulscher1979",
+        "primary": 789,
+        "metric": "victories",
+        "rank": 758,
+        "meta": ""
+      },
+      {
+        "username": "red_wn",
+        "primary": 786,
+        "metric": "victories",
+        "rank": 759,
+        "meta": ""
+      },
+      {
+        "username": "jonas31415",
+        "primary": 786,
+        "metric": "victories",
+        "rank": 760,
+        "meta": ""
+      },
+      {
+        "username": "olesya_k",
+        "primary": 786,
+        "metric": "victories",
+        "rank": 761,
+        "meta": ""
+      },
+      {
+        "username": "rins87",
+        "primary": 785,
+        "metric": "victories",
+        "rank": 762,
+        "meta": ""
+      },
+      {
+        "username": "asxetos123",
+        "primary": 784,
+        "metric": "victories",
+        "rank": 763,
+        "meta": ""
+      },
+      {
+        "username": "kowder05",
+        "primary": 783,
+        "metric": "victories",
+        "rank": 764,
+        "meta": ""
+      },
+      {
+        "username": "arjanzs",
+        "primary": 781,
+        "metric": "victories",
+        "rank": 765,
+        "meta": ""
+      },
+      {
+        "username": "realpropanda",
+        "primary": 780,
+        "metric": "victories",
+        "rank": 766,
+        "meta": ""
+      },
+      {
+        "username": "yudhistira_lckb",
+        "primary": 779,
+        "metric": "victories",
+        "rank": 767,
+        "meta": ""
+      },
+      {
+        "username": "milagugi777",
+        "primary": 778,
+        "metric": "victories",
+        "rank": 768,
+        "meta": ""
+      },
+      {
+        "username": "siddharth_krishna",
+        "primary": 778,
+        "metric": "victories",
+        "rank": 769,
+        "meta": ""
+      },
+      {
+        "username": "obiosky",
+        "primary": 776,
+        "metric": "victories",
+        "rank": 770,
+        "meta": ""
+      },
+      {
+        "username": "untitled2",
+        "primary": 772,
+        "metric": "victories",
+        "rank": 771,
+        "meta": ""
+      },
+      {
+        "username": "law17enforcer1",
+        "primary": 771,
+        "metric": "victories",
+        "rank": 772,
+        "meta": ""
+      },
+      {
+        "username": "siddhant221209",
+        "primary": 770,
+        "metric": "victories",
+        "rank": 773,
+        "meta": ""
+      },
+      {
+        "username": "superroy44l",
+        "primary": 769,
+        "metric": "victories",
+        "rank": 774,
+        "meta": ""
+      },
+      {
+        "username": "rooliz",
+        "primary": 767,
+        "metric": "victories",
+        "rank": 775,
+        "meta": ""
+      },
+      {
+        "username": "hunter823114",
+        "primary": 764,
+        "metric": "victories",
+        "rank": 776,
+        "meta": ""
+      },
+      {
+        "username": "thividu",
+        "primary": 763,
+        "metric": "victories",
+        "rank": 777,
+        "meta": ""
+      },
+      {
+        "username": "stumbleguy20",
+        "primary": 763,
+        "metric": "victories",
+        "rank": 778,
+        "meta": ""
+      },
+      {
+        "username": "eneelam_07",
+        "primary": 761,
+        "metric": "victories",
+        "rank": 779,
+        "meta": ""
+      },
+      {
+        "username": "delilahh",
+        "primary": 758,
+        "metric": "victories",
+        "rank": 780,
+        "meta": ""
+      },
+      {
+        "username": "maksimmisha",
+        "primary": 757,
+        "metric": "victories",
+        "rank": 781,
+        "meta": ""
+      },
+      {
+        "username": "bayaiche-salaheddine",
+        "primary": 755,
+        "metric": "victories",
+        "rank": 782,
+        "meta": ""
+      },
+      {
+        "username": "deniz74",
+        "primary": 754,
+        "metric": "victories",
+        "rank": 783,
+        "meta": ""
+      },
+      {
+        "username": "begzodbek2007",
+        "primary": 751,
+        "metric": "victories",
+        "rank": 784,
+        "meta": ""
+      },
+      {
+        "username": "snoozy1",
+        "primary": 750,
+        "metric": "victories",
+        "rank": 785,
+        "meta": ""
+      },
+      {
+        "username": "amogh_a",
+        "primary": 747,
+        "metric": "victories",
+        "rank": 786,
+        "meta": ""
+      },
+      {
+        "username": "chessforu02",
+        "primary": 746,
+        "metric": "victories",
+        "rank": 787,
+        "meta": ""
+      },
+      {
+        "username": "pf19_17",
+        "primary": 744,
+        "metric": "victories",
+        "rank": 788,
+        "meta": ""
+      },
+      {
+        "username": "oyuna_sh",
+        "primary": 744,
+        "metric": "victories",
+        "rank": 789,
+        "meta": ""
+      },
+      {
+        "username": "edisupriadi",
+        "primary": 743,
+        "metric": "victories",
+        "rank": 790,
+        "meta": ""
+      },
+      {
+        "username": "goranco",
+        "primary": 743,
+        "metric": "victories",
+        "rank": 791,
+        "meta": ""
+      },
+      {
+        "username": "maxim15379",
+        "primary": 741,
+        "metric": "victories",
+        "rank": 792,
+        "meta": ""
+      },
+      {
+        "username": "kimcollins",
+        "primary": 740,
+        "metric": "victories",
+        "rank": 793,
+        "meta": ""
+      },
+      {
+        "username": "mysterious_space",
+        "primary": 739,
+        "metric": "victories",
+        "rank": 794,
+        "meta": ""
+      },
+      {
+        "username": "rkchesssensei",
+        "primary": 738,
+        "metric": "victories",
+        "rank": 795,
+        "meta": ""
+      },
+      {
+        "username": "fedyand",
+        "primary": 738,
+        "metric": "victories",
+        "rank": 796,
+        "meta": ""
+      },
+      {
+        "username": "federio",
+        "primary": 736,
+        "metric": "victories",
+        "rank": 797,
+        "meta": ""
+      },
+      {
+        "username": "dushaynth",
+        "primary": 734,
+        "metric": "victories",
+        "rank": 798,
+        "meta": ""
+      },
+      {
+        "username": "zixuenlim",
+        "primary": 732,
+        "metric": "victories",
+        "rank": 799,
+        "meta": ""
+      },
+      {
+        "username": "agoatwhocanplaychess",
+        "primary": 731,
+        "metric": "victories",
+        "rank": 800,
+        "meta": ""
+      },
+      {
+        "username": "mohammadreza-s",
+        "primary": 729,
+        "metric": "victories",
+        "rank": 801,
+        "meta": ""
+      },
+      {
+        "username": "grandmasterarin",
+        "primary": 728,
+        "metric": "victories",
+        "rank": 802,
+        "meta": ""
+      },
+      {
+        "username": "tyfuygihjokgfdyrdtif",
+        "primary": 727,
+        "metric": "victories",
+        "rank": 803,
+        "meta": ""
+      },
+      {
+        "username": "akshatkandpal",
+        "primary": 726,
+        "metric": "victories",
+        "rank": 804,
+        "meta": ""
+      },
+      {
+        "username": "baconchessboy13579",
+        "primary": 726,
+        "metric": "victories",
+        "rank": 805,
+        "meta": ""
+      },
+      {
+        "username": "tenaciousorigin",
+        "primary": 725,
+        "metric": "victories",
+        "rank": 806,
+        "meta": ""
+      },
+      {
+        "username": "man_134",
+        "primary": 724,
+        "metric": "victories",
+        "rank": 807,
+        "meta": ""
+      },
+      {
+        "username": "thebatman2010",
+        "primary": 724,
+        "metric": "victories",
+        "rank": 808,
+        "meta": ""
+      },
+      {
+        "username": "kidus37",
+        "primary": 720,
+        "metric": "victories",
+        "rank": 809,
+        "meta": ""
+      },
+      {
+        "username": "derek_halverson",
+        "primary": 717,
+        "metric": "victories",
+        "rank": 810,
+        "meta": ""
+      },
+      {
+        "username": "aarv9999",
+        "primary": 716,
+        "metric": "victories",
+        "rank": 811,
+        "meta": ""
+      },
+      {
+        "username": "sabriel",
+        "primary": 716,
+        "metric": "victories",
+        "rank": 812,
+        "meta": ""
+      },
+      {
+        "username": "joacito222",
+        "primary": 713,
+        "metric": "victories",
+        "rank": 813,
+        "meta": ""
+      },
+      {
+        "username": "damaenigmaiv267894",
+        "primary": 713,
+        "metric": "victories",
+        "rank": 814,
+        "meta": ""
+      },
+      {
+        "username": "luchenco",
+        "primary": 712,
+        "metric": "victories",
+        "rank": 815,
+        "meta": ""
+      },
+      {
+        "username": "freepoints",
+        "primary": 711,
+        "metric": "victories",
+        "rank": 816,
+        "meta": ""
+      },
+      {
+        "username": "kwilsonk",
+        "primary": 711,
+        "metric": "victories",
+        "rank": 817,
+        "meta": ""
+      },
+      {
+        "username": "atharvjain",
+        "primary": 710,
+        "metric": "victories",
+        "rank": 818,
+        "meta": ""
+      },
+      {
+        "username": "super_man123456",
+        "primary": 710,
+        "metric": "victories",
+        "rank": 819,
+        "meta": ""
+      },
+      {
+        "username": "manvikbaidya58",
+        "primary": 709,
+        "metric": "victories",
+        "rank": 820,
+        "meta": ""
+      },
+      {
+        "username": "paulinho98",
+        "primary": 708,
+        "metric": "victories",
+        "rank": 821,
+        "meta": ""
+      },
+      {
+        "username": "evil-boy",
+        "primary": 706,
+        "metric": "victories",
+        "rank": 822,
+        "meta": ""
+      },
+      {
+        "username": "nofensardlckb",
+        "primary": 706,
+        "metric": "victories",
+        "rank": 823,
+        "meta": ""
+      },
+      {
+        "username": "mukta2209",
+        "primary": 705,
+        "metric": "victories",
+        "rank": 824,
+        "meta": ""
+      },
+      {
+        "username": "mishfil",
+        "primary": 705,
+        "metric": "victories",
+        "rank": 825,
+        "meta": ""
+      },
+      {
+        "username": "sasha_karatist",
+        "primary": 704,
+        "metric": "victories",
+        "rank": 826,
+        "meta": ""
+      },
+      {
+        "username": "condensedwater",
+        "primary": 703,
+        "metric": "victories",
+        "rank": 827,
+        "meta": ""
+      },
+      {
+        "username": "risky-chess",
+        "primary": 701,
+        "metric": "victories",
+        "rank": 828,
+        "meta": ""
+      },
+      {
+        "username": "iverwindybottom",
+        "primary": 699,
+        "metric": "victories",
+        "rank": 829,
+        "meta": ""
+      },
+      {
+        "username": "akonkof8",
+        "primary": 699,
+        "metric": "victories",
+        "rank": 830,
+        "meta": ""
+      },
+      {
+        "username": "teluur",
+        "primary": 696,
+        "metric": "victories",
+        "rank": 831,
+        "meta": ""
+      },
+      {
+        "username": "shuvashish76",
+        "primary": 696,
+        "metric": "victories",
+        "rank": 832,
+        "meta": ""
+      },
+      {
+        "username": "massanto_lckb",
+        "primary": 696,
+        "metric": "victories",
+        "rank": 833,
+        "meta": ""
+      },
+      {
+        "username": "dobrodelayushiy",
+        "primary": 695,
+        "metric": "victories",
+        "rank": 834,
+        "meta": ""
+      },
+      {
+        "username": "diegoemmanuel299",
+        "primary": 691,
+        "metric": "victories",
+        "rank": 835,
+        "meta": ""
+      },
+      {
+        "username": "andreas_daniel",
+        "primary": 689,
+        "metric": "victories",
+        "rank": 836,
+        "meta": ""
+      },
+      {
+        "username": "arastareonald",
+        "primary": 688,
+        "metric": "victories",
+        "rank": 837,
+        "meta": ""
+      },
+      {
+        "username": "stalemateking",
+        "primary": 687,
+        "metric": "victories",
+        "rank": 838,
+        "meta": ""
+      },
+      {
+        "username": "matomba67",
+        "primary": 686,
+        "metric": "victories",
+        "rank": 839,
+        "meta": ""
+      },
+      {
+        "username": "royalrafa",
+        "primary": 684,
+        "metric": "victories",
+        "rank": 840,
+        "meta": ""
+      },
+      {
+        "username": "ivebeatkasprov",
+        "primary": 683,
+        "metric": "victories",
+        "rank": 841,
+        "meta": ""
+      },
+      {
+        "username": "the_dancer",
+        "primary": 683,
+        "metric": "victories",
+        "rank": 842,
+        "meta": ""
+      },
+      {
+        "username": "levictor",
+        "primary": 680,
+        "metric": "victories",
+        "rank": 843,
+        "meta": ""
+      },
+      {
+        "username": "legend_monster55",
+        "primary": 678,
+        "metric": "victories",
+        "rank": 844,
+        "meta": ""
+      },
+      {
+        "username": "seyitmehmet",
+        "primary": 676,
+        "metric": "victories",
+        "rank": 845,
+        "meta": ""
+      },
+      {
+        "username": "randeer2007",
+        "primary": 675,
+        "metric": "victories",
+        "rank": 846,
+        "meta": ""
+      },
+      {
+        "username": "chaarvik",
+        "primary": 674,
+        "metric": "victories",
+        "rank": 847,
+        "meta": ""
+      },
+      {
+        "username": "sualteza",
+        "primary": 673,
+        "metric": "victories",
+        "rank": 848,
+        "meta": ""
+      },
+      {
+        "username": "swiftcuber14",
+        "primary": 672,
+        "metric": "victories",
+        "rank": 849,
+        "meta": ""
+      },
+      {
+        "username": "rodneytherooster",
+        "primary": 671,
+        "metric": "victories",
+        "rank": 850,
+        "meta": ""
+      },
+      {
+        "username": "racing_king7",
+        "primary": 671,
+        "metric": "victories",
+        "rank": 851,
+        "meta": ""
+      },
+      {
+        "username": "mezeieger",
+        "primary": 671,
+        "metric": "victories",
+        "rank": 852,
+        "meta": ""
+      },
+      {
+        "username": "hectorvelt",
+        "primary": 668,
+        "metric": "victories",
+        "rank": 853,
+        "meta": ""
+      },
+      {
+        "username": "shakedtwig111",
+        "primary": 666,
+        "metric": "victories",
+        "rank": 854,
+        "meta": ""
+      },
+      {
+        "username": "arinbafna",
+        "primary": 666,
+        "metric": "victories",
+        "rank": 855,
+        "meta": ""
+      },
+      {
+        "username": "chessfunforall",
+        "primary": 666,
+        "metric": "victories",
+        "rank": 856,
+        "meta": ""
+      },
+      {
+        "username": "sahdfaizal",
+        "primary": 666,
+        "metric": "victories",
+        "rank": 857,
+        "meta": ""
+      },
+      {
+        "username": "ivan_rizhko",
+        "primary": 666,
+        "metric": "victories",
+        "rank": 858,
+        "meta": ""
+      },
+      {
+        "username": "sniper_of_chess",
+        "primary": 663,
+        "metric": "victories",
+        "rank": 859,
+        "meta": ""
+      },
+      {
+        "username": "fishnotadish2",
+        "primary": 662,
+        "metric": "victories",
+        "rank": 860,
+        "meta": ""
+      },
+      {
+        "username": "sudila02",
+        "primary": 661,
+        "metric": "victories",
+        "rank": 861,
+        "meta": ""
+      },
+      {
+        "username": "keatanpatel",
+        "primary": 661,
+        "metric": "victories",
+        "rank": 862,
+        "meta": ""
+      },
+      {
+        "username": "matheusmdr2005",
+        "primary": 660,
+        "metric": "victories",
+        "rank": 863,
+        "meta": ""
+      },
+      {
+        "username": "rnmuralee",
+        "primary": 660,
+        "metric": "victories",
+        "rank": 864,
+        "meta": ""
+      },
+      {
+        "username": "babaev_adam",
+        "primary": 657,
+        "metric": "victories",
+        "rank": 865,
+        "meta": ""
+      },
+      {
+        "username": "spo1388",
+        "primary": 655,
+        "metric": "victories",
+        "rank": 866,
+        "meta": ""
+      },
+      {
+        "username": "gunes_ruzgar",
+        "primary": 655,
+        "metric": "victories",
+        "rank": 867,
+        "meta": ""
+      },
+      {
+        "username": "racingkingsplayer",
+        "primary": 654,
+        "metric": "victories",
+        "rank": 868,
+        "meta": ""
+      },
+      {
+        "username": "lucaszlomce1b",
+        "primary": 654,
+        "metric": "victories",
+        "rank": 869,
+        "meta": ""
+      },
+      {
+        "username": "artemeee1",
+        "primary": 653,
+        "metric": "victories",
+        "rank": 870,
+        "meta": ""
+      },
+      {
+        "username": "thorax_laneus",
+        "primary": 652,
+        "metric": "victories",
+        "rank": 871,
+        "meta": ""
+      },
+      {
+        "username": "harryschnotter",
+        "primary": 651,
+        "metric": "victories",
+        "rank": 872,
+        "meta": ""
+      },
+      {
+        "username": "bdr033_b12p_iman",
+        "primary": 650,
+        "metric": "victories",
+        "rank": 873,
+        "meta": ""
+      },
+      {
+        "username": "gh0st_xn",
+        "primary": 649,
+        "metric": "victories",
+        "rank": 874,
+        "meta": ""
+      },
+      {
+        "username": "avi30",
+        "primary": 648,
+        "metric": "victories",
+        "rank": 875,
+        "meta": ""
+      },
+      {
+        "username": "pablogongar",
+        "primary": 647,
+        "metric": "victories",
+        "rank": 876,
+        "meta": ""
+      },
+      {
+        "username": "amirhafez2023",
+        "primary": 645,
+        "metric": "victories",
+        "rank": 877,
+        "meta": ""
+      },
+      {
+        "username": "punyagupta",
+        "primary": 643,
+        "metric": "victories",
+        "rank": 878,
+        "meta": ""
+      },
+      {
+        "username": "maniontop",
+        "primary": 643,
+        "metric": "victories",
+        "rank": 879,
+        "meta": ""
+      },
+      {
+        "username": "niclang",
+        "primary": 642,
+        "metric": "victories",
+        "rank": 880,
+        "meta": ""
+      },
+      {
+        "username": "thor246",
+        "primary": 640,
+        "metric": "victories",
+        "rank": 881,
+        "meta": ""
+      },
+      {
+        "username": "caffreyneal",
+        "primary": 639,
+        "metric": "victories",
+        "rank": 882,
+        "meta": ""
+      },
+      {
+        "username": "aadwitaaadvika2009",
+        "primary": 639,
+        "metric": "victories",
+        "rank": 883,
+        "meta": ""
+      },
+      {
+        "username": "jacobholla23",
+        "primary": 638,
+        "metric": "victories",
+        "rank": 884,
+        "meta": ""
+      },
+      {
+        "username": "lluisuc",
+        "primary": 638,
+        "metric": "victories",
+        "rank": 885,
+        "meta": ""
+      },
+      {
+        "username": "cinnamon_winner",
+        "primary": 637,
+        "metric": "victories",
+        "rank": 886,
+        "meta": ""
+      },
+      {
+        "username": "volkov_vasilii",
+        "primary": 636,
+        "metric": "victories",
+        "rank": 887,
+        "meta": ""
+      },
+      {
+        "username": "kogynuquer",
+        "primary": 635,
+        "metric": "victories",
+        "rank": 888,
+        "meta": ""
+      },
+      {
+        "username": "remolded",
+        "primary": 635,
+        "metric": "victories",
+        "rank": 889,
+        "meta": ""
+      },
+      {
+        "username": "the_human_parasite",
+        "primary": 635,
+        "metric": "victories",
+        "rank": 890,
+        "meta": ""
+      },
+      {
+        "username": "tigershark47",
+        "primary": 635,
+        "metric": "victories",
+        "rank": 891,
+        "meta": ""
+      },
+      {
+        "username": "uptome",
+        "primary": 634,
+        "metric": "victories",
+        "rank": 892,
+        "meta": ""
+      },
+      {
+        "username": "airprint",
+        "primary": 634,
+        "metric": "victories",
+        "rank": 893,
+        "meta": ""
+      },
+      {
+        "username": "kkumar1",
+        "primary": 631,
+        "metric": "victories",
+        "rank": 894,
+        "meta": ""
+      },
+      {
+        "username": "sealy8",
+        "primary": 631,
+        "metric": "victories",
+        "rank": 895,
+        "meta": ""
+      },
+      {
+        "username": "its_aarav",
+        "primary": 630,
+        "metric": "victories",
+        "rank": 896,
+        "meta": ""
+      },
+      {
+        "username": "bayormiller",
+        "primary": 629,
+        "metric": "victories",
+        "rank": 897,
+        "meta": ""
+      },
+      {
+        "username": "dima_kubin",
+        "primary": 627,
+        "metric": "victories",
+        "rank": 898,
+        "meta": ""
+      },
+      {
+        "username": "alexdeng1",
+        "primary": 624,
+        "metric": "victories",
+        "rank": 899,
+        "meta": ""
+      },
+      {
+        "username": "learningvariants",
+        "primary": 623,
+        "metric": "victories",
+        "rank": 900,
+        "meta": ""
+      },
+      {
+        "username": "mrthemr",
+        "primary": 623,
+        "metric": "victories",
+        "rank": 901,
+        "meta": ""
+      },
+      {
+        "username": "tunaaydin",
+        "primary": 622,
+        "metric": "victories",
+        "rank": 902,
+        "meta": ""
+      },
+      {
+        "username": "arjunmokashi2710",
+        "primary": 621,
+        "metric": "victories",
+        "rank": 903,
+        "meta": ""
+      },
+      {
+        "username": "hangry4ever",
+        "primary": 620,
+        "metric": "victories",
+        "rank": 904,
+        "meta": ""
+      },
+      {
+        "username": "dima-7777",
+        "primary": 620,
+        "metric": "victories",
+        "rank": 905,
+        "meta": ""
+      },
+      {
+        "username": "gsps-gamer",
+        "primary": 620,
+        "metric": "victories",
+        "rank": 906,
+        "meta": ""
+      },
+      {
+        "username": "melton-g4s",
+        "primary": 620,
+        "metric": "victories",
+        "rank": 907,
+        "meta": ""
+      },
+      {
+        "username": "agarciadodo",
+        "primary": 620,
+        "metric": "victories",
+        "rank": 908,
+        "meta": ""
+      },
+      {
+        "username": "man2224",
+        "primary": 620,
+        "metric": "victories",
+        "rank": 909,
+        "meta": ""
+      },
+      {
+        "username": "cemalziya027",
+        "primary": 620,
+        "metric": "victories",
+        "rank": 910,
+        "meta": ""
+      },
+      {
+        "username": "errieinrj",
+        "primary": 619,
+        "metric": "victories",
+        "rank": 911,
+        "meta": ""
+      },
+      {
+        "username": "jesusr04",
+        "primary": 619,
+        "metric": "victories",
+        "rank": 912,
+        "meta": ""
+      },
+      {
+        "username": "melton-sg4s",
+        "primary": 618,
+        "metric": "victories",
+        "rank": 913,
+        "meta": ""
+      },
+      {
+        "username": "talikotisavita",
+        "primary": 617,
+        "metric": "victories",
+        "rank": 914,
+        "meta": ""
+      },
+      {
+        "username": "pion_tcc",
+        "primary": 617,
+        "metric": "victories",
+        "rank": 915,
+        "meta": ""
+      },
+      {
+        "username": "salman32320",
+        "primary": 615,
+        "metric": "victories",
+        "rank": 916,
+        "meta": ""
+      },
+      {
+        "username": "rihan5",
+        "primary": 614,
+        "metric": "victories",
+        "rank": 917,
+        "meta": ""
+      },
+      {
+        "username": "nivmizz",
+        "primary": 613,
+        "metric": "victories",
+        "rank": 918,
+        "meta": ""
+      },
+      {
+        "username": "ksenia_bizhova",
+        "primary": 612,
+        "metric": "victories",
+        "rank": 919,
+        "meta": ""
+      },
+      {
+        "username": "umeshnaithani",
+        "primary": 611,
+        "metric": "victories",
+        "rank": 920,
+        "meta": ""
+      },
+      {
+        "username": "qwerty6543210",
+        "primary": 611,
+        "metric": "victories",
+        "rank": 921,
+        "meta": ""
+      },
+      {
+        "username": "realboy9000",
+        "primary": 611,
+        "metric": "victories",
+        "rank": 922,
+        "meta": ""
+      },
+      {
+        "username": "pallina2012",
+        "primary": 611,
+        "metric": "victories",
+        "rank": 923,
+        "meta": ""
+      },
+      {
+        "username": "benn18",
+        "primary": 611,
+        "metric": "victories",
+        "rank": 924,
+        "meta": ""
+      },
+      {
+        "username": "stokflsh",
+        "primary": 610,
+        "metric": "victories",
+        "rank": 925,
+        "meta": ""
+      },
+      {
+        "username": "desindu",
+        "primary": 610,
+        "metric": "victories",
+        "rank": 926,
+        "meta": ""
+      },
+      {
+        "username": "ak_nz",
+        "primary": 610,
+        "metric": "victories",
+        "rank": 927,
+        "meta": ""
+      },
+      {
+        "username": "abhiram33",
+        "primary": 609,
+        "metric": "victories",
+        "rank": 928,
+        "meta": ""
+      },
+      {
+        "username": "kivo358",
+        "primary": 608,
+        "metric": "victories",
+        "rank": 929,
+        "meta": ""
+      },
+      {
+        "username": "halexandre",
+        "primary": 607,
+        "metric": "victories",
+        "rank": 930,
+        "meta": ""
+      },
+      {
+        "username": "league_of_brothers1",
+        "primary": 607,
+        "metric": "victories",
+        "rank": 931,
+        "meta": ""
+      },
+      {
+        "username": "fastestmanalive0121",
+        "primary": 606,
+        "metric": "victories",
+        "rank": 932,
+        "meta": ""
+      },
+      {
+        "username": "hadiaslani2019",
+        "primary": 605,
+        "metric": "victories",
+        "rank": 933,
+        "meta": ""
+      },
+      {
+        "username": "minitoon_boi",
+        "primary": 605,
+        "metric": "victories",
+        "rank": 934,
+        "meta": ""
+      },
+      {
+        "username": "fazetofire",
+        "primary": 605,
+        "metric": "victories",
+        "rank": 935,
+        "meta": ""
+      },
+      {
+        "username": "mgiampa",
+        "primary": 605,
+        "metric": "victories",
+        "rank": 936,
+        "meta": ""
+      },
+      {
+        "username": "sumlatinere",
+        "primary": 603,
+        "metric": "victories",
+        "rank": 937,
+        "meta": ""
+      },
+      {
+        "username": "arjunvinu",
+        "primary": 603,
+        "metric": "victories",
+        "rank": 938,
+        "meta": ""
+      },
+      {
+        "username": "ryanhwang",
+        "primary": 602,
+        "metric": "victories",
+        "rank": 939,
+        "meta": ""
+      },
+      {
+        "username": "legend_killer1212",
+        "primary": 601,
+        "metric": "victories",
+        "rank": 940,
+        "meta": ""
+      },
+      {
+        "username": "coolcoldice3",
+        "primary": 601,
+        "metric": "victories",
+        "rank": 941,
+        "meta": ""
+      },
+      {
+        "username": "bardia_king1389",
+        "primary": 599,
+        "metric": "victories",
+        "rank": 942,
+        "meta": ""
+      },
+      {
+        "username": "siavash1338",
+        "primary": 599,
+        "metric": "victories",
+        "rank": 943,
+        "meta": ""
+      },
+      {
+        "username": "ethn5",
+        "primary": 599,
+        "metric": "victories",
+        "rank": 944,
+        "meta": ""
+      },
+      {
+        "username": "david9426",
+        "primary": 598,
+        "metric": "victories",
+        "rank": 945,
+        "meta": ""
+      },
+      {
+        "username": "angel-gy",
+        "primary": 594,
+        "metric": "victories",
+        "rank": 946,
+        "meta": ""
+      },
+      {
+        "username": "joku17",
+        "primary": 594,
+        "metric": "victories",
+        "rank": 947,
+        "meta": ""
+      },
+      {
+        "username": "imil173",
+        "primary": 594,
+        "metric": "victories",
+        "rank": 948,
+        "meta": ""
+      },
+      {
+        "username": "memoras",
+        "primary": 594,
+        "metric": "victories",
+        "rank": 949,
+        "meta": ""
+      },
+      {
+        "username": "xchesstooeasyx",
+        "primary": 592,
+        "metric": "victories",
+        "rank": 950,
+        "meta": ""
+      },
+      {
+        "username": "metin48",
+        "primary": 591,
+        "metric": "victories",
+        "rank": 951,
+        "meta": ""
+      },
+      {
+        "username": "manwithbigplan",
+        "primary": 591,
+        "metric": "victories",
+        "rank": 952,
+        "meta": ""
+      },
+      {
+        "username": "luismaher",
+        "primary": 590,
+        "metric": "victories",
+        "rank": 953,
+        "meta": ""
+      },
+      {
+        "username": "bayaiche-salah",
+        "primary": 590,
+        "metric": "victories",
+        "rank": 954,
+        "meta": ""
+      },
+      {
+        "username": "posledniy",
+        "primary": 590,
+        "metric": "victories",
+        "rank": 955,
+        "meta": ""
+      },
+      {
+        "username": "electrowolf9322",
+        "primary": 589,
+        "metric": "victories",
+        "rank": 956,
+        "meta": ""
+      },
+      {
+        "username": "alston_boy",
+        "primary": 587,
+        "metric": "victories",
+        "rank": 957,
+        "meta": ""
+      },
+      {
+        "username": "rain-city",
+        "primary": 586,
+        "metric": "victories",
+        "rank": 958,
+        "meta": ""
+      },
+      {
+        "username": "winsdude9",
+        "primary": 582,
+        "metric": "victories",
+        "rank": 959,
+        "meta": ""
+      },
+      {
+        "username": "kirillmav",
+        "primary": 581,
+        "metric": "victories",
+        "rank": 960,
+        "meta": ""
+      },
+      {
+        "username": "grandhedgehog",
+        "primary": 581,
+        "metric": "victories",
+        "rank": 961,
+        "meta": ""
+      },
+      {
+        "username": "godpori1984",
+        "primary": 580,
+        "metric": "victories",
+        "rank": 962,
+        "meta": ""
+      },
+      {
+        "username": "nfkuralkan",
+        "primary": 578,
+        "metric": "victories",
+        "rank": 963,
+        "meta": ""
+      },
+      {
+        "username": "doingwhatican",
+        "primary": 578,
+        "metric": "victories",
+        "rank": 964,
+        "meta": ""
+      },
+      {
+        "username": "lemon_pie",
+        "primary": 578,
+        "metric": "victories",
+        "rank": 965,
+        "meta": ""
+      },
+      {
+        "username": "shawntan",
+        "primary": 576,
+        "metric": "victories",
+        "rank": 966,
+        "meta": ""
+      },
+      {
+        "username": "dpalm",
+        "primary": 576,
+        "metric": "victories",
+        "rank": 967,
+        "meta": ""
+      },
+      {
+        "username": "thaiseagull",
+        "primary": 575,
+        "metric": "victories",
+        "rank": 968,
+        "meta": ""
+      },
+      {
+        "username": "gymball",
+        "primary": 574,
+        "metric": "victories",
+        "rank": 969,
+        "meta": ""
+      },
+      {
+        "username": "raphaeldaehmlow",
+        "primary": 574,
+        "metric": "victories",
+        "rank": 970,
+        "meta": ""
+      },
+      {
+        "username": "deweydewdude",
+        "primary": 573,
+        "metric": "victories",
+        "rank": 971,
+        "meta": ""
+      },
+      {
+        "username": "tiny_iguana_123",
+        "primary": 573,
+        "metric": "victories",
+        "rank": 972,
+        "meta": ""
+      },
+      {
+        "username": "treklen",
+        "primary": 573,
+        "metric": "victories",
+        "rank": 973,
+        "meta": ""
+      },
+      {
+        "username": "accesspoint",
+        "primary": 573,
+        "metric": "victories",
+        "rank": 974,
+        "meta": ""
+      },
+      {
+        "username": "faisal-pono",
+        "primary": 570,
+        "metric": "victories",
+        "rank": 975,
+        "meta": ""
+      },
+      {
+        "username": "aradkjkh",
+        "primary": 569,
+        "metric": "victories",
+        "rank": 976,
+        "meta": ""
+      },
+      {
+        "username": "master-of-dragons",
+        "primary": 568,
+        "metric": "victories",
+        "rank": 977,
+        "meta": ""
+      },
+      {
+        "username": "killler_master",
+        "primary": 567,
+        "metric": "victories",
+        "rank": 978,
+        "meta": ""
+      },
+      {
+        "username": "rasulahmedli",
+        "primary": 567,
+        "metric": "victories",
+        "rank": 979,
+        "meta": ""
+      },
+      {
+        "username": "luca976",
+        "primary": 564,
+        "metric": "victories",
+        "rank": 980,
+        "meta": ""
+      },
+      {
+        "username": "lyricalblunders",
+        "primary": 564,
+        "metric": "victories",
+        "rank": 981,
+        "meta": ""
+      },
+      {
+        "username": "j4yyu5_lckb",
+        "primary": 564,
+        "metric": "victories",
+        "rank": 982,
+        "meta": ""
+      },
+      {
+        "username": "johny9878",
+        "primary": 563,
+        "metric": "victories",
+        "rank": 983,
+        "meta": ""
+      },
+      {
+        "username": "ivamiis2",
+        "primary": 561,
+        "metric": "victories",
+        "rank": 984,
+        "meta": ""
+      },
+      {
+        "username": "eneelam12",
+        "primary": 561,
+        "metric": "victories",
+        "rank": 985,
+        "meta": ""
+      },
+      {
+        "username": "artisa",
+        "primary": 561,
+        "metric": "victories",
+        "rank": 986,
+        "meta": ""
+      },
+      {
+        "username": "zeroni",
+        "primary": 560,
+        "metric": "victories",
+        "rank": 987,
+        "meta": ""
+      },
+      {
+        "username": "pla13131313",
+        "primary": 560,
+        "metric": "victories",
+        "rank": 988,
+        "meta": ""
+      },
+      {
+        "username": "aneliaedinorog",
+        "primary": 559,
+        "metric": "victories",
+        "rank": 989,
+        "meta": ""
+      },
+      {
+        "username": "ok_oleksandr",
+        "primary": 559,
+        "metric": "victories",
+        "rank": 990,
+        "meta": ""
+      },
+      {
+        "username": "santhosha",
+        "primary": 558,
+        "metric": "victories",
+        "rank": 991,
+        "meta": ""
+      },
+      {
+        "username": "mastercacho",
+        "primary": 557,
+        "metric": "victories",
+        "rank": 992,
+        "meta": ""
+      },
+      {
+        "username": "bertvds",
+        "primary": 557,
+        "metric": "victories",
+        "rank": 993,
+        "meta": ""
+      },
+      {
+        "username": "mehmel",
+        "primary": 557,
+        "metric": "victories",
+        "rank": 994,
+        "meta": ""
+      },
+      {
+        "username": "worthwhileconquest28",
+        "primary": 555,
+        "metric": "victories",
+        "rank": 995,
+        "meta": ""
+      },
+      {
+        "username": "dansemdan2011",
+        "primary": 553,
+        "metric": "victories",
+        "rank": 996,
+        "meta": ""
+      },
+      {
+        "username": "eltun_j",
+        "primary": 552,
+        "metric": "victories",
+        "rank": 997,
+        "meta": ""
+      },
+      {
+        "username": "liamo12",
+        "primary": 550,
+        "metric": "victories",
+        "rank": 998,
+        "meta": ""
+      },
+      {
+        "username": "vladzhukov",
+        "primary": 549,
+        "metric": "victories",
+        "rank": 999,
+        "meta": ""
+      },
+      {
+        "username": "cen1092",
+        "primary": 549,
+        "metric": "victories",
+        "rank": 1000,
         "meta": ""
       }
     ]
