@@ -83,6 +83,16 @@ def extract_username(value):
     else:
         text = text.lstrip("@").strip()
 
+        # Some spreadsheet cells may contain a username plus a note or other
+        # text. Recover a valid username token instead of rejecting the row.
+        if not re.fullmatch(r"[A-Za-z0-9_-]{2,32}", text):
+            token_match = re.search(
+                r"(?<![A-Za-z0-9_-])([A-Za-z0-9_-]{2,32})(?![A-Za-z0-9_-])",
+                text,
+            )
+            if token_match:
+                text = token_match.group(1)
+
     if not re.fullmatch(r"[A-Za-z0-9_-]{2,32}", text):
         return None
 
@@ -285,6 +295,21 @@ def parse_rows(rows):
 
         username = extract_username(row[username_index])
         rating = parse_rating(row[peak_index])
+
+        # A single malformed/blank peak cell must not remove a real player.
+        # Fall back to the strongest rating-like value elsewhere in the same
+        # row. This is especially useful for sheets containing formulas,
+        # mixed number formatting, or per-player notes.
+        if username and rating is None:
+            row_ratings = [
+                parsed
+                for index, cell in enumerate(row)
+                if index != username_index
+                for parsed in [parse_rating(cell)]
+                if parsed is not None
+            ]
+            if row_ratings:
+                rating = max(row_ratings)
 
         if not username or rating is None:
             continue
