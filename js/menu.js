@@ -17,6 +17,11 @@ const RK_MENU_GROUPS = [
     { slug: 'team', label: 'Lichess Team', icon: '👥', description: 'Visit the Racing Kings Master team and view its live community statistics.' },
     { slug: 'about', label: 'About', icon: 'ℹ', description: 'Learn what the project is, how it works, and where it is heading.' }
   ]},
+  { slug: 'u2000-menu', label: 'U2000', items: [
+    { slug: 'u2000-competitions', label: 'U2000 Competitions', icon: '🏁', description: 'Find competitions and events designed for players rated below 2000.' },
+    { slug: 'u2000-learning', label: 'U2000 Learning', icon: '📚', description: 'Training resources, guides, and practical ideas for improving below 2000.' },
+    { slug: 'u2000-other', label: 'Other', icon: '✨', description: 'Explore other U2000 projects, resources, and community features.' }
+  ]},
   { slug: 'account-menu', label: 'Account', items: [] }
 ];
 (function setTheme(){document.documentElement.setAttribute('data-theme',localStorage.getItem('rk-theme')||'dark');})();
