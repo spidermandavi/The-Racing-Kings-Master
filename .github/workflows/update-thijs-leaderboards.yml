@@ -9,6 +9,7 @@ on:
       - 'scripts/update_thijs_leaderboards.py'
       - 'scripts/update_lichess_top_players.py'
       - 'scripts/update_peak_lichess_ratings.py'
+      - 'scripts/update_lichess_team.py'
       - '.github/workflows/update-thijs-leaderboards.yml'
 
 permissions:
@@ -38,11 +39,14 @@ jobs:
           GOOGLE_SHEET_GID: "0"
         run: python3 scripts/update_peak_lichess_ratings.py
 
+      - name: Update Lichess team snapshot
+        run: python3 scripts/update_lichess_team.py
+
       - name: Commit changed snapshots
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add json/thijs-leaderboards.json json/lichess-top-players.json json/peak-lichess-ratings.json
+          git add json/thijs-leaderboards.json json/lichess-top-players.json json/peak-lichess-ratings.json json/lichess-team.json
           git diff --cached --quiet || git commit -m "Update Racing Kings data"
           git pull --rebase origin main
           git push
@@ -64,13 +68,21 @@ jobs:
                   + ", ".join(sorted(required - successful))
               )
           if thijs.get("errors"):
-              failures.append("Thijs errors: " + "; ".join(f"{k}: {v}" for k, v in thijs["errors"].items()))
+              failures.append(
+                  "Thijs errors: "
+                  + "; ".join(f"{k}: {v}" for k, v in thijs["errors"].items())
+              )
 
           top = json.loads(Path("json/lichess-top-players.json").read_text(encoding="utf-8"))
           if len(top.get("players", [])) != 20:
-              failures.append(f"Lichess top-player snapshot has {len(top.get('players', []))} players; expected 20")
+              failures.append(
+                  f"Lichess top-player snapshot has {len(top.get('players', []))} players; expected 20"
+              )
           if top.get("errors"):
-              failures.append("Lichess player errors: " + "; ".join(f"{k}: {v}" for k, v in top["errors"].items()))
+              failures.append(
+                  "Lichess player errors: "
+                  + "; ".join(f"{k}: {v}" for k, v in top["errors"].items())
+              )
 
           peak = json.loads(Path("json/peak-lichess-ratings.json").read_text(encoding="utf-8"))
           if peak.get("health") == "error":
@@ -78,9 +90,34 @@ jobs:
           if not peak.get("players"):
               failures.append("Peak Lichess rating snapshot contains no players.")
 
+          team = json.loads(Path("json/lichess-team.json").read_text(encoding="utf-8"))
+          if team.get("health") != "healthy":
+              failures.append(
+                  "Lichess team snapshot health is "
+                  + str(team.get("health"))
+                  + "."
+              )
+          if not team.get("team", {}).get("name"):
+              failures.append("Lichess team snapshot is missing the team name.")
+          if not isinstance(team.get("members"), list) or not team.get("members"):
+              failures.append("Lichess team snapshot contains no members.")
+          else:
+              invalid_members = [
+                  member for member in team["members"]
+                  if not isinstance(member, dict) or not member.get("username")
+              ]
+              if invalid_members:
+                  failures.append(
+                      f"Lichess team snapshot contains {len(invalid_members)} invalid members."
+                  )
+
           if failures:
               print("\n".join("::warning::" + item for item in failures))
               raise SystemExit(1)
 
-          print("Racing Kings data refresh is healthy: 5 Thijs datasets + 20 Lichess top players + peak-rating sheet snapshot.")
+          print(
+              "Racing Kings data refresh is healthy: "
+              "5 Thijs datasets + 20 Lichess top players + "
+              "peak-rating sheet + Lichess team snapshot."
+          )
           PY
