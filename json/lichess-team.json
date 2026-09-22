@@ -1,0 +1,20 @@
+{
+  "source": "Lichess API",
+  "teamId": "the-racing-kings-master",
+  "teamUrl": "https://lichess.org/team/the-racing-kings-master",
+  "variant": "Racing Kings",
+  "updatedAt": null,
+  "lastSuccessfulUpdate": null,
+  "health": "pending",
+  "errors": {
+    "refresh": "Waiting for the first automatic refresh."
+  },
+  "team": {
+    "id": "the-racing-kings-master",
+    "name": "The Racing Kings Master",
+    "description": "The Racing Kings Master community on Lichess.",
+    "leaders": []
+  },
+  "memberCount": 0,
+  "members": []
+}
