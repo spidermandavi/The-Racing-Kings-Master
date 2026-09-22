@@ -3,18 +3,49 @@
   "teamId": "the-racing-kings-master",
   "teamUrl": "https://lichess.org/team/the-racing-kings-master",
   "variant": "Racing Kings",
-  "updatedAt": null,
-  "lastSuccessfulUpdate": null,
-  "health": "pending",
-  "errors": {
-    "refresh": "Waiting for the first automatic refresh."
-  },
+  "updatedAt": "2026-09-22T05:00:36.401728+00:00",
+  "lastSuccessfulUpdate": "2026-09-22T05:00:36.401728+00:00",
+  "health": "healthy",
+  "errors": {},
   "team": {
     "id": "the-racing-kings-master",
     "name": "The Racing Kings Master",
-    "description": "The Racing Kings Master community on Lichess.",
-    "leaders": []
+    "description": "Under construction....\n\n\nCreated on Mon 14th of September 2026",
+    "leaders": [
+      "mysterious_past"
+    ]
   },
-  "memberCount": 0,
-  "members": []
+  "memberCount": 3,
+  "members": [
+    {
+      "id": "mixiong",
+      "username": "mixiong",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": null
+        }
+      }
+    },
+    {
+      "id": "rk74",
+      "username": "rk74",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": null
+        }
+      }
+    },
+    {
+      "id": "mysterious_past",
+      "username": "mysterious_past",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": null
+        }
+      }
+    }
+  ]
 }
