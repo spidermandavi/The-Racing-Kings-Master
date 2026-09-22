@@ -83,15 +83,22 @@ def extract_username(value):
     else:
         text = text.lstrip("@").strip()
 
-        # Some spreadsheet cells may contain a username plus a note or other
-        # text. Recover a valid username token instead of rejecting the row.
-        if not re.fullmatch(r"[A-Za-z0-9_-]{2,32}", text):
-            token_match = re.search(
+        # Google Sheets can contain the username split by whitespace
+        # (for example "Royal Maniac"). Collapse whitespace when the result
+        # itself is a valid Lichess username before falling back to tokens.
+        compact = re.sub(r"\\s+", "", text)
+        if re.fullmatch(r"[A-Za-z0-9_-]{2,32}", compact):
+            text = compact
+        elif not re.fullmatch(r"[A-Za-z0-9_-]{2,32}", text):
+            # Some cells may contain a username plus a note or other text.
+            # Prefer the longest valid token rather than the first fragment.
+            token_matches = re.findall(
                 r"(?<![A-Za-z0-9_-])([A-Za-z0-9_-]{2,32})(?![A-Za-z0-9_-])",
                 text,
             )
-            if token_match:
-                text = token_match.group(1)
+            if token_matches:
+                text = max(token_matches, key=len)
+
 
     if not re.fullmatch(r"[A-Za-z0-9_-]{2,32}", text):
         return None
