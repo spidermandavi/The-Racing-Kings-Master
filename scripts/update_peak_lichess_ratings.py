@@ -302,6 +302,20 @@ def parse_rows(rows):
 
         username = extract_username(row[username_index])
 
+        # Some sheets split one username across adjacent cells, e.g.
+        # "Royal" + "Maniac" + 2614. Reconstruct the username from the cells
+        # before the peak-rating column when that produces a valid username.
+        if username is not None:
+            pieces = [username]
+            for index in range(username_index + 1, min(peak_index, len(row))):
+                cell = str(row[index] or "").strip()
+                if not cell or not re.fullmatch(r"[A-Za-z0-9_-]{1,32}", cell):
+                    break
+                pieces.append(cell)
+                combined = "".join(pieces)
+                if re.fullmatch(r"[A-Za-z0-9_-]{2,32}", combined):
+                    username = combined
+
         # Recover players from irregular rows where the username ended up in
         # another column (for example because a row contains an extra note).
         if username is None:
