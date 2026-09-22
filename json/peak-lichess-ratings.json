@@ -6,8 +6,8 @@
   "sourceUrl": "https://docs.google.com/spreadsheets/d/1HFcPCSp_31L8KgwjkNeyHHDwNMJ7gdB_fk6LU1z608o/export?format=csv&gid=0",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-09-22T04:48:06.161757+00:00",
-  "lastSuccessfulUpdate": "2026-09-22T04:48:06.161757+00:00",
+  "updatedAt": "2026-09-22T04:49:11.487596+00:00",
+  "lastSuccessfulUpdate": "2026-09-22T04:49:11.487596+00:00",
   "health": "healthy",
   "errors": {},
   "layout": {
@@ -18,123 +18,123 @@
   },
   "players": [
     {
+      "username": "Royal",
+      "peakRating": 2614,
+      "sourceRow": 1,
+      "rank": 1
+    },
+    {
       "username": "CyberShredder",
       "peakRating": 2570,
       "sourceRow": 4,
-      "rank": 1
+      "rank": 2
     },
     {
       "username": "M-A01",
       "peakRating": 2570,
       "sourceRow": 10,
-      "rank": 2
+      "rank": 3
     },
     {
       "username": "R2300",
       "peakRating": 2569,
       "sourceRow": 11,
-      "rank": 3
+      "rank": 4
     },
     {
       "username": "bijiy",
       "peakRating": 2560,
       "sourceRow": 46,
-      "rank": 4
+      "rank": 5
     },
     {
       "username": "Seth_777",
       "peakRating": 2542,
       "sourceRow": 2,
-      "rank": 5
+      "rank": 6
     },
     {
       "username": "QueenEatingDragon",
       "peakRating": 2532,
       "sourceRow": 3,
-      "rank": 6
+      "rank": 7
     },
     {
       "username": "NilSeWon",
       "peakRating": 2522,
       "sourceRow": 5,
-      "rank": 7
+      "rank": 8
     },
     {
       "username": "OSCARSM80",
       "peakRating": 2517,
       "sourceRow": 6,
-      "rank": 8
+      "rank": 9
     },
     {
       "username": "Cr0c0d1l3",
       "peakRating": 2508,
       "sourceRow": 7,
-      "rank": 9
+      "rank": 10
     },
     {
       "username": "huangyudong",
       "peakRating": 2497,
       "sourceRow": 16,
-      "rank": 10
+      "rank": 11
     },
     {
       "username": "IMakeManyMistakes",
       "peakRating": 2495,
       "sourceRow": 24,
-      "rank": 11
+      "rank": 12
     },
     {
       "username": "natso",
       "peakRating": 2491,
       "sourceRow": 33,
-      "rank": 12
+      "rank": 13
     },
     {
       "username": "Isabel_de_Castilla",
       "peakRating": 2481,
       "sourceRow": 14,
-      "rank": 13
+      "rank": 14
     },
     {
       "username": "ControllerOfficial77",
       "peakRating": 2472,
       "sourceRow": 9,
-      "rank": 14
+      "rank": 15
     },
     {
       "username": "BlunderPandaZz",
       "peakRating": 2469,
       "sourceRow": 15,
-      "rank": 15
+      "rank": 16
     },
     {
       "username": "aliakbar_2025",
       "peakRating": 2461,
       "sourceRow": 19,
-      "rank": 16
+      "rank": 17
     },
     {
       "username": "blueberry_pancakes",
       "peakRating": 2459,
       "sourceRow": 8,
-      "rank": 17
+      "rank": 18
     },
     {
       "username": "Arjan_Chess2",
       "peakRating": 2443,
       "sourceRow": 47,
-      "rank": 18
+      "rank": 19
     },
     {
       "username": "mohammadreza-s",
       "peakRating": 2443,
       "sourceRow": 25,
-      "rank": 19
-    },
-    {
-      "username": "Thorax_Laneus",
-      "peakRating": 2443,
-      "sourceRow": 42,
       "rank": 20
     }
   ]
