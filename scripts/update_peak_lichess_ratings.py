@@ -294,6 +294,16 @@ def parse_rows(rows):
             continue
 
         username = extract_username(row[username_index])
+
+        # Recover players from irregular rows where the username ended up in
+        # another column (for example because a row contains an extra note).
+        if username is None:
+            for cell in row:
+                candidate = extract_username(cell)
+                if candidate is not None:
+                    username = candidate
+                    break
+
         rating = parse_rating(row[peak_index])
 
         # A single malformed/blank peak cell must not remove a real player.
