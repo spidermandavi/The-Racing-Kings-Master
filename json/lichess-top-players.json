@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-09-22T14:47:35.673122+00:00",
-  "lastSuccessfulUpdate": "2026-09-22T14:47:35.673122+00:00",
+  "updatedAt": "2026-09-22T18:49:43.650637+00:00",
+  "lastSuccessfulUpdate": "2026-09-22T18:49:43.650637+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -104,17 +104,35 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2403,
-          "games": 34010
+          "rating": 2422,
+          "games": 34020
         }
       },
       "rkPerfCount": {
-        "all": 34010,
-        "win": 24963
+        "all": 34020,
+        "win": 24971
       },
       "rkHighestRating": 2570,
       "winRate": 73.4,
       "rank": 6
+    },
+    {
+      "id": "isabel_de_castilla",
+      "username": "Isabel_de_Castilla",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2362,
+          "games": 4797
+        }
+      },
+      "rkPerfCount": {
+        "all": 4797,
+        "win": 3105
+      },
+      "rkHighestRating": 2481,
+      "winRate": 64.73,
+      "rank": 7
     },
     {
       "id": "gautham_a",
@@ -132,24 +150,6 @@
       },
       "rkHighestRating": 2382,
       "winRate": 52.57,
-      "rank": 7
-    },
-    {
-      "id": "isabel_de_castilla",
-      "username": "Isabel_de_Castilla",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2359,
-          "games": 4783
-        }
-      },
-      "rkPerfCount": {
-        "all": 4783,
-        "win": 3096
-      },
-      "rkHighestRating": 2481,
-      "winRate": 64.73,
       "rank": 8
     },
     {
@@ -176,13 +176,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2344,
-          "games": 43660
+          "rating": 2347,
+          "games": 43675
         }
       },
       "rkPerfCount": {
-        "all": 43660,
-        "win": 28998
+        "all": 43675,
+        "win": 29009
       },
       "rkHighestRating": 2433,
       "winRate": 66.42,
@@ -212,35 +212,17 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2318,
-          "games": 1513
+          "rating": 2322,
+          "games": 1514
         }
       },
       "rkPerfCount": {
-        "all": 1513,
-        "win": 1137
+        "all": 1514,
+        "win": 1138
       },
       "rkHighestRating": 2330,
-      "winRate": 75.15,
+      "winRate": 75.17,
       "rank": 12
-    },
-    {
-      "id": "nataniel123",
-      "username": "nataniel123",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2318,
-          "games": 68452
-        }
-      },
-      "rkPerfCount": {
-        "all": 68452,
-        "win": 49761
-      },
-      "rkHighestRating": 2380,
-      "winRate": 72.69,
-      "rank": 13
     },
     {
       "id": "gleb_momot",
@@ -258,7 +240,7 @@
       },
       "rkHighestRating": 2425,
       "winRate": 58.49,
-      "rank": 14
+      "rank": 13
     },
     {
       "id": "controllerofficial77",
@@ -276,6 +258,24 @@
       },
       "rkHighestRating": 2472,
       "winRate": 59.98,
+      "rank": 14
+    },
+    {
+      "id": "nataniel123",
+      "username": "nataniel123",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2307,
+          "games": 68462
+        }
+      },
+      "rkPerfCount": {
+        "all": 68462,
+        "win": 49769
+      },
+      "rkHighestRating": 2380,
+      "winRate": 72.7,
       "rank": 15
     },
     {
@@ -297,6 +297,24 @@
       "rank": 16
     },
     {
+      "id": "mimogr",
+      "username": "MIMOGR",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2302,
+          "games": 9100
+        }
+      },
+      "rkPerfCount": {
+        "all": 9100,
+        "win": 4637
+      },
+      "rkHighestRating": 2302,
+      "winRate": 50.96,
+      "rank": 17
+    },
+    {
       "id": "cemalziya027",
       "username": "CemalZiya027",
       "title": null,
@@ -312,7 +330,7 @@
       },
       "rkHighestRating": 2367,
       "winRate": 58.8,
-      "rank": 17
+      "rank": 18
     },
     {
       "id": "hammer_strike",
@@ -330,7 +348,7 @@
       },
       "rkHighestRating": 2288,
       "winRate": 55.19,
-      "rank": 18
+      "rank": 19
     },
     {
       "id": "somerandomguy25",
@@ -348,24 +366,6 @@
       },
       "rkHighestRating": 2338,
       "winRate": 48.66,
-      "rank": 19
-    },
-    {
-      "id": "mete0ra_return",
-      "username": "mete0ra_return",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2273,
-          "games": 1288
-        }
-      },
-      "rkPerfCount": {
-        "all": 1288,
-        "win": 920
-      },
-      "rkHighestRating": 2439,
-      "winRate": 71.43,
       "rank": 20
     }
   ]
