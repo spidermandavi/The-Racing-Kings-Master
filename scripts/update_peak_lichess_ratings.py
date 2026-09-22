@@ -107,14 +107,35 @@ def parse_rating(value):
     if not text:
         return None
 
-    # Peak ratings are integers, but tolerate commas, decimal formatting and
-    # descriptive text such as "2527 peak".
-    match = re.search(r"(?<!\d)\d[\d,]*(?:\.\d+)?(?!\d)", text)
+    # Accept common spreadsheet number formats:
+    # 2527, 2,527, 2.527, 2527.5 and 2.527,5.
+    compact = re.sub(r"(?<=\d)\s+(?=\d)", "", text)
+    match = re.search(r"(?<!\d)\d[\d.,]*(?!\d)", compact)
     if not match:
         return None
 
+    token = match.group(0)
     try:
-        rating = float(match.group(0).replace(",", ""))
+        if "," in token and "." in token:
+            if token.rfind(",") > token.rfind("."):
+                normalised = token.replace(".", "").replace(",", ".")
+            else:
+                normalised = token.replace(",", "")
+            rating = float(normalised)
+        elif "," in token:
+            left, right = token.rsplit(",", 1)
+            if len(right) == 3 and len(left) <= 2:
+                rating = float(left + right)
+            else:
+                rating = float(left + "." + right)
+        elif "." in token:
+            left, right = token.rsplit(".", 1)
+            if len(right) == 3 and len(left) <= 2:
+                rating = float(left + right)
+            else:
+                rating = float(left + "." + right)
+        else:
+            rating = float(token)
     except ValueError:
         return None
 
@@ -122,8 +143,6 @@ def parse_rating(value):
         return None
 
     return int(round(rating))
-
-
 def find_column(headers, candidates):
     normalised = [normalise_header(header) for header in headers]
 
