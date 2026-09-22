@@ -86,7 +86,7 @@ def extract_username(value):
         # Google Sheets can contain the username split by whitespace
         # (for example "Royal Maniac"). Collapse whitespace when the result
         # itself is a valid Lichess username before falling back to tokens.
-        compact = re.sub(r"\\s+", "", text)
+        compact = re.sub(r"\s+", "", text)
         if re.fullmatch(r"[A-Za-z0-9_-]{2,32}", compact):
             text = compact
         elif not re.fullmatch(r"[A-Za-z0-9_-]{2,32}", text):
