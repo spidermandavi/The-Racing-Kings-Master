@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-09-24T04:40:09.644965+00:00",
-  "lastSuccessfulUpdate": "2026-09-24T04:40:09.644965+00:00",
+  "updatedAt": "2026-09-24T09:56:13.499585+00:00",
+  "lastSuccessfulUpdate": "2026-09-24T09:56:13.499585+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -104,16 +104,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2374,
-          "games": 4858
+          "rating": 2377,
+          "games": 4859
         }
       },
       "rkPerfCount": {
-        "all": 4858,
-        "win": 3152
+        "all": 4859,
+        "win": 3153
       },
       "rkHighestRating": 2481,
-      "winRate": 64.88,
+      "winRate": 64.89,
       "rank": 6
     },
     {
@@ -141,15 +141,15 @@
       "perfs": {
         "racingKings": {
           "rating": 2360,
-          "games": 3749
+          "games": 3750
         }
       },
       "rkPerfCount": {
-        "all": 3749,
+        "all": 3750,
         "win": 1971
       },
       "rkHighestRating": 2382,
-      "winRate": 52.57,
+      "winRate": 52.56,
       "rank": 8
     },
     {
@@ -158,13 +158,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2348,
-          "games": 11545
+          "rating": 2344,
+          "games": 11549
         }
       },
       "rkPerfCount": {
-        "all": 11545,
-        "win": 6075
+        "all": 11549,
+        "win": 6077
       },
       "rkHighestRating": 2508,
       "winRate": 52.62,
@@ -194,13 +194,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2334,
-          "games": 68509
+          "rating": 2336,
+          "games": 68511
         }
       },
       "rkPerfCount": {
-        "all": 68509,
-        "win": 49803
+        "all": 68511,
+        "win": 49805
       },
       "rkHighestRating": 2380,
       "winRate": 72.7,
@@ -225,24 +225,6 @@
       "rank": 12
     },
     {
-      "id": "aleks_shevchenko",
-      "username": "Aleks_Shevchenko",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2316,
-          "games": 1621
-        }
-      },
-      "rkPerfCount": {
-        "all": 1621,
-        "win": 1229
-      },
-      "rkHighestRating": 2330,
-      "winRate": 75.82,
-      "rank": 13
-    },
-    {
       "id": "controllerofficial77",
       "username": "ControllerOfficial77",
       "title": null,
@@ -258,6 +240,24 @@
       },
       "rkHighestRating": 2472,
       "winRate": 59.98,
+      "rank": 13
+    },
+    {
+      "id": "aleks_shevchenko",
+      "username": "Aleks_Shevchenko",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2312,
+          "games": 1654
+        }
+      },
+      "rkPerfCount": {
+        "all": 1654,
+        "win": 1255
+      },
+      "rkHighestRating": 2330,
+      "winRate": 75.88,
       "rank": 14
     },
     {
@@ -357,15 +357,15 @@
       "perfs": {
         "racingKings": {
           "rating": 2278,
-          "games": 3483
+          "games": 3488
         }
       },
       "rkPerfCount": {
-        "all": 3483,
-        "win": 1703
+        "all": 3488,
+        "win": 1705
       },
       "rkHighestRating": 2338,
-      "winRate": 48.89,
+      "winRate": 48.88,
       "rank": 20
     }
   ]
