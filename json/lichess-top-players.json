@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-09-24T19:05:35.619554+00:00",
-  "lastSuccessfulUpdate": "2026-09-24T19:05:35.619554+00:00",
+  "updatedAt": "2026-09-24T22:22:39.983552+00:00",
+  "lastSuccessfulUpdate": "2026-09-24T22:22:39.983552+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -68,13 +68,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2477,
-          "games": 14401
+          "rating": 2480,
+          "games": 14404
         }
       },
       "rkPerfCount": {
-        "all": 14401,
-        "win": 10426
+        "all": 14404,
+        "win": 10429
       },
       "rkHighestRating": 2542,
       "winRate": 72.4,
@@ -248,16 +248,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2307,
-          "games": 9123
+          "rating": 2312,
+          "games": 9131
         }
       },
       "rkPerfCount": {
-        "all": 9123,
-        "win": 4656
+        "all": 9131,
+        "win": 4663
       },
       "rkHighestRating": 2312,
-      "winRate": 51.04,
+      "winRate": 51.07,
       "rank": 14
     },
     {
@@ -284,7 +284,7 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2285,
+          "rating": 2299,
           "games": 1753
         }
       },
@@ -351,21 +351,21 @@
       "rank": 19
     },
     {
-      "id": "playanotherone",
-      "username": "playanotherone",
+      "id": "peanutbutter12345",
+      "username": "Peanutbutter12345",
       "title": null,
       "perfs": {
         "racingKings": {
           "rating": 2272,
-          "games": 43866
+          "games": 3860
         }
       },
       "rkPerfCount": {
-        "all": 43866,
-        "win": 29133
+        "all": 3860,
+        "win": 2504
       },
-      "rkHighestRating": 2433,
-      "winRate": 66.41,
+      "rkHighestRating": 2376,
+      "winRate": 64.87,
       "rank": 20
     }
   ]
