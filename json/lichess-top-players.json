@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-09-25T13:41:30.573521+00:00",
-  "lastSuccessfulUpdate": "2026-09-25T13:41:30.573521+00:00",
+  "updatedAt": "2026-09-25T18:32:15.351995+00:00",
+  "lastSuccessfulUpdate": "2026-09-25T18:32:15.351995+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -225,24 +225,6 @@
       "rank": 12
     },
     {
-      "id": "mimogr",
-      "username": "MIMOGR",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2315,
-          "games": 9133
-        }
-      },
-      "rkPerfCount": {
-        "all": 9133,
-        "win": 4665
-      },
-      "rkHighestRating": 2315,
-      "winRate": 51.08,
-      "rank": 13
-    },
-    {
       "id": "controllerofficial77",
       "username": "ControllerOfficial77",
       "title": null,
@@ -258,7 +240,7 @@
       },
       "rkHighestRating": 2472,
       "winRate": 59.98,
-      "rank": 14
+      "rank": 13
     },
     {
       "id": "gleb_momot",
@@ -266,16 +248,34 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2289,
-          "games": 10328
+          "rating": 2309,
+          "games": 10342
         }
       },
       "rkPerfCount": {
-        "all": 10328,
-        "win": 6040
+        "all": 10342,
+        "win": 6049
       },
       "rkHighestRating": 2425,
-      "winRate": 58.48,
+      "winRate": 58.49,
+      "rank": 14
+    },
+    {
+      "id": "mimogr",
+      "username": "MIMOGR",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2306,
+          "games": 9206
+        }
+      },
+      "rkPerfCount": {
+        "all": 9206,
+        "win": 4717
+      },
+      "rkHighestRating": 2324,
+      "winRate": 51.24,
       "rank": 15
     },
     {
@@ -302,16 +302,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2279,
-          "games": 3492
+          "rating": 2285,
+          "games": 3503
         }
       },
       "rkPerfCount": {
-        "all": 3492,
-        "win": 1708
+        "all": 3503,
+        "win": 1714
       },
       "rkHighestRating": 2338,
-      "winRate": 48.91,
+      "winRate": 48.93,
       "rank": 17
     },
     {
