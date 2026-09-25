@@ -6,8 +6,8 @@
   "sourceUrl": "https://docs.google.com/spreadsheets/d/1HFcPCSp_31L8KgwjkNeyHHDwNMJ7gdB_fk6LU1z608o/export?format=csv&gid=0",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-09-25T07:43:08.542360+00:00",
-  "lastSuccessfulUpdate": "2026-09-25T07:43:08.542360+00:00",
+  "updatedAt": "2026-09-25T13:41:57.692654+00:00",
+  "lastSuccessfulUpdate": "2026-09-25T13:41:57.692654+00:00",
   "health": "healthy",
   "errors": {},
   "layout": {
@@ -126,15 +126,15 @@
       "rank": 18
     },
     {
-      "username": "Arjan_Chess2",
-      "peakRating": 2443,
-      "sourceRow": 47,
+      "username": "Gautham_A",
+      "peakRating": 2445,
+      "sourceRow": 23,
       "rank": 19
     },
     {
-      "username": "mohammadreza-s",
+      "username": "Arjan_Chess2",
       "peakRating": 2443,
-      "sourceRow": 25,
+      "sourceRow": 47,
       "rank": 20
     }
   ]
