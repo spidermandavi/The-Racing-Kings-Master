@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-09-26T13:00:59.105098+00:00",
-  "lastSuccessfulUpdate": "2026-09-26T13:00:59.105098+00:00",
+  "updatedAt": "2026-09-26T17:06:45.204719+00:00",
+  "lastSuccessfulUpdate": "2026-09-26T17:06:45.204719+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -104,13 +104,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2448,
-          "games": 3794
+          "rating": 2440,
+          "games": 3798
         }
       },
       "rkPerfCount": {
-        "all": 3794,
-        "win": 2009
+        "all": 3798,
+        "win": 2011
       },
       "rkHighestRating": 2451,
       "winRate": 52.95,
@@ -140,13 +140,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2346,
-          "games": 68562
+          "rating": 2350,
+          "games": 68564
         }
       },
       "rkPerfCount": {
-        "all": 68562,
-        "win": 49844
+        "all": 68564,
+        "win": 49846
       },
       "rkHighestRating": 2380,
       "winRate": 72.7,
@@ -225,6 +225,24 @@
       "rank": 12
     },
     {
+      "id": "gleb_momot",
+      "username": "Gleb_Momot",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2320,
+          "games": 10360
+        }
+      },
+      "rkPerfCount": {
+        "all": 10360,
+        "win": 6061
+      },
+      "rkHighestRating": 2425,
+      "winRate": 58.5,
+      "rank": 13
+    },
+    {
       "id": "controllerofficial77",
       "username": "ControllerOfficial77",
       "title": null,
@@ -240,43 +258,7 @@
       },
       "rkHighestRating": 2472,
       "winRate": 59.98,
-      "rank": 13
-    },
-    {
-      "id": "gleb_momot",
-      "username": "Gleb_Momot",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2306,
-          "games": 10348
-        }
-      },
-      "rkPerfCount": {
-        "all": 10348,
-        "win": 6051
-      },
-      "rkHighestRating": 2425,
-      "winRate": 58.48,
       "rank": 14
-    },
-    {
-      "id": "playanotherone",
-      "username": "playanotherone",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2295,
-          "games": 43949
-        }
-      },
-      "rkPerfCount": {
-        "all": 43949,
-        "win": 29198
-      },
-      "rkHighestRating": 2433,
-      "winRate": 66.44,
-      "rank": 15
     },
     {
       "id": "cemalziya027",
@@ -294,6 +276,24 @@
       },
       "rkHighestRating": 2367,
       "winRate": 58.79,
+      "rank": 15
+    },
+    {
+      "id": "playanotherone",
+      "username": "playanotherone",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2289,
+          "games": 43963
+        }
+      },
+      "rkPerfCount": {
+        "all": 43963,
+        "win": 29208
+      },
+      "rkHighestRating": 2433,
+      "winRate": 66.44,
       "rank": 16
     },
     {
@@ -315,24 +315,6 @@
       "rank": 17
     },
     {
-      "id": "mimogr",
-      "username": "MIMOGR",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2285,
-          "games": 9313
-        }
-      },
-      "rkPerfCount": {
-        "all": 9313,
-        "win": 4791
-      },
-      "rkHighestRating": 2324,
-      "winRate": 51.44,
-      "rank": 18
-    },
-    {
       "id": "somerandomguy25",
       "username": "Somerandomguy25",
       "title": null,
@@ -348,6 +330,24 @@
       },
       "rkHighestRating": 2338,
       "winRate": 48.93,
+      "rank": 18
+    },
+    {
+      "id": "mimogr",
+      "username": "MIMOGR",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2278,
+          "games": 9369
+        }
+      },
+      "rkPerfCount": {
+        "all": 9369,
+        "win": 4824
+      },
+      "rkHighestRating": 2324,
+      "winRate": 51.49,
       "rank": 19
     },
     {
