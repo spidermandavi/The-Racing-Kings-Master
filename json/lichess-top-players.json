@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-09-25T22:15:40.179037+00:00",
-  "lastSuccessfulUpdate": "2026-09-25T22:15:40.179037+00:00",
+  "updatedAt": "2026-09-26T01:29:39.495080+00:00",
+  "lastSuccessfulUpdate": "2026-09-26T01:29:39.495080+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -140,12 +140,12 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2357,
-          "games": 34154
+          "rating": 2350,
+          "games": 34155
         }
       },
       "rkPerfCount": {
-        "all": 34154,
+        "all": 34155,
         "win": 25050
       },
       "rkHighestRating": 2570,
@@ -261,6 +261,24 @@
       "rank": 14
     },
     {
+      "id": "playanotherone",
+      "username": "playanotherone",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2297,
+          "games": 43947
+        }
+      },
+      "rkPerfCount": {
+        "all": 43947,
+        "win": 29197
+      },
+      "rkHighestRating": 2433,
+      "winRate": 66.44,
+      "rank": 15
+    },
+    {
       "id": "mimogr",
       "username": "MIMOGR",
       "title": null,
@@ -276,7 +294,7 @@
       },
       "rkHighestRating": 2324,
       "winRate": 51.42,
-      "rank": 15
+      "rank": 16
     },
     {
       "id": "mete0ra_return",
@@ -294,24 +312,6 @@
       },
       "rkHighestRating": 2439,
       "winRate": 71.38,
-      "rank": 16
-    },
-    {
-      "id": "playanotherone",
-      "username": "playanotherone",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2285,
-          "games": 43944
-        }
-      },
-      "rkPerfCount": {
-        "all": 43944,
-        "win": 29194
-      },
-      "rkHighestRating": 2433,
-      "winRate": 66.43,
       "rank": 17
     },
     {
