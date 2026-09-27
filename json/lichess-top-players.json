@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-09-27T01:22:21.315932+00:00",
-  "lastSuccessfulUpdate": "2026-09-27T01:22:21.315932+00:00",
+  "updatedAt": "2026-09-27T08:03:28.757763+00:00",
+  "lastSuccessfulUpdate": "2026-09-27T08:03:28.757763+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -141,16 +141,34 @@
       "perfs": {
         "racingKings": {
           "rating": 2350,
-          "games": 68564
+          "games": 68565
         }
       },
       "rkPerfCount": {
-        "all": 68564,
+        "all": 68565,
         "win": 49846
       },
       "rkHighestRating": 2380,
       "winRate": 72.7,
       "rank": 8
+    },
+    {
+      "id": "cybershredder",
+      "username": "CyberShredder",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2344,
+          "games": 34190
+        }
+      },
+      "rkPerfCount": {
+        "all": 34190,
+        "win": 25073
+      },
+      "rkHighestRating": 2570,
+      "winRate": 73.33,
+      "rank": 9
     },
     {
       "id": "natso",
@@ -168,24 +186,6 @@
       },
       "rkHighestRating": 2491,
       "winRate": 65.74,
-      "rank": 9
-    },
-    {
-      "id": "cybershredder",
-      "username": "CyberShredder",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2342,
-          "games": 34164
-        }
-      },
-      "rkPerfCount": {
-        "all": 34164,
-        "win": 25054
-      },
-      "rkHighestRating": 2570,
-      "winRate": 73.33,
       "rank": 10
     },
     {
@@ -351,21 +351,21 @@
       "rank": 19
     },
     {
-      "id": "mimogr",
-      "username": "MIMOGR",
+      "id": "playanotherone",
+      "username": "playanotherone",
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2261,
-          "games": 9379
+          "rating": 2264,
+          "games": 44007
         }
       },
       "rkPerfCount": {
-        "all": 9379,
-        "win": 4828
+        "all": 44007,
+        "win": 29237
       },
-      "rkHighestRating": 2324,
-      "winRate": 51.48,
+      "rkHighestRating": 2433,
+      "winRate": 66.44,
       "rank": 20
     }
   ]
