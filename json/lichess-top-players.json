@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-09-30T00:22:39.459943+00:00",
-  "lastSuccessfulUpdate": "2026-09-30T00:22:39.459943+00:00",
+  "updatedAt": "2026-09-30T06:38:51.012206+00:00",
+  "lastSuccessfulUpdate": "2026-09-30T06:38:51.012206+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -104,16 +104,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2430,
-          "games": 3809
+          "rating": 2431,
+          "games": 3810
         }
       },
       "rkPerfCount": {
-        "all": 3809,
-        "win": 2016
+        "all": 3810,
+        "win": 2017
       },
       "rkHighestRating": 2451,
-      "winRate": 52.93,
+      "winRate": 52.94,
       "rank": 6
     },
     {
@@ -297,6 +297,24 @@
       "rank": 16
     },
     {
+      "id": "playanotherone",
+      "username": "playanotherone",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2301,
+          "games": 44113
+        }
+      },
+      "rkPerfCount": {
+        "all": 44113,
+        "win": 29310
+      },
+      "rkHighestRating": 2433,
+      "winRate": 66.44,
+      "rank": 17
+    },
+    {
       "id": "peanutbutter12345",
       "username": "Peanutbutter12345",
       "title": null,
@@ -312,7 +330,7 @@
       },
       "rkHighestRating": 2376,
       "winRate": 64.9,
-      "rank": 17
+      "rank": 18
     },
     {
       "id": "panagiskosmatos",
@@ -330,24 +348,6 @@
       },
       "rkHighestRating": 2385,
       "winRate": 60.46,
-      "rank": 18
-    },
-    {
-      "id": "playanotherone",
-      "username": "playanotherone",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2293,
-          "games": 44111
-        }
-      },
-      "rkPerfCount": {
-        "all": 44111,
-        "win": 29308
-      },
-      "rkHighestRating": 2433,
-      "winRate": 66.44,
       "rank": 19
     },
     {
