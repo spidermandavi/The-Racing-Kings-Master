@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-09-29T20:42:57.697608+00:00",
-  "lastSuccessfulUpdate": "2026-09-29T20:42:57.697608+00:00",
+  "updatedAt": "2026-09-30T00:22:39.459943+00:00",
+  "lastSuccessfulUpdate": "2026-09-30T00:22:39.459943+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -140,13 +140,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2360,
-          "games": 68588
+          "rating": 2363,
+          "games": 68594
         }
       },
       "rkPerfCount": {
-        "all": 68588,
-        "win": 49862
+        "all": 68594,
+        "win": 49867
       },
       "rkHighestRating": 2380,
       "winRate": 72.7,
@@ -315,24 +315,6 @@
       "rank": 17
     },
     {
-      "id": "playanotherone",
-      "username": "playanotherone",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2296,
-          "games": 44076
-        }
-      },
-      "rkPerfCount": {
-        "all": 44076,
-        "win": 29283
-      },
-      "rkHighestRating": 2433,
-      "winRate": 66.44,
-      "rank": 18
-    },
-    {
       "id": "panagiskosmatos",
       "username": "panagiskosmatos",
       "title": null,
@@ -348,6 +330,24 @@
       },
       "rkHighestRating": 2385,
       "winRate": 60.46,
+      "rank": 18
+    },
+    {
+      "id": "playanotherone",
+      "username": "playanotherone",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2293,
+          "games": 44111
+        }
+      },
+      "rkPerfCount": {
+        "all": 44111,
+        "win": 29308
+      },
+      "rkHighestRating": 2433,
+      "winRate": 66.44,
       "rank": 19
     },
     {
