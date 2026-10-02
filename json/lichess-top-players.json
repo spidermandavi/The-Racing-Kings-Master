@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-02T05:28:25.858772+00:00",
-  "lastSuccessfulUpdate": "2026-10-02T05:28:25.858772+00:00",
+  "updatedAt": "2026-10-02T12:25:26.339640+00:00",
+  "lastSuccessfulUpdate": "2026-10-02T12:25:26.339640+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -50,16 +50,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2484,
-          "games": 20617
+          "rating": 2500,
+          "games": 20630
         }
       },
       "rkPerfCount": {
-        "all": 20617,
-        "win": 10897
+        "all": 20630,
+        "win": 10908
       },
       "rkHighestRating": 2517,
-      "winRate": 52.85,
+      "winRate": 52.87,
       "rank": 3
     },
     {
@@ -122,16 +122,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2375,
-          "games": 68618
+          "rating": 2367,
+          "games": 68630
         }
       },
       "rkPerfCount": {
-        "all": 68618,
-        "win": 49888
+        "all": 68630,
+        "win": 49899
       },
       "rkHighestRating": 2380,
-      "winRate": 72.7,
+      "winRate": 72.71,
       "rank": 7
     },
     {
@@ -176,13 +176,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2337,
-          "games": 34238
+          "rating": 2338,
+          "games": 34239
         }
       },
       "rkPerfCount": {
-        "all": 34238,
-        "win": 25108
+        "all": 34239,
+        "win": 25109
       },
       "rkHighestRating": 2570,
       "winRate": 73.33,
@@ -351,21 +351,21 @@
       "rank": 19
     },
     {
-      "id": "aleks_shevchenko",
-      "username": "Aleks_Shevchenko",
+      "id": "panagiskosmatos",
+      "username": "panagiskosmatos",
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2271,
-          "games": 2120
+          "rating": 2270,
+          "games": 16129
         }
       },
       "rkPerfCount": {
-        "all": 2120,
-        "win": 1621
+        "all": 16129,
+        "win": 9750
       },
-      "rkHighestRating": 2330,
-      "winRate": 76.46,
+      "rkHighestRating": 2385,
+      "winRate": 60.45,
       "rank": 20
     }
   ]
