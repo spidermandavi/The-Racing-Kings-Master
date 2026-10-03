@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-02T22:56:42.620222+00:00",
-  "lastSuccessfulUpdate": "2026-10-02T22:56:42.620222+00:00",
+  "updatedAt": "2026-10-03T01:53:52.765451+00:00",
+  "lastSuccessfulUpdate": "2026-10-03T01:53:52.765451+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -135,24 +135,6 @@
       "rank": 7
     },
     {
-      "id": "natso",
-      "username": "Natso",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2362,
-          "games": 11991
-        }
-      },
-      "rkPerfCount": {
-        "all": 11991,
-        "win": 7879
-      },
-      "rkHighestRating": 2491,
-      "winRate": 65.71,
-      "rank": 8
-    },
-    {
       "id": "gleb_momot",
       "username": "Gleb_Momot",
       "title": null,
@@ -168,6 +150,24 @@
       },
       "rkHighestRating": 2425,
       "winRate": 58.58,
+      "rank": 8
+    },
+    {
+      "id": "natso",
+      "username": "Natso",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2356,
+          "games": 12003
+        }
+      },
+      "rkPerfCount": {
+        "all": 12003,
+        "win": 7888
+      },
+      "rkHighestRating": 2491,
+      "winRate": 65.72,
       "rank": 9
     },
     {
