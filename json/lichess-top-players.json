@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-03T13:19:39.410368+00:00",
-  "lastSuccessfulUpdate": "2026-10-03T13:19:39.410368+00:00",
+  "updatedAt": "2026-10-03T17:54:36.137145+00:00",
+  "lastSuccessfulUpdate": "2026-10-03T17:54:36.137145+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -45,24 +45,6 @@
       "rank": 2
     },
     {
-      "id": "oscarsm80",
-      "username": "OSCARSM80",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2480,
-          "games": 20646
-        }
-      },
-      "rkPerfCount": {
-        "all": 20646,
-        "win": 10920
-      },
-      "rkHighestRating": 2517,
-      "winRate": 52.89,
-      "rank": 3
-    },
-    {
       "id": "seth_777",
       "username": "seth_777",
       "title": null,
@@ -78,6 +60,24 @@
       },
       "rkHighestRating": 2542,
       "winRate": 72.4,
+      "rank": 3
+    },
+    {
+      "id": "oscarsm80",
+      "username": "OSCARSM80",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2460,
+          "games": 20658
+        }
+      },
+      "rkPerfCount": {
+        "all": 20658,
+        "win": 10927
+      },
+      "rkHighestRating": 2517,
+      "winRate": 52.89,
       "rank": 4
     },
     {
@@ -104,13 +104,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2379,
-          "games": 68659
+          "rating": 2380,
+          "games": 68664
         }
       },
       "rkPerfCount": {
-        "all": 68659,
-        "win": 49928
+        "all": 68664,
+        "win": 49933
       },
       "rkHighestRating": 2380,
       "winRate": 72.72,
@@ -207,6 +207,24 @@
       "rank": 11
     },
     {
+      "id": "minnzeechess",
+      "username": "MinnzeeChess",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2319,
+          "games": 54
+        }
+      },
+      "rkPerfCount": {
+        "all": 54,
+        "win": 33
+      },
+      "rkHighestRating": 2340,
+      "winRate": 61.11,
+      "rank": 12
+    },
+    {
       "id": "r2300",
       "username": "R2300",
       "title": null,
@@ -222,7 +240,7 @@
       },
       "rkHighestRating": 2569,
       "winRate": 68.39,
-      "rank": 12
+      "rank": 13
     },
     {
       "id": "controllerofficial77",
@@ -240,7 +258,7 @@
       },
       "rkHighestRating": 2472,
       "winRate": 59.94,
-      "rank": 13
+      "rank": 14
     },
     {
       "id": "cemalziya027",
@@ -258,7 +276,7 @@
       },
       "rkHighestRating": 2367,
       "winRate": 58.76,
-      "rank": 14
+      "rank": 15
     },
     {
       "id": "peanutbutter12345",
@@ -276,7 +294,7 @@
       },
       "rkHighestRating": 2376,
       "winRate": 64.9,
-      "rank": 15
+      "rank": 16
     },
     {
       "id": "cr0c0d1l3",
@@ -294,7 +312,7 @@
       },
       "rkHighestRating": 2508,
       "winRate": 52.55,
-      "rank": 16
+      "rank": 17
     },
     {
       "id": "dereinoeler103",
@@ -312,24 +330,6 @@
       },
       "rkHighestRating": 2427,
       "winRate": 64.2,
-      "rank": 17
-    },
-    {
-      "id": "tgainvaibhavgrand",
-      "username": "TGAinVaibhavGrand",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2283,
-          "games": 9832
-        }
-      },
-      "rkPerfCount": {
-        "all": 9832,
-        "win": 6148
-      },
-      "rkHighestRating": 2351,
-      "winRate": 62.53,
       "rank": 18
     },
     {
@@ -357,15 +357,15 @@
       "perfs": {
         "racingKings": {
           "rating": 2277,
-          "games": 3544
+          "games": 3552
         }
       },
       "rkPerfCount": {
-        "all": 3544,
-        "win": 1731
+        "all": 3552,
+        "win": 1735
       },
       "rkHighestRating": 2338,
-      "winRate": 48.84,
+      "winRate": 48.85,
       "rank": 20
     }
   ]
