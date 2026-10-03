@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-03T08:01:22.082916+00:00",
-  "lastSuccessfulUpdate": "2026-10-03T08:01:22.082916+00:00",
+  "updatedAt": "2026-10-03T13:19:39.410368+00:00",
+  "lastSuccessfulUpdate": "2026-10-03T13:19:39.410368+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -50,13 +50,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2503,
-          "games": 20638
+          "rating": 2480,
+          "games": 20646
         }
       },
       "rkPerfCount": {
-        "all": 20638,
-        "win": 10915
+        "all": 20646,
+        "win": 10920
       },
       "rkHighestRating": 2517,
       "winRate": 52.89,
@@ -99,6 +99,24 @@
       "rank": 5
     },
     {
+      "id": "nataniel123",
+      "username": "nataniel123",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2379,
+          "games": 68659
+        }
+      },
+      "rkPerfCount": {
+        "all": 68659,
+        "win": 49928
+      },
+      "rkHighestRating": 2380,
+      "winRate": 72.72,
+      "rank": 6
+    },
+    {
       "id": "isabel_de_castilla",
       "username": "Isabel_de_Castilla",
       "title": null,
@@ -114,24 +132,6 @@
       },
       "rkHighestRating": 2481,
       "winRate": 64.96,
-      "rank": 6
-    },
-    {
-      "id": "nataniel123",
-      "username": "nataniel123",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2376,
-          "games": 68648
-        }
-      },
-      "rkPerfCount": {
-        "all": 68648,
-        "win": 49917
-      },
-      "rkHighestRating": 2380,
-      "winRate": 72.71,
       "rank": 7
     },
     {
@@ -194,13 +194,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2321,
-          "games": 44188
+          "rating": 2326,
+          "games": 44189
         }
       },
       "rkPerfCount": {
-        "all": 44188,
-        "win": 29374
+        "all": 44189,
+        "win": 29375
       },
       "rkHighestRating": 2433,
       "winRate": 66.48,
