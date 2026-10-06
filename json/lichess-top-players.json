@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-06T00:46:01.971970+00:00",
-  "lastSuccessfulUpdate": "2026-10-06T00:46:01.971970+00:00",
+  "updatedAt": "2026-10-06T07:30:25.992069+00:00",
+  "lastSuccessfulUpdate": "2026-10-06T07:30:25.992069+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -99,24 +99,6 @@
       "rank": 5
     },
     {
-      "id": "nataniel123",
-      "username": "nataniel123",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2379,
-          "games": 68785
-        }
-      },
-      "rkPerfCount": {
-        "all": 68785,
-        "win": 50027
-      },
-      "rkHighestRating": 2380,
-      "winRate": 72.73,
-      "rank": 6
-    },
-    {
       "id": "cybershredder",
       "username": "CyberShredder",
       "title": null,
@@ -132,6 +114,24 @@
       },
       "rkHighestRating": 2570,
       "winRate": 73.35,
+      "rank": 6
+    },
+    {
+      "id": "nataniel123",
+      "username": "nataniel123",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2373,
+          "games": 68793
+        }
+      },
+      "rkPerfCount": {
+        "all": 68793,
+        "win": 50033
+      },
+      "rkHighestRating": 2380,
+      "winRate": 72.73,
       "rank": 7
     },
     {
@@ -261,6 +261,24 @@
       "rank": 14
     },
     {
+      "id": "aleks_shevchenko",
+      "username": "Aleks_Shevchenko",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2296,
+          "games": 2426
+        }
+      },
+      "rkPerfCount": {
+        "all": 2426,
+        "win": 1858
+      },
+      "rkHighestRating": 2330,
+      "winRate": 76.59,
+      "rank": 15
+    },
+    {
       "id": "imakemanymistakes",
       "username": "IMakeManyMistakes",
       "title": null,
@@ -276,24 +294,6 @@
       },
       "rkHighestRating": 2495,
       "winRate": 75.49,
-      "rank": 15
-    },
-    {
-      "id": "aleks_shevchenko",
-      "username": "Aleks_Shevchenko",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2294,
-          "games": 2425
-        }
-      },
-      "rkPerfCount": {
-        "all": 2425,
-        "win": 1857
-      },
-      "rkHighestRating": 2330,
-      "winRate": 76.58,
       "rank": 16
     },
     {
