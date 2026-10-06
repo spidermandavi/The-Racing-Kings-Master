@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-06T15:04:53.348242+00:00",
-  "lastSuccessfulUpdate": "2026-10-06T15:04:53.348242+00:00",
+  "updatedAt": "2026-10-06T20:16:26.480771+00:00",
+  "lastSuccessfulUpdate": "2026-10-06T20:16:26.480771+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -63,24 +63,6 @@
       "rank": 3
     },
     {
-      "id": "oscarsm80",
-      "username": "OSCARSM80",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2455,
-          "games": 20700
-        }
-      },
-      "rkPerfCount": {
-        "all": 20700,
-        "win": 10952
-      },
-      "rkHighestRating": 2517,
-      "winRate": 52.91,
-      "rank": 4
-    },
-    {
       "id": "gautham_a",
       "username": "Gautham_A",
       "title": null,
@@ -96,6 +78,24 @@
       },
       "rkHighestRating": 2451,
       "winRate": 53.03,
+      "rank": 4
+    },
+    {
+      "id": "oscarsm80",
+      "username": "OSCARSM80",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2441,
+          "games": 20717
+        }
+      },
+      "rkPerfCount": {
+        "all": 20717,
+        "win": 10964
+      },
+      "rkHighestRating": 2517,
+      "winRate": 52.92,
       "rank": 5
     },
     {
@@ -104,15 +104,15 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2381,
-          "games": 68798
+          "rating": 2382,
+          "games": 68800
         }
       },
       "rkPerfCount": {
-        "all": 68798,
-        "win": 50038
+        "all": 68800,
+        "win": 50040
       },
-      "rkHighestRating": 2381,
+      "rkHighestRating": 2382,
       "winRate": 72.73,
       "rank": 6
     },
@@ -279,24 +279,6 @@
       "rank": 15
     },
     {
-      "id": "cr0c0d1l3",
-      "username": "cr0c0d1l3",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2286,
-          "games": 11600
-        }
-      },
-      "rkPerfCount": {
-        "all": 11600,
-        "win": 6096
-      },
-      "rkHighestRating": 2508,
-      "winRate": 52.55,
-      "rank": 16
-    },
-    {
       "id": "dereinoeler103",
       "username": "dereinoeler103",
       "title": null,
@@ -312,6 +294,24 @@
       },
       "rkHighestRating": 2427,
       "winRate": 64.2,
+      "rank": 16
+    },
+    {
+      "id": "cr0c0d1l3",
+      "username": "cr0c0d1l3",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2280,
+          "games": 11603
+        }
+      },
+      "rkPerfCount": {
+        "all": 11603,
+        "win": 6096
+      },
+      "rkHighestRating": 2508,
+      "winRate": 52.54,
       "rank": 17
     },
     {
