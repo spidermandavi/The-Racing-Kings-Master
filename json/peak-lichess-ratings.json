@@ -6,8 +6,8 @@
   "sourceUrl": "https://docs.google.com/spreadsheets/d/1HFcPCSp_31L8KgwjkNeyHHDwNMJ7gdB_fk6LU1z608o/export?format=csv&gid=0",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-07T15:31:37.924016+00:00",
-  "lastSuccessfulUpdate": "2026-10-07T15:31:37.924016+00:00",
+  "updatedAt": "2026-10-07T21:15:51.447692+00:00",
+  "lastSuccessfulUpdate": "2026-10-07T21:15:51.447692+00:00",
   "health": "healthy",
   "errors": {},
   "layout": {
@@ -127,7 +127,7 @@
     },
     {
       "username": "Gautham_A",
-      "peakRating": 2451,
+      "peakRating": 2452,
       "sourceRow": 23,
       "rank": 19
     },
