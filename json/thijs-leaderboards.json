@@ -1,9 +1,9 @@
 {
   "thijsSource": "https://lichess.thijs.com",
   "variant": "Racing Kings",
-  "updatedAt": "2026-10-08T01:52:58.022135+00:00",
-  "lastAttemptedUpdate": "2026-10-08T01:52:58.022135+00:00",
-  "lastSuccessfulUpdate": "2026-10-08T01:52:58.022135+00:00",
+  "updatedAt": "2026-10-08T08:52:46.324129+00:00",
+  "lastAttemptedUpdate": "2026-10-08T08:52:46.324129+00:00",
+  "lastSuccessfulUpdate": "2026-10-08T08:52:46.324129+00:00",
   "health": "healthy",
   "successfulMetrics": [
     "points",
