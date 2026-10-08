@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-07T21:15:24.429048+00:00",
-  "lastSuccessfulUpdate": "2026-10-07T21:15:24.429048+00:00",
+  "updatedAt": "2026-10-08T01:52:58.115920+00:00",
+  "lastSuccessfulUpdate": "2026-10-08T01:52:58.115920+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -50,16 +50,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2480,
-          "games": 14421
+          "rating": 2483,
+          "games": 14424
         }
       },
       "rkPerfCount": {
-        "all": 14421,
-        "win": 10441
+        "all": 14424,
+        "win": 10444
       },
       "rkHighestRating": 2542,
-      "winRate": 72.4,
+      "winRate": 72.41,
       "rank": 3
     },
     {
@@ -194,13 +194,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2331,
-          "games": 44191
+          "rating": 2330,
+          "games": 44193
         }
       },
       "rkPerfCount": {
-        "all": 44191,
-        "win": 29377
+        "all": 44193,
+        "win": 29378
       },
       "rkHighestRating": 2433,
       "winRate": 66.48,
@@ -243,24 +243,6 @@
       "rank": 13
     },
     {
-      "id": "vydn",
-      "username": "Vydn",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2307,
-          "games": 66
-        }
-      },
-      "rkPerfCount": {
-        "all": 66,
-        "win": 59
-      },
-      "rkHighestRating": 2307,
-      "winRate": 89.39,
-      "rank": 14
-    },
-    {
       "id": "controllerofficial77",
       "username": "ControllerOfficial77",
       "title": null,
@@ -276,7 +258,7 @@
       },
       "rkHighestRating": 2472,
       "winRate": 59.84,
-      "rank": 15
+      "rank": 14
     },
     {
       "id": "peanutbutter12345",
@@ -284,16 +266,34 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2297,
-          "games": 3888
+          "rating": 2304,
+          "games": 3891
         }
       },
       "rkPerfCount": {
-        "all": 3888,
-        "win": 2526
+        "all": 3891,
+        "win": 2529
       },
       "rkHighestRating": 2376,
-      "winRate": 64.97,
+      "winRate": 65.0,
+      "rank": 15
+    },
+    {
+      "id": "vydn",
+      "username": "Vydn",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2300,
+          "games": 92
+        }
+      },
+      "rkPerfCount": {
+        "all": 92,
+        "win": 80
+      },
+      "rkHighestRating": 2311,
+      "winRate": 86.96,
       "rank": 16
     },
     {
