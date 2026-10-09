@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-09T16:08:30.812203+00:00",
-  "lastSuccessfulUpdate": "2026-10-09T16:08:30.812203+00:00",
+  "updatedAt": "2026-10-09T21:38:46.919379+00:00",
+  "lastSuccessfulUpdate": "2026-10-09T21:38:46.919379+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -14,13 +14,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2533,
-          "games": 14914
+          "rating": 2535,
+          "games": 14915
         }
       },
       "rkPerfCount": {
-        "all": 14914,
-        "win": 11464
+        "all": 14915,
+        "win": 11465
       },
       "rkHighestRating": 2570,
       "winRate": 76.87,
@@ -86,12 +86,12 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2441,
-          "games": 20717
+          "rating": 2424,
+          "games": 20719
         }
       },
       "rkPerfCount": {
-        "all": 20717,
+        "all": 20719,
         "win": 10964
       },
       "rkHighestRating": 2517,
@@ -195,12 +195,12 @@
       "perfs": {
         "racingKings": {
           "rating": 2316,
-          "games": 44220
+          "games": 44221
         }
       },
       "rkPerfCount": {
-        "all": 44220,
-        "win": 29398
+        "all": 44221,
+        "win": 29399
       },
       "rkHighestRating": 2433,
       "winRate": 66.48,
@@ -243,39 +243,39 @@
       "rank": 13
     },
     {
+      "id": "imakemanymistakes",
+      "username": "IMakeManyMistakes",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2297,
+          "games": 20315
+        }
+      },
+      "rkPerfCount": {
+        "all": 20315,
+        "win": 15337
+      },
+      "rkHighestRating": 2495,
+      "winRate": 75.5,
+      "rank": 14
+    },
+    {
       "id": "cr0c0d1l3",
       "username": "cr0c0d1l3",
       "title": null,
       "perfs": {
         "racingKings": {
           "rating": 2293,
-          "games": 11630
+          "games": 11640
         }
       },
       "rkPerfCount": {
-        "all": 11630,
-        "win": 6108
+        "all": 11640,
+        "win": 6113
       },
       "rkHighestRating": 2508,
       "winRate": 52.52,
-      "rank": 14
-    },
-    {
-      "id": "imakemanymistakes",
-      "username": "IMakeManyMistakes",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2289,
-          "games": 20306
-        }
-      },
-      "rkPerfCount": {
-        "all": 20306,
-        "win": 15329
-      },
-      "rkHighestRating": 2495,
-      "winRate": 75.49,
       "rank": 15
     },
     {
@@ -315,6 +315,24 @@
       "rank": 17
     },
     {
+      "id": "vydn",
+      "username": "Vydn",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2274,
+          "games": 416
+        }
+      },
+      "rkPerfCount": {
+        "all": 416,
+        "win": 296
+      },
+      "rkHighestRating": 2325,
+      "winRate": 71.15,
+      "rank": 18
+    },
+    {
       "id": "tgainvaibhavgrand",
       "username": "TGAinVaibhavGrand",
       "title": null,
@@ -330,7 +348,7 @@
       },
       "rkHighestRating": 2351,
       "winRate": 62.5,
-      "rank": 18
+      "rank": 19
     },
     {
       "id": "sniper_king55_58",
@@ -348,24 +366,6 @@
       },
       "rkHighestRating": 2363,
       "winRate": 59.83,
-      "rank": 19
-    },
-    {
-      "id": "xaenthoni-narwes",
-      "username": "Xaenthoni-Narwes",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2269,
-          "games": 386
-        }
-      },
-      "rkPerfCount": {
-        "all": 386,
-        "win": 214
-      },
-      "rkHighestRating": 2437,
-      "winRate": 55.44,
       "rank": 20
     }
   ]
