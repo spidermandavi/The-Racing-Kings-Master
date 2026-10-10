@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-10T15:18:44.550359+00:00",
-  "lastSuccessfulUpdate": "2026-10-10T15:18:44.550359+00:00",
+  "updatedAt": "2026-10-10T20:02:02.056754+00:00",
+  "lastSuccessfulUpdate": "2026-10-10T20:02:02.056754+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -15,12 +15,12 @@
       "perfs": {
         "racingKings": {
           "rating": 2535,
-          "games": 14915
+          "games": 14917
         }
       },
       "rkPerfCount": {
-        "all": 14915,
-        "win": 11465
+        "all": 14917,
+        "win": 11467
       },
       "rkHighestRating": 2570,
       "winRate": 76.87,
@@ -68,16 +68,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2448,
-          "games": 3845
+          "rating": 2440,
+          "games": 3851
         }
       },
       "rkPerfCount": {
-        "all": 3845,
-        "win": 2043
+        "all": 3851,
+        "win": 2047
       },
-      "rkHighestRating": 2459,
-      "winRate": 53.13,
+      "rkHighestRating": 2460,
+      "winRate": 53.16,
       "rank": 4
     },
     {
@@ -86,16 +86,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2414,
-          "games": 20722
+          "rating": 2421,
+          "games": 20729
         }
       },
       "rkPerfCount": {
-        "all": 20722,
-        "win": 10964
+        "all": 20729,
+        "win": 10969
       },
       "rkHighestRating": 2517,
-      "winRate": 52.91,
+      "winRate": 52.92,
       "rank": 5
     },
     {
@@ -140,13 +140,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2364,
-          "games": 10457
+          "rating": 2372,
+          "games": 10462
         }
       },
       "rkPerfCount": {
-        "all": 10457,
-        "win": 6133
+        "all": 10462,
+        "win": 6136
       },
       "rkHighestRating": 2425,
       "winRate": 58.65,
@@ -189,21 +189,21 @@
       "rank": 10
     },
     {
-      "id": "playanotherone",
-      "username": "playanotherone",
+      "id": "r2300",
+      "username": "R2300",
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2329,
-          "games": 44274
+          "rating": 2315,
+          "games": 23441
         }
       },
       "rkPerfCount": {
-        "all": 44274,
-        "win": 29435
+        "all": 23441,
+        "win": 16031
       },
-      "rkHighestRating": 2433,
-      "winRate": 66.48,
+      "rkHighestRating": 2569,
+      "winRate": 68.39,
       "rank": 11
     },
     {
@@ -266,13 +266,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2286,
-          "games": 11641
+          "rating": 2284,
+          "games": 11643
         }
       },
       "rkPerfCount": {
-        "all": 11641,
-        "win": 6113
+        "all": 11643,
+        "win": 6114
       },
       "rkHighestRating": 2508,
       "winRate": 52.51,
@@ -297,6 +297,24 @@
       "rank": 16
     },
     {
+      "id": "playanotherone",
+      "username": "playanotherone",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2277,
+          "games": 44397
+        }
+      },
+      "rkPerfCount": {
+        "all": 44397,
+        "win": 29519
+      },
+      "rkHighestRating": 2433,
+      "winRate": 66.49,
+      "rank": 17
+    },
+    {
       "id": "dereinoeler103",
       "username": "dereinoeler103",
       "title": null,
@@ -312,24 +330,6 @@
       },
       "rkHighestRating": 2427,
       "winRate": 63.41,
-      "rank": 17
-    },
-    {
-      "id": "xaenthoni-narwes",
-      "username": "Xaenthoni-Narwes",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2269,
-          "games": 388
-        }
-      },
-      "rkPerfCount": {
-        "all": 388,
-        "win": 214
-      },
-      "rkHighestRating": 2437,
-      "winRate": 55.15,
       "rank": 18
     },
     {
