@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-09T21:38:46.919379+00:00",
-  "lastSuccessfulUpdate": "2026-10-09T21:38:46.919379+00:00",
+  "updatedAt": "2026-10-10T01:43:59.926395+00:00",
+  "lastSuccessfulUpdate": "2026-10-10T01:43:59.926395+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -194,13 +194,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2316,
-          "games": 44221
+          "rating": 2318,
+          "games": 44263
         }
       },
       "rkPerfCount": {
-        "all": 44221,
-        "win": 29399
+        "all": 44263,
+        "win": 29427
       },
       "rkHighestRating": 2433,
       "winRate": 66.48,
@@ -248,13 +248,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2297,
-          "games": 20315
+          "rating": 2303,
+          "games": 20317
         }
       },
       "rkPerfCount": {
-        "all": 20315,
-        "win": 15337
+        "all": 20317,
+        "win": 15339
       },
       "rkHighestRating": 2495,
       "winRate": 75.5,
@@ -315,24 +315,6 @@
       "rank": 17
     },
     {
-      "id": "vydn",
-      "username": "Vydn",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2274,
-          "games": 416
-        }
-      },
-      "rkPerfCount": {
-        "all": 416,
-        "win": 296
-      },
-      "rkHighestRating": 2325,
-      "winRate": 71.15,
-      "rank": 18
-    },
-    {
       "id": "tgainvaibhavgrand",
       "username": "TGAinVaibhavGrand",
       "title": null,
@@ -348,7 +330,7 @@
       },
       "rkHighestRating": 2351,
       "winRate": 62.5,
-      "rank": 19
+      "rank": 18
     },
     {
       "id": "sniper_king55_58",
@@ -366,6 +348,24 @@
       },
       "rkHighestRating": 2363,
       "winRate": 59.83,
+      "rank": 19
+    },
+    {
+      "id": "xaenthoni-narwes",
+      "username": "Xaenthoni-Narwes",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2269,
+          "games": 386
+        }
+      },
+      "rkPerfCount": {
+        "all": 386,
+        "win": 214
+      },
+      "rkHighestRating": 2437,
+      "winRate": 55.44,
       "rank": 20
     }
   ]
