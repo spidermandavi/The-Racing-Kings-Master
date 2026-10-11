@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-11T18:02:08.107496+00:00",
-  "lastSuccessfulUpdate": "2026-10-11T18:02:08.107496+00:00",
+  "updatedAt": "2026-10-11T21:52:38.875423+00:00",
+  "lastSuccessfulUpdate": "2026-10-11T21:52:38.875423+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -50,17 +50,35 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2485,
-          "games": 14431
+          "rating": 2491,
+          "games": 14433
         }
       },
       "rkPerfCount": {
-        "all": 14431,
-        "win": 10450
+        "all": 14433,
+        "win": 10452
       },
       "rkHighestRating": 2542,
-      "winRate": 72.41,
+      "winRate": 72.42,
       "rank": 3
+    },
+    {
+      "id": "queeneatingdragon",
+      "username": "QueenEatingDragon",
+      "title": "NM",
+      "perfs": {
+        "racingKings": {
+          "rating": 2482,
+          "games": 12277
+        }
+      },
+      "rkPerfCount": {
+        "all": 12277,
+        "win": 8881
+      },
+      "rkHighestRating": 2532,
+      "winRate": 72.34,
+      "rank": 4
     },
     {
       "id": "oscarsm80",
@@ -78,7 +96,7 @@
       },
       "rkHighestRating": 2517,
       "winRate": 52.93,
-      "rank": 4
+      "rank": 5
     },
     {
       "id": "gautham_a",
@@ -96,7 +114,7 @@
       },
       "rkHighestRating": 2460,
       "winRate": 53.13,
-      "rank": 5
+      "rank": 6
     },
     {
       "id": "cybershredder",
@@ -114,7 +132,7 @@
       },
       "rkHighestRating": 2570,
       "winRate": 73.35,
-      "rank": 6
+      "rank": 7
     },
     {
       "id": "nataniel123",
@@ -132,7 +150,25 @@
       },
       "rkHighestRating": 2388,
       "winRate": 72.74,
-      "rank": 7
+      "rank": 8
+    },
+    {
+      "id": "natso",
+      "username": "Natso",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2372,
+          "games": 12023
+        }
+      },
+      "rkPerfCount": {
+        "all": 12023,
+        "win": 7899
+      },
+      "rkHighestRating": 2491,
+      "winRate": 65.7,
+      "rank": 9
     },
     {
       "id": "gleb_momot",
@@ -150,25 +186,7 @@
       },
       "rkHighestRating": 2425,
       "winRate": 58.65,
-      "rank": 8
-    },
-    {
-      "id": "natso",
-      "username": "Natso",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2343,
-          "games": 12013
-        }
-      },
-      "rkPerfCount": {
-        "all": 12013,
-        "win": 7895
-      },
-      "rkHighestRating": 2491,
-      "winRate": 65.72,
-      "rank": 9
+      "rank": 10
     },
     {
       "id": "isabel_de_castilla",
@@ -186,7 +204,7 @@
       },
       "rkHighestRating": 2481,
       "winRate": 64.95,
-      "rank": 10
+      "rank": 11
     },
     {
       "id": "r2300",
@@ -204,7 +222,7 @@
       },
       "rkHighestRating": 2569,
       "winRate": 68.39,
-      "rank": 11
+      "rank": 12
     },
     {
       "id": "peanutbutter12345",
@@ -222,7 +240,7 @@
       },
       "rkHighestRating": 2376,
       "winRate": 65.03,
-      "rank": 12
+      "rank": 13
     },
     {
       "id": "imakemanymistakes",
@@ -240,7 +258,7 @@
       },
       "rkHighestRating": 2495,
       "winRate": 75.51,
-      "rank": 13
+      "rank": 14
     },
     {
       "id": "mete0ra_return",
@@ -258,7 +276,7 @@
       },
       "rkHighestRating": 2439,
       "winRate": 71.3,
-      "rank": 14
+      "rank": 15
     },
     {
       "id": "cr0c0d1l3",
@@ -276,7 +294,25 @@
       },
       "rkHighestRating": 2508,
       "winRate": 52.51,
-      "rank": 15
+      "rank": 16
+    },
+    {
+      "id": "playanotherone",
+      "username": "playanotherone",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2277,
+          "games": 44475
+        }
+      },
+      "rkPerfCount": {
+        "all": 44475,
+        "win": 29580
+      },
+      "rkHighestRating": 2433,
+      "winRate": 66.51,
+      "rank": 17
     },
     {
       "id": "afteralongtimerk",
@@ -294,7 +330,7 @@
       },
       "rkHighestRating": 2293,
       "winRate": 51.39,
-      "rank": 16
+      "rank": 18
     },
     {
       "id": "dereinoeler103",
@@ -312,7 +348,7 @@
       },
       "rkHighestRating": 2427,
       "winRate": 63.41,
-      "rank": 17
+      "rank": 19
     },
     {
       "id": "silver_samuray",
@@ -330,42 +366,6 @@
       },
       "rkHighestRating": 2324,
       "winRate": 71.21,
-      "rank": 18
-    },
-    {
-      "id": "playanotherone",
-      "username": "playanotherone",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2264,
-          "games": 44426
-        }
-      },
-      "rkPerfCount": {
-        "all": 44426,
-        "win": 29540
-      },
-      "rkHighestRating": 2433,
-      "winRate": 66.49,
-      "rank": 19
-    },
-    {
-      "id": "xaenthoni-narwes",
-      "username": "Xaenthoni-Narwes",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2262,
-          "games": 388
-        }
-      },
-      "rkPerfCount": {
-        "all": 388,
-        "win": 214
-      },
-      "rkHighestRating": 2437,
-      "winRate": 55.15,
       "rank": 20
     }
   ]
