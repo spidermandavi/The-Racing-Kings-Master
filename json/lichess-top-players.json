@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-10T23:30:16.889603+00:00",
-  "lastSuccessfulUpdate": "2026-10-10T23:30:16.889603+00:00",
+  "updatedAt": "2026-10-11T05:38:58.576883+00:00",
+  "lastSuccessfulUpdate": "2026-10-11T05:38:58.576883+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -297,24 +297,6 @@
       "rank": 16
     },
     {
-      "id": "playanotherone",
-      "username": "playanotherone",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2277,
-          "games": 44397
-        }
-      },
-      "rkPerfCount": {
-        "all": 44397,
-        "win": 29519
-      },
-      "rkHighestRating": 2433,
-      "winRate": 66.49,
-      "rank": 17
-    },
-    {
       "id": "dereinoeler103",
       "username": "dereinoeler103",
       "title": null,
@@ -330,6 +312,24 @@
       },
       "rkHighestRating": 2427,
       "winRate": 63.41,
+      "rank": 17
+    },
+    {
+      "id": "playanotherone",
+      "username": "playanotherone",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2271,
+          "games": 44399
+        }
+      },
+      "rkPerfCount": {
+        "all": 44399,
+        "win": 29520
+      },
+      "rkHighestRating": 2433,
+      "winRate": 66.49,
       "rank": 18
     },
     {
