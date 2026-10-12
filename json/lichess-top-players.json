@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-11T21:52:38.875423+00:00",
-  "lastSuccessfulUpdate": "2026-10-11T21:52:38.875423+00:00",
+  "updatedAt": "2026-10-12T01:16:52.193006+00:00",
+  "lastSuccessfulUpdate": "2026-10-12T01:16:52.193006+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -297,24 +297,6 @@
       "rank": 16
     },
     {
-      "id": "playanotherone",
-      "username": "playanotherone",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2277,
-          "games": 44475
-        }
-      },
-      "rkPerfCount": {
-        "all": 44475,
-        "win": 29580
-      },
-      "rkHighestRating": 2433,
-      "winRate": 66.51,
-      "rank": 17
-    },
-    {
       "id": "afteralongtimerk",
       "username": "AfterALongTimeRK",
       "title": null,
@@ -330,7 +312,7 @@
       },
       "rkHighestRating": 2293,
       "winRate": 51.39,
-      "rank": 18
+      "rank": 17
     },
     {
       "id": "dereinoeler103",
@@ -348,6 +330,24 @@
       },
       "rkHighestRating": 2427,
       "winRate": 63.41,
+      "rank": 18
+    },
+    {
+      "id": "playanotherone",
+      "username": "playanotherone",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2274,
+          "games": 44493
+        }
+      },
+      "rkPerfCount": {
+        "all": 44493,
+        "win": 29593
+      },
+      "rkHighestRating": 2433,
+      "winRate": 66.51,
       "rank": 19
     },
     {
