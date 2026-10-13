@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-13T17:33:40.475046+00:00",
-  "lastSuccessfulUpdate": "2026-10-13T17:33:40.475046+00:00",
+  "updatedAt": "2026-10-13T22:39:28.276008+00:00",
+  "lastSuccessfulUpdate": "2026-10-13T22:39:28.276008+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -122,16 +122,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2397,
-          "games": 10482
+          "rating": 2398,
+          "games": 10483
         }
       },
       "rkPerfCount": {
-        "all": 10482,
-        "win": 6152
+        "all": 10483,
+        "win": 6153
       },
       "rkHighestRating": 2425,
-      "winRate": 58.69,
+      "winRate": 58.7,
       "rank": 7
     },
     {
@@ -158,15 +158,15 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2391,
-          "games": 68819
+          "rating": 2392,
+          "games": 68822
         }
       },
       "rkPerfCount": {
-        "all": 68819,
-        "win": 50059
+        "all": 68822,
+        "win": 50062
       },
-      "rkHighestRating": 2391,
+      "rkHighestRating": 2392,
       "winRate": 72.74,
       "rank": 9
     },
@@ -189,6 +189,24 @@
       "rank": 10
     },
     {
+      "id": "playanotherone",
+      "username": "playanotherone",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2330,
+          "games": 44555
+        }
+      },
+      "rkPerfCount": {
+        "all": 44555,
+        "win": 29643
+      },
+      "rkHighestRating": 2433,
+      "winRate": 66.53,
+      "rank": 11
+    },
+    {
       "id": "isabel_de_castilla",
       "username": "Isabel_de_Castilla",
       "title": null,
@@ -204,7 +222,7 @@
       },
       "rkHighestRating": 2481,
       "winRate": 64.97,
-      "rank": 11
+      "rank": 12
     },
     {
       "id": "r2300",
@@ -212,34 +230,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2315,
-          "games": 23441
+          "rating": 2317,
+          "games": 23442
         }
       },
       "rkPerfCount": {
-        "all": 23441,
-        "win": 16031
+        "all": 23442,
+        "win": 16032
       },
       "rkHighestRating": 2569,
       "winRate": 68.39,
-      "rank": 12
-    },
-    {
-      "id": "playanotherone",
-      "username": "playanotherone",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2303,
-          "games": 44525
-        }
-      },
-      "rkPerfCount": {
-        "all": 44525,
-        "win": 29621
-      },
-      "rkHighestRating": 2433,
-      "winRate": 66.53,
       "rank": 13
     },
     {
@@ -333,24 +333,6 @@
       "rank": 18
     },
     {
-      "id": "cemalziya027",
-      "username": "CemalZiya027",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2273,
-          "games": 9259
-        }
-      },
-      "rkPerfCount": {
-        "all": 9259,
-        "win": 5435
-      },
-      "rkHighestRating": 2367,
-      "winRate": 58.7,
-      "rank": 19
-    },
-    {
       "id": "silver_samuray",
       "username": "silver_samuray",
       "title": null,
@@ -366,6 +348,24 @@
       },
       "rkHighestRating": 2324,
       "winRate": 71.01,
+      "rank": 19
+    },
+    {
+      "id": "ghosthunterunion",
+      "username": "GhostHunterUnion",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2270,
+          "games": 2883
+        }
+      },
+      "rkPerfCount": {
+        "all": 2883,
+        "win": 1792
+      },
+      "rkHighestRating": 2276,
+      "winRate": 62.16,
       "rank": 20
     }
   ]
