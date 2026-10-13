@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-13T09:20:22.783245+00:00",
-  "lastSuccessfulUpdate": "2026-10-13T09:20:22.783245+00:00",
+  "updatedAt": "2026-10-13T17:33:40.475046+00:00",
+  "lastSuccessfulUpdate": "2026-10-13T17:33:40.475046+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -117,6 +117,24 @@
       "rank": 6
     },
     {
+      "id": "gleb_momot",
+      "username": "Gleb_Momot",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2397,
+          "games": 10482
+        }
+      },
+      "rkPerfCount": {
+        "all": 10482,
+        "win": 6152
+      },
+      "rkHighestRating": 2425,
+      "winRate": 58.69,
+      "rank": 7
+    },
+    {
       "id": "cybershredder",
       "username": "CyberShredder",
       "title": null,
@@ -132,24 +150,6 @@
       },
       "rkHighestRating": 2570,
       "winRate": 73.35,
-      "rank": 7
-    },
-    {
-      "id": "gleb_momot",
-      "username": "Gleb_Momot",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2391,
-          "games": 10477
-        }
-      },
-      "rkPerfCount": {
-        "all": 10477,
-        "win": 6147
-      },
-      "rkHighestRating": 2425,
-      "winRate": 58.67,
       "rank": 8
     },
     {
@@ -158,15 +158,15 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2390,
-          "games": 68816
+          "rating": 2391,
+          "games": 68819
         }
       },
       "rkPerfCount": {
-        "all": 68816,
-        "win": 50056
+        "all": 68819,
+        "win": 50059
       },
-      "rkHighestRating": 2390,
+      "rkHighestRating": 2391,
       "winRate": 72.74,
       "rank": 9
     },
@@ -194,16 +194,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2318,
-          "games": 4955
+          "rating": 2323,
+          "games": 4956
         }
       },
       "rkPerfCount": {
-        "all": 4955,
-        "win": 3219
+        "all": 4956,
+        "win": 3220
       },
       "rkHighestRating": 2481,
-      "winRate": 64.96,
+      "winRate": 64.97,
       "rank": 11
     },
     {
@@ -266,13 +266,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2291,
-          "games": 20334
+          "rating": 2283,
+          "games": 20337
         }
       },
       "rkPerfCount": {
-        "all": 20334,
-        "win": 15353
+        "all": 20337,
+        "win": 15355
       },
       "rkHighestRating": 2495,
       "winRate": 75.5,
@@ -321,15 +321,15 @@
       "perfs": {
         "racingKings": {
           "rating": 2274,
-          "games": 11656
+          "games": 11666
         }
       },
       "rkPerfCount": {
-        "all": 11656,
-        "win": 6119
+        "all": 11666,
+        "win": 6121
       },
       "rkHighestRating": 2508,
-      "winRate": 52.5,
+      "winRate": 52.47,
       "rank": 18
     },
     {
