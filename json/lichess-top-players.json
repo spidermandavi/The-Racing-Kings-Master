@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-13T01:18:06.295755+00:00",
-  "lastSuccessfulUpdate": "2026-10-13T01:18:06.295755+00:00",
+  "updatedAt": "2026-10-13T09:20:22.783245+00:00",
+  "lastSuccessfulUpdate": "2026-10-13T09:20:22.783245+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -225,6 +225,24 @@
       "rank": 12
     },
     {
+      "id": "playanotherone",
+      "username": "playanotherone",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2303,
+          "games": 44525
+        }
+      },
+      "rkPerfCount": {
+        "all": 44525,
+        "win": 29621
+      },
+      "rkHighestRating": 2433,
+      "winRate": 66.53,
+      "rank": 13
+    },
+    {
       "id": "peanutbutter12345",
       "username": "Peanutbutter12345",
       "title": null,
@@ -240,7 +258,7 @@
       },
       "rkHighestRating": 2376,
       "winRate": 65.03,
-      "rank": 13
+      "rank": 14
     },
     {
       "id": "imakemanymistakes",
@@ -258,24 +276,6 @@
       },
       "rkHighestRating": 2495,
       "winRate": 75.5,
-      "rank": 14
-    },
-    {
-      "id": "playanotherone",
-      "username": "playanotherone",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2284,
-          "games": 44503
-        }
-      },
-      "rkPerfCount": {
-        "all": 44503,
-        "win": 29602
-      },
-      "rkHighestRating": 2433,
-      "winRate": 66.52,
       "rank": 15
     },
     {
