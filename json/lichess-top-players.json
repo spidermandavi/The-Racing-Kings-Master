@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-14T13:38:43.017541+00:00",
-  "lastSuccessfulUpdate": "2026-10-14T13:38:43.017541+00:00",
+  "updatedAt": "2026-10-14T18:32:42.470668+00:00",
+  "lastSuccessfulUpdate": "2026-10-14T18:32:42.470668+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -122,16 +122,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2400,
-          "games": 10485
+          "rating": 2410,
+          "games": 10496
         }
       },
       "rkPerfCount": {
-        "all": 10485,
-        "win": 6154
+        "all": 10496,
+        "win": 6162
       },
       "rkHighestRating": 2425,
-      "winRate": 58.69,
+      "winRate": 58.71,
       "rank": 7
     },
     {
@@ -194,7 +194,7 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2338,
+          "rating": 2346,
           "games": 44563
         }
       },
@@ -261,40 +261,22 @@
       "rank": 14
     },
     {
-      "id": "ghosthunterunion",
-      "username": "GhostHunterUnion",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2291,
-          "games": 2916
-        }
-      },
-      "rkPerfCount": {
-        "all": 2916,
-        "win": 1817
-      },
-      "rkHighestRating": 2295,
-      "winRate": 62.31,
-      "rank": 15
-    },
-    {
       "id": "imakemanymistakes",
       "username": "IMakeManyMistakes",
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2287,
-          "games": 20340
+          "rating": 2291,
+          "games": 20342
         }
       },
       "rkPerfCount": {
-        "all": 20340,
-        "win": 15358
+        "all": 20342,
+        "win": 15360
       },
       "rkHighestRating": 2495,
       "winRate": 75.51,
-      "rank": 16
+      "rank": 15
     },
     {
       "id": "mete0ra_return",
@@ -312,6 +294,24 @@
       },
       "rkHighestRating": 2439,
       "winRate": 71.3,
+      "rank": 16
+    },
+    {
+      "id": "ghosthunterunion",
+      "username": "GhostHunterUnion",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2279,
+          "games": 2925
+        }
+      },
+      "rkPerfCount": {
+        "all": 2925,
+        "win": 1824
+      },
+      "rkHighestRating": 2298,
+      "winRate": 62.36,
       "rank": 17
     },
     {
