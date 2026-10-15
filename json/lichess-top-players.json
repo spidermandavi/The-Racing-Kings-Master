@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-15T18:14:10.456591+00:00",
-  "lastSuccessfulUpdate": "2026-10-15T18:14:10.456591+00:00",
+  "updatedAt": "2026-10-15T22:12:03.390858+00:00",
+  "lastSuccessfulUpdate": "2026-10-15T22:12:03.390858+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -158,16 +158,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2394,
-          "games": 68826
+          "rating": 2377,
+          "games": 68849
         }
       },
       "rkPerfCount": {
-        "all": 68826,
-        "win": 50066
+        "all": 68849,
+        "win": 50085
       },
-      "rkHighestRating": 2394,
-      "winRate": 72.74,
+      "rkHighestRating": 2395,
+      "winRate": 72.75,
       "rank": 9
     },
     {
@@ -297,24 +297,6 @@
       "rank": 16
     },
     {
-      "id": "imakemanymistakes",
-      "username": "IMakeManyMistakes",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2279,
-          "games": 20348
-        }
-      },
-      "rkPerfCount": {
-        "all": 20348,
-        "win": 15364
-      },
-      "rkHighestRating": 2495,
-      "winRate": 75.51,
-      "rank": 17
-    },
-    {
       "id": "silver_samuray",
       "username": "silver_samuray",
       "title": null,
@@ -330,6 +312,24 @@
       },
       "rkHighestRating": 2324,
       "winRate": 71.43,
+      "rank": 17
+    },
+    {
+      "id": "imakemanymistakes",
+      "username": "IMakeManyMistakes",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2276,
+          "games": 20353
+        }
+      },
+      "rkPerfCount": {
+        "all": 20353,
+        "win": 15368
+      },
+      "rkHighestRating": 2495,
+      "winRate": 75.51,
       "rank": 18
     },
     {
