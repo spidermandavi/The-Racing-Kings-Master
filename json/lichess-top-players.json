@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-15T07:21:38.979428+00:00",
-  "lastSuccessfulUpdate": "2026-10-15T07:21:38.979428+00:00",
+  "updatedAt": "2026-10-15T13:21:56.767899+00:00",
+  "lastSuccessfulUpdate": "2026-10-15T13:21:56.767899+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -105,15 +105,15 @@
       "perfs": {
         "racingKings": {
           "rating": 2411,
-          "games": 3862
+          "games": 3863
         }
       },
       "rkPerfCount": {
-        "all": 3862,
-        "win": 2052
+        "all": 3863,
+        "win": 2053
       },
       "rkHighestRating": 2460,
-      "winRate": 53.13,
+      "winRate": 53.15,
       "rank": 6
     },
     {
@@ -261,21 +261,21 @@
       "rank": 14
     },
     {
-      "id": "imakemanymistakes",
-      "username": "IMakeManyMistakes",
+      "id": "ghosthunterunion",
+      "username": "GhostHunterUnion",
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2291,
-          "games": 20342
+          "rating": 2287,
+          "games": 2949
         }
       },
       "rkPerfCount": {
-        "all": 20342,
-        "win": 15360
+        "all": 2949,
+        "win": 1847
       },
-      "rkHighestRating": 2495,
-      "winRate": 75.51,
+      "rkHighestRating": 2298,
+      "winRate": 62.63,
       "rank": 15
     },
     {
@@ -297,21 +297,21 @@
       "rank": 16
     },
     {
-      "id": "ghosthunterunion",
-      "username": "GhostHunterUnion",
+      "id": "imakemanymistakes",
+      "username": "IMakeManyMistakes",
       "title": null,
       "perfs": {
         "racingKings": {
           "rating": 2279,
-          "games": 2925
+          "games": 20348
         }
       },
       "rkPerfCount": {
-        "all": 2925,
-        "win": 1824
+        "all": 20348,
+        "win": 15364
       },
-      "rkHighestRating": 2298,
-      "winRate": 62.36,
+      "rkHighestRating": 2495,
+      "winRate": 75.51,
       "rank": 17
     },
     {
