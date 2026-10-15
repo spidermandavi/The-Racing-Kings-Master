@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-15T01:25:35.336486+00:00",
-  "lastSuccessfulUpdate": "2026-10-15T01:25:35.336486+00:00",
+  "updatedAt": "2026-10-15T07:21:38.979428+00:00",
+  "lastSuccessfulUpdate": "2026-10-15T07:21:38.979428+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -159,12 +159,12 @@
       "perfs": {
         "racingKings": {
           "rating": 2393,
-          "games": 68823
+          "games": 68824
         }
       },
       "rkPerfCount": {
-        "all": 68823,
-        "win": 50063
+        "all": 68824,
+        "win": 50064
       },
       "rkHighestRating": 2393,
       "winRate": 72.74,
@@ -315,6 +315,24 @@
       "rank": 17
     },
     {
+      "id": "silver_samuray",
+      "username": "silver_samuray",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2277,
+          "games": 70
+        }
+      },
+      "rkPerfCount": {
+        "all": 70,
+        "win": 50
+      },
+      "rkHighestRating": 2324,
+      "winRate": 71.43,
+      "rank": 18
+    },
+    {
       "id": "dereinoeler103",
       "username": "dereinoeler103",
       "title": null,
@@ -330,7 +348,7 @@
       },
       "rkHighestRating": 2427,
       "winRate": 63.41,
-      "rank": 18
+      "rank": 19
     },
     {
       "id": "cr0c0d1l3",
@@ -348,24 +366,6 @@
       },
       "rkHighestRating": 2508,
       "winRate": 52.47,
-      "rank": 19
-    },
-    {
-      "id": "silver_samuray",
-      "username": "silver_samuray",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2273,
-          "games": 69
-        }
-      },
-      "rkPerfCount": {
-        "all": 69,
-        "win": 49
-      },
-      "rkHighestRating": 2324,
-      "winRate": 71.01,
       "rank": 20
     }
   ]
