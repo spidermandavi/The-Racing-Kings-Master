@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-16T17:22:00.329015+00:00",
-  "lastSuccessfulUpdate": "2026-10-16T17:22:00.329015+00:00",
+  "updatedAt": "2026-10-16T21:01:10.507909+00:00",
+  "lastSuccessfulUpdate": "2026-10-16T21:01:10.507909+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -99,6 +99,24 @@
       "rank": 5
     },
     {
+      "id": "gleb_momot",
+      "username": "Gleb_Momot",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2415,
+          "games": 10497
+        }
+      },
+      "rkPerfCount": {
+        "all": 10497,
+        "win": 6163
+      },
+      "rkHighestRating": 2425,
+      "winRate": 58.71,
+      "rank": 6
+    },
+    {
       "id": "gautham_a",
       "username": "Gautham_A",
       "title": null,
@@ -114,24 +132,6 @@
       },
       "rkHighestRating": 2460,
       "winRate": 53.18,
-      "rank": 6
-    },
-    {
-      "id": "gleb_momot",
-      "username": "Gleb_Momot",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2410,
-          "games": 10496
-        }
-      },
-      "rkPerfCount": {
-        "all": 10496,
-        "win": 6162
-      },
-      "rkHighestRating": 2425,
-      "winRate": 58.71,
       "rank": 7
     },
     {
@@ -194,13 +194,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2356,
-          "games": 44609
+          "rating": 2348,
+          "games": 44619
         }
       },
       "rkPerfCount": {
-        "all": 44609,
-        "win": 29692
+        "all": 44619,
+        "win": 29699
       },
       "rkHighestRating": 2433,
       "winRate": 66.56,
@@ -279,21 +279,21 @@
       "rank": 15
     },
     {
-      "id": "silver_samuray",
-      "username": "silver_samuray",
+      "id": "margarita2015s",
+      "username": "Margarita2015s",
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2277,
-          "games": 70
+          "rating": 2283,
+          "games": 1821
         }
       },
       "rkPerfCount": {
-        "all": 70,
-        "win": 50
+        "all": 1821,
+        "win": 1240
       },
-      "rkHighestRating": 2324,
-      "winRate": 71.43,
+      "rkHighestRating": 2283,
+      "winRate": 68.09,
       "rank": 16
     },
     {
@@ -315,24 +315,6 @@
       "rank": 17
     },
     {
-      "id": "margarita2015s",
-      "username": "Margarita2015s",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2275,
-          "games": 1818
-        }
-      },
-      "rkPerfCount": {
-        "all": 1818,
-        "win": 1237
-      },
-      "rkHighestRating": 2275,
-      "winRate": 68.04,
-      "rank": 18
-    },
-    {
       "id": "dereinoeler103",
       "username": "dereinoeler103",
       "title": null,
@@ -348,7 +330,7 @@
       },
       "rkHighestRating": 2427,
       "winRate": 63.41,
-      "rank": 19
+      "rank": 18
     },
     {
       "id": "tgainvaibhavgrand",
@@ -366,6 +348,24 @@
       },
       "rkHighestRating": 2351,
       "winRate": 62.51,
+      "rank": 19
+    },
+    {
+      "id": "silver_samuray",
+      "username": "silver_samuray",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2262,
+          "games": 72
+        }
+      },
+      "rkPerfCount": {
+        "all": 72,
+        "win": 51
+      },
+      "rkHighestRating": 2324,
+      "winRate": 70.83,
       "rank": 20
     }
   ]
