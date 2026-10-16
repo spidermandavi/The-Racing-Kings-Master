@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-16T07:05:14.429282+00:00",
-  "lastSuccessfulUpdate": "2026-10-16T07:05:14.429282+00:00",
+  "updatedAt": "2026-10-16T12:23:21.216491+00:00",
+  "lastSuccessfulUpdate": "2026-10-16T12:23:21.216491+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -176,16 +176,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2359,
-          "games": 68862
+          "rating": 2363,
+          "games": 68878
         }
       },
       "rkPerfCount": {
-        "all": 68862,
-        "win": 50093
+        "all": 68878,
+        "win": 50108
       },
       "rkHighestRating": 2395,
-      "winRate": 72.74,
+      "winRate": 72.75,
       "rank": 10
     },
     {
@@ -315,6 +315,24 @@
       "rank": 17
     },
     {
+      "id": "margarita2015s",
+      "username": "Margarita2015s",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2275,
+          "games": 1818
+        }
+      },
+      "rkPerfCount": {
+        "all": 1818,
+        "win": 1237
+      },
+      "rkHighestRating": 2275,
+      "winRate": 68.04,
+      "rank": 18
+    },
+    {
       "id": "dereinoeler103",
       "username": "dereinoeler103",
       "title": null,
@@ -330,7 +348,7 @@
       },
       "rkHighestRating": 2427,
       "winRate": 63.41,
-      "rank": 18
+      "rank": 19
     },
     {
       "id": "tgainvaibhavgrand",
@@ -348,24 +366,6 @@
       },
       "rkHighestRating": 2351,
       "winRate": 62.51,
-      "rank": 19
-    },
-    {
-      "id": "margarita2015s",
-      "username": "Margarita2015s",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2257,
-          "games": 1796
-        }
-      },
-      "rkPerfCount": {
-        "all": 1796,
-        "win": 1219
-      },
-      "rkHighestRating": 2268,
-      "winRate": 67.87,
       "rank": 20
     }
   ]
