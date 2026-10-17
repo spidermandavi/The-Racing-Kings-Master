@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-17T09:16:44.224334+00:00",
-  "lastSuccessfulUpdate": "2026-10-17T09:16:44.224334+00:00",
+  "updatedAt": "2026-10-17T13:41:28.795169+00:00",
+  "lastSuccessfulUpdate": "2026-10-17T13:41:28.795169+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -158,16 +158,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2363,
-          "games": 68899
+          "rating": 2355,
+          "games": 68931
         }
       },
       "rkPerfCount": {
-        "all": 68899,
-        "win": 50126
+        "all": 68931,
+        "win": 50155
       },
       "rkHighestRating": 2395,
-      "winRate": 72.75,
+      "winRate": 72.76,
       "rank": 9
     },
     {
@@ -177,12 +177,12 @@
       "perfs": {
         "racingKings": {
           "rating": 2341,
-          "games": 44622
+          "games": 44631
         }
       },
       "rkPerfCount": {
-        "all": 44622,
-        "win": 29701
+        "all": 44631,
+        "win": 29708
       },
       "rkHighestRating": 2433,
       "winRate": 66.56,
@@ -243,6 +243,24 @@
       "rank": 13
     },
     {
+      "id": "margarita2015s",
+      "username": "Margarita2015s",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2288,
+          "games": 1836
+        }
+      },
+      "rkPerfCount": {
+        "all": 1836,
+        "win": 1252
+      },
+      "rkHighestRating": 2288,
+      "winRate": 68.19,
+      "rank": 14
+    },
+    {
       "id": "cr0c0d1l3",
       "username": "cr0c0d1l3",
       "title": null,
@@ -258,24 +276,6 @@
       },
       "rkHighestRating": 2508,
       "winRate": 52.48,
-      "rank": 14
-    },
-    {
-      "id": "margarita2015s",
-      "username": "Margarita2015s",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2284,
-          "games": 1824
-        }
-      },
-      "rkPerfCount": {
-        "all": 1824,
-        "win": 1243
-      },
-      "rkHighestRating": 2284,
-      "winRate": 68.15,
       "rank": 15
     },
     {
@@ -297,40 +297,22 @@
       "rank": 16
     },
     {
-      "id": "dereinoeler103",
-      "username": "dereinoeler103",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2275,
-          "games": 82
-        }
-      },
-      "rkPerfCount": {
-        "all": 82,
-        "win": 52
-      },
-      "rkHighestRating": 2427,
-      "winRate": 63.41,
-      "rank": 17
-    },
-    {
       "id": "tgainvaibhavgrand",
       "username": "TGAinVaibhavGrand",
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2268,
-          "games": 9883
+          "rating": 2272,
+          "games": 9885
         }
       },
       "rkPerfCount": {
-        "all": 9883,
-        "win": 6178
+        "all": 9885,
+        "win": 6180
       },
       "rkHighestRating": 2351,
-      "winRate": 62.51,
-      "rank": 18
+      "winRate": 62.52,
+      "rank": 17
     },
     {
       "id": "comeback786",
@@ -339,16 +321,16 @@
       "perfs": {
         "racingKings": {
           "rating": 2265,
-          "games": 35827
+          "games": 35836
         }
       },
       "rkPerfCount": {
-        "all": 35827,
-        "win": 25734
+        "all": 35836,
+        "win": 25741
       },
       "rkHighestRating": 2332,
       "winRate": 71.83,
-      "rank": 19
+      "rank": 18
     },
     {
       "id": "silver_samuray",
@@ -366,6 +348,24 @@
       },
       "rkHighestRating": 2324,
       "winRate": 70.83,
+      "rank": 19
+    },
+    {
+      "id": "hammer_strike",
+      "username": "Hammer_Strike",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2254,
+          "games": 10479
+        }
+      },
+      "rkPerfCount": {
+        "all": 10479,
+        "win": 5809
+      },
+      "rkHighestRating": 2288,
+      "winRate": 55.43,
       "rank": 20
     }
   ]
