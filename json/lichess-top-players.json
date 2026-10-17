@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-16T23:32:02.537101+00:00",
-  "lastSuccessfulUpdate": "2026-10-16T23:32:02.537101+00:00",
+  "updatedAt": "2026-10-17T04:17:27.774243+00:00",
+  "lastSuccessfulUpdate": "2026-10-17T04:17:27.774243+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -69,15 +69,15 @@
       "perfs": {
         "racingKings": {
           "rating": 2482,
-          "games": 12277
+          "games": 12297
         }
       },
       "rkPerfCount": {
-        "all": 12277,
-        "win": 8881
+        "all": 12297,
+        "win": 8888
       },
       "rkHighestRating": 2532,
-      "winRate": 72.34,
+      "winRate": 72.28,
       "rank": 4
     },
     {
@@ -194,13 +194,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2348,
-          "games": 44619
+          "rating": 2341,
+          "games": 44622
         }
       },
       "rkPerfCount": {
-        "all": 44619,
-        "win": 29699
+        "all": 44622,
+        "win": 29701
       },
       "rkHighestRating": 2433,
       "winRate": 66.56,
@@ -351,21 +351,21 @@
       "rank": 19
     },
     {
-      "id": "silver_samuray",
-      "username": "silver_samuray",
+      "id": "comeback786",
+      "username": "comeback786",
       "title": null,
       "perfs": {
         "racingKings": {
           "rating": 2262,
-          "games": 72
+          "games": 35823
         }
       },
       "rkPerfCount": {
-        "all": 72,
-        "win": 51
+        "all": 35823,
+        "win": 25730
       },
-      "rkHighestRating": 2324,
-      "winRate": 70.83,
+      "rkHighestRating": 2332,
+      "winRate": 71.83,
       "rank": 20
     }
   ]
