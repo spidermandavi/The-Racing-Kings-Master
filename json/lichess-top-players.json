@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-18T20:36:24.626244+00:00",
-  "lastSuccessfulUpdate": "2026-10-18T20:36:24.626244+00:00",
+  "updatedAt": "2026-10-18T23:05:09.369566+00:00",
+  "lastSuccessfulUpdate": "2026-10-18T23:05:09.369566+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -135,6 +135,24 @@
       "rank": 7
     },
     {
+      "id": "nataniel123",
+      "username": "nataniel123",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2362,
+          "games": 68974
+        }
+      },
+      "rkPerfCount": {
+        "all": 68974,
+        "win": 50192
+      },
+      "rkHighestRating": 2395,
+      "winRate": 72.77,
+      "rank": 8
+    },
+    {
       "id": "isabel_de_castilla",
       "username": "Isabel_de_Castilla",
       "title": null,
@@ -150,25 +168,25 @@
       },
       "rkHighestRating": 2481,
       "winRate": 64.88,
-      "rank": 8
+      "rank": 9
     },
     {
-      "id": "nataniel123",
-      "username": "nataniel123",
+      "id": "playanotherone",
+      "username": "playanotherone",
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2350,
-          "games": 68962
+          "rating": 2312,
+          "games": 44819
         }
       },
       "rkPerfCount": {
-        "all": 68962,
-        "win": 50181
+        "all": 44819,
+        "win": 29851
       },
-      "rkHighestRating": 2395,
-      "winRate": 72.77,
-      "rank": 9
+      "rkHighestRating": 2433,
+      "winRate": 66.6,
+      "rank": 10
     },
     {
       "id": "r2300",
@@ -186,24 +204,6 @@
       },
       "rkHighestRating": 2569,
       "winRate": 68.39,
-      "rank": 10
-    },
-    {
-      "id": "playanotherone",
-      "username": "playanotherone",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2308,
-          "games": 44805
-        }
-      },
-      "rkPerfCount": {
-        "all": 44805,
-        "win": 29839
-      },
-      "rkHighestRating": 2433,
-      "winRate": 66.6,
       "rank": 11
     },
     {
