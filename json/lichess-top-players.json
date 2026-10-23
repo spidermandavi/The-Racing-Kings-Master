@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-23T04:40:30.476250+00:00",
-  "lastSuccessfulUpdate": "2026-10-23T04:40:30.476250+00:00",
+  "updatedAt": "2026-10-23T09:59:15.297418+00:00",
+  "lastSuccessfulUpdate": "2026-10-23T09:59:15.297418+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -176,16 +176,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2350,
-          "games": 69087
+          "rating": 2332,
+          "games": 69099
         }
       },
       "rkPerfCount": {
-        "all": 69087,
-        "win": 50285
+        "all": 69099,
+        "win": 50293
       },
       "rkHighestRating": 2395,
-      "winRate": 72.79,
+      "winRate": 72.78,
       "rank": 10
     },
     {
@@ -194,17 +194,35 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2332,
-          "games": 34423
+          "rating": 2327,
+          "games": 34426
         }
       },
       "rkPerfCount": {
-        "all": 34423,
-        "win": 25241
+        "all": 34426,
+        "win": 25242
       },
       "rkHighestRating": 2570,
-      "winRate": 73.33,
+      "winRate": 73.32,
       "rank": 11
+    },
+    {
+      "id": "cr0c0d1l3",
+      "username": "cr0c0d1l3",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2323,
+          "games": 11798
+        }
+      },
+      "rkPerfCount": {
+        "all": 11798,
+        "win": 6190
+      },
+      "rkHighestRating": 2508,
+      "winRate": 52.47,
+      "rank": 12
     },
     {
       "id": "isabel_de_castilla",
@@ -222,24 +240,6 @@
       },
       "rkHighestRating": 2481,
       "winRate": 64.96,
-      "rank": 12
-    },
-    {
-      "id": "cr0c0d1l3",
-      "username": "cr0c0d1l3",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2312,
-          "games": 11793
-        }
-      },
-      "rkPerfCount": {
-        "all": 11793,
-        "win": 6186
-      },
-      "rkHighestRating": 2508,
-      "winRate": 52.45,
       "rank": 13
     },
     {
@@ -279,6 +279,24 @@
       "rank": 15
     },
     {
+      "id": "margarita2015s",
+      "username": "Margarita2015s",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2281,
+          "games": 2116
+        }
+      },
+      "rkPerfCount": {
+        "all": 2116,
+        "win": 1450
+      },
+      "rkHighestRating": 2292,
+      "winRate": 68.53,
+      "rank": 16
+    },
+    {
       "id": "nissan_nismo_gt-r",
       "username": "nissan_nismo_gt-r",
       "title": null,
@@ -294,24 +312,6 @@
       },
       "rkHighestRating": 2316,
       "winRate": 50.18,
-      "rank": 16
-    },
-    {
-      "id": "margarita2015s",
-      "username": "Margarita2015s",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2276,
-          "games": 2114
-        }
-      },
-      "rkPerfCount": {
-        "all": 2114,
-        "win": 1448
-      },
-      "rkHighestRating": 2292,
-      "winRate": 68.5,
       "rank": 17
     },
     {
