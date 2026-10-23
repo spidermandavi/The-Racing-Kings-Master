@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-23T19:08:31.822153+00:00",
-  "lastSuccessfulUpdate": "2026-10-23T19:08:31.822153+00:00",
+  "updatedAt": "2026-10-23T23:05:41.351153+00:00",
+  "lastSuccessfulUpdate": "2026-10-23T23:05:41.351153+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -194,13 +194,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2327,
-          "games": 69126
+          "rating": 2328,
+          "games": 69127
         }
       },
       "rkPerfCount": {
-        "all": 69126,
-        "win": 50316
+        "all": 69127,
+        "win": 50317
       },
       "rkHighestRating": 2395,
       "winRate": 72.79,
@@ -297,24 +297,6 @@
       "rank": 16
     },
     {
-      "id": "nissan_nismo_gt-r",
-      "username": "nissan_nismo_gt-r",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2280,
-          "games": 1656
-        }
-      },
-      "rkPerfCount": {
-        "all": 1656,
-        "win": 833
-      },
-      "rkHighestRating": 2316,
-      "winRate": 50.3,
-      "rank": 17
-    },
-    {
       "id": "playanotherone",
       "username": "playanotherone",
       "title": null,
@@ -330,7 +312,7 @@
       },
       "rkHighestRating": 2433,
       "winRate": 66.58,
-      "rank": 18
+      "rank": 17
     },
     {
       "id": "imakemanymistakes",
@@ -348,6 +330,24 @@
       },
       "rkHighestRating": 2495,
       "winRate": 75.51,
+      "rank": 18
+    },
+    {
+      "id": "nissan_nismo_gt-r",
+      "username": "nissan_nismo_gt-r",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2267,
+          "games": 1665
+        }
+      },
+      "rkPerfCount": {
+        "all": 1665,
+        "win": 839
+      },
+      "rkHighestRating": 2316,
+      "winRate": 50.39,
       "rank": 19
     },
     {
