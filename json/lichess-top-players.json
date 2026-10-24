@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-24T07:14:22.453987+00:00",
-  "lastSuccessfulUpdate": "2026-10-24T07:14:22.453987+00:00",
+  "updatedAt": "2026-10-24T12:38:30.324158+00:00",
+  "lastSuccessfulUpdate": "2026-10-24T12:38:30.324158+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -86,16 +86,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2431,
-          "games": 3906
+          "rating": 2440,
+          "games": 3914
         }
       },
       "rkPerfCount": {
-        "all": 3906,
-        "win": 2084
+        "all": 3914,
+        "win": 2091
       },
       "rkHighestRating": 2460,
-      "winRate": 53.35,
+      "winRate": 53.42,
       "rank": 5
     },
     {
@@ -122,13 +122,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2396,
-          "games": 23522
+          "rating": 2401,
+          "games": 23528
         }
       },
       "rkPerfCount": {
-        "all": 23522,
-        "win": 16093
+        "all": 23528,
+        "win": 16099
       },
       "rkHighestRating": 2569,
       "winRate": 68.42,
@@ -194,13 +194,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2329,
-          "games": 69128
+          "rating": 2332,
+          "games": 69131
         }
       },
       "rkPerfCount": {
-        "all": 69128,
-        "win": 50318
+        "all": 69131,
+        "win": 50321
       },
       "rkHighestRating": 2395,
       "winRate": 72.79,
@@ -285,15 +285,15 @@
       "perfs": {
         "racingKings": {
           "rating": 2282,
-          "games": 9891
+          "games": 9892
         }
       },
       "rkPerfCount": {
-        "all": 9891,
-        "win": 6182
+        "all": 9892,
+        "win": 6183
       },
       "rkHighestRating": 2351,
-      "winRate": 62.5,
+      "winRate": 62.51,
       "rank": 16
     },
     {
