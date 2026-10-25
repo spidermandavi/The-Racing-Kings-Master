@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-25T06:03:52.142502+00:00",
-  "lastSuccessfulUpdate": "2026-10-25T06:03:52.142502+00:00",
+  "updatedAt": "2026-10-25T11:18:31.414302+00:00",
+  "lastSuccessfulUpdate": "2026-10-25T11:18:31.414302+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -194,34 +194,34 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2332,
-          "games": 11829
+          "rating": 2343,
+          "games": 11833
         }
       },
       "rkPerfCount": {
-        "all": 11829,
-        "win": 6211
+        "all": 11833,
+        "win": 6215
       },
       "rkHighestRating": 2508,
-      "winRate": 52.51,
+      "winRate": 52.52,
       "rank": 11
     },
     {
-      "id": "nataniel123",
-      "username": "nataniel123",
+      "id": "margarita2015s",
+      "username": "Margarita2015s",
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2316,
-          "games": 69188
+          "rating": 2325,
+          "games": 2163
         }
       },
       "rkPerfCount": {
-        "all": 69188,
-        "win": 50368
+        "all": 2163,
+        "win": 1490
       },
-      "rkHighestRating": 2395,
-      "winRate": 72.8,
+      "rkHighestRating": 2325,
+      "winRate": 68.89,
       "rank": 12
     },
     {
@@ -243,6 +243,24 @@
       "rank": 13
     },
     {
+      "id": "nataniel123",
+      "username": "nataniel123",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2310,
+          "games": 69201
+        }
+      },
+      "rkPerfCount": {
+        "all": 69201,
+        "win": 50379
+      },
+      "rkHighestRating": 2395,
+      "winRate": 72.8,
+      "rank": 14
+    },
+    {
       "id": "isabel_de_castilla",
       "username": "Isabel_de_Castilla",
       "title": null,
@@ -258,24 +276,6 @@
       },
       "rkHighestRating": 2481,
       "winRate": 64.95,
-      "rank": 14
-    },
-    {
-      "id": "margarita2015s",
-      "username": "Margarita2015s",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2301,
-          "games": 2143
-        }
-      },
-      "rkPerfCount": {
-        "all": 2143,
-        "win": 1472
-      },
-      "rkHighestRating": 2301,
-      "winRate": 68.69,
       "rank": 15
     },
     {
@@ -302,16 +302,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2282,
-          "games": 9892
+          "rating": 2275,
+          "games": 9893
         }
       },
       "rkPerfCount": {
-        "all": 9892,
+        "all": 9893,
         "win": 6183
       },
       "rkHighestRating": 2351,
-      "winRate": 62.51,
+      "winRate": 62.5,
       "rank": 17
     },
     {
