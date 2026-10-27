@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-27T04:56:12.553307+00:00",
-  "lastSuccessfulUpdate": "2026-10-27T04:56:12.553307+00:00",
+  "updatedAt": "2026-10-27T10:29:03.066175+00:00",
+  "lastSuccessfulUpdate": "2026-10-27T10:29:03.066175+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -153,40 +153,22 @@
       "rank": 8
     },
     {
-      "id": "ishannlsiu",
-      "username": "IshanNLSIU",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2358,
-          "games": 150
-        }
-      },
-      "rkPerfCount": {
-        "all": 150,
-        "win": 87
-      },
-      "rkHighestRating": 2372,
-      "winRate": 58.0,
-      "rank": 9
-    },
-    {
       "id": "margarita2015s",
       "username": "Margarita2015s",
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2355,
-          "games": 2214
+          "rating": 2354,
+          "games": 2228
         }
       },
       "rkPerfCount": {
-        "all": 2214,
-        "win": 1536
+        "all": 2228,
+        "win": 1549
       },
-      "rkHighestRating": 2355,
-      "winRate": 69.38,
-      "rank": 10
+      "rkHighestRating": 2361,
+      "winRate": 69.52,
+      "rank": 9
     },
     {
       "id": "cr0c0d1l3",
@@ -204,6 +186,24 @@
       },
       "rkHighestRating": 2508,
       "winRate": 52.59,
+      "rank": 10
+    },
+    {
+      "id": "ishannlsiu",
+      "username": "IshanNLSIU",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2350,
+          "games": 155
+        }
+      },
+      "rkPerfCount": {
+        "all": 155,
+        "win": 90
+      },
+      "rkHighestRating": 2372,
+      "winRate": 58.06,
       "rank": 11
     },
     {
@@ -243,6 +243,24 @@
       "rank": 13
     },
     {
+      "id": "isabel_de_castilla",
+      "username": "Isabel_de_Castilla",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2323,
+          "games": 5088
+        }
+      },
+      "rkPerfCount": {
+        "all": 5088,
+        "win": 3308
+      },
+      "rkHighestRating": 2481,
+      "winRate": 65.02,
+      "rank": 14
+    },
+    {
       "id": "thehonouredoneyt",
       "username": "TheHonouredOneYT",
       "title": null,
@@ -258,24 +276,6 @@
       },
       "rkHighestRating": 2315,
       "winRate": 83.58,
-      "rank": 14
-    },
-    {
-      "id": "isabel_de_castilla",
-      "username": "Isabel_de_Castilla",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2310,
-          "games": 5073
-        }
-      },
-      "rkPerfCount": {
-        "all": 5073,
-        "win": 3295
-      },
-      "rkHighestRating": 2481,
-      "winRate": 64.95,
       "rank": 15
     },
     {
@@ -315,6 +315,24 @@
       "rank": 17
     },
     {
+      "id": "mete0ra_return",
+      "username": "mete0ra_return",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2295,
+          "games": 1334
+        }
+      },
+      "rkPerfCount": {
+        "all": 1334,
+        "win": 951
+      },
+      "rkHighestRating": 2439,
+      "winRate": 71.29,
+      "rank": 18
+    },
+    {
       "id": "playanotherone",
       "username": "playanotherone",
       "title": null,
@@ -330,7 +348,7 @@
       },
       "rkHighestRating": 2433,
       "winRate": 66.6,
-      "rank": 18
+      "rank": 19
     },
     {
       "id": "tgainvaibhavgrand",
@@ -348,24 +366,6 @@
       },
       "rkHighestRating": 2351,
       "winRate": 62.5,
-      "rank": 19
-    },
-    {
-      "id": "imakemanymistakes",
-      "username": "IMakeManyMistakes",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2268,
-          "games": 20362
-        }
-      },
-      "rkPerfCount": {
-        "all": 20362,
-        "win": 15375
-      },
-      "rkHighestRating": 2495,
-      "winRate": 75.51,
       "rank": 20
     }
   ]
