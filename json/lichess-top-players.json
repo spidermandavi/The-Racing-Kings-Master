@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-28T01:16:27.054088+00:00",
-  "lastSuccessfulUpdate": "2026-10-28T01:16:27.054088+00:00",
+  "updatedAt": "2026-10-28T08:22:06.397611+00:00",
+  "lastSuccessfulUpdate": "2026-10-28T08:22:06.397611+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -189,39 +189,39 @@
       "rank": 10
     },
     {
+      "id": "margarita2015s",
+      "username": "Margarita2015s",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2353,
+          "games": 2292
+        }
+      },
+      "rkPerfCount": {
+        "all": 2292,
+        "win": 1604
+      },
+      "rkHighestRating": 2361,
+      "winRate": 69.98,
+      "rank": 11
+    },
+    {
       "id": "cybershredder",
       "username": "CyberShredder",
       "title": null,
       "perfs": {
         "racingKings": {
           "rating": 2347,
-          "games": 34453
+          "games": 34454
         }
       },
       "rkPerfCount": {
-        "all": 34453,
-        "win": 25261
+        "all": 34454,
+        "win": 25262
       },
       "rkHighestRating": 2570,
       "winRate": 73.32,
-      "rank": 11
-    },
-    {
-      "id": "margarita2015s",
-      "username": "Margarita2015s",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2344,
-          "games": 2275
-        }
-      },
-      "rkPerfCount": {
-        "all": 2275,
-        "win": 1587
-      },
-      "rkHighestRating": 2361,
-      "winRate": 69.76,
       "rank": 12
     },
     {
