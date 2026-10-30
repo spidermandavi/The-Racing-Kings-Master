@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-30T14:03:56.073553+00:00",
-  "lastSuccessfulUpdate": "2026-10-30T14:03:56.073553+00:00",
+  "updatedAt": "2026-10-30T19:18:23.763234+00:00",
+  "lastSuccessfulUpdate": "2026-10-30T19:18:23.763234+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -68,16 +68,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2432,
-          "games": 14502
+          "rating": 2429,
+          "games": 14512
         }
       },
       "rkPerfCount": {
-        "all": 14502,
-        "win": 10494
+        "all": 14512,
+        "win": 10498
       },
       "rkHighestRating": 2542,
-      "winRate": 72.36,
+      "winRate": 72.34,
       "rank": 4
     },
     {
@@ -104,16 +104,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2404,
-          "games": 23529
+          "rating": 2396,
+          "games": 23530
         }
       },
       "rkPerfCount": {
-        "all": 23529,
+        "all": 23530,
         "win": 16100
       },
       "rkHighestRating": 2569,
-      "winRate": 68.43,
+      "winRate": 68.42,
       "rank": 6
     },
     {
@@ -176,16 +176,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2367,
-          "games": 12033
+          "rating": 2370,
+          "games": 12043
         }
       },
       "rkPerfCount": {
-        "all": 12033,
-        "win": 7906
+        "all": 12043,
+        "win": 7909
       },
       "rkHighestRating": 2491,
-      "winRate": 65.7,
+      "winRate": 65.67,
       "rank": 10
     },
     {
@@ -207,6 +207,24 @@
       "rank": 11
     },
     {
+      "id": "margarita2015s",
+      "username": "Margarita2015s",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2345,
+          "games": 2626
+        }
+      },
+      "rkPerfCount": {
+        "all": 2626,
+        "win": 1851
+      },
+      "rkHighestRating": 2361,
+      "winRate": 70.49,
+      "rank": 12
+    },
+    {
       "id": "isabel_de_castilla",
       "username": "Isabel_de_Castilla",
       "title": null,
@@ -222,7 +240,25 @@
       },
       "rkHighestRating": 2481,
       "winRate": 65.3,
-      "rank": 12
+      "rank": 13
+    },
+    {
+      "id": "playanotherone",
+      "username": "playanotherone",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2323,
+          "games": 45231
+        }
+      },
+      "rkPerfCount": {
+        "all": 45231,
+        "win": 30143
+      },
+      "rkHighestRating": 2433,
+      "winRate": 66.64,
+      "rank": 14
     },
     {
       "id": "thehonouredoneyt",
@@ -240,42 +276,6 @@
       },
       "rkHighestRating": 2315,
       "winRate": 83.58,
-      "rank": 13
-    },
-    {
-      "id": "playanotherone",
-      "username": "playanotherone",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2314,
-          "games": 45209
-        }
-      },
-      "rkPerfCount": {
-        "all": 45209,
-        "win": 30125
-      },
-      "rkHighestRating": 2433,
-      "winRate": 66.63,
-      "rank": 14
-    },
-    {
-      "id": "margarita2015s",
-      "username": "Margarita2015s",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2309,
-          "games": 2598
-        }
-      },
-      "rkPerfCount": {
-        "all": 2598,
-        "win": 1823
-      },
-      "rkHighestRating": 2361,
-      "winRate": 70.17,
       "rank": 15
     },
     {
@@ -297,24 +297,6 @@
       "rank": 16
     },
     {
-      "id": "nataniel123",
-      "username": "nataniel123",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2299,
-          "games": 69394
-        }
-      },
-      "rkPerfCount": {
-        "all": 69394,
-        "win": 50532
-      },
-      "rkHighestRating": 2395,
-      "winRate": 72.82,
-      "rank": 17
-    },
-    {
       "id": "controllerofficial77",
       "username": "ControllerOfficial77",
       "title": null,
@@ -330,24 +312,42 @@
       },
       "rkHighestRating": 2472,
       "winRate": 59.84,
-      "rank": 18
+      "rank": 17
     },
     {
-      "id": "aleks_shevchenko",
-      "username": "Aleks_Shevchenko",
+      "id": "tgainvaibhavgrand",
+      "username": "TGAinVaibhavGrand",
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2286,
-          "games": 2578
+          "rating": 2282,
+          "games": 9897
         }
       },
       "rkPerfCount": {
-        "all": 2578,
-        "win": 1974
+        "all": 9897,
+        "win": 6186
       },
-      "rkHighestRating": 2330,
-      "winRate": 76.57,
+      "rkHighestRating": 2351,
+      "winRate": 62.5,
+      "rank": 18
+    },
+    {
+      "id": "mete0ra_return",
+      "username": "mete0ra_return",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2279,
+          "games": 1341
+        }
+      },
+      "rkPerfCount": {
+        "all": 1341,
+        "win": 954
+      },
+      "rkHighestRating": 2439,
+      "winRate": 71.14,
       "rank": 19
     },
     {
@@ -356,16 +356,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2283,
-          "games": 8974
+          "rating": 2277,
+          "games": 8984
         }
       },
       "rkPerfCount": {
-        "all": 8974,
-        "win": 5065
+        "all": 8984,
+        "win": 5073
       },
       "rkHighestRating": 2306,
-      "winRate": 56.44,
+      "winRate": 56.47,
       "rank": 20
     }
   ]
