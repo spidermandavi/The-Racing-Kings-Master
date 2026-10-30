@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-30T19:18:23.763234+00:00",
-  "lastSuccessfulUpdate": "2026-10-30T19:18:23.763234+00:00",
+  "updatedAt": "2026-10-30T23:41:28.709363+00:00",
+  "lastSuccessfulUpdate": "2026-10-30T23:41:28.709363+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -117,24 +117,6 @@
       "rank": 6
     },
     {
-      "id": "gleb_momot",
-      "username": "Gleb_Momot",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2396,
-          "games": 10704
-        }
-      },
-      "rkPerfCount": {
-        "all": 10704,
-        "win": 6303
-      },
-      "rkHighestRating": 2425,
-      "winRate": 58.88,
-      "rank": 7
-    },
-    {
       "id": "ishannlsiu",
       "username": "IshanNLSIU",
       "title": null,
@@ -150,6 +132,24 @@
       },
       "rkHighestRating": 2394,
       "winRate": 59.09,
+      "rank": 7
+    },
+    {
+      "id": "cybershredder",
+      "username": "CyberShredder",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2382,
+          "games": 34478
+        }
+      },
+      "rkPerfCount": {
+        "all": 34478,
+        "win": 25281
+      },
+      "rkHighestRating": 2570,
+      "winRate": 73.33,
       "rank": 8
     },
     {
@@ -171,6 +171,24 @@
       "rank": 9
     },
     {
+      "id": "gleb_momot",
+      "username": "Gleb_Momot",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2370,
+          "games": 10714
+        }
+      },
+      "rkPerfCount": {
+        "all": 10714,
+        "win": 6306
+      },
+      "rkHighestRating": 2425,
+      "winRate": 58.86,
+      "rank": 10
+    },
+    {
       "id": "natso",
       "username": "Natso",
       "title": null,
@@ -186,24 +204,6 @@
       },
       "rkHighestRating": 2491,
       "winRate": 65.67,
-      "rank": 10
-    },
-    {
-      "id": "cybershredder",
-      "username": "CyberShredder",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2348,
-          "games": 34456
-        }
-      },
-      "rkPerfCount": {
-        "all": 34456,
-        "win": 25264
-      },
-      "rkHighestRating": 2570,
-      "winRate": 73.32,
       "rank": 11
     },
     {
