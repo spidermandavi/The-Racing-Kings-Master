@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-10-30T23:41:28.709363+00:00",
-  "lastSuccessfulUpdate": "2026-10-30T23:41:28.709363+00:00",
+  "updatedAt": "2026-10-31T05:29:23.557687+00:00",
+  "lastSuccessfulUpdate": "2026-10-31T05:29:23.557687+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -99,6 +99,24 @@
       "rank": 5
     },
     {
+      "id": "cybershredder",
+      "username": "CyberShredder",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2417,
+          "games": 34495
+        }
+      },
+      "rkPerfCount": {
+        "all": 34495,
+        "win": 25296
+      },
+      "rkHighestRating": 2570,
+      "winRate": 73.33,
+      "rank": 6
+    },
+    {
       "id": "r2300",
       "username": "R2300",
       "title": null,
@@ -114,7 +132,7 @@
       },
       "rkHighestRating": 2569,
       "winRate": 68.42,
-      "rank": 6
+      "rank": 7
     },
     {
       "id": "ishannlsiu",
@@ -132,24 +150,6 @@
       },
       "rkHighestRating": 2394,
       "winRate": 59.09,
-      "rank": 7
-    },
-    {
-      "id": "cybershredder",
-      "username": "CyberShredder",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2382,
-          "games": 34478
-        }
-      },
-      "rkPerfCount": {
-        "all": 34478,
-        "win": 25281
-      },
-      "rkHighestRating": 2570,
-      "winRate": 73.33,
       "rank": 8
     },
     {
@@ -248,13 +248,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2323,
-          "games": 45231
+          "rating": 2336,
+          "games": 45235
         }
       },
       "rkPerfCount": {
-        "all": 45231,
-        "win": 30143
+        "all": 45235,
+        "win": 30146
       },
       "rkHighestRating": 2433,
       "winRate": 66.64,
