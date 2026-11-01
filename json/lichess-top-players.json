@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-11-01T01:04:53.431764+00:00",
-  "lastSuccessfulUpdate": "2026-11-01T01:04:53.431764+00:00",
+  "updatedAt": "2026-11-01T07:29:25.552314+00:00",
+  "lastSuccessfulUpdate": "2026-11-01T07:29:25.552314+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -104,12 +104,12 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2429,
-          "games": 14512
+          "rating": 2420,
+          "games": 14513
         }
       },
       "rkPerfCount": {
-        "all": 14512,
+        "all": 14513,
         "win": 10498
       },
       "rkHighestRating": 2542,
@@ -159,15 +159,15 @@
       "perfs": {
         "racingKings": {
           "rating": 2390,
-          "games": 187
+          "games": 190
         }
       },
       "rkPerfCount": {
-        "all": 187,
+        "all": 190,
         "win": 109
       },
       "rkHighestRating": 2396,
-      "winRate": 58.29,
+      "winRate": 57.37,
       "rank": 9
     },
     {
@@ -248,35 +248,17 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2323,
-          "games": 2738
+          "rating": 2307,
+          "games": 2755
         }
       },
       "rkPerfCount": {
-        "all": 2738,
-        "win": 1947
+        "all": 2755,
+        "win": 1959
       },
       "rkHighestRating": 2370,
       "winRate": 71.11,
       "rank": 14
-    },
-    {
-      "id": "thehonouredoneyt",
-      "username": "TheHonouredOneYT",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2315,
-          "games": 67
-        }
-      },
-      "rkPerfCount": {
-        "all": 67,
-        "win": 56
-      },
-      "rkHighestRating": 2315,
-      "winRate": 83.58,
-      "rank": 15
     },
     {
       "id": "peanutbutter12345",
@@ -294,7 +276,7 @@
       },
       "rkHighestRating": 2376,
       "winRate": 65.14,
-      "rank": 16
+      "rank": 15
     },
     {
       "id": "controllerofficial77",
@@ -312,7 +294,7 @@
       },
       "rkHighestRating": 2472,
       "winRate": 59.84,
-      "rank": 17
+      "rank": 16
     },
     {
       "id": "mete0ra_return",
@@ -330,7 +312,7 @@
       },
       "rkHighestRating": 2439,
       "winRate": 71.14,
-      "rank": 18
+      "rank": 17
     },
     {
       "id": "ritvikv15",
@@ -348,7 +330,7 @@
       },
       "rkHighestRating": 2306,
       "winRate": 56.47,
-      "rank": 19
+      "rank": 18
     },
     {
       "id": "nataniel123",
@@ -366,6 +348,24 @@
       },
       "rkHighestRating": 2395,
       "winRate": 72.82,
+      "rank": 19
+    },
+    {
+      "id": "tgainvaibhavgrand",
+      "username": "TGAinVaibhavGrand",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2271,
+          "games": 9909
+        }
+      },
+      "rkPerfCount": {
+        "all": 9909,
+        "win": 6191
+      },
+      "rkHighestRating": 2351,
+      "winRate": 62.48,
       "rank": 20
     }
   ]
