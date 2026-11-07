@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-11-07T16:22:28.960205+00:00",
-  "lastSuccessfulUpdate": "2026-11-07T16:22:28.960205+00:00",
+  "updatedAt": "2026-11-07T20:50:43.616457+00:00",
+  "lastSuccessfulUpdate": "2026-11-07T20:50:43.616457+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -231,15 +231,15 @@
       "perfs": {
         "racingKings": {
           "rating": 2315,
-          "games": 5267
+          "games": 5274
         }
       },
       "rkPerfCount": {
-        "all": 5267,
-        "win": 3437
+        "all": 5274,
+        "win": 3443
       },
       "rkHighestRating": 2481,
-      "winRate": 65.26,
+      "winRate": 65.28,
       "rank": 13
     },
     {
@@ -333,39 +333,39 @@
       "rank": 18
     },
     {
-      "id": "margarita2015s",
-      "username": "Margarita2015s",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2271,
-          "games": 3099
-        }
-      },
-      "rkPerfCount": {
-        "all": 3099,
-        "win": 2207
-      },
-      "rkHighestRating": 2370,
-      "winRate": 71.22,
-      "rank": 19
-    },
-    {
       "id": "somerandomguy25",
       "username": "Somerandomguy25",
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2264,
-          "games": 3696
+          "rating": 2266,
+          "games": 3703
         }
       },
       "rkPerfCount": {
-        "all": 3696,
-        "win": 1807
+        "all": 3703,
+        "win": 1813
       },
       "rkHighestRating": 2338,
-      "winRate": 48.89,
+      "winRate": 48.96,
+      "rank": 19
+    },
+    {
+      "id": "margarita2015s",
+      "username": "Margarita2015s",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2266,
+          "games": 3108
+        }
+      },
+      "rkPerfCount": {
+        "all": 3108,
+        "win": 2215
+      },
+      "rkHighestRating": 2370,
+      "winRate": 71.27,
       "rank": 20
     }
   ]
