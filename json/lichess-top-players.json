@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-11-08T15:05:56.343063+00:00",
-  "lastSuccessfulUpdate": "2026-11-08T15:05:56.343063+00:00",
+  "updatedAt": "2026-11-08T19:40:04.638010+00:00",
+  "lastSuccessfulUpdate": "2026-11-08T19:40:04.638010+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -68,13 +68,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2435,
-          "games": 34618
+          "rating": 2437,
+          "games": 34619
         }
       },
       "rkPerfCount": {
-        "all": 34618,
-        "win": 25385
+        "all": 34619,
+        "win": 25386
       },
       "rkHighestRating": 2570,
       "winRate": 73.33,
@@ -105,15 +105,15 @@
       "perfs": {
         "racingKings": {
           "rating": 2408,
-          "games": 330
+          "games": 334
         }
       },
       "rkPerfCount": {
-        "all": 330,
-        "win": 188
+        "all": 334,
+        "win": 189
       },
       "rkHighestRating": 2433,
-      "winRate": 56.97,
+      "winRate": 56.59,
       "rank": 6
     },
     {
@@ -297,40 +297,22 @@
       "rank": 16
     },
     {
-      "id": "margarita2015s",
-      "username": "Margarita2015s",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2294,
-          "games": 3146
-        }
-      },
-      "rkPerfCount": {
-        "all": 3146,
-        "win": 2240
-      },
-      "rkHighestRating": 2370,
-      "winRate": 71.2,
-      "rank": 17
-    },
-    {
       "id": "cemalziya027",
       "username": "CemalZiya027",
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2279,
-          "games": 9545
+          "rating": 2282,
+          "games": 9547
         }
       },
       "rkPerfCount": {
-        "all": 9545,
-        "win": 5549
+        "all": 9547,
+        "win": 5551
       },
       "rkHighestRating": 2367,
       "winRate": 58.14,
-      "rank": 18
+      "rank": 17
     },
     {
       "id": "nissan_nismo_gt-r",
@@ -348,7 +330,7 @@
       },
       "rkHighestRating": 2316,
       "winRate": 50.42,
-      "rank": 19
+      "rank": 18
     },
     {
       "id": "somerandomguy25",
@@ -366,6 +348,24 @@
       },
       "rkHighestRating": 2338,
       "winRate": 48.96,
+      "rank": 19
+    },
+    {
+      "id": "cherryghost1108",
+      "username": "cherryghost1108",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2261,
+          "games": 5375
+        }
+      },
+      "rkPerfCount": {
+        "all": 5375,
+        "win": 2860
+      },
+      "rkHighestRating": 2336,
+      "winRate": 53.21,
       "rank": 20
     }
   ]
