@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-11-07T20:50:43.616457+00:00",
-  "lastSuccessfulUpdate": "2026-11-07T20:50:43.616457+00:00",
+  "updatedAt": "2026-11-08T00:30:24.410284+00:00",
+  "lastSuccessfulUpdate": "2026-11-08T00:30:24.410284+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -81,24 +81,6 @@
       "rank": 4
     },
     {
-      "id": "ishannlsiu",
-      "username": "IshanNLSIU",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2423,
-          "games": 308
-        }
-      },
-      "rkPerfCount": {
-        "all": 308,
-        "win": 178
-      },
-      "rkHighestRating": 2433,
-      "winRate": 57.79,
-      "rank": 5
-    },
-    {
       "id": "oscarsm80",
       "username": "OSCARSM80",
       "title": null,
@@ -114,6 +96,24 @@
       },
       "rkHighestRating": 2517,
       "winRate": 52.94,
+      "rank": 5
+    },
+    {
+      "id": "ishannlsiu",
+      "username": "IshanNLSIU",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2403,
+          "games": 312
+        }
+      },
+      "rkPerfCount": {
+        "all": 312,
+        "win": 180
+      },
+      "rkHighestRating": 2433,
+      "winRate": 57.69,
       "rank": 6
     },
     {
@@ -266,13 +266,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2308,
-          "games": 69476
+          "rating": 2306,
+          "games": 69478
         }
       },
       "rkPerfCount": {
-        "all": 69476,
-        "win": 50599
+        "all": 69478,
+        "win": 50600
       },
       "rkHighestRating": 2395,
       "winRate": 72.83,
