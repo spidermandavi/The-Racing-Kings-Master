@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-11-09T17:25:27.399040+00:00",
-  "lastSuccessfulUpdate": "2026-11-09T17:25:27.399040+00:00",
+  "updatedAt": "2026-11-10T01:28:10.308658+00:00",
+  "lastSuccessfulUpdate": "2026-11-10T01:28:10.308658+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -45,39 +45,39 @@
       "rank": 2
     },
     {
+      "id": "seth_777",
+      "username": "seth_777",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2449,
+          "games": 14573
+        }
+      },
+      "rkPerfCount": {
+        "all": 14573,
+        "win": 10544
+      },
+      "rkHighestRating": 2542,
+      "winRate": 72.35,
+      "rank": 3
+    },
+    {
       "id": "cybershredder",
       "username": "CyberShredder",
       "title": null,
       "perfs": {
         "racingKings": {
           "rating": 2449,
-          "games": 34663
+          "games": 34676
         }
       },
       "rkPerfCount": {
-        "all": 34663,
-        "win": 25424
+        "all": 34676,
+        "win": 25433
       },
       "rkHighestRating": 2570,
-      "winRate": 73.35,
-      "rank": 3
-    },
-    {
-      "id": "seth_777",
-      "username": "seth_777",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2445,
-          "games": 14571
-        }
-      },
-      "rkPerfCount": {
-        "all": 14571,
-        "win": 10542
-      },
-      "rkHighestRating": 2542,
-      "winRate": 72.35,
+      "winRate": 73.34,
       "rank": 4
     },
     {
@@ -122,13 +122,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2387,
-          "games": 23550
+          "rating": 2384,
+          "games": 23552
         }
       },
       "rkPerfCount": {
-        "all": 23550,
-        "win": 16107
+        "all": 23552,
+        "win": 16108
       },
       "rkHighestRating": 2569,
       "winRate": 68.39,
@@ -225,6 +225,24 @@
       "rank": 12
     },
     {
+      "id": "markus_asg",
+      "username": "Markus_ASG",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2307,
+          "games": 61
+        }
+      },
+      "rkPerfCount": {
+        "all": 61,
+        "win": 43
+      },
+      "rkHighestRating": 2349,
+      "winRate": 70.49,
+      "rank": 13
+    },
+    {
       "id": "peanutbutter12345",
       "username": "Peanutbutter12345",
       "title": null,
@@ -240,7 +258,7 @@
       },
       "rkHighestRating": 2376,
       "winRate": 65.15,
-      "rank": 13
+      "rank": 14
     },
     {
       "id": "tgainvaibhavgrand",
@@ -258,7 +276,7 @@
       },
       "rkHighestRating": 2351,
       "winRate": 62.5,
-      "rank": 14
+      "rank": 15
     },
     {
       "id": "nataniel123",
@@ -276,7 +294,7 @@
       },
       "rkHighestRating": 2395,
       "winRate": 72.83,
-      "rank": 15
+      "rank": 16
     },
     {
       "id": "mete0ra_return",
@@ -284,7 +302,7 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2297,
+          "rating": 2293,
           "games": 1400
         }
       },
@@ -294,7 +312,7 @@
       },
       "rkHighestRating": 2439,
       "winRate": 71.0,
-      "rank": 16
+      "rank": 17
     },
     {
       "id": "cemalziya027",
@@ -312,24 +330,6 @@
       },
       "rkHighestRating": 2367,
       "winRate": 58.14,
-      "rank": 17
-    },
-    {
-      "id": "nissan_nismo_gt-r",
-      "username": "nissan_nismo_gt-r",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2270,
-          "games": 1666
-        }
-      },
-      "rkPerfCount": {
-        "all": 1666,
-        "win": 840
-      },
-      "rkHighestRating": 2316,
-      "winRate": 50.42,
       "rank": 18
     },
     {
@@ -338,34 +338,34 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2266,
-          "games": 3703
+          "rating": 2263,
+          "games": 3720
         }
       },
       "rkPerfCount": {
-        "all": 3703,
-        "win": 1813
+        "all": 3720,
+        "win": 1818
       },
       "rkHighestRating": 2338,
-      "winRate": 48.96,
+      "winRate": 48.87,
       "rank": 19
     },
     {
-      "id": "estebanandres",
-      "username": "Estebanandres",
+      "id": "nissan_nismo_gt-r",
+      "username": "nissan_nismo_gt-r",
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2256,
-          "games": 6363
+          "rating": 2262,
+          "games": 1667
         }
       },
       "rkPerfCount": {
-        "all": 6363,
-        "win": 3803
+        "all": 1667,
+        "win": 840
       },
-      "rkHighestRating": 2271,
-      "winRate": 59.77,
+      "rkHighestRating": 2316,
+      "winRate": 50.39,
       "rank": 20
     }
   ]
