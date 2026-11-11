@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-11-10T23:13:43.185594+00:00",
-  "lastSuccessfulUpdate": "2026-11-10T23:13:43.185594+00:00",
+  "updatedAt": "2026-11-11T06:02:13.623348+00:00",
+  "lastSuccessfulUpdate": "2026-11-11T06:02:13.623348+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -63,6 +63,24 @@
       "rank": 3
     },
     {
+      "id": "cybershredder",
+      "username": "CyberShredder",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2424,
+          "games": 34704
+        }
+      },
+      "rkPerfCount": {
+        "all": 34704,
+        "win": 25451
+      },
+      "rkHighestRating": 2570,
+      "winRate": 73.34,
+      "rank": 4
+    },
+    {
       "id": "ishannlsiu",
       "username": "IshanNLSIU",
       "title": null,
@@ -78,24 +96,6 @@
       },
       "rkHighestRating": 2433,
       "winRate": 57.83,
-      "rank": 4
-    },
-    {
-      "id": "cybershredder",
-      "username": "CyberShredder",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2423,
-          "games": 34702
-        }
-      },
-      "rkPerfCount": {
-        "all": 34702,
-        "win": 25449
-      },
-      "rkHighestRating": 2570,
-      "winRate": 73.34,
       "rank": 5
     },
     {
@@ -333,24 +333,6 @@
       "rank": 18
     },
     {
-      "id": "cherryghost1108",
-      "username": "cherryghost1108",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2253,
-          "games": 5384
-        }
-      },
-      "rkPerfCount": {
-        "all": 5384,
-        "win": 2865
-      },
-      "rkHighestRating": 2336,
-      "winRate": 53.21,
-      "rank": 19
-    },
-    {
       "id": "nissan_nismo_gt-r",
       "username": "nissan_nismo_gt-r",
       "title": null,
@@ -366,6 +348,24 @@
       },
       "rkHighestRating": 2316,
       "winRate": 50.3,
+      "rank": 19
+    },
+    {
+      "id": "a-red-panda",
+      "username": "A-Red-Panda",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2249,
+          "games": 253
+        }
+      },
+      "rkPerfCount": {
+        "all": 253,
+        "win": 158
+      },
+      "rkHighestRating": 2287,
+      "winRate": 62.45,
       "rank": 20
     }
   ]
