@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-11-12T02:55:29.559559+00:00",
-  "lastSuccessfulUpdate": "2026-11-12T02:55:29.559559+00:00",
+  "updatedAt": "2026-11-12T10:56:57.377704+00:00",
+  "lastSuccessfulUpdate": "2026-11-12T10:56:57.377704+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -153,6 +153,24 @@
       "rank": 8
     },
     {
+      "id": "mete0ra_return",
+      "username": "mete0ra_return",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2341,
+          "games": 1429
+        }
+      },
+      "rkPerfCount": {
+        "all": 1429,
+        "win": 1020
+      },
+      "rkHighestRating": 2439,
+      "winRate": 71.38,
+      "rank": 9
+    },
+    {
       "id": "playanotherone",
       "username": "playanotherone",
       "title": null,
@@ -168,7 +186,7 @@
       },
       "rkHighestRating": 2433,
       "winRate": 66.64,
-      "rank": 9
+      "rank": 10
     },
     {
       "id": "nataniel123",
@@ -186,24 +204,6 @@
       },
       "rkHighestRating": 2395,
       "winRate": 72.84,
-      "rank": 10
-    },
-    {
-      "id": "mete0ra_return",
-      "username": "mete0ra_return",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2320,
-          "games": 1422
-        }
-      },
-      "rkPerfCount": {
-        "all": 1422,
-        "win": 1014
-      },
-      "rkHighestRating": 2439,
-      "winRate": 71.31,
       "rank": 11
     },
     {
@@ -297,6 +297,24 @@
       "rank": 16
     },
     {
+      "id": "austoney",
+      "username": "austoney",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2259,
+          "games": 1128
+        }
+      },
+      "rkPerfCount": {
+        "all": 1128,
+        "win": 844
+      },
+      "rkHighestRating": 2339,
+      "winRate": 74.82,
+      "rank": 17
+    },
+    {
       "id": "fele007",
       "username": "Fele007",
       "title": null,
@@ -312,7 +330,7 @@
       },
       "rkHighestRating": 2340,
       "winRate": 44.25,
-      "rank": 17
+      "rank": 18
     },
     {
       "id": "panagiskosmatos",
@@ -330,7 +348,7 @@
       },
       "rkHighestRating": 2385,
       "winRate": 60.46,
-      "rank": 18
+      "rank": 19
     },
     {
       "id": "somerandomguy25",
@@ -348,24 +366,6 @@
       },
       "rkHighestRating": 2338,
       "winRate": 48.79,
-      "rank": 19
-    },
-    {
-      "id": "margarita2015s",
-      "username": "Margarita2015s",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2250,
-          "games": 3221
-        }
-      },
-      "rkPerfCount": {
-        "all": 3221,
-        "win": 2283
-      },
-      "rkHighestRating": 2370,
-      "winRate": 70.88,
       "rank": 20
     }
   ]
