@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-11-13T16:14:28.287463+00:00",
-  "lastSuccessfulUpdate": "2026-11-13T16:14:28.287463+00:00",
+  "updatedAt": "2026-11-13T22:33:42.059036+00:00",
+  "lastSuccessfulUpdate": "2026-11-13T22:33:42.059036+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -158,16 +158,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2349,
-          "games": 45289
+          "rating": 2360,
+          "games": 45300
         }
       },
       "rkPerfCount": {
-        "all": 45289,
-        "win": 30186
+        "all": 45300,
+        "win": 30196
       },
       "rkHighestRating": 2433,
-      "winRate": 66.65,
+      "winRate": 66.66,
       "rank": 9
     },
     {
@@ -194,13 +194,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2321,
-          "games": 69540
+          "rating": 2318,
+          "games": 69552
         }
       },
       "rkPerfCount": {
-        "all": 69540,
-        "win": 50657
+        "all": 69552,
+        "win": 50667
       },
       "rkHighestRating": 2395,
       "winRate": 72.85,
@@ -243,24 +243,6 @@
       "rank": 13
     },
     {
-      "id": "austoney",
-      "username": "austoney",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2304,
-          "games": 1243
-        }
-      },
-      "rkPerfCount": {
-        "all": 1243,
-        "win": 947
-      },
-      "rkHighestRating": 2339,
-      "winRate": 76.19,
-      "rank": 14
-    },
-    {
       "id": "tgainvaibhavgrand",
       "username": "TGAinVaibhavGrand",
       "title": null,
@@ -276,6 +258,24 @@
       },
       "rkHighestRating": 2351,
       "winRate": 62.5,
+      "rank": 14
+    },
+    {
+      "id": "austoney",
+      "username": "austoney",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2296,
+          "games": 1288
+        }
+      },
+      "rkPerfCount": {
+        "all": 1288,
+        "win": 984
+      },
+      "rkHighestRating": 2339,
+      "winRate": 76.4,
       "rank": 15
     },
     {
@@ -333,24 +333,6 @@
       "rank": 18
     },
     {
-      "id": "fele007",
-      "username": "Fele007",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2254,
-          "games": 13952
-        }
-      },
-      "rkPerfCount": {
-        "all": 13952,
-        "win": 6174
-      },
-      "rkHighestRating": 2340,
-      "winRate": 44.25,
-      "rank": 19
-    },
-    {
       "id": "panagiskosmatos",
       "username": "panagiskosmatos",
       "title": null,
@@ -366,6 +348,24 @@
       },
       "rkHighestRating": 2385,
       "winRate": 60.46,
+      "rank": 19
+    },
+    {
+      "id": "somerandomguy25",
+      "username": "Somerandomguy25",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2253,
+          "games": 3747
+        }
+      },
+      "rkPerfCount": {
+        "all": 3747,
+        "win": 1828
+      },
+      "rkHighestRating": 2338,
+      "winRate": 48.79,
       "rank": 20
     }
   ]
