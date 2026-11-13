@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-11-13T07:52:00.241032+00:00",
-  "lastSuccessfulUpdate": "2026-11-13T07:52:00.241032+00:00",
+  "updatedAt": "2026-11-13T16:14:28.287463+00:00",
+  "lastSuccessfulUpdate": "2026-11-13T16:14:28.287463+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -63,24 +63,6 @@
       "rank": 3
     },
     {
-      "id": "ishannlsiu",
-      "username": "IshanNLSIU",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2426,
-          "games": 353
-        }
-      },
-      "rkPerfCount": {
-        "all": 353,
-        "win": 205
-      },
-      "rkHighestRating": 2433,
-      "winRate": 58.07,
-      "rank": 4
-    },
-    {
       "id": "cybershredder",
       "username": "CyberShredder",
       "title": null,
@@ -96,6 +78,24 @@
       },
       "rkHighestRating": 2570,
       "winRate": 73.34,
+      "rank": 4
+    },
+    {
+      "id": "ishannlsiu",
+      "username": "IshanNLSIU",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2422,
+          "games": 355
+        }
+      },
+      "rkPerfCount": {
+        "all": 355,
+        "win": 206
+      },
+      "rkHighestRating": 2433,
+      "winRate": 58.03,
       "rank": 5
     },
     {
@@ -153,6 +153,24 @@
       "rank": 8
     },
     {
+      "id": "playanotherone",
+      "username": "playanotherone",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2349,
+          "games": 45289
+        }
+      },
+      "rkPerfCount": {
+        "all": 45289,
+        "win": 30186
+      },
+      "rkHighestRating": 2433,
+      "winRate": 66.65,
+      "rank": 9
+    },
+    {
       "id": "mete0ra_return",
       "username": "mete0ra_return",
       "title": null,
@@ -168,24 +186,6 @@
       },
       "rkHighestRating": 2439,
       "winRate": 71.82,
-      "rank": 9
-    },
-    {
-      "id": "playanotherone",
-      "username": "playanotherone",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2341,
-          "games": 45283
-        }
-      },
-      "rkPerfCount": {
-        "all": 45283,
-        "win": 30180
-      },
-      "rkHighestRating": 2433,
-      "winRate": 66.65,
       "rank": 10
     },
     {
@@ -248,16 +248,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2301,
-          "games": 1236
+          "rating": 2304,
+          "games": 1243
         }
       },
       "rkPerfCount": {
-        "all": 1236,
-        "win": 941
+        "all": 1243,
+        "win": 947
       },
       "rkHighestRating": 2339,
-      "winRate": 76.13,
+      "winRate": 76.19,
       "rank": 14
     },
     {
