@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-11-14T22:17:10.744042+00:00",
-  "lastSuccessfulUpdate": "2026-11-14T22:17:10.744042+00:00",
+  "updatedAt": "2026-11-15T02:35:59.458080+00:00",
+  "lastSuccessfulUpdate": "2026-11-15T02:35:59.458080+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -68,13 +68,13 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2426,
-          "games": 34706
+          "rating": 2428,
+          "games": 34707
         }
       },
       "rkPerfCount": {
-        "all": 34706,
-        "win": 25453
+        "all": 34707,
+        "win": 25454
       },
       "rkHighestRating": 2570,
       "winRate": 73.34,
@@ -261,24 +261,6 @@
       "rank": 14
     },
     {
-      "id": "nataniel123",
-      "username": "nataniel123",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2275,
-          "games": 69613
-        }
-      },
-      "rkPerfCount": {
-        "all": 69613,
-        "win": 50712
-      },
-      "rkHighestRating": 2395,
-      "winRate": 72.85,
-      "rank": 15
-    },
-    {
       "id": "cemalziya027",
       "username": "CemalZiya027",
       "title": null,
@@ -294,7 +276,7 @@
       },
       "rkHighestRating": 2367,
       "winRate": 58.13,
-      "rank": 16
+      "rank": 15
     },
     {
       "id": "nissan_nismo_gt-r",
@@ -312,7 +294,7 @@
       },
       "rkHighestRating": 2316,
       "winRate": 50.3,
-      "rank": 17
+      "rank": 16
     },
     {
       "id": "panagiskosmatos",
@@ -330,7 +312,7 @@
       },
       "rkHighestRating": 2385,
       "winRate": 60.46,
-      "rank": 18
+      "rank": 17
     },
     {
       "id": "somerandomguy25",
@@ -348,7 +330,7 @@
       },
       "rkHighestRating": 2338,
       "winRate": 48.79,
-      "rank": 19
+      "rank": 18
     },
     {
       "id": "eman67",
@@ -366,6 +348,24 @@
       },
       "rkHighestRating": 2252,
       "winRate": 64.4,
+      "rank": 19
+    },
+    {
+      "id": "nataniel123",
+      "username": "nataniel123",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2251,
+          "games": 69627
+        }
+      },
+      "rkPerfCount": {
+        "all": 69627,
+        "win": 50721
+      },
+      "rkHighestRating": 2395,
+      "winRate": 72.85,
       "rank": 20
     }
   ]
