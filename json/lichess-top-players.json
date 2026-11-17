@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-11-16T20:57:51.909544+00:00",
-  "lastSuccessfulUpdate": "2026-11-16T20:57:51.909544+00:00",
+  "updatedAt": "2026-11-17T03:45:24.006747+00:00",
+  "lastSuccessfulUpdate": "2026-11-17T03:45:24.006747+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -297,6 +297,24 @@
       "rank": 16
     },
     {
+      "id": "austoney",
+      "username": "austoney",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2278,
+          "games": 1629
+        }
+      },
+      "rkPerfCount": {
+        "all": 1629,
+        "win": 1241
+      },
+      "rkHighestRating": 2342,
+      "winRate": 76.18,
+      "rank": 17
+    },
+    {
       "id": "cemalziya027",
       "username": "CemalZiya027",
       "title": null,
@@ -312,24 +330,6 @@
       },
       "rkHighestRating": 2367,
       "winRate": 58.13,
-      "rank": 17
-    },
-    {
-      "id": "austoney",
-      "username": "austoney",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2264,
-          "games": 1597
-        }
-      },
-      "rkPerfCount": {
-        "all": 1597,
-        "win": 1216
-      },
-      "rkHighestRating": 2342,
-      "winRate": 76.14,
       "rank": 18
     },
     {
@@ -338,16 +338,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2262,
-          "games": 2400
+          "rating": 2265,
+          "games": 2451
         }
       },
       "rkPerfCount": {
-        "all": 2400,
-        "win": 1548
+        "all": 2451,
+        "win": 1578
       },
-      "rkHighestRating": 2262,
-      "winRate": 64.5,
+      "rkHighestRating": 2265,
+      "winRate": 64.38,
       "rank": 19
     },
     {
