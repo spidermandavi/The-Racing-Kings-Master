@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-11-20T03:05:24.250442+00:00",
-  "lastSuccessfulUpdate": "2026-11-20T03:05:24.250442+00:00",
+  "updatedAt": "2026-11-20T11:31:43.509823+00:00",
+  "lastSuccessfulUpdate": "2026-11-20T11:31:43.509823+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -105,15 +105,15 @@
       "perfs": {
         "racingKings": {
           "rating": 2448,
-          "games": 437
+          "games": 438
         }
       },
       "rkPerfCount": {
-        "all": 437,
+        "all": 438,
         "win": 265
       },
       "rkHighestRating": 2448,
-      "winRate": 60.64,
+      "winRate": 60.5,
       "rank": 6
     },
     {
@@ -194,16 +194,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2323,
-          "games": 5316
+          "rating": 2327,
+          "games": 5318
         }
       },
       "rkPerfCount": {
-        "all": 5316,
-        "win": 3471
+        "all": 5318,
+        "win": 3473
       },
       "rkHighestRating": 2481,
-      "winRate": 65.29,
+      "winRate": 65.31,
       "rank": 11
     },
     {
@@ -297,40 +297,22 @@
       "rank": 16
     },
     {
-      "id": "margarita2015s",
-      "username": "Margarita2015s",
-      "title": null,
-      "perfs": {
-        "racingKings": {
-          "rating": 2298,
-          "games": 3610
-        }
-      },
-      "rkPerfCount": {
-        "all": 3610,
-        "win": 2588
-      },
-      "rkHighestRating": 2370,
-      "winRate": 71.69,
-      "rank": 17
-    },
-    {
       "id": "ayifoz1",
       "username": "ayifoz1",
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2298,
-          "games": 112
+          "rating": 2293,
+          "games": 117
         }
       },
       "rkPerfCount": {
-        "all": 112,
-        "win": 89
+        "all": 117,
+        "win": 93
       },
       "rkHighestRating": 2518,
-      "winRate": 79.46,
-      "rank": 18
+      "winRate": 79.49,
+      "rank": 17
     },
     {
       "id": "peanutbutter12345",
@@ -348,6 +330,24 @@
       },
       "rkHighestRating": 2376,
       "winRate": 65.22,
+      "rank": 18
+    },
+    {
+      "id": "margarita2015s",
+      "username": "Margarita2015s",
+      "title": null,
+      "perfs": {
+        "racingKings": {
+          "rating": 2273,
+          "games": 3631
+        }
+      },
+      "rkPerfCount": {
+        "all": 3631,
+        "win": 2602
+      },
+      "rkHighestRating": 2370,
+      "winRate": 71.66,
       "rank": 19
     },
     {
