@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-11-21T01:27:20.653484+00:00",
-  "lastSuccessfulUpdate": "2026-11-21T01:27:20.653484+00:00",
+  "updatedAt": "2026-11-21T09:40:27.466941+00:00",
+  "lastSuccessfulUpdate": "2026-11-21T09:40:27.466941+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -105,12 +105,12 @@
       "perfs": {
         "racingKings": {
           "rating": 2451,
-          "games": 34735
+          "games": 34736
         }
       },
       "rkPerfCount": {
-        "all": 34735,
-        "win": 25479
+        "all": 34736,
+        "win": 25480
       },
       "rkHighestRating": 2570,
       "winRate": 73.35,
@@ -212,16 +212,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2327,
-          "games": 5318
+          "rating": 2316,
+          "games": 5320
         }
       },
       "rkPerfCount": {
-        "all": 5318,
-        "win": 3473
+        "all": 5320,
+        "win": 3474
       },
       "rkHighestRating": 2481,
-      "winRate": 65.31,
+      "winRate": 65.3,
       "rank": 12
     },
     {
