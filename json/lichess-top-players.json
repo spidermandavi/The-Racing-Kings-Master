@@ -3,8 +3,8 @@
   "endpoint": "https://lichess.org/api/player/top/20/racingKings",
   "variant": "Racing Kings",
   "limit": 20,
-  "updatedAt": "2026-11-22T21:43:48.173111+00:00",
-  "lastSuccessfulUpdate": "2026-11-22T21:43:48.173111+00:00",
+  "updatedAt": "2026-11-23T02:45:05.496157+00:00",
+  "lastSuccessfulUpdate": "2026-11-23T02:45:05.496157+00:00",
   "health": "healthy",
   "errors": {},
   "players": [
@@ -140,16 +140,16 @@
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2430,
-          "games": 76
+          "rating": 2425,
+          "games": 81
         }
       },
       "rkPerfCount": {
-        "all": 76,
-        "win": 49
+        "all": 81,
+        "win": 52
       },
       "rkHighestRating": 2616,
-      "winRate": 64.47,
+      "winRate": 64.2,
       "rank": 8
     },
     {
@@ -351,21 +351,21 @@
       "rank": 19
     },
     {
-      "id": "tgainvaibhavgrand",
-      "username": "TGAinVaibhavGrand",
+      "id": "panagiskosmatos",
+      "username": "panagiskosmatos",
       "title": null,
       "perfs": {
         "racingKings": {
-          "rating": 2296,
-          "games": 9931
+          "rating": 2297,
+          "games": 16411
         }
       },
       "rkPerfCount": {
-        "all": 9931,
-        "win": 6205
+        "all": 16411,
+        "win": 9927
       },
-      "rkHighestRating": 2351,
-      "winRate": 62.48,
+      "rkHighestRating": 2385,
+      "winRate": 60.49,
       "rank": 20
     }
   ]
